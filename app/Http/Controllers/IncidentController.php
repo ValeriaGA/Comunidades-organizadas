@@ -7,6 +7,7 @@ use App\Incident;
 use App\TypeOfIncident;
 use App\Weapon;
 use App\Transportation;
+use App\Evidence;
 use Auth;
 use DateTime;
 use DateTimeZone;
@@ -69,21 +70,21 @@ class IncidentController extends Controller
             'weapon' => 'required',
             'transportation' => 'required',
             'sex' => 'required',
+            'file' => 'max:10240'
         ]);
 
         $type = TypeOfIncident::where('name', 'LIKE', request('type'))->get();
         $weapon = Weapon::where('name', 'LIKE', request('weapon'))->get();
         $transportation = Transportation::where('name', 'LIKE', request('transportation'))->get();
 
-        // file max:10240
-        // $file = $request->file('file');
-        // $extension = $file->getClientOriginalExtension();
-        // $filename =time().'.'.$extension;
-        // $file->move('products/', $filename);
-
-        // auth()->user()->publish(
-        //     new Post(request(['title', 'body']))
-        // );
+        $filename = '';
+        if ($request->hasFile('file'))
+        {
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('images/evidence', $filename);
+        }
 
         $incident = Incident::create([
             'location' => request('location'),
@@ -101,7 +102,10 @@ class IncidentController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-        // Product::find($product->idProduct)->categories()->attach($category[0]['idCategory']);
+        $evidence = Evidence::create([
+            'incident_id' => $incident->id,
+            'multimedia_path' => $filename
+        ]);
 
         session()->flash('message', 'Incident added');
 

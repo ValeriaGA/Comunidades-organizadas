@@ -22,9 +22,9 @@
                             <h3 class="box-title">Detalles</h3>
                             <div> 
                               @if (!is_null($incident->user->avatar_path))
-                                  <img src="{{ asset('images/users/'.$incident->user->avatar_path) }}"  alt="user" class="img-circle">
+                                  <img src="{{ asset('images/users/'.$incident->user->avatar_path) }}"  alt="user" class="thumb-lg img-circle">
                               @else
-                                  <img src="../plugins/images/users/profile.png"  alt="user" class="img-circle">
+                                  <img src="../plugins/images/users/profile.png"  alt="user" class="thumb-lg img-circle">
                               @endif
                             </div>
                             <div>
@@ -34,6 +34,14 @@
                                 <span><b>Lugar:</b> {{ $incident->location }}</span>
                                 <br/>
                                 <span><b>Tipo:</b> {{ $incident->typesOfIncident->name }}</span>
+                                <br/>
+                                <span><b>Arma:</b> {{ $incident->weapon->name }}</span>
+                                <br/>
+                                <span><b>Vehiculo:</b> {{ $incident->transportation->name }}</span>
+                                <br/>
+                                <span><b>Perpetradores:</b> {{ $incident->perpetrators }}</span>
+                                <br/>
+                                <span><b>Victimas:</b> {{ $incident->victims }} <b>Sexo:</b> {{ $incident->primary_victim_sex }}</span>
                                 <br/>
                                 <span><b>Descripción:</b> {{ $incident->description }} </span>
                             </div>
@@ -48,23 +56,27 @@
                             <h3 class="box-title">Evidencia</h3>
                             <div id="accordion">
 
-                              <div class="card">
-                                <div class="card-header" id="headingOne">
-                                  <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                      Evidencia #1
-                                    </button>
-                                  </h5>
-                                </div>
 
-                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                  <div class="card-body">
-                                    <img src="../images/pandas_slide.gif" style="display: block; margin-left: auto; margin-right: auto;">
+                              @foreach ($incident->evidence as $evidence)
+                                  <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                      <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                          Evidencia #1
+                                        </button>
+                                      </h5>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                      <div class="card-body">
+                                        <img src="{{ asset('images/evidence/'.$evidence->multimedia_path) }}" style="display: block; margin-left: auto; margin-right: auto;">
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
+                              @endforeach
+                              
 
-                              <div class="card">
+                              <!-- <div class="card">
                                 <div class="card-header" id="headingTwo">
                                   <h5 class="mb-0">
                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -92,7 +104,7 @@
                                     
                                   </div>
                                 </div>
-                              </div>
+                              </div> -->
                             </div> 
                         </div>
                     </div>

@@ -8,7 +8,7 @@ class Incident extends Model
 {
 
     protected $fillable = [
-        'description', 'type_id', 'weapon_id', 'transportation_id', 'location', 'longitud', 'latitud', 'perpetrators', 'user_id', 'date', 'time', 'perpetrators', 'victims', 'primary_victim_sex'
+        'description', 'type_id', 'weapon_id', 'transportation_id', 'location', 'longitud', 'latitud', 'perpetrators', 'user_id', 'date', 'time', 'victims', 'primary_victim_sex'
     ];
 
     public function user()
@@ -23,11 +23,16 @@ class Incident extends Model
 
     public function transportation()
     {
-        return $this->hasOne(TypeOfIncident::class, 'id', 'transportation_id');
+        return $this->hasOne(Transportation::class, 'id', 'transportation_id');
     }
 
     public function weapon()
     {
-        return $this->hasOne(TypeOfIncident::class, 'id', 'weapon_id');
+        return $this->hasOne(Weapon::class, 'id', 'weapon_id');
+    }
+
+    public function evidence()
+    {
+        return $this->hasMany(Evidence::class);
     }
 }

@@ -9,132 +9,46 @@
             margin: 0px;
           }
         </style>
-        <!-- <script>
-      function initMap() {
-        var myLatLng = {lat:9.934739, lng: -84.087502};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: myLatLng
-        });
-
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Hello World!'
-        });
-      }
-    </script> -->
     <script>
       var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 16,
-          center: new google.maps.LatLng(-33.91722, 151.23064),
+          zoom: 8,
+          center: new google.maps.LatLng(9.8896299, -84.2203189),
           mapTypeId: 'roadmap'
         });
-        // var types = {!! json_encode($types->toArray()) !!};
+        
+        var types = {!! json_encode($types->toArray()) !!};
+        // alert(types.toSource());
+
 
         var iconBase = '/plugins/images/icons/';
 
-        var icons = {
-          assault: {
-            name: 'Asalto',
-            icon: iconBase + 'assault_small.png'
-          },
-          autotheft: {
-            name: 'Robo de Autos',
-            icon: iconBase + 'autotheft_small.png'
-          },
-          burglary: {
-            name: 'Robo',
-            icon: iconBase + 'burglary_small.png'
-          },
-          drugs: {
-            name: 'Drogas',
-            icon: iconBase + 'drugs_small.png'
-          },
-          homicide: {
-            name: 'Homicidio',
-            icon: iconBase + 'homicide_small.png'
-          },
-          other: {
-            name: 'Otro',
-            icon: iconBase + 'other_small.png'
-          },
-          shoplifting: {
-            name: 'Robo de Tienda',
-            icon: iconBase + 'shoplifting_small.png'
-          },
-          suspactivity: {
-            name: 'Actividades Sospechosas',
-            icon: iconBase + 'suspactivity_small.png'
-          },
-          vandalism: {
-            name: 'Vandalismo',
-            icon: iconBase + 'vandalism_small.png'
-          }
-        };
+        var icons = {};
 
-        var features = [
-          {
-            position: new google.maps.LatLng(-33.91721, 151.22630),
-            type: 'assault'
-          }, {
-            position: new google.maps.LatLng(-33.91539, 151.22820),
-            type: 'autotheft'
-          }, {
-            position: new google.maps.LatLng(-33.91747, 151.22912),
-            type: 'burglary'
-          }, {
-            position: new google.maps.LatLng(-33.91910, 151.22907),
-            type: 'drugs'
-          }, {
-            position: new google.maps.LatLng(-33.91725, 151.23011),
-            type: 'homicide'
-          }, {
-            position: new google.maps.LatLng(-33.91872, 151.23089),
-            type: 'shoplifting'
-          }, {
-            position: new google.maps.LatLng(-33.91784, 151.23094),
-            type: 'suspactivity'
-          }, {
-            position: new google.maps.LatLng(-33.91682, 151.23149),
-            type: 'vandalism'
-          }, {
-            position: new google.maps.LatLng(-33.91790, 151.23463),
-            type: 'assault'
-          }, {
-            position: new google.maps.LatLng(-33.91666, 151.23468),
-            type: 'autotheft'
-          }, {
-            position: new google.maps.LatLng(-33.916988, 151.233640),
-            type: 'burglary'
-          }, {
-            position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
-            type: 'drugs'
-          }, {
-            position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
-            type: 'homicide'
-          }, {
-            position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
-            type: 'shoplifting'
-          }, {
-            position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
-            type: 'suspactivity'
-          }, {
-            position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
-            type: 'vandalism'
-          }, {
-            position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
-            type: 'assault'
-          }, {
-            position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
-            type: 'autotheft'
-          }, {
-            position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
-            type: 'burglary'
-          }
-        ];
+        types.forEach(function(type) {
+          var dict = {};
+
+          dict['name'] = type['name'];
+          dict['url'] = iconBase + type['image_path'];
+          dict['size'] = new google.maps.Size(30, 38);
+          dict['origin'] = new google.maps.Point(0, 0);
+          dict['anchor'] = new google.maps.Point(15, 38);
+
+          icons[type['id']] = dict;
+        });
+
+        var incidents = {!! json_encode($incidents->toArray()) !!};
+
+        var features = [];
+        incidents.forEach(function(incident) {
+          var dict = {};
+
+          dict['position'] = new google.maps.LatLng(incident['latitud'], incident['longitud']);
+          dict['type'] = incident['type_id'];
+
+          features.push(dict);
+        });
 
           var contentString = '<div id="content">'+
               '<div id="siteNotice">'+
@@ -166,7 +80,7 @@
         features.forEach(function(feature) {
           var marker = new google.maps.Marker({
             position: feature.position,
-            icon: icons[feature.type].icon,
+            icon: icons[feature.type],
             map: map
           });
 
@@ -180,7 +94,7 @@
         for (var key in icons) {
           var type = icons[key];
           var name = type.name;
-          var icon = type.icon;
+          var icon = type.url;
           var div = document.createElement('div');
           div.innerHTML = '<img src="' + icon + '"> ' + name;
           legend.appendChild(div);
@@ -234,6 +148,12 @@
                           <!-- <h3 class="box-title">Map</h3> -->
                           <!-- <div id="gmaps-simple" class="gmaps"></div> -->
                           <div id="map" style="width: 100%; height: 480px"></div>
+                      </div>
+                  </div>
+                  <div class="col-sm-2">
+                      <div class="white-box">
+                        <h3 class="box-title">Numero de Incidentes</h3> 
+                        <h4 class="counter text-success" title="incidentes">{{ count($incidents) }}</h4>
                       </div>
                   </div>
                   <div class="col-sm-2">
