@@ -51,3 +51,5 @@ Route::get('/statistics/chart', 'StatisticsController@chart');
 // Search
 
 Route::get('/search', 'SearchController@index');
+
+Route::post('/search', 'SearchController@show');

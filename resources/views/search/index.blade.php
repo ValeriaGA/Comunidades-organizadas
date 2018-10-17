@@ -132,7 +132,6 @@
                 </div>
                 <!-- /.row -->
                 @endauth
-
                 <div class="row">
                   <div class="col-sm-2">
                       <div class="white-box">
@@ -156,43 +155,43 @@
                         <h4 class="counter text-success" title="incidentes">{{ count($incidents) }}</h4>
                       </div>
                   </div>
-                  <div class="col-sm-2">
-                      <div class="white-box">
-                        <h3 class="box-title">Filtrar Por Tipo</h3> 
-                          <form action="/action_page.php">
-                              @foreach ($types as $type)
-                                <input type="checkbox" name="{{$type->name}}" value="{{$type->name}}"> {{$type->name}}<br>
-                              @endforeach
-                          </form>
-                      </div>
-                  </div>
-                  <div class="col-sm-2">
-                      <div class="white-box">
-                        <h3 class="box-title">Filtrar Por Fecha</h3> 
-                          <form action="/action_page.php">
-                              <input id="date" type="date" placeholder="" class="form-control form-control-line" name="date" value="{{$date}}" required>
-                          </form>
-                      </div>
-                  </div>
-                  <div class="col-sm-2">
-                      <div class="white-box">
-                        <h3 class="box-title">Filtrar Por Sexo</h3> 
-                          <form action="/action_page.php">
-                              <select class="form-control" name="sex" required>
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
-                              </select>
-                          </form>
-                      </div>
-                  </div>
-                  <div class="col-sm-2">
-                      <div class="white-box">
-                        <h3 class="box-title">Filtrar Por Lugar</h3> 
-                          <form action="/action_page.php">
-                              <input id="location" type="text" placeholder="" class="form-control form-control-line" name="location" required>
-                          </form>
-                      </div>
-                  </div>
+                  <form action="/search" method="post" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="col-sm-2">
+                        <div class="white-box">
+                          <h3 class="box-title">Filtrar Por Tipo</h3>
+                                @foreach ($types as $type)
+                                  <input type="checkbox" name="{{$type->name}}" value="{{$type->name}}" checked> {{$type->name}}<br>
+                                @endforeach
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="white-box">
+                          <h3 class="box-title">Filtrar Por Fecha</h3>
+                                <input id="date" type="date" placeholder="" class="form-control form-control-line" name="date" value="{{$date}}" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="white-box">
+                          <h3 class="box-title">Filtrar Por Sexo</h3>
+                                <select class="form-control" name="sex" required>
+                                  <option value="Masculino">Masculino</option>
+                                  <option value="Femenino">Femenino</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="white-box">
+                          <h3 class="box-title">Filtrar Por Lugar</h3> 
+                                <input id="location" type="text" placeholder="" class="form-control form-control-line" name="location" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="white-box">
+                                <button class="btn btn-success">Filtrar</button>
+                        </div>
+                    </div>
+                  </form>
                 </div>
                 <!-- /.row -->
             </div>

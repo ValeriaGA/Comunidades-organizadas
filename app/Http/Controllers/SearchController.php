@@ -49,12 +49,31 @@ class SearchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        // location
+        // date
+        // sex
+        // 
+        $this->validate(request(), [
+            'date' => 'date|before_or_equal:today'
+        ]);
+
+        $type = TypeOfIncident::where('name', 'LIKE', request('type'))->get();
+        $weapon = Weapon::where('name', 'LIKE', request('weapon'))->get();
+        $transportation = Transportation::where('name', 'LIKE', request('transportation'))->get();
+
+
+        $types = TypeOfIncident::orderBy('name', 'asc')->get();
+        $incidents = Incident::latest()->get();
+
+        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
+        $date = $dt->format('Y-m-d');
+
+        return view('search.index', compact('types', 'incidents', 'date'));
     }
 
     /**
