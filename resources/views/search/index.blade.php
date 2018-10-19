@@ -168,22 +168,24 @@
                     <div class="col-sm-2">
                         <div class="white-box">
                           <h3 class="box-title">Filtrar Por Fecha</h3>
-                                <input id="date" type="date" placeholder="" class="form-control form-control-line" name="date" value="{{$date}}" required>
+                                <input id="date" type="date" placeholder="" class="form-control form-control-line" name="date" value="{{$date}}">
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="white-box">
                           <h3 class="box-title">Filtrar Por Sexo</h3>
-                                <select class="form-control" name="sex" required>
+                                <select class="form-control" name="sex">
+                                  <option value="Ambos">Ambos</option>
                                   <option value="Masculino">Masculino</option>
                                   <option value="Femenino">Femenino</option>
+                                  <option value="Otro">Otro</option>
                                 </select>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="white-box">
                           <h3 class="box-title">Filtrar Por Lugar</h3> 
-                                <input id="location" type="text" placeholder="" class="form-control form-control-line" name="location" required>
+                                <input id="location" type="text" placeholder="" class="form-control form-control-line" name="location">
                         </div>
                     </div>
                     <div class="col-sm-2">

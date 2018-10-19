@@ -62,13 +62,38 @@ class SearchController extends Controller
             'date' => 'date|before_or_equal:today'
         ]);
 
-        $type = TypeOfIncident::where('name', 'LIKE', request('type'))->get();
-        $weapon = Weapon::where('name', 'LIKE', request('weapon'))->get();
-        $transportation = Transportation::where('name', 'LIKE', request('transportation'))->get();
-
-
         $types = TypeOfIncident::orderBy('name', 'asc')->get();
-        $incidents = Incident::latest()->get();
+        // $match = [['location', 'LIKE',  '%' . request('location') . '%'], ['date' => request('date')]];
+
+        //where('location', 'LIKE', '%' . request('location') . '%')
+        // where($match)
+
+        // if ($request->has('location') ? true : false)
+        // {
+        //     $incidents = Incident::location(request('location'));
+        // }
+
+        $match = array();
+
+        if ($request->has('location') ? true : false)
+        {
+            $match[] = ['location', 'LIKE',  '%' . request('location') . '%'];
+        }
+
+        if ($request->has('date') ? true : false)
+        {
+            $match[] = ['date', '=', request('date')];
+        }
+
+        if ($request->has('sex') ? true : false)
+        {
+            if (request('sex') == "Masculino") $match[] = ['primary_victim_sex', 'LIKE', 'm'];
+            else if (request('sex') == "Femenino") $match[] = ['primary_victim_sex', 'LIKE', 'f'];
+        }
+
+        $incidents = Incident::where($match)
+                ->latest()
+                ->get();
 
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');

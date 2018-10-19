@@ -35,4 +35,14 @@ class Incident extends Model
     {
         return $this->hasMany(Evidence::class);
     }
+
+    public function scopeLocation($query, $param)
+    {
+        return $query->where('location', 'LIKE', '%' . $param . '%');
+    }
+
+    public function scopeDate($query, $param)
+    {
+        return $query->where('date', '=', $param);
+    }
 }

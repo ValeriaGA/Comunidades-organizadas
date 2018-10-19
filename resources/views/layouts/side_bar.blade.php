@@ -19,13 +19,23 @@
             </li>
             @endauth
             <li>
-                <a href="/statistics/bar" class="waves-effect"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Estadísticas Por Delíto</a>
-            </li>
-            <li>
-                <a href="/statistics/pie" class="waves-effect"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Estadísticas Por Sexo</a>
-            </li>
-            <li>
-                <a href="/statistics/chart" class="waves-effect"><i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>Estadísticas Por Tiempo</a>
+                <a class="waves-effect" href="javascript:void(0);">
+                    <i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>
+                    <span class="hide-menu">
+                        Estadísticas<span class="fa arrow"></span>
+                    </span>
+                </a>
+                <ul class="nav nav-second-level collapse" aria-expanded="false">
+                    <li>
+                    <a href="/statistics/bar" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Delíto</a>
+                    </li>
+                    <li>
+                        <a href="/statistics/pie" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Sexo</a>
+                    </li>
+                    <li>
+                        <a href="/statistics/chart" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Tiempo</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
