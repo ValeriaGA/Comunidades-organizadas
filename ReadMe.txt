@@ -18,7 +18,6 @@ insert into InfoDenuncias.transportations(name) values ('Sin vehiculo'), ('Motoc
 
 
 Falta:
-+ Estilo de ver incidente
 + Modificar texto al hacer click en un marcador en el mapa
-+ Filtrar en vista de busqueda
-+ Estadisticas (Mover a una sola vista, conectar con BD)
++ Filtrar en vista de busqueda (Tipo de incidente)
++ Estadisticas
