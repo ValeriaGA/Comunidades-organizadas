@@ -10,9 +10,9 @@
                         <form class="form-horizontal form-material" action="/statistics/bar" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                           <a>  Fecha de inicio:</a> 
-                          <input id="first_date" type="date" placeholder="" class="form-control form-control-line" name="date1" value="2013-10-10">
+                          <input id="first_date" type="date" placeholder="" class="form-control form-control-line" name="first_date" value="2013-10-10">
                           <a> Fecha de Final:</a>
-                          <input id="final_date" type="date" placeholder="" class="form-control form-control-line" name="date2" value="{{$date}}"><br>
+                          <input id="final_date" type="date" placeholder="" class="form-control form-control-line" name="final_date" value="{{$date}}"><br>
                           <div class="form-group">
                               <div class="col-sm-12">
                                   <button class="btn btn-success">Actualizar</button>

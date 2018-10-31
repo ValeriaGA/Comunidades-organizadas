@@ -8,7 +8,7 @@ use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use DateTime;
+
 
 class StatisticsController extends Controller
 {
@@ -127,6 +127,11 @@ class StatisticsController extends Controller
             'final_date' => 'date|before_or_equal:today'
         ]);
         $types = TypeOfIncident::orderBy('name', 'asc')->get();
+        $first_date = request('first_date');
+        $final_date = request('final_date');
+        $incidents = TypeOfIncident::whereBetween('created_at',[$first_date,$final_date])->get();
+        $countIncidents = count($incidents);
+
     } 
 
     public function crime_per_gender(Request $request)
