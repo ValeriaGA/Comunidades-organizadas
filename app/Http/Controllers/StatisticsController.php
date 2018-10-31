@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class StatisticsController extends Controller
 {
@@ -28,7 +30,19 @@ class StatisticsController extends Controller
 
     public function chart()
     {
-        return view('statistics.char');
+        $month_qty = DB::select( DB::raw("SELECT MONTH(date) as month, count(*) qty FROM incidents WHERE YEAR(date) = YEAR(CURDATE()) GROUP BY MONTH(date)"));
+
+
+        $dic = array();
+        foreach($month_qty as $mq)
+        {
+            $dateObj   = DateTime::createFromFormat('!m', $mq->month);
+            $monthName = $dateObj->format('F');
+
+            $dic[$monthName] = $mq->qty;
+        }
+
+        return view('statistics.char', compact('dic'));
     }
 
     /**

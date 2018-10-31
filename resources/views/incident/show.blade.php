@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="col-md-6 pull-right">
                                             <h4><b>Descripción:</b></h4>
-                                            <p>{{ $incident->description }}</p>
+                                            <h4>{{ $incident->description }}</h4>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>

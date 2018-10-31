@@ -159,7 +159,11 @@
                         <div class="white-box">
                           <h3 class="box-title">Filtrar Por Tipo</h3>
                                 @foreach ($types as $type)
-                                  <input type="checkbox" name="{{$type->name}}" value="{{$type->name}}" checked> {{$type->name}}<br>
+                                  @if (in_array($type->id, $type_ids))
+                                    <input type="checkbox" name="{{$type->id}}" value="{{$type->name}}" checked> {{$type->name}}<br>
+                                  @else
+                                    <input type="checkbox" name="{{$type->id}}" value="{{$type->name}}" > {{$type->name}}<br>
+                                  @endif
                                 @endforeach
                         </div>
                     </div>

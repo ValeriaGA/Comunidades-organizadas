@@ -17,12 +17,19 @@ class SearchController extends Controller
     public function index()
     {
         $types = TypeOfIncident::orderBy('name', 'asc')->get();
+
+        $type_ids = array();
+        foreach ($types as $type)
+        {
+            $type_ids[] = $type->id;
+        }
+
         $incidents = Incident::latest()->get();
 
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
 
-        return view('search.index', compact('types', 'incidents', 'date'));
+        return view('search.index', compact('types', 'type_ids', 'incidents', 'date'));
     }
 
     /**
@@ -74,6 +81,21 @@ class SearchController extends Controller
         // }
 
         $match = array();
+        $type_query = array();
+        $type_ids = array();
+
+        $type_query = '(';
+        foreach($types as $type)
+        {
+            if ($request->has($type->id))
+            {
+                //echo 'type->name : '.$type->name.'<br>';
+                $type_ids[] = $type->id;
+                $type_query .= '(type_id = ?) OR '; 
+            }
+        }
+        $type_query .= 'FALSE)';
+        //echo 'type_query : '.$type_query.'<br>';
 
         if ($request->has('location') ? true : false)
         {
@@ -92,14 +114,16 @@ class SearchController extends Controller
         }
 
         $incidents = Incident::where($match)
+                ->whereRaw($type_query, $type_ids)
                 ->latest()
                 ->get();
 
-        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
-        $date = $dt->format('Y-m-d');
+        $date = request('date');
 
-        return view('search.index', compact('types', 'incidents', 'date'));
+        return view('search.index', compact('types', 'type_ids', 'incidents', 'date'));
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.
