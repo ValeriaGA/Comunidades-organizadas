@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Incident;
+use App\TypeOfIncident;
+use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DateTime;
@@ -20,12 +24,17 @@ class StatisticsController extends Controller
 
     public function bar()
     {
-        return view('statistics.bar');
+        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
+        $date = $dt->format('Y-m-d');
+        return view('statistics.bar', compact('date'));
     }
 
     public function pie()
     {
-        return view('statistics.pie');
+        $types = TypeOfIncident::orderBy('name', 'asc')->get();
+        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
+        $date = $dt->format('Y-m-d');
+        return view('statistics.pie', compact('types'));
     }
 
     public function chart()
@@ -53,6 +62,7 @@ class StatisticsController extends Controller
     public function create()
     {
         //
+       
     }
 
     /**
@@ -110,4 +120,17 @@ class StatisticsController extends Controller
     {
         //
     }
+
+    public function crime_per_type(Request $request)
+    {
+        $this->validate(request(), [
+            'final_date' => 'date|before_or_equal:today'
+        ]);
+        $types = TypeOfIncident::orderBy('name', 'asc')->get();
+    } 
+
+    public function crime_per_gender(Request $request)
+    {
+        //$crimeType
+    } 
 }

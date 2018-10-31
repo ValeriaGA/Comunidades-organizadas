@@ -7,9 +7,18 @@
                     <div class="col-md-10">
                         <div class="white-box analytics-info">
                         <h2>Numero de delitos por tipos</h2>
-                        <a>  Fecha de inicio:</a> 
-                        <input style="background-color: white;" type="date" name="dayini" min="2010-12-31"><a> Fecha de Final:</a>
-                        <input style="background-color: white;" id="date" type="date" name="datend" max="2018-01-02" size="20"><br>
+                        <form class="form-horizontal form-material" action="/statistics/bar" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                          <a>  Fecha de inicio:</a> 
+                          <input id="first_date" type="date" placeholder="" class="form-control form-control-line" name="date1" value="2013-10-10">
+                          <a> Fecha de Final:</a>
+                          <input id="final_date" type="date" placeholder="" class="form-control form-control-line" name="date2" value="{{$date}}"><br>
+                          <div class="form-group">
+                              <div class="col-sm-12">
+                                  <button class="btn btn-success">Actualizar</button>
+                              </div>
+                          </div>
+                        </form>
                         <div id="graph"></div>
                         <pre id="code" class="prettyprint linenums">
                         // Use Morris.Bar
@@ -40,6 +49,8 @@
                           }
                         });
                         </pre>
+                        
+                      
                     </div>
                     </div>
                 </div>
