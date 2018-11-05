@@ -33,35 +33,36 @@ class StatisticsController extends Controller
     public function pie()
     {
         $types = TypeOfIncident::orderBy('name', 'asc')->get();
-        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
-        $date = $dt->format('Y-m-d');
-
-        $first_incident = DB::table('type_of_incidents')->first();
         
-        $id = $first_incident->id;
-        //$id = $_POST["delitos"];
+        $id = request('delitos');
+        
+        $selected_incident = DB::table('type_of_incidents')->where('id', $id)->get();
+        foreach ($selected_incident as $key) {
+            $selected_incident_name = $key->name;
+        }
+        
         $users_count = DB::table('incidents')
                      ->select(DB::raw('count(*) as count, primary_victim_sex'))
                      ->where('type_id', $id)
                      ->groupBy('primary_victim_sex')
                      ->get();
-        $count = array();
+        $count_per_gender = array();
         $total = 0; 
         foreach($users_count as $users)
         {
             if ($users->primary_victim_sex == 'm') {
-                $count['masculino'] = $users->count;
+                $count_per_gender['masculino'] = $users->count;
                 $total += $users->count;
             }elseif ($users->primary_victim_sex == 'f') {
-                $count['femenino'] = $users->count;
+                $count_per_gender['femenino'] = $users->count;
                 $total += $users->count;
             }else {
-                $count['otro'] = $users->count;
+                $count_per_gender['otro'] = $users->count;
                 $total += $users->count;
             }
         }
 
-      return view('statistics.pie', compact('types','count','total'));
+      return view('statistics.pie', compact('types','count_per_gender','total','selected_incident_name'));
     }
 
     public function chart()
@@ -83,6 +84,8 @@ class StatisticsController extends Controller
     
     public function crime_per_type(Request $request)
     {
+       
+        
         $this->validate(request(), [
             'final_date' => 'date|before_or_equal:today'
         ]);
@@ -96,34 +99,36 @@ class StatisticsController extends Controller
 
     public function crime_per_gender(Request $request)
     {
-        //$crimeType
-        $id_type = request('delitos');
-        $first_incident = DB::table('type_of_incidents')
-                        ->where('type_id', $id_type)   
-                        ->first();
         
-        $id = $first_incident->id;
+        $types = TypeOfIncident::orderBy('name', 'asc')->get();
+        
+        $id = request('delitos');
+        
+        $selected_incident = DB::table('type_of_incidents')->where('id', $id)->get();
+        foreach ($selected_incident as $key) {
+            $selected_incident_name = $key->name;
+        }
         $users_count = DB::table('incidents')
                      ->select(DB::raw('count(*) as count, primary_victim_sex'))
                      ->where('type_id', $id)
                      ->groupBy('primary_victim_sex')
                      ->get();
-        $count = array();
+        $count_per_gender = array();
         $total = 0; 
         foreach($users_count as $users)
         {
             if ($users->primary_victim_sex == 'm') {
-                $count['masculino'] = $users->count;
+                $count_per_gender['masculino'] = $users->count;
                 $total += $users->count;
             }elseif ($users->primary_victim_sex == 'f') {
-                $count['femenino'] = $users->count;
+                $count_per_gender['femenino'] = $users->count;
                 $total += $users->count;
             }else {
-                $count['otro'] = $users->count;
+                $count_per_gender['otro'] = $users->count;
                 $total += $users->count;
             }
         }
 
-      return view('statistics.pie', compact('count','total'));
+      return view('statistics.pie', compact('types','count_per_gender','total','id_type','selected_incident_name'));
     } 
 }
