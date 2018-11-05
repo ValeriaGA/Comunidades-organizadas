@@ -16,6 +16,7 @@ insert into InfoDenuncias.type_of_incidents(name, image_path) values ('Otro', 'o
 insert into InfoDenuncias.weapons(name) values ('No Aplica'), ('Blancas'), ('Contundentes'), ('Arrojadizas'), ('Proyeccion'), ('Fuego'), ('Bomba');
 insert into InfoDenuncias.transportations(name) values ('Sin vehiculo'), ('Motocicleta'), ('Carro'), ('Camion'), ('Buseta');
 
+Use CTRL+u for see the source view at chrome
 
 Falta:
 + Modificar texto al hacer click en un marcador en el mapa

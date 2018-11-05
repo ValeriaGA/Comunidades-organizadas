@@ -12,8 +12,13 @@
                         {{ csrf_field() }}
                           <select style="background-color: white;" name="delitos">
                             @foreach ($types as $type)
-                            <option name="{{$type->name}}" value="{{$type->name}}">{{$type->name}}</option> 
+                            @if ($type->id)
+                            <option name="{{$type->id}}" value="{{$type->id}}" seleted>{{$type->name}}</option> 
+                            @else
+                            <option name="{{$type->id}}" value="{{$type->id}}">{{$type->name}}</option> 
+                            @endif
                             @endforeach
+                           
                            
                           </select>
                           <div class="form-group">
@@ -21,14 +26,18 @@
                               <br/><button class="btn btn-success">Actualizar</button>
                               </div>
                           </div>
+                                              
+                         
                         </form>
                         <div id="graph"></div>
                         <pre id="code" class="prettyprint linenums">
                         Morris.Donut({
                           element: 'graph',
                           data: [
-                            {value: 70, label: 'Mujeres', formatted: 'al menos 70%' },
-                            {value: 15, label: 'Hombres', formatted: 'aprox. 30%' }
+                           
+                            {value: {{ (array_key_exists('femenino', $count) ? $count['femenino'] : 0) }}, label: 'Mujeres', formatted: 'approx {{ (array_key_exists('femenino', $count) ? ($count['femenino']/$total)*100 : 0) }}%' },
+                            {value: {{ (array_key_exists('masculino', $count) ? $count['masculino'] : 0) }}, label: 'Hombres', formatted: 'approx {{ (array_key_exists('masculino', $count) ? ($count['masculino']/$total)*100 : 0) }}%' },
+                            {value: {{ (array_key_exists('otro', $count) ? $count['otro'] : 0) }}, label: 'Otro', formatted: 'approx {{ (array_key_exists('otro', $count) ? ($count['otro']/$total)*100 : 0) }}%' }
                           ],
                           formatter: function (x, data) { return data.formatted; }
                         });
@@ -37,3 +46,4 @@
                     </div>
                 </div>
                 @endsection
+             

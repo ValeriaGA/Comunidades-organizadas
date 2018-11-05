@@ -48,7 +48,7 @@ Route::post('/statistics/bar', 'StatisticsController@crime_per_type');
 
 Route::get('/statistics/pie', 'StatisticsController@pie');
 
-Route::post('/statistics/pie/{crimeType}', 'StatisticsController@crime_per_gender');
+Route::post('/statistics/pie/', 'StatisticsController@crime_per_gender');
 
 Route::get('/statistics/chart', 'StatisticsController@chart');
 
