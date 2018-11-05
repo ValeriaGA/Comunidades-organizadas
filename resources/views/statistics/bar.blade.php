@@ -20,7 +20,7 @@
                           </div>
                         </form>
                         @foreach ($count_per_type as $count_type)
-                        {{$count_type->count}}
+                        {{$count_type[0]}}
                         @endforeach
                         <div id="graph"></div>
                         <pre id="code" class="prettyprint linenums">
@@ -28,7 +28,7 @@
                         Morris.Bar({
                           element: 'graph',
                           data: [
-                          foreach ($count_per_type as $count_type)
+                          
                             {x: 'Actividad sospechosa', num: 9},
                             {x: 'Asalto', num: 1},
                             {x: 'Drogas', num: 2},
@@ -38,7 +38,7 @@
                             {x: 'Robo a comercio', num: 4},
                             {x: 'Vandalismo', num: 7},
                             {x: 'Otros', num: 3}
-                          endforeach
+                         
                           ],
                           xkey: 'x',
                           ykeys: ['num'],

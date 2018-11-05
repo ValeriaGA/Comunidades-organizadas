@@ -39,13 +39,12 @@ class StatisticsController extends Controller
                      ->groupBy('type_id')
                      ->get();
 
-        $count_per_gender = array();
+        $count_per_type = array();
         foreach ($count_per_type as $count_type) {
             foreach ($types as $type) {
                 if ($type->id == $count_type->type_id) {
-                    $sub_list1=array('some stuff','more stuff');
-                    $sub_list2=array('more stuff2','some more');
-                    $list1 = array($sub_list1,$sub_list2);
+                    $sub_list1=array($type->name,$count_type->count);
+                    array_push($count_per_type, $sub_list1);
                 }
             }
         }
