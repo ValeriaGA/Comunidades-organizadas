@@ -27,7 +27,29 @@ class StatisticsController extends Controller
     {
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
-        return view('statistics.bar', compact('date'));
+        $this->validate(request(), [
+            'final_date' => 'date|before_or_equal:today'
+        ]);
+        $types = TypeOfIncident::orderBy('name', 'asc')->get();
+        $first_date = request('first_date');
+        $final_date = request('final_date');
+        $count_per_type = DB::table('incidents')
+                     ->select(DB::raw('count(*) as count, type_id'))
+                     ->whereBetween('created_at',[$first_date,$final_date])
+                     ->groupBy('type_id')
+                     ->get();
+
+        $count_per_gender = array();
+        foreach ($count_per_type as $count_type) {
+            foreach ($types as $type) {
+                if ($type->id == $count_type->type_id) {
+                    $sub_list1=array('some stuff','more stuff');
+                    $sub_list2=array('more stuff2','some more');
+                    $list1 = array($sub_list1,$sub_list2);
+                }
+            }
+        }
+        return view('statistics.bar', compact('date','types','count_per_type'));
     }
 
     public function pie()
@@ -92,9 +114,12 @@ class StatisticsController extends Controller
         $types = TypeOfIncident::orderBy('name', 'asc')->get();
         $first_date = request('first_date');
         $final_date = request('final_date');
-        $incidents = TypeOfIncident::whereBetween('created_at',[$first_date,$final_date])->get();
-        $countIncidents = count($incidents);
-
+        $count_per_type = DB::table('incidents')
+                     ->select(DB::raw('count(*) as count, type_id'))
+                     ->whereBetween('created_at',[$first_date,$final_date])
+                     ->groupBy('type_id')
+                     ->get();
+        return view('statistics.bar', compact('types','count_per_type'));
     } 
 
     public function crime_per_gender(Request $request)
