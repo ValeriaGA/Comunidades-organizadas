@@ -39,16 +39,16 @@ class StatisticsController extends Controller
                      ->groupBy('type_id')
                      ->get();
 
-        $count_per_type = array();
+        $count_per_type1 = array();
         foreach ($count_per_type as $count_type) {
             foreach ($types as $type) {
                 if ($type->id == $count_type->type_id) {
                     $sub_list1=array($type->name,$count_type->count);
-                    array_push($count_per_type, $sub_list1);
+                    array_push($count_per_type1, $sub_list1);
                 }
             }
         }
-        return view('statistics.bar', compact('date','types','count_per_type'));
+        return view('statistics.bar', compact('date','types','count_per_type1'));
     }
 
     public function pie()
@@ -105,8 +105,8 @@ class StatisticsController extends Controller
     
     public function crime_per_type(Request $request)
     {
-       
-        
+        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
+        $date = $dt->format('Y-m-d');
         $this->validate(request(), [
             'final_date' => 'date|before_or_equal:today'
         ]);
@@ -118,7 +118,17 @@ class StatisticsController extends Controller
                      ->whereBetween('created_at',[$first_date,$final_date])
                      ->groupBy('type_id')
                      ->get();
-        return view('statistics.bar', compact('types','count_per_type'));
+
+        $count_per_type1 = array();
+        foreach ($count_per_type as $count_type) {
+            foreach ($types as $type) {
+                if ($type->id == $count_type->type_id) {
+                    $sub_list1=array($type->name,$count_type->count);
+                    array_push($count_per_type1, $sub_list1);
+                }
+            }
+        }
+        return view('statistics.bar', compact('types','count_per_type1','date'));
     } 
 
     public function crime_per_gender(Request $request)

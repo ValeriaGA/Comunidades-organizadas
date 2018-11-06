@@ -19,27 +19,35 @@
                               </div>
                           </div>
                         </form>
-                        @foreach ($count_per_type as $count_type)
-                        {{$count_type[0]}}
-                        @endforeach
+                        
                         <div id="graph"></div>
                         <pre id="code" class="prettyprint linenums">
                         // Use Morris.Bar
+                        var count_per_type = <?php echo json_encode($count_per_type1); ?>;
+                        function data(x, num) {
+                            this.x = x;
+                            this.num = num;
+                        }
+<!-- 
+                        var i;
+                        var data[];
+                        for(i=0; i < count_per_type.length-1; i++){
+                          var data = new data(count_per_type[i][0], count_per_type[i][1]);
+                          data_set.push(data);
+                        } -->
+                        data[
+                          
+                          {x: 'Actividad sospechosa', num: 9},
+                          {x: 'Asalto', num: 1},
+                          {x: 'Drogas', num: 2}
+                       
+                        ];
+
+                        console.log(data_set);
+
                         Morris.Bar({
                           element: 'graph',
-                          data: [
-                          
-                            {x: 'Actividad sospechosa', num: 9},
-                            {x: 'Asalto', num: 1},
-                            {x: 'Drogas', num: 2},
-                            {x: 'Homicidio', num: 4},
-                            {x: 'Robo a vehiculo', num: 5},
-                            {x: 'Robo a casa', num: 3},
-                            {x: 'Robo a comercio', num: 4},
-                            {x: 'Vandalismo', num: 7},
-                            {x: 'Otros', num: 3}
-                         
-                          ],
+                          data: data,
                           xkey: 'x',
                           ykeys: ['num'],
                           labels: ['Num'],
