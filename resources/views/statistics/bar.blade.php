@@ -24,30 +24,22 @@
                         <pre id="code" class="prettyprint linenums">
                         // Use Morris.Bar
                         var count_per_type = <?php echo json_encode($count_per_type1); ?>;
-                        function data(x, num) {
-                            this.x = x;
-                            this.num = num;
-                        }
-<!-- 
-                        var i;
-                        var data[];
-                        for(i=0; i < count_per_type.length-1; i++){
-                          var data = new data(count_per_type[i][0], count_per_type[i][1]);
-                          data_set.push(data);
-                        } -->
-                        data[
-                          
-                          {x: 'Actividad sospechosa', num: 9},
-                          {x: 'Asalto', num: 1},
-                          {x: 'Drogas', num: 2}
-                       
-                        ];
-
-                        console.log(data_set);
-
+      
                         Morris.Bar({
                           element: 'graph',
-                          data: data,
+                          data: [
+                          
+                          {x: count_per_type[0][0], num: count_per_type[0][1]},
+                          {x: count_per_type[1][0], num: count_per_type[1][1]},
+                          {x: count_per_type[2][0], num: count_per_type[2][1]},
+                          {x: count_per_type[3][0], num: count_per_type[3][1]},
+                          {x: count_per_type[4][0], num: count_per_type[4][1]},
+                          {x: count_per_type[5][0], num: count_per_type[5][1]},
+                          {x: count_per_type[6][0], num: count_per_type[6][1]},
+                          {x: count_per_type[7][0], num: count_per_type[7][1]},
+                          {x: count_per_type[8][0], num: count_per_type[8][1]}
+                       
+                        ],
                           xkey: 'x',
                           ykeys: ['num'],
                           labels: ['Num'],

@@ -31,8 +31,8 @@ class StatisticsController extends Controller
             'final_date' => 'date|before_or_equal:today'
         ]);
         $types = TypeOfIncident::orderBy('name', 'asc')->get();
-        $first_date = request('first_date');
-        $final_date = request('final_date');
+        $first_date = '2013-10-10';
+        $final_date = $date;
         $count_per_type = DB::table('incidents')
                      ->select(DB::raw('count(*) as count, type_id'))
                      ->whereBetween('created_at',[$first_date,$final_date])
@@ -48,6 +48,20 @@ class StatisticsController extends Controller
                 }
             }
         }
+        foreach ($types as $type) {
+            $exist = false;
+            foreach ($count_per_type1 as $counts) {
+                if ($type->name == $counts[0]) {
+                    $exist = true;
+                }
+            }
+            if ($exist==false) {
+                $sub_list2=array($type->name, 0);
+                var_dump($sub_list2);
+                array_push($count_per_type1, $sub_list2);
+            }
+            
+        }
         return view('statistics.bar', compact('date','types','count_per_type1'));
     }
 
@@ -55,7 +69,7 @@ class StatisticsController extends Controller
     {
         $types = TypeOfIncident::orderBy('name', 'asc')->get();
         
-        $id = request('delitos');
+        $id = 1;
         
         $selected_incident = DB::table('type_of_incidents')->where('id', $id)->get();
         foreach ($selected_incident as $key) {
@@ -120,13 +134,31 @@ class StatisticsController extends Controller
                      ->get();
 
         $count_per_type1 = array();
-        foreach ($count_per_type as $count_type) {
-            foreach ($types as $type) {
+        
+        foreach ($types as $type) {
+            foreach ($count_per_type as $count_type) {
                 if ($type->id == $count_type->type_id) {
                     $sub_list1=array($type->name,$count_type->count);
                     array_push($count_per_type1, $sub_list1);
                 }
             }
+        }
+        
+
+        
+        foreach ($types as $type) {
+            $exist = false;
+            foreach ($count_per_type1 as $counts) {
+                if ($type->name == $counts[0]) {
+                    $exist = true;
+                }
+            }
+            if ($exist==false) {
+                $sub_list2=array($type->name, 0);
+                var_dump($sub_list2);
+                array_push($count_per_type1, $sub_list2);
+            }
+            
         }
         return view('statistics.bar', compact('types','count_per_type1','date'));
     } 
