@@ -7,11 +7,7 @@
                     <div class="col-md-10">
                         <div class="white-box analytics-info">
                         <h2>Actividad delictiva de los ultimos 10 años</h2>
-                        <select style="background-color: white;" name="delitos">
-                          @for($i = 0; $i < 10; ++$i)
-                           <option value="{{2018 - $i}}">{{2018 - $i}}</option> 
-                          @endfor
-                        </select>
+
                         <div id="graph"></div>
                         <pre id="code" class="prettyprint linenums">
                         var day_data = [
@@ -37,6 +33,28 @@
                           parseTime: false
                         });
                         </pre>
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="white-box">
+                    <form action="/statistics/chart" method="post" enctype="multipart/form-data">
+                           {{ csrf_field() }}
+                           <div class="row">
+                            <select class="form-control" style="background-color: white;" name="date">
+                              @for($i = 0; $i < 10; ++$i)
+                               @if($date == (2018 - $i))
+                               <option value="{{2018 - $i}}" selected>{{2018 - $i}}</option> 
+                               @else
+                               <option value="{{2018 - $i}}">{{2018 - $i}}</option> 
+                               @endif
+                              @endfor
+                            </select>
+                          </div>
+                          <br/>
+                          <div class="row">
+                            <button class="btn btn-success">Filtrar</button>
+                          </div>
+                        </form>
                       </div>
                     </div>
                 </div>

@@ -52,6 +52,8 @@ Route::post('/statistics/pie', 'StatisticsController@crime_per_gender');
 
 Route::get('/statistics/chart', 'StatisticsController@chart');
 
+Route::post('/statistics/chart', 'StatisticsController@chart_show');
+
 // Search
 
 Route::get('/search', 'SearchController@index');

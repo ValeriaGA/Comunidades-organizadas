@@ -112,8 +112,31 @@ class StatisticsController extends Controller
 
             $dic[$monthName] = $mq->qty;
         }
+        $date = '2018';
 
-        return view('statistics.char', compact('dic'));
+        return view('statistics.char', compact('dic', 'date'));
+    }
+
+    public function chart_show(Request $request)
+    {
+        $date = '2018';
+        if ($request->has('date') ? true : false)
+        {
+            $date = request('date');
+        }
+
+        $month_qty = DB::select( DB::raw("SELECT MONTH(date) as month, count(*) qty FROM incidents WHERE YEAR(date) = " . $date . " GROUP BY MONTH(date)"));
+        
+        $dic = array();
+        foreach($month_qty as $mq)
+        {
+            $dateObj   = DateTime::createFromFormat('!m', $mq->month);
+            $monthName = $dateObj->format('F');
+
+            $dic[$monthName] = $mq->qty;
+        }
+
+        return view('statistics.char', compact('dic', 'date'));
     }
 
     
