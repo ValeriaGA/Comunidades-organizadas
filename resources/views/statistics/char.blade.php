@@ -11,25 +11,25 @@
                         <div id="graph"></div>
                         <pre id="code" class="prettyprint linenums">
                         var day_data = [
-                          {"elapsed": "Enero", "value": {{ (array_key_exists('January', $dic) ? $dic['January'] : 0) }} },
-                          {"elapsed": "Febrero", "value": {{ (array_key_exists('February', $dic) ? $dic['February'] : 0) }} },
-                          {"elapsed": "Marzo", "value": {{ (array_key_exists('March', $dic) ? $dic['March'] : 0) }} },
-                          {"elapsed": "Abril", "value": {{ (array_key_exists('April', $dic) ? $dic['April'] : 0) }} },
-                          {"elapsed": "Mayo", "value": {{ (array_key_exists('May', $dic) ? $dic['May'] : 0) }} },
-                          {"elapsed": "Junio", "value": {{ (array_key_exists('June', $dic) ? $dic['June'] : 0) }} },
-                          {"elapsed": "Julio", "value": {{ (array_key_exists('July', $dic) ? $dic['July'] : 0) }} },
-                          {"elapsed": "Agosto", "value": {{ (array_key_exists('August', $dic) ? $dic['August'] : 0) }} },
-                          {"elapsed": "Septiembre", "value": {{ (array_key_exists('September', $dic) ? $dic['September'] : 0) }} },
-                          {"elapsed": "Octubre", "value": {{ (array_key_exists('October', $dic) ? $dic['October'] : 0) }} },
-                          {"elapsed": "Noviembre", "value": {{ (array_key_exists('November', $dic) ? $dic['November'] : 0) }} },
-                          {"elapsed": "Diciembre", "value": {{ (array_key_exists('December', $dic) ? $dic['December'] : 0) }} }
+                          {"elapsed": "Enero", "valor": {{ (array_key_exists('January', $dic) ? $dic['January'] : 0) }} },
+                          {"elapsed": "Febrero", "valor": {{ (array_key_exists('February', $dic) ? $dic['February'] : 0) }} },
+                          {"elapsed": "Marzo", "valor": {{ (array_key_exists('March', $dic) ? $dic['March'] : 0) }} },
+                          {"elapsed": "Abril", "valor": {{ (array_key_exists('April', $dic) ? $dic['April'] : 0) }} },
+                          {"elapsed": "Mayo", "valor": {{ (array_key_exists('May', $dic) ? $dic['May'] : 0) }} },
+                          {"elapsed": "Junio", "valor": {{ (array_key_exists('June', $dic) ? $dic['June'] : 0) }} },
+                          {"elapsed": "Julio", "valor": {{ (array_key_exists('July', $dic) ? $dic['July'] : 0) }} },
+                          {"elapsed": "Agosto", "valor": {{ (array_key_exists('August', $dic) ? $dic['August'] : 0) }} },
+                          {"elapsed": "Septiembre", "valor": {{ (array_key_exists('September', $dic) ? $dic['September'] : 0) }} },
+                          {"elapsed": "Octubre", "valor": {{ (array_key_exists('October', $dic) ? $dic['October'] : 0) }} },
+                          {"elapsed": "Noviembre", "valor": {{ (array_key_exists('November', $dic) ? $dic['November'] : 0) }} },
+                          {"elapsed": "Diciembre", "valor": {{ (array_key_exists('December', $dic) ? $dic['December'] : 0) }} }
                         ];
                         Morris.Line({
                           element: 'graph',
                           data: day_data,
                           xkey: 'elapsed',
-                          ykeys: ['value'],
-                          labels: ['value'],
+                          ykeys: ['valor'],
+                          labels: ['valor'],
                           parseTime: false
                         });
                         </pre>

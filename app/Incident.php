@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Incident extends Model
 {
@@ -44,5 +45,13 @@ class Incident extends Model
     public function scopeDate($query, $param)
     {
         return $query->where('date', '=', $param);
+    }
+
+    public static function incidentsOverTime($year)
+    {
+        return static::selectRaw('MONTH(date) as month, count(*) qty')
+            ->whereRaw('YEAR(date) = '.$year)
+            ->groupBy(DB::raw('MONTH(date)'))
+            ->get();
     }
 }

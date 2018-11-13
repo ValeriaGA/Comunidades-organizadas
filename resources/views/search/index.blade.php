@@ -43,12 +43,13 @@
         var contentStrings = [];
 
         var features = [];
+        var i = 0;
         incidents.forEach(function(incident) {
           var dict = {};
 
           dict['position'] = new google.maps.LatLng(incident['latitud'], incident['longitud']);
           dict['type'] = incident['type_id'];
-
+          dict['id'] = i++;
           features.push(dict);
 
           var content = '<div id="content">'+
@@ -74,7 +75,6 @@
         });
 
         // Create markers.
-        var i = 0;
         features.forEach(function(feature) {
           var marker = new google.maps.Marker({
             position: feature.position,
@@ -83,7 +83,7 @@
           });
 
           marker.addListener('click', function() {
-            infowindows[i++].open(map, marker);
+            infowindows[ feature.id ].open(map, marker);
           });
 
         });
