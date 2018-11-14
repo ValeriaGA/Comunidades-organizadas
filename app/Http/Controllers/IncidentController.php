@@ -95,7 +95,7 @@ class IncidentController extends Controller
             'time' => request('time'),
             'perpetrators' => request('perpetrators'),
             'victims' => request('victims'),
-            'primary_victim_sex' => (request('victims') == 0 ? NULL : (request('sex') == 'Masculino' ? 'm' : 'f')),
+            'primary_victim_sex' => (request('victims') == 0 ? NULL : (request('sex') == 'Masculino' ? 'm' : (request('sex') == 'Femenino' ? 'f' : 'o'))),
             'type_id' => $type[0]['id'],
             'weapon_id' => $weapon[0]['id'],
             'transportation_id' => $transportation[0]['id'],

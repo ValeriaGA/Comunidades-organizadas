@@ -23,7 +23,7 @@
                         <div id="graph"></div>
                         <pre id="code" class="prettyprint linenums">
                         // Use Morris.Bar
-                        var count_per_type = <?php echo json_encode($count_per_type1); ?>;
+                        var count_per_type = <?php echo json_encode($count_per_type2); ?>;
       
                         Morris.Bar({
                           element: 'graph',

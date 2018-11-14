@@ -27,6 +27,7 @@ class StatisticsController extends Controller
     {
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
+
         $this->validate(request(), [
             'final_date' => 'date|before_or_equal:today'
         ]);
@@ -35,34 +36,34 @@ class StatisticsController extends Controller
         $final_date = $date;
         $count_per_type = DB::table('incidents')
                      ->select(DB::raw('count(*) as count, type_id'))
-                     ->whereBetween('created_at',[$first_date,$final_date])
+                     ->whereBetween('date',[$first_date,$final_date])
                      ->groupBy('type_id')
                      ->get();
 
-        $count_per_type1 = array();
-        foreach ($count_per_type as $count_type) {
-            foreach ($types as $type) {
-                if ($type->id == $count_type->type_id) {
-                    $sub_list1=array($type->name,$count_type->count);
-                    array_push($count_per_type1, $sub_list1);
-                }
-            }
-        }
+        $count_per_type2 = array();
+
         foreach ($types as $type) {
-            $exist = false;
-            foreach ($count_per_type1 as $counts) {
-                if ($type->name == $counts[0]) {
-                    $exist = true;
+            $found = false;
+            foreach ($count_per_type as $count_type) {
+                if (!$found)
+                {
+                    if ($type->id == $count_type->type_id) {
+                        $sub_list=array($type->name,$count_type->count);
+                        array_push($count_per_type2, $sub_list);
+                        $found = true;
+                    }
                 }
             }
-            if ($exist==false) {
-                $sub_list2=array($type->name, 0);
-                var_dump($sub_list2);
-                array_push($count_per_type1, $sub_list2);
+            if (!$found)
+            {
+                $sub_list=array($type->name, 0);
+                array_push($count_per_type2, $sub_list);
             }
-            
         }
-        return view('statistics.bar', compact('date','types','count_per_type1'));
+       // foreach ($count_per_type2 as $count_type) {
+       //  echo '<br/>Name: '.$count_type[0].'<br/>Count: '.$count_type[1];
+       // }
+        return view('statistics.bar', compact('date','types','count_per_type2'));
     }
 
     public function pie()
@@ -156,34 +157,27 @@ class StatisticsController extends Controller
                      ->groupBy('type_id')
                      ->get();
 
-        $count_per_type1 = array();
-        
-        foreach ($types as $type) {
-            foreach ($count_per_type as $count_type) {
-                if ($type->id == $count_type->type_id) {
-                    $sub_list1=array($type->name,$count_type->count);
-                    array_push($count_per_type1, $sub_list1);
-                }
-            }
-        }
-        
+        $count_per_type2 = array();
 
-        
         foreach ($types as $type) {
-            $exist = false;
-            foreach ($count_per_type1 as $counts) {
-                if ($type->name == $counts[0]) {
-                    $exist = true;
+            $found = false;
+            foreach ($count_per_type as $count_type) {
+                if (!$found)
+                {
+                    if ($type->id == $count_type->type_id) {
+                        $sub_list=array($type->name,$count_type->count);
+                        array_push($count_per_type2, $sub_list);
+                        $found = true;
+                    }
                 }
             }
-            if ($exist==false) {
-                $sub_list2=array($type->name, 0);
-                var_dump($sub_list2);
-                array_push($count_per_type1, $sub_list2);
+            if (!$found)
+            {
+                $sub_list=array($type->name, 0);
+                array_push($count_per_type2, $sub_list);
             }
-            
         }
-        return view('statistics.bar', compact('types','count_per_type1','date'));
+        return view('statistics.bar', compact('types','count_per_type2','date'));
     } 
 
     public function crime_per_gender(Request $request)

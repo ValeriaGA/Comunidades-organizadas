@@ -39,6 +39,8 @@
                                   @include('incident.incident')
                                 @endforeach
                             </div>
+
+                            {{ $incidents->links() }}
                         </div>
                     </div>
                 </div>
