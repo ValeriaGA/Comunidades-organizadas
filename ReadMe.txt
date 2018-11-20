@@ -8,6 +8,8 @@ CREATE DATABASE InfoDenuncias;
 ->php artisan migrate
 ->php artisan migrate:refresh
 ->php artisan serve
+->php artisan key:generate
+->php artisan cache:clear
 
 
 Agregar a migrations:
