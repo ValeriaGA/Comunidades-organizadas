@@ -30,7 +30,7 @@
                                             <img src="../plugins/images/users/profile.png" class="thumb-lg img-circle" alt="img">
                                         @endif
                                         
-                                        <h4 class="text-white">{{ Auth::user()->name }}</h4>
+                                        <h4 class="text-white">{{ Auth::user()->person->name }}</h4>
                                         <h5 class="text-white">{{ Auth::user()->email }}</h5> </div>
                                 </div>
                             </div>
@@ -49,11 +49,13 @@
                         <div class="row">
                             <div class="white-box">
                                 <div class="form-group">
-                                    <h3 class="box-title">Incidentes registrados</h3>
+                                    <h3 class="box-title">Reportes registrados</h3>
                                     <div class="comment-center p-t-10">
-                                        @foreach ($incidents as $incident)
-                                          @include('incident.incident')
-                                        @endforeach
+                                        @if (is_array($reports) || is_object($reports))
+                                            @foreach ($reports as $report)
+                                              @include('report.report')
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>

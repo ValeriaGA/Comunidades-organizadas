@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Incident;
-use App\TypeOfIncident;
+use App\Report;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -31,8 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $types = TypeOfIncident::orderBy('name', 'asc')->get();
-        $incidents = Incident::latest()->paginate(10);
-        return view('home', compact('types', 'incidents'));
+        $reports = Report::latest()->paginate(10);
+        return view('home', compact('types', 'reports'));
     }
 }

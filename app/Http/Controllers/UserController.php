@@ -22,8 +22,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $incidents = User::find(Auth::user()->id)->incidents;
-        return view('user.index', compact('incidents'));
+        $reports = User::find(Auth::user()->id)->reports;
+        return view('user.index', compact('reports'));
     }
 
     /**
@@ -82,7 +82,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'secondlastname' => 'required|string|max:255',
-            'sex' => 'required',
+            'gender' => 'required',
             'file' => 'max:2048'
         ]);
 

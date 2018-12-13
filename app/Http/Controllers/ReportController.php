@@ -13,7 +13,7 @@ use DateTime;
 use DateTimeZone;
 use Illuminate\Support\Facades\Storage;
 
-class IncidentController extends Controller
+class ReportController extends Controller
 {
     public function __construct()
     {
@@ -27,7 +27,7 @@ class IncidentController extends Controller
      */
     public function index()
     {
-        return view('incident.index');
+        return view('report.index');
     }
 
     /**
@@ -45,7 +45,7 @@ class IncidentController extends Controller
         $date = $dt->format('Y-m-d');
         $time = $dt->format('H:i:s');
 
-        return view('incident.create', compact('types', 'weapons', 'transportation', 'date', 'time'));
+        return view('report.create', compact('types', 'weapons', 'transportation', 'date', 'time'));
     }
 
     /**
@@ -86,7 +86,7 @@ class IncidentController extends Controller
             $file->move('images/evidence', $filename);
         }
 
-        $incident = Incident::create([
+        $report = Incident::create([
             'location' => request('location'),
             'description' => request('description'),
             'longitud' => request('longitud'),
@@ -103,7 +103,7 @@ class IncidentController extends Controller
         ]);
 
         $evidence = Evidence::create([
-            'incident_id' => $incident->id,
+            'incident_id' => $report->id,
             'multimedia_path' => $filename
         ]);
 
@@ -118,9 +118,9 @@ class IncidentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Incident $incident)
+    public function show(Incident $report)
     {
-        return view('incident.show', compact('incident'));
+        return view('report.show', compact('report'));
     }
 
     /**
