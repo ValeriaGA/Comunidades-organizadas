@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Evidence extends Model
 {
 	protected $fillable = [
-        'incident_id', 'multimedia_path'
+        'report_id', 'multimedia_path', 'cat_evidence_id'
     ];
-    public function incident()
+    
+    public function report()
     {
-    	return $this->belongsTo(Incident::class, 'incident_id');
+    	return $this->belongsTo(Report::class, 'report_id');
+    }
+
+    public function evidenceType()
+    {
+    	return $this->belongsTo(CatEvidence::class, 'cat_evidence_id');
     }
 }

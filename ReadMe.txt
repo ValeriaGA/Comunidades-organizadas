@@ -1,26 +1,15 @@
 Comandos para inicializar el proyecto una vez clonado
-->composer install 
-->composer update
 
-// Crear BD
-CREATE DATABASE InfoDenuncias;
+composer install 
+composer update
+composer dump-autoload
 
-->php artisan migrate
-->php artisan migrate:refresh
-->php artisan serve
-->php artisan key:generate
-->php artisan cache:clear
+CREATE DATABASE ComunidadesOrganizadas;
 
+php artisan migrate:refresh --seed
 
-Agregar a migrations:
-insert into InfoDenuncias.type_of_incidents(name, image_path) values ('Otro', 'other_small.png'), ('Asalto', 'assault_small.png'), ('Robo de Autos', 'autotheft_small.png'), ('Robo', 'burglary_small.png'), ('Robo de Tienda', 'shoplifting_small.png'), ('Actividades Sospechosas', 'suspactivity_small.png'), ('Homicidio', 'homicide_small.png'), ('Vandalismo', 'vandalism_small.png'), ('Drogas', 'drugs_small.png');
+php artisan serve
+php artisan key:generate
+php artisan cache:clear
 
-insert into InfoDenuncias.weapons(name) values ('No Aplica'), ('Blancas'), ('Contundentes'), ('Arrojadizas'), ('Proyeccion'), ('Fuego'), ('Bomba');
-insert into InfoDenuncias.transportations(name) values ('Sin vehiculo'), ('Motocicleta'), ('Carro'), ('Camion'), ('Buseta');
-
-Use CTRL+u for see the source view at chrome
-
-Falta:
-+ Modificar texto al hacer click en un marcador en el mapa
-+ Filtrar en vista de busqueda (Tipo de incidente)
-+ Estadisticas
+php artisan db:seed
