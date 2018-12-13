@@ -59,3 +59,7 @@ Route::post('/statistics/chart', 'StatisticsController@chart_show');
 Route::get('/search', 'SearchController@index');
 
 Route::post('/search', 'SearchController@show');
+
+
+// Communities
+Route::get('/communities', 'CommunitiesController@index');
