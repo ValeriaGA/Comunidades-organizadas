@@ -2,12 +2,9 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Main Site
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
 |
 */
 
@@ -63,3 +60,18 @@ Route::post('/search', 'SearchController@show');
 
 // Communities
 Route::get('/communities', 'CommunitiesController@index');
+/*
+|--------------------------------------------------------------------------
+| Administration
+|--------------------------------------------------------------------------
+|
+| 
+|
+*/
+
+Route::get('/administration', 'AdministrationHomeController@index')->name('admin_home');
+Route::get('/administration/home', 'AdministrationHomeController@index');
+
+Route::get('/administration/login', 'AdministrationSessionsController@create')->name('admin_login');
+Route::post('/administration/login', 'AdministrationSessionsController@store');
+Route::get('/administration/logout', 'AdministrationSessionsController@destroy');

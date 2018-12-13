@@ -16,8 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'sex', 'last_name', 'second_last_name',
-        'official_id', 
+        'email', 'password', 'avatar_path', 'role_id', 'person_id'
     ];
 
     /**
@@ -29,8 +28,38 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function incidents()
+    public function person()
     {
-        return $this->hasMany(Incident::class);
+        return $this->belongsTo(Person::class, 'person_id');
+    }
+
+    public function report()
+    {
+        return $this->hasMany(Report::class, 'user_id', 'id');
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function like()
+    {
+        return $this->belongsToMany(Report::class, 'likes', 'user_id', 'id');
+    }
+
+    public function communityGroup()
+    {
+        return $this->belongsToMany(CommunityGroup::class, 'users_by_community_groups', 'user_id', 'id');
+    }
+
+    public function reportAlert()
+    {
+        return $this->belongsToMany(Report::class, 'report_alert', 'user_id', 'id');
     }
 }

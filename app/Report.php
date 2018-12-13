@@ -1,0 +1,58 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Report extends Model
+{
+    protected $fillable = [
+        'description', 'incident_type_id', 'district_id', 'state_id', 'location', 'longitud', 'latitud', 'user_id', 'date', 'time', 'active', 'news'
+    ];
+
+    public function subCatReport()
+    {
+        return $this->belongsTo(SubCatReport::class, 'sub_cat_report_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function like()
+    {
+    	return $this->belongsToMany(User::class, 'likes', 'report_id', 'id');
+    }
+
+    public function communityGroup()
+    {
+        return $this->belongsTo(CommunityGroup::class, 'community_group_id');
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'state_id');
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class, 'report_id', 'id');
+    }
+
+    public function evidence()
+    {
+        return $this->hasMany(Evidence::class, 'report_id', 'id');
+    }
+
+    public function report_alert()
+    {
+        return $this->belongsToMany(User::class, 'report_alert', 'report_id', 'id');
+    }
+
+    public function securityReport()
+    {
+        return $this->hasOne(SecurityReport::class, 'report_id', 'id');
+    }
+
+}

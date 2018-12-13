@@ -20,7 +20,7 @@ class HomeController extends Controller
         // apply this middleware only to index
         // $this->middleware('auth', ['only' => 'index']);
 
-        // apply this middleware oto everything except index
+        // apply this middleware to everything except index
         // $this->middleware('auth', ['except' => 'index']);
     }
 
