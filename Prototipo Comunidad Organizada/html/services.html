@@ -30,19 +30,80 @@
                 </ul>
             </div><!-- /navbar -->
                               
-            <div data-role="collapsibleset" data-filter="true" data-children="> div, > div div ul li" data-inset="true" id="collapsiblesetForFilterChildren" data-input="#searchForCollapsibleSetChildren">
-                    <div data-role="collapsible" data-filtertext="Cars Acura Audi BMW Cadillac">
+            <div data-role="collapsibleset" data-inset="true">
+                    <div data-role="collapsible">
                         <h3>Filtros</h3>
-                        <ul data-role="listview" data-inset="false">
-                            <li data-filtertext="1">Mes</li>
-                            <li data-filtertext="2">Año</li>
-                            <li data-filtertext="3">Tipo</li>
-                            <li data-filtertext="4">Comunidad</li>
-                        </ul>
+                        
+                        <div data-role="collapsible">
+                            <h3>Mes</h3>
+                            <input type="month" data-clear-btn="true" name="month-2" id="month-2" value="">
+                        </div>
+                        
+                        <div data-role="collapsible">
+                            <h3>Fecha</h3>
+                            <form>
+                             <label for="date-1">Del:</label>
+                             <input type="date" data-clear-btn="true" name="date-1" id="date-1" value="">
+                             <label for="date-2">Al:</label>
+                             <input type="date" data-clear-btn="true" name="date-2" id="date-2" value="">
+                        </form>
+                        </div>
+                        <div data-role="collapsible">
+                            <h3>Categoria de sevicio</h3>
+                            <ul data-role="listview" data-filter="true" data-split-icon="plus">
+                                <li><a href="#">Agua</a></li>
+                                <li><a href="#">Recoleccion de basura</a></li>
+                                <li><a href="#">Electricidad</a></li>
+                            </ul>
+                        </div>
+                        <div data-role="collapsible">
+                            <h3>Comunidad</h3>
+                            <ul data-role="listview" data-filter="true" data-split-icon="plus">
+                                <li><a href="#">Comunidad 1</a></li>
+                                <li><a href="#">Comunidad 2</a></li>
+                                <li><a href="#">Comunidad 3</a></li>
+                                <li><a href="#">Comunidad 4</a></li>
+                            </ul>
+                        </div>
+                        <div data-role="collapsibleset">
+                           <div data-role="collapsible">
+                                <h3>Lugar</h3>
+                                <div data-role="collapsible">
+                                    <h3>Provincia</h3>
+                                    <ul data-role="listview" data-filter="true" data-split-icon="plus">
+                                        <li><a href="#">Provincia 1</a></li>
+                                        <li><a href="#">Provincia 2</a></li>
+                                        <li><a href="#">Provincia 3</a></li>
+                                        <li><a href="#">Provincia 4</a></li>
+                                    </ul>
+                                </div>
+                                <div data-role="collapsible">
+                                    <h3>Cantón</h3>
+                                    <ul data-role="listview" data-filter="true" data-split-icon="plus">
+                                        <li><a href="#">Canton 1</a></li>
+                                        <li><a href="#">Canton 2</a></li>
+                                        <li><a href="#">Canton 3</a></li>
+                                        <li><a href="#">Canton 4</a></li>
+                                    </ul>
+                                </div>
+                                <div data-role="collapsible">
+                                    <h3>Distrito</h3>
+                                    <ul data-role="listview" data-filter="true" data-split-icon="plus">
+                                        <li><a href="#">Distrito 1</a></li>
+                                        <li><a href="#">Distrito 2</a></li>
+                                        <li><a href="#">Distrito 3</a></li>
+                                        <li><a href="#">Distrito 4</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                                
+                        </div>
+                       
+                            
                     </div>
-                </div>       
+                </div>  <!-- /filtros -->          
             <form>
-                <input data-type="search" id="searchForCollapsibleSetChildren" placeholder="Buscar">
+                <input data-type="search"  placeholder="Buscar">
             </form>
             
             <div data-role="header" style="overflow:hidden;" data-theme="c">
