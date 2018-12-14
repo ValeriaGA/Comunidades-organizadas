@@ -35,12 +35,10 @@
                         <div class="white-box">
                             <h3 class="box-title">Incidentes recientes</h3>
                             <div class="comment-center p-t-10">
-                                @foreach ($incidents as $incident)
-                                  @include('incident.incident')
-                                @endforeach
+                               
                             </div>
 
-                            {{ $incidents->links() }}
+    
                         </div>
                     </div>
                 </div>

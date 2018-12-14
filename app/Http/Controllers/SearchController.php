@@ -16,7 +16,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        $types = TypeOfIncident::orderBy('name', 'asc')->get();
+        /*$types = TypeOfIncident::orderBy('name', 'asc')->get();
 
         $type_ids = array();
         foreach ($types as $type)
@@ -24,7 +24,7 @@ class SearchController extends Controller
             $type_ids[] = $type->id;
         }
 
-        $incidents = Incident::latest()->get();
+        $incidents = Incident::latest()->get();*/
 
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');

@@ -31,8 +31,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $types = TypeOfIncident::orderBy('name', 'asc')->get();
-        $incidents = Incident::latest()->paginate(10);
+        $types = null;//TypeOfIncident::orderBy('name', 'asc')->get();
+        $incidents = null;//Incident::latest()->paginate(10);
         return view('home', compact('types', 'incidents'));
     }
 }

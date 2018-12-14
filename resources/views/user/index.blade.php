@@ -51,9 +51,10 @@
                                 <div class="form-group">
                                     <h3 class="box-title">Incidentes registrados</h3>
                                     <div class="comment-center p-t-10">
-                                        @foreach ($incidents as $incident)
+                                        {{--@foreach ($incidents as $incident)
                                           @include('incident.incident')
-                                        @endforeach
+                                        @endforeach--}}
+                                        @include('incident.incident')
                                     </div>
                                 </div>
                             </div>
