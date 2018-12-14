@@ -1,46 +1,29 @@
 <!-- ============================================================== -->
-<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- Left sidebar                                                   -->
 <!-- ============================================================== -->
-<div class="navbar-default sidebar" role="navigation">
-    <div class="sidebar-nav slimscrollsidebar">
-        <div class="sidebar-head">
-            <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navegación</span></h3>
-        </div>
-        <ul class="nav" id="side-menu">
-            <li style="padding: 70px 0 0;">
-                <a href="/index" class="waves-effect"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Inicio</a>
-            </li>
-            <li>
-                <a href="/search" class="waves-effect"><i class="fa fa-search fa-fw" aria-hidden="true"></i>Búsqueda</a>
-            </li>
-            @auth
-            <li>
-                <a href="/user" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Perfil</a>
-            </li>
-            @endauth
-            <li>
-                <a class="waves-effect" href="javascript:void(0);">
-                    <i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>
-                    <span class="hide-menu">
-                        Estadísticas<span class="fa arrow"></span>
-                    </span>
-                </a>
-                <ul class="nav nav-second-level collapse" aria-expanded="false">
-                    <li>
-                    <a href="/statistics/bar" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Delíto</a>
-                    </li>
-                    <li>
-                        <a href="/statistics/pie" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Sexo</a>
-                    </li>
-                    <li>
-                        <a href="/statistics/chart" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Tiempo</a>
-                    </li>
-                </ul>
-            </li>
+<div id="sidebar">
+  <ul>
+    <li class="{{ Request::is('administracion') ? 'active' : '' }}"><a href="/administracion"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li class="{{ Request::is('administracion/administradores') ? 'active' : '' }}"><a href="/administracion/administradores"><i class="icon icon-cogs"></i> <span>Administradores</span></a></li>
+    <li class="submenu"> <a href="#"><i class="icon icon-book"></i> <span>Incidencias</span></a>
+        <ul>
+            <li class="{{ Request::is('administracion/seguridad') ? 'active' : '' }}"><a href="/administracion/seguridad"><i class="icon icon-chevron-right"></i> Seguridad</a></li>
+            <li class="{{ Request::is('administracion/servicio') ? 'active' : '' }}"><a href="/administracion/servicio"><i class="icon icon-chevron-right"></i> Servicio</a></li>
         </ul>
-    </div>
-    
+    </li>
+    <li class="{{ Request::is('administracion/reportes') ? 'active' : '' }}"> <a href="/administracion/reportes"><i class="icon icon-warning-sign"></i> <span>Reportes</span> <span class="label label-important">5</span></a> </li>
+    <li class="submenu"><a href="#"><i class="icon icon-sitemap"></i> <span>Catálogos</span></a>
+        <ul>
+            <li class="{{ Request::is('administracion/genero') ? 'active' : '' }}"><a href="/administracion/genero"><i class="icon icon-chevron-right"></i> Género</a></li>
+            <li class="{{ Request::is('administracion/estado') ? 'active' : '' }}"><a href="/administracion/estado"><i class="icon icon-chevron-right"></i> Estados</a></li>
+            <li class="{{ Request::is('administracion/evidencia') ? 'active' : '' }}"><a href="/administracion/evidencia"><i class="icon icon-chevron-right"></i> Evidencia</a></li>
+        </ul>
+    </li>
+    <li class="{{ Request::is('administracion/comunidades') ? 'active' : '' }}"><a href="/administracion/comunidades"><i class="icon icon-group"></i> <span>Comunidades</span></a></li>
+    <li class="{{ Request::is('administracion/publicaciones') ? 'active' : '' }}"><a href="/administracion/publicaciones"><i class="icon icon-comments-alt"></i> <span>Publicaciones</span></a></li>
+  </ul>
 </div>
+
 <!-- ============================================================== -->
 <!-- End Left Sidebar -->
 <!-- ============================================================== -->

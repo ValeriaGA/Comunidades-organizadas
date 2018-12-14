@@ -66,9 +66,51 @@ Route::post('/search', 'SearchController@show');
 |
 */
 
-Route::get('/administration', 'AdministrationHomeController@index')->name('admin_home');
-Route::get('/administration/home', 'AdministrationHomeController@index');
+Route::get('/administracion', 'AdministrationHomeController@index')->name('admin_home');
+Route::get('/administracion/home', 'AdministrationHomeController@index');
 
-Route::get('/administration/login', 'AdministrationSessionsController@create')->name('admin_login');
-Route::post('/administration/login', 'AdministrationSessionsController@store');
-Route::get('/administration/logout', 'AdministrationSessionsController@destroy');
+Route::get('/administracion/login', 'AdministrationSessionsController@create')->name('admin_login');
+Route::post('/administracion/login', 'AdministrationSessionsController@store');
+Route::get('/administracion/logout', 'AdministrationSessionsController@destroy');
+
+Route::get('/administracion/administradores', 'AdministrationUsersController@index');
+Route::get('/administracion/administradores/agregar', 'AdministrationUsersController@create');
+Route::post('/administracion/administradores', 'AdministrationUsersController@store');
+
+Route::get('/administracion/reportes', 'AdministrationReportController@index');
+Route::get('/administracion/reportes/{report}', 'AdministrationReportController@show');
+
+Route::get('/administracion/publicaciones', 'AdministrationPublicationController@index');
+Route::get('/administracion/publicaciones/{publicacion}', 'AdministrationPublicationController@show');
+
+Route::get('/administracion/seguridad', 'AdministrationSecurityController@index');
+Route::get('/administracion/seguridad/agregar', 'AdministrationSecurityController@create');
+
+Route::get('/administracion/servicio', 'AdministrationServiceController@index');
+Route::get('/administracion/servicio/agregar', 'AdministrationServiceController@create');
+
+Route::get('/administracion/estados', 'AdministrationStateController@index');
+Route::get('/administracion/estados/agregar', 'AdministrationStateController@create');
+
+Route::get('/administracion/generos', 'AdministrationGenderController@index');
+Route::get('/administracion/generos/agregar', 'AdministrationGenderController@create');
+
+Route::get('/administracion/evidencia', 'AdministrationEvidenceController@index');
+Route::get('/administracion/evidencia/agregar', 'AdministrationEvidenceController@create');
+
+Route::get('/administracion/comunidades', 'AdministrationCommunityController@index');
+Route::get('/administracion/comunidades/agregar', 'AdministrationCommunityController@create');
+Route::get('/administracion/comunidades/{comunidad}', 'AdministrationCommunityController@show');
+
+//
+Route::get('/administracion/categories', 'AdministrationCategoryController@index');
+Route::get('/administracion/categories/create', 'AdministrationCategoryController@create');
+Route::post('/administracion/categories', 'AdministrationCategoryController@store');
+Route::get('/administracion/categories/{category}', 'AdministrationCategoryController@edit');
+Route::post('/administracion/categories/update/{category}', 'AdministrationCategoryController@update');
+
+Route::get('/administracion/products', 'AdministrationProductController@index');
+Route::get('/administracion/products/create', 'AdministrationProductController@create');
+Route::post('/administracion/products', 'AdministrationProductController@store');
+Route::get('/administracion/products/{product}', 'AdministrationProductController@edit');
+Route::post('/administracion/products/update/{product}', 'AdministrationProductController@update');

@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="secondlastname" class="col-md-4 col-form-label text-md-right">{{ __('Cedula') }}</label>
+                            <label for="cedula" class="col-md-4 col-form-label text-md-right">{{ __('Cedula') }}</label>
 
                             <div class="col-md-6">
                                 <input id="cedula" type="number" class="form-control{{ $errors->has('cedula') ? ' is-invalid' : '' }}" name="cedula" value="{{ old('cedula') }}" required>
@@ -68,19 +68,26 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="secondlastname" class="col-md-4 col-form-label text-md-right">{{ __('Género') }}</label>
+                            <label for="foreigner" class="col-md-4 col-form-label text-md-right">{{ __('Extranjero') }}</label>
+                            <div class="col-md-6">
+                                <input id="foreigner" type="checkbox" name="foreigner">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Género') }}</label>
 
                             <div class="col-md-6">
 
-                                <select class="form-control{{ $errors->has('sex') ? ' is-invalid' : '' }}" id="sex" name="sex" value="{{ old('sex') }}" required>
-                                  <option value="Masculino">Masculino</option>
-                                  <option value="Femenino">Femenino</option>
-                                  <option value="Otro">Otro</option>
+                                <select class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" id="gender" name="gender" value="{{ old('gender') }}" required>
+                                    @foreach ($genders as $gender)
+                                        <option value="{{$gender->name}}">{{$gender->name}}</option>
+                                    @endforeach
                                 </select>
 
-                                @if ($errors->has('sex'))
+                                @if ($errors->has('gender'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('sex') }}</strong>
+                                        <strong>{{ $errors->first('gender') }}</strong>
                                     </span>
                                 @endif
                             </div>

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
-use App\Administrator;
+use App\Role;
+use App\Gender;
 
 class AdministrationUsersController extends Controller
 {
@@ -24,11 +25,10 @@ class AdministrationUsersController extends Controller
      */
     public function index()
     {
-        // $admins = User::orderBy('name', 'asc')->get();
-        $admins = DB::table('users') 
-                        ->join('administrators', 'users.idUser', '=', 'administrators.idAdministrator')
-                        ->get();
-        return view('administration.users.index', compact('admins'));
+        $admin_role = Role::where('name', 'LIKE', 'Administrador')->get();
+        
+        $admins = User::where('role_id', $admin_role[0]->id)->get();
+        return view('administration.administrator.index', compact('admins'));
     }
 
     /**
@@ -38,7 +38,8 @@ class AdministrationUsersController extends Controller
      */
     public function create()
     {
-        return view('administration.users.create');
+        $genders = Gender::all();
+        return view('administration.administrator.create', compact('genders'));
     }
 
     /**
@@ -75,6 +76,6 @@ class AdministrationUsersController extends Controller
 
         session()->flash('message', 'Account created');
 
-        return redirect('administration/users');
+        return redirect('administration/administrator');
     }
 }
