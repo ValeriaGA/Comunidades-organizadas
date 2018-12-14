@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\User;
+use App\Person;
 use App\Role;
 use App\Gender;
 
@@ -16,6 +19,25 @@ class AdministrationUsersController extends Controller
         
         // only administrators are allowed to view this
         $this->middleware('admin');
+    }
+
+    /**
+     * Get a validator for an incoming request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'secondlastname' => 'required|string|max:255',
+            'cedula' => 'required|numeric|between:1,999999999|unique:people,official_id',
+            'gender' => 'required',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
     }
 
     /**
@@ -50,32 +72,29 @@ class AdministrationUsersController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the form
+        validator($request);
+        $user_role = Role::where('name', 'LIKE', 'Administrador')->get();
+        $gender = Gender::where('name', 'LIKE', $request['gender'])->get();
 
-        $this->validate(request(), [
-            'name' => 'required',
-            'email' => 'required|unique:users,email',
-            'password' => 'required|confirmed'
+        $person = Person::create([
+            'name' => $request['name'],
+            'last_name' => $request['lastname'],
+            'second_last_name' => $request['secondlastname'],
+            'official_id' => $request['cedula'],
+            'gender_id' => $gender[0]->id,
+            'foreigner' => (array_key_exists('foreigner', $request) ? TRUE : FALSE)
         ]);
 
-        // Create and save the user
-
-        $user = User::create([
-            'name' => request('name'),
-            'email' => request('email'),
-            'password' => bcrypt(request('password'))
+        User::create([
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'person_id' => $person->id,
+            'role_id' => $user_role[0]->id,
+            'avatar_path' => NULL
         ]);
-
-        // Insert into regular users
-        
-        Administrator::create([
-            'idAdministrator' => $user['idUser']
-        ]);
-
-        // Redirect to the home page
 
         session()->flash('message', 'Account created');
 
-        return redirect('administration/administrator');
+        return redirect('administracion/administradores');
     }
 }

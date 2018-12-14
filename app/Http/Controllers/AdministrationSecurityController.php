@@ -3,9 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SubCatReport;
+use App\CatReport;
+use App\CatWeapon;
+use App\CatTransportation;
 
 class AdministrationSecurityController extends Controller
 {
+
+    public function __construct()
+    {
+        
+        // only administrators are allowed to view this
+        $this->middleware('admin');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +25,13 @@ class AdministrationSecurityController extends Controller
      */
     public function index()
     {
-        //
+        $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->get();
+        $categories_security = SubCatReport::where('cat_report_id', $cat_security[0]->id)->get();
+
+        $categories_weapon = CatWeapon::all();
+        $categories_transportation = CatTransportation::all();
+
+        return view('administration.security.index', compact('categories_security', 'categories_weapon', 'categories_transportation'));
     }
 
     /**

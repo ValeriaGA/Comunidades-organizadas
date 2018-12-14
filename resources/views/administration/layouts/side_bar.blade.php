@@ -14,9 +14,9 @@
     <li class="{{ Request::is('administracion/reportes') ? 'active' : '' }}"> <a href="/administracion/reportes"><i class="icon icon-warning-sign"></i> <span>Reportes</span> <span class="label label-important">5</span></a> </li>
     <li class="submenu"><a href="#"><i class="icon icon-sitemap"></i> <span>Catálogos</span></a>
         <ul>
-            <li class="{{ Request::is('administracion/genero') ? 'active' : '' }}"><a href="/administracion/genero"><i class="icon icon-chevron-right"></i> Género</a></li>
-            <li class="{{ Request::is('administracion/estado') ? 'active' : '' }}"><a href="/administracion/estado"><i class="icon icon-chevron-right"></i> Estados</a></li>
-            <li class="{{ Request::is('administracion/evidencia') ? 'active' : '' }}"><a href="/administracion/evidencia"><i class="icon icon-chevron-right"></i> Evidencia</a></li>
+            <li class="{{ Request::is('administracion/generos') ? 'active' : '' }}"><a href="/administracion/generos"><i class="icon icon-chevron-right"></i> Género</a></li>
+            <li class="{{ Request::is('administracion/estados') ? 'active' : '' }}"><a href="/administracion/estados"><i class="icon icon-chevron-right"></i> Estados</a></li>
+            <li class="{{ Request::is('administracion/evidencias') ? 'active' : '' }}"><a href="/administracion/evidencias"><i class="icon icon-chevron-right"></i> Evidencia</a></li>
         </ul>
     </li>
     <li class="{{ Request::is('administracion/comunidades') ? 'active' : '' }}"><a href="/administracion/comunidades"><i class="icon icon-group"></i> <span>Comunidades</span></a></li>

@@ -22,6 +22,10 @@
             <div class="todo">
               <ul>
                 <li class="clearfix">
+                  <div class="txt"> Administradores <span class="by label">Admin</span></div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+                <li class="clearfix">
                   <div class="txt"> Incidentes <span class="by label">Admin</span></div>
                   <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
                 </li>

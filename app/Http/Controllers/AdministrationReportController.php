@@ -22,8 +22,8 @@ class AdministrationReportController extends Controller
      */
     public function index()
     {
-        $report = Report::orderBy('created_at', 'asc')->get();
-        return view('administration.report.show', compact('report'));
+        $reports = Report::orderBy('created_at', 'asc')->get();
+        return view('administration.report.index', compact('reports'));
     }
 
     /**

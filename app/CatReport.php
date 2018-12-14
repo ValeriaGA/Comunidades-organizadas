@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class CatReport extends Model
 {
+
+	public $table = "cat_report";
+
     protected $fillable = [
         'name'
     ];

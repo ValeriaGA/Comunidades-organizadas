@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Comunidades</a>
+      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Generos</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -16,22 +16,22 @@
       <div class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Grupos de comunidades</h5>
+            <h5>Generos</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
                   <th>Nombre</th>
-                  <th>Inspeccionar</th>
+                  <th>Editar</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($community_groups as $community_group) 
+                @foreach ($genders as $gender) 
                 <tr class="gradeX">
-                  <td>{{$community_group->name}}</td>
+                  <td>{{$gender->name}}</td>
                   <td>
-                    <form action="/administracion/comunidades/agregar" method="post" enctype="multipart/form-data">
+                    <form action="/administracion/seguridad/agregar" method="post" enctype="multipart/form-data">
                       <button class="btn">Editar</button>
                     </form>
                   </td>

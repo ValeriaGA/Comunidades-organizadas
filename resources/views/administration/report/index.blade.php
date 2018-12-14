@@ -7,17 +7,16 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Administradores</a>
+      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Reportes</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
-        <form action="/administracion/administradores/add"><button class="btn">Agregar</button></form>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Administradores</h5>
+            <h5>Publicaciones reportadas</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
@@ -29,7 +28,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($admins as $admin) 
+                @foreach ($reports as $report) 
                 <tr class="gradeX">
                   <td>{{$admin->person->name}} {{$admin->person->last_name}} {{$admin->person->second_last_name}}</td>
                   <td>{{$admin->email}}</td>
@@ -38,6 +37,7 @@
                 @endforeach
               </tbody>
             </table>
+            <form action="/administracion/administradores/add"><button class="btn">Agregar</button></form>
           </div>
         </div>
       </div>

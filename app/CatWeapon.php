@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CatWeapon extends Model
 {
+	public $table = "cat_weapon";
+
     protected $fillable = [
     	'name', 'active'
     ];
