@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Comunidad organizada</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../jquery.mobile-1.1.1.min.css" />
+    <script src="../jquery-1.8.2.min.js"></script>
+    <script src="../jquery.mobile-1.1.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEPYKB-N0arXC7NY0HKivs9_hdOHnDXiA&callback=myMap"></script>
+</head>
+<body>
+    <div id="add_report_security_page" data-role="page">
+        <div data-role="header">
+            <h1>Mapa de reportes</h1>    
+            <a href="" data-rel="back">Back</a>
+        </div><!-- /header -->
+
+        <div data-role="content">    
+            
+            <div id="googleMap" style="width:100%;height:400px;"></div>
+
+            <script>
+            function myMap() {
+            var mapProp= {
+              center:new google.maps.LatLng(9.7489166, -83.7534256),
+              zoom:9,
+            };
+            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEPYKB-N0arXC7NY0HKivs9_hdOHnDXiA&callback=myMap"></script>
+
+            
+            
+            
+        </div><!-- /header -->  
+    </div>
+    
+</body>
+</html>
