@@ -19,17 +19,17 @@
                 </div>
                 
                 @auth
-                <!-- row -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="white-box">
-                            COMBO BOX
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
+               
                 @endauth
-
+                 <!-- row -->
+                 <div class="row">
+                  <div class="col-sm-12">
+                      <div class="white-box">
+                          COMBO BOX
+                      </div>
+                  </div>
+              </div>
+              <!-- /.row -->
                 <div class="row">
                     <div class="col-md-12  col-sm-12">
                         <div class="white-box">
@@ -38,61 +38,26 @@
                                 <div class="container">
                                     <table class="table table-bordered">
                                       <tr class="header">
-                                        <td colspan="2">Header 1</td>
+                                        <td colspan="2">Grupo 1</td>
                                       </tr>
                                       <tr>
-                                        <td>data</td>
-                                        <td>data</td>
+                                        <td>Comunidad 1</td>
+                                        <td>San teo</td>
                                       </tr>
                                       <tr>
-                                        <td>data</td>
-                                        <td>data</td>
+                                        <td>Comunidad 2</td>
+                                        <td>Loadad</td>
                                       </tr>
                                       <tr class="header">
-                                        <td colspan="2">Header 2</td>
+                                        <td colspan="2">Grupo 2</td>
                                       </tr>
                                       <tr>
-                                        <td>date</td>
-                                        <td>data</td>
+                                        <td>Comunidad 5</td>
+                                        <td>COmunidad 6</td>
                                       </tr>
-                                      <tr>
-                                        <td>data</td>
-                                        <td>data</td>
-                                      </tr>
-                                      <tr>
-                                        <td>data</td>
-                                        <td>data</td>
-                                      </tr>
-                                      <tr class="header">
-                                        <td colspan="2">Header 3</td>
-                                      </tr>
-                                      <tr>
-                                        <td>date</td>
-                                        <td>data</td>
-                                      </tr>
-                                      <tr>
-                                        <td>data</td>
-                                        <td>data</td>
-                                      </tr>
-                                      <tr>
-                                        <td>data</td>
-                                        <td>data</td>
-                                      </tr>
-                                      <tr class="header">
-                                        <td colspan="2">Header 4</td>
-                                      </tr>
-                                      <tr>
-                                        <td>date</td>
-                                        <td>data</td>
-                                      </tr>
-                                      <tr>
-                                        <td>data</td>
-                                        <td>data</td>
-                                      </tr>
-                                      <tr>
-                                        <td>data</td>
-                                        <td>data</td>
-                                      </tr>
+
+                                      
+                                     
                                     </table>
                                   </div>
                             </div>

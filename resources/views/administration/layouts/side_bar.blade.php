@@ -17,11 +17,7 @@
             <li>
                 <a href="/user" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Perfil</a>
             </li>
-           
             @endauth
-            <li>
-                <a href="/communities" class="waves-effect"><i class="fa fa-group fa-fw" aria-hidden="true"></i>Comunidades</a>
-            </li>
             <li>
                 <a class="waves-effect" href="javascript:void(0);">
                     <i class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></i>

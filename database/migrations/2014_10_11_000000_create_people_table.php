@@ -19,8 +19,12 @@ class CreatePeopleTable extends Migration
             $table->string('last_name', 255);
             $table->string('second_last_name', 255);
             $table->string('official_id', 9)->unique();
-            $table->char('gender', 1);
+            $table->unsignedInteger('gender_id');
             $table->boolean('foreigner');
+        });
+
+        Schema::table('people', function (Blueprint $table) {
+            $table->foreign('gender_id')->references('id')->on('genders');
         });
     }
 

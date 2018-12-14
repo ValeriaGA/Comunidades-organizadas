@@ -32,7 +32,7 @@
                                             <img src="../plugins/images/users/profile.png" class="thumb-lg img-circle" alt="img">
                                         @endif
                                         
-                                        <h4 class="text-white">{{ Auth::user()->name }}</h4>
+                                        <h4 class="text-white">{{ Auth::user()->person->name }}</h4>
                                         <h5 class="text-white">{{ Auth::user()->email }}</h5> </div>
                                 </div>
                             </div>
@@ -46,36 +46,36 @@
                                 <div class="form-group">
                                     <label class="col-md-12">Nombre</label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control form-control-line" name="name" value="{{Auth::user()->name}}" required>
+                                        <input type="text" class="form-control form-control-line" name="name" value="{{Auth::user()->person->name}}" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-12">Primer Apellido</label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control form-control-line" name="lastname" value="{{Auth::user()->last_name}}" required>
+                                        <input type="text" class="form-control form-control-line" name="lastname" value="{{Auth::user()->person->last_name}}" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-12">Segundo Apellido</label>
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control form-control-line" name="secondlastname" value="{{Auth::user()->second_last_name}}" required>
+                                        <input type="text" class="form-control form-control-line" name="secondlastname" value="{{Auth::user()->person->second_last_name}}" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-md-12">Género</label>
                                     <div class="col-md-12">
-                                        <select class="form-control" id="sex" name="sex" required>
-                                            @if (Auth::user()->sex == 'm')
-                                              <option value="Masculino" selected="selected">Masculino</option>
-                                              <option value="Femenino">Femenino</option>
-                                  <option value="Otro">Otro</option>
+                                        <select class="form-control" id="gender" name="gender" required>
+                                            @if (Auth::user()->person->gender->name == 'Masculino')
+                                                <option value="Masculino" selected="selected">Masculino</option>
+                                                <option value="Femenino">Femenino</option>
+                                                <option value="Otro">Otro</option>
                                             @else
                                                 <option value="Masculino">Masculino</option>
-                                              <option value="Femenino" selected="selected">Femenino</option>
-                                  <option value="Otro">Otro</option>
+                                                <option value="Femenino" selected="selected">Femenino</option>
+                                                <option value="Otro">Otro</option>
                                             @endif
                                         </select>
                                     </div>

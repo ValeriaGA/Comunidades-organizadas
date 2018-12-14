@@ -28,12 +28,12 @@ Route::get('/user', 'UserController@index');
 Route::get('/user/{user}', 'UserController@edit');
 Route::post('/user/update/{user}', 'UserController@update');
 
-// Incident
+// Report
 
-Route::get('/incident', 'IncidentController@index');
-Route::get('/incident/create', 'IncidentController@create');
-Route::post('/incident', 'IncidentController@store');
-Route::get('/incident/{incident}', 'IncidentController@show');
+Route::get('/report', 'ReportController@index');
+Route::get('/report/create', 'ReportController@create');
+Route::post('/report', 'ReportController@store');
+Route::get('/report/{report}', 'ReportController@show');
 
 // Statistics
 

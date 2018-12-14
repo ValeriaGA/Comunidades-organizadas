@@ -55,4 +55,22 @@ class Report extends Model
         return $this->hasOne(SecurityReport::class, 'report_id', 'id');
     }
 
+    public function scopeLocation($query, $param)
+    {
+        // old
+        // return $query->where('location', 'LIKE', '%' . $param . '%');
+    }
+
+    public function scopeDate($query, $param)
+    {
+        return $query->where('date', '=', $param);
+    }
+
+    public static function incidentsOverTime($year)
+    {
+        return static::selectRaw('MONTH(date) as month, count(*) qty')
+            ->whereRaw('YEAR(date) = '.$year)
+            ->groupBy(DB::raw('MONTH(date)'))
+            ->get();
+    }
 }

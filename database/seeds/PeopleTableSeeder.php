@@ -12,12 +12,13 @@ class PeopleTableSeeder extends Seeder
      */
     public function run()
     {
+        $gender = DB::table('genders')->where('name', 'LIKE', 'Masculino')->get();
         DB::table('people')->insert([
 	            'name' => 'admin',
 	            'last_name' => 'Q',
 	            'second_last_name' => 'A',
 	            'official_id' => '0',
-	            'gender' => 'm',
+	            'gender_id' => $gender[0]->id,
 	            'foreigner' => TRUE,
 	    ]);
     }

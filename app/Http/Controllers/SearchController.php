@@ -24,7 +24,7 @@ class SearchController extends Controller
             $type_ids[] = $type->id;
         }
 
-        $incidents = Incident::latest()->get();*/
+        $incidents = Incident::latest()->get();*/   
 
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');

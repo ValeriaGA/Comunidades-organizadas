@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <button type='submit' onclick="window.location.href='/incident/create'" class="btn btn-success">Agregar incidente</button>
+                            <button type='submit' onclick="window.location.href='/report/create'" class="btn btn-success">Agregar Reporte</button>
                         </div>
                     </div>
                 </div>
@@ -33,12 +33,14 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-8 col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Incidentes recientes</h3>
+                            <h3 class="box-title">Reportes recientes</h3>
                             <div class="comment-center p-t-10">
-                               
+                                @foreach ($reports as $report)
+                                  @include('report.report')
+                                @endforeach
                             </div>
 
-    
+                            {{ $reports->links() }}
                         </div>
                     </div>
                 </div>
