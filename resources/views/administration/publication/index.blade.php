@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/reportes" class="current">Reportes</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/publicaciones" class="current">Publicaciones</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -16,28 +16,34 @@
       <div class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Publicaciones reportadas</h5>
+            <h5>Publicaciones</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
                   <th>ID de publicacion</th>
-                  <th>ID del Usuario</th>
                   <th>Correo del Usuario</th>
-                  <th>Reportes Recibidos</th>
+                  <th>Activo</th>
+                  <th>Estado</th>
                   <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($reports as $report) 
                 <tr class="">
-                  <td>{{$report->report_id}}</td>
-                  <td>{{$report->user_id}}</td>
-                  <td>{{$report->email}}</td>
-                  <td>{{$report->count}}</td>
+                  <td>{{$report->id}}</td>
+                  <td>{{$report->user->email}}</td>
                   <td>
-                    <button name="{{$report->report_id}}_edit" class="btn" onclick="location.href = '/administracion/reportes/{{ $report->report_id }}';">Ver</button>
+                    @if ($report->active == TRUE)
+                    <input type="checkbox" checked disabled/>
+                    @else
+                    <input type="checkbox" disabled/>
+                    @endif
+                  </td>
+                  <td>{{$report->state->name}}</td>
+                  <td>
+                    <button name="{{$report->id}}_edit" class="btn" onclick="location.href = '/administracion/publicaciones/{{ $report->id }}';">Ver</button>
                   </td>
                 </tr>
                 @endforeach

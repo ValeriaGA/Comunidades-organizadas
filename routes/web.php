@@ -139,6 +139,7 @@ Route::post('/administracion/evidencias/update/{evidence}', 'AdministrationEvide
 
 // Communities
 Route::get('/administracion/comunidades/comunidad', 'AdministrationCommunityController@index');
+Route::get('/administracion/comunidades/comunidad/agregar', 'AdministrationCommunityController@create');
 
 Route::get('/administracion/comunidades/grupos', 'AdministrationCommunityGroupController@index');
 Route::get('/administracion/comunidades/grupos/agregar', 'AdministrationCommunityGroupController@create');
@@ -146,9 +147,6 @@ Route::post('/administracion/comunidades/grupos', 'AdministrationCommunityGroupC
 Route::get('/administracion/comunidades/grupos/{community_group}', 'AdministrationCommunityGroupController@edit');
 Route::post('/administracion/comunidades/grupos/update/{community_group}', 'AdministrationCommunityGroupController@update');
 
-
-Route::get('/administracion/comunidades/agregar', 'AdministrationCommunityController@create');
-Route::get('/administracion/comunidades/{comunidad}', 'AdministrationCommunityController@show');
 
 // ~~~
 

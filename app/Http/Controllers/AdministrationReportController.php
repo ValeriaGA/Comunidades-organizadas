@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Report;
 
 class AdministrationReportController extends Controller
@@ -22,7 +23,12 @@ class AdministrationReportController extends Controller
      */
     public function index()
     {
-        $reports = Report::orderBy('created_at', 'asc')->get();
+        $reports = DB::table('report_alert')
+                    ->join('reports', 'report_alert.report_id', '=', 'reports.id')
+                    ->join('users', 'reports.user_id', '=', 'users.id')
+                    ->select('report_alert.report_id', 'reports.user_id', 'users.email', DB::raw('count(report_alert.report_id) as count'))
+                    ->groupBy('report_alert.report_id')
+                    ->get();
         return view('administration.report.index', compact('reports'));
     }
 
@@ -32,9 +38,15 @@ class AdministrationReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($report)
+    public function show($id)
     {
-        return view('administration.report.show', compact('report'));
+        $report = Report::find($id);
+        $report_alerts = DB::table('report_alert')
+                            ->join('users', 'report_alert.user_id', '=', 'users.id')
+                            ->select('users.email', 'report_alert.reason', 'report_alert.created_at')
+                            ->where('report_alert.report_id', $id)
+                            ->get();
+        return view('administration.report.show', compact('report', 'report_alerts'));
     }
 
     /**

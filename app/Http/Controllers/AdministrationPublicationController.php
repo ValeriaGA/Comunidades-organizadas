@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Report;
 
 class AdministrationPublicationController extends Controller
 {
@@ -21,7 +22,8 @@ class AdministrationPublicationController extends Controller
      */
     public function index()
     {
-        //
+        $reports = Report::all();
+        return view('administration.publication.index', compact('reports'));
     }
 
     /**
