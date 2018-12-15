@@ -4,8 +4,10 @@
       <title>Use navbar for tabs</title>
       <meta name = "viewport" content = "width = device-width, initial-scale = 1">
       <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+      <link rel="stylesheet" href="../style.css" />
       <script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
       <script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+      <script src="../comments.js"></script>
    
       <style>
          .tablist-left {
@@ -111,6 +113,25 @@
                         </div><!-- /collapsible -->
                     </div><!-- /collapsible set -->
                 </div><!-- /popup -->
+                
+                
+                <button type="button" data-icon="gear" data-iconpos="right" data-mini="true" data-inline="true" id="add">Add</button>
+                <button type="button" data-icon="plus" data-iconpos="right" data-mini="true" data-inline="true" id="expand">Expand last</button>
+                <button type="button" data-icon="minus" data-iconpos="right" data-mini="true" data-inline="true" id="collapse">Collapse last</button>
+                <div data-role="collapsibleset" data-content-theme="a" data-iconpos="right" id="set">
+                    <div data-role="collapsible" id="set1" data-collapsed="true">
+                        <h3>Section 1</h3>
+                        <p>I'm the collapsible content.</p>
+                    </div>
+                </div>
+                
+                <div class="ui-grid-d center">
+                    <div class="ui-block-a"><a class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                    <div class="ui-block-b"><a class="ui-shadow ui-btn ui-corner-all ui-icon-arrow-l ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                    <div class="ui-block-c"><a class="ui-shadow ui-btn ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                    <div class="ui-block-d"><a class="ui-shadow ui-btn ui-corner-all ui-icon-arrow-r ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                    <div class="ui-block-e"><a class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                </div>
       
    </body>
 </html>
