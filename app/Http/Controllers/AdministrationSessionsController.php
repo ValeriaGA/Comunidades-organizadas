@@ -34,7 +34,6 @@ class AdministrationSessionsController extends Controller
         $this->validate(request(), [
             'email' => 'required|email',
             'password' => 'required'
-
         ]);
 
         // Attempt to auth user
@@ -42,10 +41,10 @@ class AdministrationSessionsController extends Controller
         if (! auth()->attempt(request(['email', 'password'])))
         {
             return back()->withErrors([
-                'message' => 'Please check your credentials and try again.'
+                'message' => 'Por favor revise sus credenciales e intente nuevamente.'
             ]);
         }
-        session()->flash('message', 'Succesfully Logged in!');
+        session()->flash('message', 'Ha iniciado sesión con éxito!');
         return redirect()->route('admin_home');
     }
 

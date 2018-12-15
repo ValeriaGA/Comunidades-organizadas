@@ -124,7 +124,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <button type='submit' onclick="window.location.href='/incident/create'" class="btn btn-success">Agregar incidente</button>
+                            <button type='submit' onclick="window.location.href='/incident/create'" class="btn btn-success">Agregar reporte</button>
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                   </div>
                   <div class="col-sm-2">
                       <div class="white-box">
-                        <h3 class="box-title">Numero de Incidentes</h3> 
+                        <h3 class="box-title">Numero de Reportes</h3> 
                         <h4 class="counter text-success" title="incidentes">{{ count($incidents) }}</h4>
                       </div>
                   </div>

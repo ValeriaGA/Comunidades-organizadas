@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Incident;
-use App\TypeOfIncident;
+use App\Report;
+use App\CatReport;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
@@ -16,7 +17,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        /*$types = TypeOfIncident::orderBy('name', 'asc')->get();
+        $types = CatReport::orderBy('name', 'asc')->get();
 
         $type_ids = array();
         foreach ($types as $type)
@@ -24,7 +25,7 @@ class SearchController extends Controller
             $type_ids[] = $type->id;
         }
 
-        $incidents = Incident::latest()->get();*/   
+        $incidents = Report::latest()->get(); 
 
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');

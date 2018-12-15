@@ -51,11 +51,12 @@
                                 <div class="form-group">
                                     <h3 class="box-title">Reportes registrados</h3>
                                     <div class="comment-center p-t-10">
-                                        @if (is_array($reports) || is_object($reports))
+                                       {{-- @if (is_array($reports) || is_object($reports))
                                             @foreach ($reports as $report)
                                               @include('report.report')
                                             @endforeach
-                                        @endif
+                                        @endif --}}
+                                        @include('report.report')
                                     </div>
                                 </div>
                             </div>

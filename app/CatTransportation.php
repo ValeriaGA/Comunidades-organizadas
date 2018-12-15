@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CatTransportation extends Model
 {
+    protected $table = 'cat_transportation';
+
     protected $fillable = [
     	'name', 'active'
     ];

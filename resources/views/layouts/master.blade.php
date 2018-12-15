@@ -38,6 +38,9 @@
 
     <!-- dropdown table -->
     <link href="{{ asset('css/dropdownTableRows.css')}}" rel="stylesheet">
+
+    <!--Report section tabs-->
+    <link rel="stylesheet" href="{{ asset('css/styleTabs.css')}}">
 </head>
 
 <body class="fix-header">
@@ -93,7 +96,7 @@
     <script src="{{ asset('plugins/bower_components/toast-master/js/jquery.toast.js') }}"></script>
 
     <!-- BUTTON -->
-    <script src={{ asset('js/likeButton.js') }}></script>
+    <script src={{ asset('js/buttons.js') }}></script>
 
     <script type="text/javascript">
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -110,6 +113,9 @@
 
 
     <script src="{{ asset('js/dropdownTableRows.js')}}"></script>
+
+    <!--Report section tabs-->
+    <script src="{{ asset('js/tabs-control.js') }}"></script>
 </body>
 
 </html>

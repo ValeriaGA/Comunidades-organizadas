@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Incident;
-use App\TypeOfIncident;
-use App\Weapon;
-use App\Transportation;
+use App\Report;
+use App\CatEvidence;
+use App\CatReport;
+use App\SubCatReport;
+use App\CatTransportation;
+use App\CatWeapon;
 use App\Evidence;
+use App\Perpetrator;
+use App\Victim;
+use App\Province;
+use App\Canton;
+use App\District;
 use Auth;
 use DateTime;
 use DateTimeZone;
@@ -37,15 +44,17 @@ class ReportController extends Controller
      */
     public function create()
     {
-        $types = TypeOfIncident::orderBy('name', 'asc')->get();
-        $weapons = Weapon::get();
-        $transportation = Transportation::get();
+        $cat_evidence = CatEvidence::get();
+        $cat_report = CatReport::get();
+        $sub_cat_report = SubCatReport::get();
+        $cat_transportation = SubCatReport::get();
+        $cat_weapon = SubCatReport::get();
 
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
         $time = $dt->format('H:i:s');
 
-        return view('report.create', compact('types', 'weapons', 'transportation', 'date', 'time'));
+        return view('report.create', compact('types', 'cat_weapons', 'transportation', 'date', 'time'));
     }
 
     /**

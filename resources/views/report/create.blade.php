@@ -48,9 +48,9 @@
                                     <label class="col-md-12">Tipo de incidente</label>
                                     <div class="col-md-12">
                                         <select class="form-control" name="type" required>
-                                          @foreach ($types as $type)
+                                          {{--@foreach ($types as $type)
                                             <option value="{{$type->name}}">{{$type->name}}</option>
-                                          @endforeach
+                                          @endforeach--}}
                                         </select>
                                     </div>
                                 </div>
@@ -104,13 +104,13 @@
                                     <label class="col-md-12">Tipo de Arma (Si aplica)</label>
                                     <div class="col-md-12">
                                         <select class="form-control" name="weapon" required>
-                                          @foreach ($weapons as $weapon)
+                                         {{-- @foreach ($weapons as $weapon)
                                             @if ($weapon->name == 'No Aplica')
                                               <option value="{{$weapon->name}}" selected="selected">{{$weapon->name}}</option>
                                             @else
                                                 <option value="{{$weapon->name}}">{{$weapon->name}}</option>
                                             @endif
-                                          @endforeach
+                                          @endforeach--}}
                                         </select>
                                     </div>
                                 </div>
@@ -118,13 +118,13 @@
                                     <label class="col-md-12">Medio de Transporte</label>
                                     <div class="col-md-12">
                                         <select class="form-control" name="transportation" required>
-                                          @foreach ($transportation as $t)
+                                          {{--@foreach ($transportation as $t)
                                             @if ($t == 'Sin vehiculo')
                                               <option value="{{$t->name}}" selected="selected">{{$t->name}}</option>
                                             @else
                                                 <option value="{{$t->name}}">{{$t->name}}</option>
                                             @endif
-                                          @endforeach
+                                          @endforeach--}}
                                         </select>
                                     </div>
                                 </div>

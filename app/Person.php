@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
+    public $timestamps = false;
+    
     protected $fillable = [
         'name', 'gender_id', 'last_name', 'second_last_name', 'official_id', 'foreigner'
     ];
