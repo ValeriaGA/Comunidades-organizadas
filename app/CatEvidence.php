@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class CatEvidence extends Model
 {
 
-	public $ta`ble = "cat_evidence";
+
+	public $timestamps = false;
+
+	public $table = "cat_evidence";
+
 
     protected $fillable = [
         'name', 'active'

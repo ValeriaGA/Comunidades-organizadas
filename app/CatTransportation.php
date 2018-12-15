@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class CatTransportation extends Model
 {
 
+	public $timestamps = false;
+
 	public $table = "cat_transportation";
 
     protected $fillable = [

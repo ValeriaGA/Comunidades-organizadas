@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Like extends Model
 {
-    protected $table = 'like';
+
+
+	public $timestamps = false;
+
     protected $fillable = [
         'report_id', 'user_id'
     ];

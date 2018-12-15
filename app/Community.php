@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Community extends Model
 {
-    protected $table = 'community';
+
+    public $timestamps = false;
+    
+
     protected $fillable = [
         'name', 'district_id'
     ];
@@ -18,6 +21,6 @@ class Community extends Model
 
     public function communityGroup()
     {
-    	return $this->belongsToMany(CommunityGroup::class, 'communities_by_groups', 'community_id', 'id');
+    	return $this->belongsToMany(CommunityGroup::class, 'communities_by_groups', 'community_id', 'community_group_id');
     }
 }

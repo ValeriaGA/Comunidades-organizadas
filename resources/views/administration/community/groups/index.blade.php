@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Comunidades</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/comunidades/grupos">Comunidades</a></a> <a href="#" class="current">Grupos</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -23,7 +23,8 @@
               <thead>
                 <tr>
                   <th>Nombre</th>
-                  <th>Inspeccionar</th>
+                  <th>Comunidades</th>
+                  <th>Editar</th>
                 </tr>
               </thead>
               <tbody>
@@ -31,15 +32,20 @@
                 <tr class="gradeX">
                   <td>{{$community_group->name}}</td>
                   <td>
-                    <form action="/administracion/comunidades/agregar" method="post" enctype="multipart/form-data">
-                      <button class="btn">Editar</button>
-                    </form>
+                    @foreach ($community_group->community as $communities)
+                      <ul class="activity-list">
+                        <li><strong>{{ $communities->name }}</strong></li>
+                      </ul>
+                    @endforeach
+                  </td>
+                  <td>
+                      <button name="{{$community_group->name}}_edit" class="btn" onclick="location.href = '/administracion/comunidades/grupos/{{ $community_group->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/seguridad/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/comunidades/grupos/agregar"><button class="btn">Agregar</button></form>
           </div>
         </div>
       </div>

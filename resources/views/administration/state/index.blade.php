@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Estados</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/estados" class="current">Estados</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -22,14 +22,14 @@
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
-                  <th>Tipo</th>
+                  <th>Nombre</th>
                   <th>Activo</th>
                   <th>Editar</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($states as $state) 
-                <tr class="gradeX">
+                <tr class="">
                   <td>{{$state->name}}</td>
                   <td>
                     @if ($state->active == TRUE)
@@ -39,15 +39,13 @@
                     @endif
                   </td>
                   <td>
-                    <form action="/administracion/seguridad/agregar" method="post" enctype="multipart/form-data">
-                      <button class="btn">Editar</button>
-                    </form>
+                    <button name="{{$state->name}}_edit" class="btn" onclick="location.href = '/administracion/estados/{{ $state->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/seguridad/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/estados/agregar"><button class="btn">Agregar</button></form>
           </div>
         </div>
       </div>

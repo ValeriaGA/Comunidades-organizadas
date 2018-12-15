@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Generos</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/generos" class="current">Generos</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -28,18 +28,16 @@
               </thead>
               <tbody>
                 @foreach ($genders as $gender) 
-                <tr class="gradeX">
+                <tr class="">
                   <td>{{$gender->name}}</td>
                   <td>
-                    <form action="/administracion/seguridad/agregar" method="post" enctype="multipart/form-data">
-                      <button class="btn">Editar</button>
-                    </form>
+                    <button name="{{$gender->name}}_edit" class="btn" onclick="location.href = '/administracion/generos/{{ $gender->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/seguridad/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/generos/agregar"><button class="btn">Agregar</button></form>
           </div>
         </div>
       </div>
