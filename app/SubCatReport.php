@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubCatReport extends Model
 {
-    protected $table = 'sub_cat_report';
+    public $table = "sub_cat_report";
+
 	protected $fillable = [
         'name', 'multimedia_path', 'active', 'cat_report_id'
     ];

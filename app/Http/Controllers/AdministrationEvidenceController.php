@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CatEvidence;
 
 class AdministrationEvidenceController extends Controller
 {
+
+    public function __construct()
+    {
+        
+        // only administrators are allowed to view this
+        $this->middleware('admin');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,9 @@ class AdministrationEvidenceController extends Controller
      */
     public function index()
     {
-        //
+        $evidences = CatEvidence::all();
+
+        return view('administration.evidence.index', compact('evidences'));
     }
 
     /**

@@ -29,11 +29,14 @@ Route::get('/user/{user}', 'UserController@edit');
 Route::post('/user/update/{user}', 'UserController@update');
 
 // Report
+Route::get('/reporte', 'ReportController@index');
+Route::get('/reporte/{reporte}', 'ReportController@show');
 
-Route::get('/report', 'ReportController@index');
-Route::get('/report/create', 'ReportController@create');
-Route::post('/report', 'ReportController@store');
-Route::get('/report/{report}', 'ReportController@show');
+Route::get('/seguridad/agregar', 'SecurityReportController@create');
+Route::post('/seguridad', 'SecurityReportController@store');
+
+Route::get('/servicio/agregar', 'ServiceReportController@create');
+Route::post('/servicio', 'ServiceReportController@store');
 
 // Statistics
 
@@ -88,6 +91,8 @@ Route::get('/administracion/publicaciones/{publicacion}', 'AdministrationPublica
 
 Route::get('/administracion/seguridad', 'AdministrationSecurityController@index');
 Route::get('/administracion/seguridad/agregar', 'AdministrationSecurityController@create');
+Route::get('/administracion/seguridad/{categoria}', 'AdministrationSecurityController@edit');
+Route::post('/administracion/seguridad/update/{categoria}', 'AdministrationSecurityController@update');
 
 Route::get('/administracion/servicio', 'AdministrationServiceController@index');
 Route::get('/administracion/servicio/agregar', 'AdministrationServiceController@create');
@@ -98,8 +103,8 @@ Route::get('/administracion/estados/agregar', 'AdministrationStateController@cre
 Route::get('/administracion/generos', 'AdministrationGenderController@index');
 Route::get('/administracion/generos/agregar', 'AdministrationGenderController@create');
 
-Route::get('/administracion/evidencia', 'AdministrationEvidenceController@index');
-Route::get('/administracion/evidencia/agregar', 'AdministrationEvidenceController@create');
+Route::get('/administracion/evidencias', 'AdministrationEvidenceController@index');
+Route::get('/administracion/evidencias/agregar', 'AdministrationEvidenceController@create');
 
 Route::get('/administracion/comunidades', 'AdministrationCommunityController@index');
 Route::get('/administracion/comunidades/agregar', 'AdministrationCommunityController@create');

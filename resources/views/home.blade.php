@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <button type='submit' onclick="window.location.href='/report/create'" class="btn btn-success">Agregar Reporte</button>
+                            <button type='submit' onclick="window.location.href='/reporte'" class="btn btn-success">Agregar Reporte</button>
                         </div>
                     </div>
                 </div>

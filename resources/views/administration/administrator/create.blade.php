@@ -20,63 +20,118 @@
           </div>
           <div class="widget-content nopadding">
 
-            <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
+            <form class="form-horizontal" method="post" action="/administracion/administradores">
+              @csrf
+
               <div class="control-group">
                 <label class="control-label">Nombre</label>
                 <div class="controls">
-                  <input type="text" name="required" id="required">
+                  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="John" required autofocus>
+                  @if ($errors->has('name'))
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('name') }}</strong>
+                      </span>
+                  @endif
                 </div>
               </div>
+
               <div class="control-group">
                 <label class="control-label">Primer Apellido</label>
                 <div class="controls">
-                  <input type="text" name="required" id="required">
+                  <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" value="{{ old('lastname') }}" placeholder="Forbes" required>
+                  @if ($errors->has('lastname'))
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('lastname') }}</strong>
+                      </span>
+                  @endif
                 </div>
               </div>
+
               <div class="control-group">
                 <label class="control-label">Segundo Apellido</label>
                 <div class="controls">
-                  <input type="text" name="required" id="required">
+                  <input id="secondlastname" type="text" class="form-control{{ $errors->has('secondlastname') ? ' is-invalid' : '' }}" name="secondlastname" value="{{ old('secondlastname') }}" placeholder="Nash Jr" required>
+                  @if ($errors->has('secondlastname'))
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('secondlastname') }}</strong>
+                      </span>
+                  @endif
                 </div>
               </div>
+
+              <div class="control-group">
+                <label class="control-label">Correo electrónico</label>
+                <div class="controls">
+                  <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="nash@localhost.com" required>
+                  @if ($errors->has('email'))
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('email') }}</strong>
+                      </span>
+                  @endif
+                </div>
+              </div>
+
               <div class="control-group">
                 <label class="control-label">Cedula</label>
                 <div class="controls">
-                  <input type="text" name="required" id="required">
+                  <input id="cedula" type="number" class="form-control{{ $errors->has('cedula') ? ' is-invalid' : '' }}" name="cedula" value="{{ old('cedula') }}" placeholder="123456789" required>
+                  @if ($errors->has('cedula'))
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('cedula') }}</strong>
+                      </span>
+                  @endif
                 </div>
               </div>
+
               <div class="control-group">
-                <label class="control-label">Extranjero</label>
+                <label class="control-label">Residencia</label>
                 <div class="controls">
-                  <input type="text" name="required" id="required">
+                  <label>
+                    <input type="checkbox" name="foreigner"/>
+                    Extranjero
+                  </label>
                 </div>
               </div>
+
               <div class="control-group">
                 <label class="control-label">Género</label>
                 <div class="controls">
-                  <input type="text" name="required" id="required">
+                  <select id="gender" name="gender" value="{{ old('gender') }}" required>
+                      @foreach ($genders as $gender)
+                          <option value="{{$gender->name}}">{{$gender->name}}</option>
+                      @endforeach
+                  </select>
+
+                  @if ($errors->has('gender'))
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('gender') }}</strong>
+                      </span>
+                  @endif
                 </div>
               </div>
+
               <div class="control-group">
                 <label class="control-label">Contraseña</label>
                 <div class="controls">
-                  <input type="text" name="required" id="required">
+                  <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" required>
+                  @if ($errors->has('password'))
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('password') }}</strong>
+                      </span>
+                  @endif
                 </div>
               </div>
+
               <div class="control-group">
-                <label class="control-label">Confirmar contraseña</label>
-                <div class="controls">
-                  <input type="text" name="required" id="required">
-                </div>
+                  <label for="password-confirm" class="control-label">Confirmar contraseña</label>
+
+                  <div class="controls">
+                      <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                  </div>
               </div>
-              <div class="control-group">
-                <label class="control-label">Dirección de correo electrónico</label>
-                <div class="controls">
-                  <input type="text" name="email" id="email">
-                </div>
-              </div>
+
               <div class="form-actions">
-                <input type="submit" value="Validate" class="btn btn-success">
+                <input type="submit" value="Confirmar" class="btn btn-success">
               </div>
             </form>
 

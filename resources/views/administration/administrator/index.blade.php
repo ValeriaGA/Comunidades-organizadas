@@ -14,7 +14,6 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
-        <form action="/administracion/administradores/agregar"><button class="btn">Agregar</button></form>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Administradores</h5>
@@ -38,6 +37,7 @@
                 @endforeach
               </tbody>
             </table>
+            <form action="/administracion/administradores/agregar"><button class="btn">Agregar</button></form>
           </div>
         </div>
       </div>

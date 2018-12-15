@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="{{ asset('admin/css/select2.css') }}" />
         <link rel="stylesheet" href="{{ asset('admin/css/matrix-style.css') }}" />
         <link rel="stylesheet" href="{{ asset('admin/css/matrix-media.css') }}" />
+        <link rel="stylesheet" href="{{ asset('admin/css/bootstrap-wysihtml5.css') }}" />
         <link href="{{ asset('admin/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
         <link rel="stylesheet" href="{{ asset('admin/css/jquery.gritter.css') }}" />
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel='stylesheet' type='text/css'>
@@ -59,11 +60,18 @@
     <script src="{{ asset('admin/js/jquery.min.js') }}"></script> 
     <script src="{{ asset('admin/js/jquery.ui.custom.js') }}"></script> 
     <script src="{{ asset('admin/js/bootstrap.min.js') }}"></script> 
+    <script src="{{ asset('admin/js/bootstrap-colorpicker.js') }}"></script> 
+    <script src="{{ asset('admin/js/bootstrap-datepicker.js') }}"></script> 
+    <script src="{{ asset('admin/js/jquery.toggle.buttons.js') }}"></script> 
+    <script src="{{ asset('admin/js/masked.js') }}"></script> 
     <script src="{{ asset('admin/js/jquery.uniform.js') }}"></script> 
     <script src="{{ asset('admin/js/select2.min.js') }}"></script> 
     <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"></script> 
     <script src="{{ asset('admin/js/matrix.js') }}"></script> 
     <script src="{{ asset('admin/js/matrix.tables.js') }}"></script>
+    <script src="{{ asset('admin/js/matrix.form_common.js') }}"></script> 
+    <script src="{{ asset('admin/js/wysihtml5-0.3.0.js') }}"></script>
+    <script src="{{ asset('admin/js/bootstrap-wysihtml5.js') }}"></script> 
 
     <script src="{{ asset('admin/js/excanvas.min.js') }}"></script>
     <script src="{{ asset('admin/js/jquery.flot.min.js') }}"></script> 
@@ -102,6 +110,10 @@
     function resetMenu() {
     document.gomenu.selector.selectedIndex = 2;
     }
+    </script>
+
+    <script>
+        $('.textarea_editor').wysihtml5();
     </script>
 
     </body>

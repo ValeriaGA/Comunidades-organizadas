@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evidence extends Model
 {
-    protected $table = 'evidence';
+
+    public $table = "evidence";
+
 	protected $fillable = [
         'report_id', 'multimedia_path', 'cat_evidence_id'
     ];

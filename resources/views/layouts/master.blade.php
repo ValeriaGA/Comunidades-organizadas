@@ -41,6 +41,8 @@
 
     <!--Report section tabs-->
     <link rel="stylesheet" href="{{ asset('css/styleTabs.css')}}">
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
+    
 </head>
 
 <body class="fix-header">

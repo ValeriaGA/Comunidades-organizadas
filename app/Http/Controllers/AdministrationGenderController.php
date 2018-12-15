@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Gender;
 
 class AdministrationGenderController extends Controller
 {
+
+    public function __construct()
+    {
+        
+        // only administrators are allowed to view this
+        $this->middleware('admin');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,10 @@ class AdministrationGenderController extends Controller
      */
     public function index()
     {
-        //
+
+        $genders = Gender::all();
+
+        return view('administration.gender.index', compact('genders'));
     }
 
     /**
