@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Community extends Model
 {
+
     public $timestamps = false;
     
+
     protected $fillable = [
         'name', 'district_id'
     ];

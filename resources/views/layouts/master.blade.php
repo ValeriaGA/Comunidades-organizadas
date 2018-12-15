@@ -35,6 +35,12 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+    <!-- dropdown table -->
+    <link href="{{ asset('css/dropdownTableRows.css')}}" rel="stylesheet">
+
+    <!--Report section tabs-->
+    <link rel="stylesheet" href="{{ asset('css/styleTabs.css')}}">
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
     
 </head>
@@ -90,6 +96,28 @@
     <script src="{{ asset('js/custom.min.js') }}"></script>
     <script src="{{ asset('js/dashboard1.js') }}"></script>
     <script src="{{ asset('plugins/bower_components/toast-master/js/jquery.toast.js') }}"></script>
+
+    <!-- BUTTON -->
+    <script src={{ asset('js/buttons.js') }}></script>
+
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5c11c6d382491369ba9de20f/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+
+    <script src="{{ asset('js/dropdownTableRows.js')}}"></script>
+
+    <!--Report section tabs-->
+    <script src="{{ asset('js/tabs-control.js') }}"></script>
 </body>
 
 </html>

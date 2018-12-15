@@ -30,20 +30,32 @@
                 <!-- /.row -->
                 @endauth
 
-                <div class="row">
+
+    
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'NEWS')" id="defaultOpen">Noticias</button>
+                    <button class="tablinks" onclick="openCity(event, 'SECURITY')">Reportes de Seguridad</button>
+                    <button class="tablinks" onclick="openCity(event, 'SERVICES')">Reportes de Servicios</button>
+                </div>
+
+                @include('layouts.home_news_section')
+                @include('layouts.home_security_section')
+                @include('layouts.home_services_section')
+                {{--<div class="row">
                     <div class="col-md-12 col-lg-8 col-sm-12">
                         <div class="white-box">
                             <h3 class="box-title">Reportes recientes</h3>
                             <div class="comment-center p-t-10">
                                 @foreach ($reports as $report)
                                   @include('report.report')
-                                @endforeach
+                                @endforeach 
+                                @include('report.report')
                             </div>
 
                             {{ $reports->links() }}
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <!-- /.container-fluid -->
 

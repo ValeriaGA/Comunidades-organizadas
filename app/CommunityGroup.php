@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CommunityGroup extends Model
 {
+
     public $timestamps = false;
     
     protected $fillable = [
