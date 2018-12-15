@@ -12,7 +12,7 @@
     <div id="add_report_page" data-role="page">
         <div data-role="header">
             <h1>Perfil</h1>    
-            <a href="reports.html" data-rel="back">Back</a>
+            <a href="reports.html" data-rel="back">Atras</a>
         </div><!-- /header -->
         
         <div data-role="content">  
@@ -62,8 +62,15 @@
                 </div>
                 
          
-           
-            <h1>Areas favoritas</h1> 
+           <h2>Notificaciones</h2>
+           <div class="ui-field-contain">
+                <p>Cuando activa esta opción recibira las notificaciones de nuevas publicaciones en las areas marcadas como favoritas.</p>
+                <select name="foreigner" id="foreigner" data-role="slider">
+                    <option value="no" selected>No</option>
+                    <option value="yes">Si</option>
+                </select>
+                </div>
+            <h2>Areas favoritas</h2> 
             <ul data-role="listview" data-split-icon="delete" data-theme="a" data-split-theme="a" data-inset="true">
             <li>
                 <a href="#"><h2>Area 1</h2>
