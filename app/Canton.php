@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Canton extends Model
 {
+
+    public $timestamps = false;
+
     protected $fillable = [
         'name', 'province_id'
     ];

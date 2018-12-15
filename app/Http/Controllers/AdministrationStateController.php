@@ -22,7 +22,7 @@ class AdministrationStateController extends Controller
      */
     public function index()
     {
-        $states = State::all();
+        $states = State::orderBy('name', 'asc')->get();
 
         return view('administration.state.index', compact('states'));
     }
@@ -34,7 +34,7 @@ class AdministrationStateController extends Controller
      */
     public function create()
     {
-        //
+        return view('administration.state.create');
     }
 
     /**
@@ -45,18 +45,18 @@ class AdministrationStateController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:states,name'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        State::create([
+            'name' => $request['name'],
+            'active' => ($request['active'] ? true : false)
+        ]);
+
+        session()->flash('message', 'Estado creada');
+
+        return redirect('/administracion/estados');
     }
 
     /**
@@ -65,9 +65,9 @@ class AdministrationStateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(State $state)
     {
-        //
+        return view('administration.state.edit', compact('state'));
     }
 
     /**
@@ -79,17 +79,24 @@ class AdministrationStateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:states,name'
+        ]);
+
+        try{
+            $state = State::findOrFail($id);
+
+            $state->name = $request['name'];
+            $state->active = ($request['active'] ? true : false);
+
+            $state->save();
+
+            session()->flash('message', 'Estado actualizada');
+            return redirect('/administracion/estados');
+        }
+        catch(ModelNotFoundException $err){
+            //Show error page
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

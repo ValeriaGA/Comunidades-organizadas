@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="{{ asset('admin/css/bootstrap.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('admin/css/bootstrap-responsive.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('admin/css/fullcalendar.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/colorpicker.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/datepicker.css') }}" />
         <link rel="stylesheet" href="{{ asset('admin/css/uniform.css') }}" />
         <link rel="stylesheet" href="{{ asset('admin/css/select2.css') }}" />
         <link rel="stylesheet" href="{{ asset('admin/css/matrix-style.css') }}" />
@@ -66,17 +68,23 @@
     <script src="{{ asset('admin/js/masked.js') }}"></script> 
     <script src="{{ asset('admin/js/jquery.uniform.js') }}"></script> 
     <script src="{{ asset('admin/js/select2.min.js') }}"></script> 
+
+<!--problems with checkbox-->
+<!-- jquery.dataTables.min.js -->
+<!-- matrix.tables.js -->
+
     <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"></script> 
     <script src="{{ asset('admin/js/matrix.js') }}"></script> 
     <script src="{{ asset('admin/js/matrix.tables.js') }}"></script>
+
     <script src="{{ asset('admin/js/matrix.form_common.js') }}"></script> 
     <script src="{{ asset('admin/js/wysihtml5-0.3.0.js') }}"></script>
+    <script src="{{ asset('admin/js/jquery.peity.min.js') }}"></script> 
     <script src="{{ asset('admin/js/bootstrap-wysihtml5.js') }}"></script> 
 
     <script src="{{ asset('admin/js/excanvas.min.js') }}"></script>
     <script src="{{ asset('admin/js/jquery.flot.min.js') }}"></script> 
-    <script src="{{ asset('admin/js/jquery.flot.resize.min.js') }}"></script> 
-    <script src="{{ asset('admin/js/jquery.peity.min.js') }}"></script> 
+    <script src="{{ asset('admin/js/jquery.flot.resize.min.js') }}"></script>
     <script src="{{ asset('admin/js/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('admin/js/matrix.dashboard.js') }}"></script> 
     <script src="{{ asset('admin/js/jquery.gritter.min.js') }}"></script> 
@@ -110,6 +118,7 @@
     function resetMenu() {
     document.gomenu.selector.selectedIndex = 2;
     }
+    
     </script>
 
     <script>

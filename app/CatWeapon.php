@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CatWeapon extends Model
 {
+
+	public $timestamps = false;
+
 	public $table = "cat_weapon";
 
     protected $fillable = [

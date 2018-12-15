@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Seguridad</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Seguridad</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -45,7 +45,7 @@
                       @endif
                     </td>
                     <td>
-                      <form action="/administracion/seguridad/agregar" method="post" enctype="multipart/form-data">
+                      <form action="/administracion/seguridad/categorias/editar" method="post" enctype="multipart/form-data">
                         <button class="btn">Editar</button>
                       </form>
                     </td>
@@ -53,8 +53,9 @@
                   @endforeach
                 </tbody>
               </table>
-              <form action="/administracion/seguridad/agregar"><button class="btn">Agregar</button></form>
+              <form action="/administracion/seguridad/categorias/agregar"><button class="btn">Agregar</button></form>
             </div>
+
             <div id="tab2" class="tab-pane">
               <table class="table table-bordered data-table">
                 <thead>
@@ -84,8 +85,9 @@
                   @endforeach
                 </tbody>
               </table>
-              <form action="/administracion/seguridad/agregar"><button class="btn">Agregar</button></form>
+              <form action="/administracion/seguridad/armas/agregar"><button class="btn">Agregar</button></form>
             </div>
+
             <div id="tab3" class="tab-pane">
               <table class="table table-bordered data-table">
                 <thead>
@@ -115,7 +117,7 @@
                   @endforeach
                 </tbody>
               </table>
-              <form action="/administracion/seguridad/agregar"><button class="btn">Agregar</button></form>
+              <form action="/administracion/seguridad/transportes/agregar"><button class="btn">Agregar</button></form>
             </div>
           </div>
         </div>

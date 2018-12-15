@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Evidencia</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/evidencias" class="current">Evidencia</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -29,7 +29,7 @@
               </thead>
               <tbody>
                 @foreach ($evidences as $evidence) 
-                <tr class="gradeX">
+                <tr class="">
                   <td>{{$evidence->name}}</td>
                   <td>
                     @if ($evidence->active == TRUE)
@@ -39,15 +39,13 @@
                     @endif
                   </td>
                   <td>
-                    <form action="/administracion/seguridad/agregar" method="post" enctype="multipart/form-data">
-                      <button class="btn">Editar</button>
-                    </form>
+                    <button name="{{$evidence->name}}_edit" class="btn" onclick="location.href = '/administracion/evidencias/{{ $evidence->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/seguridad/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/evidencias/agregar"><button class="btn">Agregar</button></form>
           </div>
         </div>
       </div>
