@@ -131,6 +131,17 @@
                     <div class="col-md-12 col-lg-8 col-sm-12">
                         <div class="white-box">
                             <h3 class="box-title panel-heading">Comentarios</h3>
+
+                            <div class="form-group" >
+                                <label class="col-md-12" for="exampleInputDescription">Agregar Comentario</label>
+                                <div class="col-md-12" style="margin-bottom: 10px;">
+                                    <textarea id="exampleInputDescription" rows="5" class="form-control form-control-line" name="description" placeholder="Nuevo comentario..."required></textarea>
+                                </div>
+                                <button id="commentButton" style="margin-left: 500px;" onclick="" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0">
+                                    Comentar
+                                </button>
+                            </div>
+
                             <div class="comment-center p-t-10">
                                 
                                 @include('comment.comment')
