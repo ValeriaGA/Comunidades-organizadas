@@ -123,6 +123,9 @@
 
     <!-- PROVINCES -->
     <script src="{{ asset('js/comboBoxControl.js') }}"></script>
+
+    <!-- COMMENT -->
+    <script src="{{ asset('js/comment.js') }}"></script>
 </body>
 
 </html>
