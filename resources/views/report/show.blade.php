@@ -24,6 +24,7 @@
                             <ul class="nav customtab nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#general1" aria-controls="general" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> Generales</span></a></li>
                                 <li role="presentation" class=""><a href="#specific1" aria-controls="specific" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Específicos</span></a></li>
+                                <li role="presentation" class=""><a href="#perpetrator1" aria-controls="perpetrator" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Perpetradores</span></a></li>
                                 <li role="presentation" class=""><a href="#evidence1" aria-controls="evidence" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">Evidencia</span></a></li>
                                 <li role="presentation" class=""><a href="#user1" aria-controls="user" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> Usuario</span></a></li>
                             </ul>
@@ -49,11 +50,51 @@
                                             
                                         </div>
                                         <div class="col-md-6 pull-right">
-                                            <h4><b>Perpetradores:</b> 5</h4>
-                                            <h4><b>Victimas:</b> 5</h4>
+                                            <h4><b>Perpetradores:</b> 2</h4>
+                                            <h4><b>Victimas:</b> 1</h4>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="perpetrator1">
+                                            <div class="white-box">
+                                                <div class="comment-center p-t-10">
+                                                    <div class="container">
+                                                        <table class="table table-bordered" style="width: 550px;">
+                                                            <tr class="header" >
+                                                                <td colspan="2">
+                                                                    Perpetrador 1
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Género</strong></td>
+                                                                <td><strong>Descripción</strong></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Masculino</td>
+                                                                <td>Tatuaje en el hombro</td>
+                                                            </tr>
+                                                            <tr class="header">
+                                                                <td colspan="2">
+                                                                    Perpetrador 2
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Género</strong></td>
+                                                                <td><strong>Descripción</strong></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Femenino</td>
+                                                                <td>Pelo Rubio</td>
+                                                            </tr>
+                                                        </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+
+
                                     <div role="tabpanel" class="tab-pane fade" id="evidence1">
                                         <div id="accordion">
                                           {{--@foreach ($incident->evidence as $evidence)--}}
