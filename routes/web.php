@@ -22,6 +22,12 @@ Route::get('/fontawesome', function () {
 });
 
 
+// Provinces, cantones y distritos
+Route::get('/provincias', 'ProvinceController@index');
+Route::post('/cantones', 'CantonController@show');
+Route::post('/distritos', 'DistrictController@show');
+
+
 // Profile
 
 Route::get('/user', 'UserController@index');
@@ -49,6 +55,8 @@ Route::post('/statistics/bar', 'StatisticsController@crime_per_type');
 Route::get('/statistics/pie', 'StatisticsController@pie');
 
 Route::post('/statistics/pie', 'StatisticsController@crime_per_gender');
+
+Route::get('/statistics/cr_map', 'StatisticsController@reports_per_province');
 
 Route::get('/statistics/chart', 'StatisticsController@chart');
 

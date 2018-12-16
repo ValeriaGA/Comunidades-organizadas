@@ -31,32 +31,32 @@
                                 <div class="tab-content m-t-0">
                                     <div role="tabpanel" class="tab-pane fade active in" id="general1">
                                         <div class="col-md-4">
-                                            <h4><b>Fecha</b>: {{ $incident->date }}</h4>
-                                            <h4><b>Hora</b>: {{ $incident->time }}</h4>
-                                            <h4><b>Ubicación:</b> {{ $incident->location }}</h4>
+                                            <h4><b>Fecha</b>: 2018 - 05 - 05</h4>
+                                            <h4><b>Hora</b>: 12:00pm </h4>
+                                            <h4><b>Ubicación:</b> Barrio x</h4>
                                         </div>
                                         <div class="col-md-6 pull-right">
                                             <h4><b>Descripción:</b></h4>
-                                            <h4>{{ $incident->description }}</h4>
+                                            <h4> Asalto a arma </h4>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade" id="specific1">
                                         <div class="col-md-4">
-                                            <h4><b>Tipo:</b> {{ $incident->typesOfIncident->name }}</h4>
-                                            <h4><b>Arma:</b> {{ $incident->weapon->name }}</h4>
-                                            <h4><b>Vehiculo:</b> {{ $incident->transportation->name }}</h4>
+                                            <h4><b>Tipo:</b> Seguridad </h4>
+                                            <h4><b>Arma:</b> X</h4>
+                                            <h4><b>Vehiculo:</b> Bicicleta</h4>
                                             
                                         </div>
                                         <div class="col-md-6 pull-right">
-                                            <h4><b>Perpetradores:</b> {{ $incident->perpetrators }}</h4>
-                                            <h4><b>Victimas:</b> {{ $incident->victims }} ({{ $incident->primary_victim_sex }})</h4>
+                                            <h4><b>Perpetradores:</b> 5</h4>
+                                            <h4><b>Victimas:</b> 5</h4>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade" id="evidence1">
                                         <div id="accordion">
-                                          @foreach ($incident->evidence as $evidence)
+                                          {{--@foreach ($incident->evidence as $evidence)--}}
                                               <div class="card">
                                                 <div class="card-header" id="headingOne">
                                                   <h5 class="mb-0">
@@ -70,11 +70,11 @@
 
                                                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                                   <div class="card-body">
-                                                    <img src="{{ asset('images/evidence/'.$evidence->multimedia_path) }}" style="display: block; margin-left: auto; margin-right: auto;">
+                                                    <img src="{{-- asset('images/evidence/'.$evidence->multimedia_path) --}}" style="display: block; margin-left: auto; margin-right: auto;">
                                                   </div>
                                                 </div>
                                               </div>
-                                          @endforeach
+                                          {{--@endforeach--}}
                                           <!-- <div class="card">
                                             <div class="card-header" id="headingTwo">
                                               <h5 class="mb-0">
@@ -109,15 +109,15 @@
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade" id="user1">
                                         <div class="col-md-4">
-                                          @if (!is_null($incident->user->avatar_path))
+                                          {{--@if (!is_null($incident->user->avatar_path))
                                                 <img src="{{ asset('images/users/'.$incident->user->avatar_path) }}"  alt="user" class="img-responsive thumbnail m-r-15">
                                             @else
                                                 <img src="../plugins/images/users/profile.png"  alt="user" class="img-responsive thumbnail m-r-15">
-                                            @endif
+                                            @endif--}}
                                             
                                         </div>
                                         <div class="col-md-6">
-                                            <h3>{{ $incident->user->name }} {{ $incident->user->last_name }} {{ $incident->user->second_last_name }}</h3>
+                                            {{--<h3>{{ $incident->user->name }} {{ $incident->user->last_name }} {{ $incident->user->second_last_name }}</h3>--}}
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -127,6 +127,18 @@
                     </div>
                 </div>
               </div>
+              <div class="row">
+                    <div class="col-md-12 col-lg-8 col-sm-12">
+                        <div class="white-box">
+                            <h3 class="box-title panel-heading">Comentarios</h3>
+                            <div class="comment-center p-t-10">
+                                
+                                @include('comment.comment')
+                            </div>
+            
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>

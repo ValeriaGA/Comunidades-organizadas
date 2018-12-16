@@ -17,6 +17,22 @@
     <link rel="stylesheet" href="{{ asset('lib/example.css') }}">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
     <link rel="stylesheet" href="{{ asset('css/morris.css') }}">
+
+
+    <style>
+        #chartdiv {
+            width: 100%;
+            height: 500px;
+        }
+    
+    </style>
+    <!-- Resources -->
+
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="{{ asset('js/CRmap.js') }}"></script>
+
         <!-- ============================================================== -->
         <!-- Page Content -->
         <!-- ============================================================== -->
@@ -39,6 +55,7 @@
                 <!-- /.container-fluid -->
             <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
         </div>
+
         <!-- ============================================================== -->
         <!-- End Page Content -->
         <!-- ============================================================== -->

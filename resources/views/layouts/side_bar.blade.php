@@ -31,6 +31,9 @@
                 </a>
                 <ul class="nav nav-second-level collapse" aria-expanded="false">
                     <li>
+                        <a href="/statistics/cr_map" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Reportes por Provincia</a>
+                    </li>
+                    <li>
                     <a href="/statistics/bar" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Delíto</a>
                     </li>
                     <li>

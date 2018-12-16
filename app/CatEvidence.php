@@ -12,7 +12,6 @@ class CatEvidence extends Model
 
 	public $table = "cat_evidence";
 
-
     protected $fillable = [
         'name', 'active'
     ];

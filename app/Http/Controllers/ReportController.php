@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CatReport;
 use App\SubCatReport;
+use App\Report;
 
 class ReportController extends Controller
 {
@@ -23,7 +24,7 @@ class ReportController extends Controller
         return view('report.create', compact('categories_service', 'categories_security'));
     }
 
-    public function show(Incident $report)
+    public function show(Report $report)
     {
         return view('report.show', compact('report'));
     }

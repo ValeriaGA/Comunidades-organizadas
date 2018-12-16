@@ -34,7 +34,7 @@
         <br/>
         <span class="mail-desc"> Asalto en parada de buses</span>
         <button id="likeButton1" onclick="{{'onclick_likeButton(this)'}}" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0">Gracias</button>
-        <a href="/incident/1" class="btn btn btn-rounded btn-default btn-outline m-r-5">
+        <a href="/reporte/1" class="btn btn btn-rounded btn-default btn-outline m-r-5">
         	<i class="ti-check text-success m-r-5"></i>Detalles
         </a>
         
