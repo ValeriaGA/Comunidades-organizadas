@@ -5,7 +5,7 @@
                 <h3 class="box-title">Noticias Recientes</h3>
                 <div class="comment-center p-t-10">
                     
-                    @include('report.report')
+                    @include('report.news')
                 </div>
 
                 {{ $reports->links() }}
