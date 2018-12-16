@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="">Comunidades</a> <a href="#" class="current">GRUPO X</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/comunidades/comunidad" class="current">Comunidades</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -33,15 +33,13 @@
                   <td>{{$community->name}}</td>
                   <td>{{$community->district->name}}</td>
                   <td>
-                    <form action="/administracion/comunidad/editar" method="post" enctype="multipart/form-data">
-                      <button class="btn">Editar</button>
-                    </form>
+                    <button name="{{$community->name}}_edit" class="btn" onclick="location.href = '/administracion/comunidades/comunidad/{{ $community->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/seguridad/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/comunidades/comunidad/agregar"><button class="btn">Agregar</button></form>
           </div>
         </div>
       </div>

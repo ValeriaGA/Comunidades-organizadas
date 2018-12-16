@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Reportes</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/reportes" class="current">Reportes</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -22,22 +22,27 @@
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
-                  <th>Nombre</th>
-                  <th>Correo</th>
-                  <th>Fecha de Registro</th>
+                  <th>ID de publicacion</th>
+                  <th>ID del Usuario</th>
+                  <th>Correo del Usuario</th>
+                  <th>Reportes Recibidos</th>
+                  <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($reports as $report) 
-                <tr class="gradeX">
-                  <td>{{$admin->person->name}} {{$admin->person->last_name}} {{$admin->person->second_last_name}}</td>
-                  <td>{{$admin->email}}</td>
-                  <td>{{$admin->created_at}}</td>
+                <tr class="">
+                  <td>{{$report->report_id}}</td>
+                  <td>{{$report->user_id}}</td>
+                  <td>{{$report->email}}</td>
+                  <td>{{$report->count}}</td>
+                  <td>
+                    <button name="{{$report->report_id}}_edit" class="btn" onclick="location.href = '/administracion/reportes/{{ $report->report_id }}';">Ver</button>
+                  </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/administradores/add"><button class="btn">Agregar</button></form>
           </div>
         </div>
       </div>

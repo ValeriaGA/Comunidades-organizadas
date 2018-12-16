@@ -36,7 +36,7 @@ class AdministrationServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('administration.service.create');
     }
 
     /**
@@ -47,18 +47,18 @@ class AdministrationServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:sub_cat_report,name'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        State::create([
+            'name' => $request['name'],
+            'active' => ($request['active'] ? true : false)
+        ]);
+
+        session()->flash('message', 'Tipo de reporte de servicio creado');
+
+        return redirect('/administracion/servicio');
     }
 
     /**
@@ -67,9 +67,9 @@ class AdministrationServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(SubCatReport $service)
     {
-        //
+        return view('administration.service.edit', compact('service'));
     }
 
     /**
@@ -81,17 +81,23 @@ class AdministrationServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:sub_cat_report,name'
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        try{
+            $service = State::findOrFail($id);
+
+            $service->name = $request['name'];
+            $service->active = ($request['active'] ? true : false);
+
+            $service->save();
+
+            session()->flash('message', 'Tipo de reporte de servicio actualizado');
+            return redirect('/administracion/servicio');
+        }
+        catch(ModelNotFoundException $err){
+            //Show error page
+        }
     }
 }

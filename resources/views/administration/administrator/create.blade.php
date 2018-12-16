@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Administradores</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Administradores</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -27,10 +27,12 @@
                 <label class="control-label">Nombre</label>
                 <div class="controls">
                   <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="John" required autofocus>
+                  <hr />
                   @if ($errors->has('name'))
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $errors->first('name') }}</strong>
-                      </span>
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('name') }}
+                    </div>
                   @endif
                 </div>
               </div>
@@ -39,10 +41,12 @@
                 <label class="control-label">Primer Apellido</label>
                 <div class="controls">
                   <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" value="{{ old('lastname') }}" placeholder="Forbes" required>
+                  <hr />
                   @if ($errors->has('lastname'))
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $errors->first('lastname') }}</strong>
-                      </span>
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('lastname') }}
+                    </div>
                   @endif
                 </div>
               </div>
@@ -51,10 +55,12 @@
                 <label class="control-label">Segundo Apellido</label>
                 <div class="controls">
                   <input id="secondlastname" type="text" class="form-control{{ $errors->has('secondlastname') ? ' is-invalid' : '' }}" name="secondlastname" value="{{ old('secondlastname') }}" placeholder="Nash Jr" required>
+                  <hr />
                   @if ($errors->has('secondlastname'))
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $errors->first('secondlastname') }}</strong>
-                      </span>
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('secondlastname') }}
+                    </div>
                   @endif
                 </div>
               </div>
@@ -63,10 +69,12 @@
                 <label class="control-label">Correo electrónico</label>
                 <div class="controls">
                   <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="nash@localhost.com" required>
+                  <hr />
                   @if ($errors->has('email'))
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $errors->first('email') }}</strong>
-                      </span>
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('email') }}
+                    </div>
                   @endif
                 </div>
               </div>
@@ -75,10 +83,12 @@
                 <label class="control-label">Cedula</label>
                 <div class="controls">
                   <input id="cedula" type="number" class="form-control{{ $errors->has('cedula') ? ' is-invalid' : '' }}" name="cedula" value="{{ old('cedula') }}" placeholder="123456789" required>
+                  <hr />
                   @if ($errors->has('cedula'))
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $errors->first('cedula') }}</strong>
-                      </span>
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('cedula') }}
+                    </div>
                   @endif
                 </div>
               </div>
@@ -102,10 +112,12 @@
                       @endforeach
                   </select>
 
+                  <hr />
                   @if ($errors->has('gender'))
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $errors->first('gender') }}</strong>
-                      </span>
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('gender') }}
+                    </div>
                   @endif
                 </div>
               </div>
@@ -114,10 +126,12 @@
                 <label class="control-label">Contraseña</label>
                 <div class="controls">
                   <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" required>
+                  <hr />
                   @if ($errors->has('password'))
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $errors->first('password') }}</strong>
-                      </span>
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('password') }}
+                    </div>
                   @endif
                 </div>
               </div>

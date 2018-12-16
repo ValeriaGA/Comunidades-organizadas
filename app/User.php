@@ -50,16 +50,16 @@ class User extends Authenticatable
 
     public function like()
     {
-        return $this->belongsToMany(Report::class, 'likes', 'user_id', 'id');
+        return $this->belongsToMany(Report::class, 'likes', 'user_id', 'report_id');
     }
 
     public function communityGroup()
     {
-        return $this->belongsToMany(CommunityGroup::class, 'users_by_community_groups', 'user_id', 'id');
+        return $this->belongsToMany(CommunityGroup::class, 'users_by_community_groups', 'user_id', 'community_group_id');
     }
 
     public function reportAlert()
     {
-        return $this->belongsToMany(Report::class, 'report_alert', 'user_id', 'id');
+        return $this->belongsToMany(Report::class, 'report_alert', 'user_id', 'report_id');
     }
 }

@@ -22,7 +22,7 @@ class Report extends Model
 
     public function like()
     {
-    	return $this->belongsToMany(User::class, 'likes', 'report_id', 'id');
+    	return $this->belongsToMany(User::class, 'likes', 'report_id', 'user_id');
     }
 
     public function communityGroup()
@@ -47,7 +47,7 @@ class Report extends Model
 
     public function report_alert()
     {
-        return $this->belongsToMany(User::class, 'report_alert', 'report_id', 'id');
+        return $this->belongsToMany(User::class, 'report_alert', 'report_id', 'user_id');
     }
 
     public function securityReport()

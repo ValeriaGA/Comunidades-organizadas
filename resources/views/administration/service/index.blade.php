@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Servicio</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/servicio" class="current">Servicio</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -23,14 +23,20 @@
               <thead>
                 <tr>
                   <th>Nombre</th>
+                  <th>Imagen</th>
                   <th>Activo</th>
                   <th>Editar</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($categories_service as $cat_service) 
-                <tr class="gradeX">
+                <tr class="">
                   <td>{{$cat_service->name}}</td>
+                  <td>
+                    @if (!is_null($cat_service->multimedia_path))
+                      <img src="{{ asset('/plugins/images/icons/'.$cat_service->multimedia_path) }}">
+                    @endif
+                  </td>
                   <td>
                     @if ($cat_service->active == TRUE)
                     <input type="checkbox" checked disabled/>
@@ -39,15 +45,13 @@
                     @endif
                   </td>
                   <td>
-                    <form action="/administracion/seguridad/agregar" method="post" enctype="multipart/form-data">
-                      <button class="btn">Editar</button>
-                    </form>
+                    <button name="{{$cat_service->name}}_edit" class="btn" onclick="location.href = '/administracion/servicio/{{ $cat_service->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/seguridad/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/servicio/agregar"><button class="btn">Agregar</button></form>
           </div>
         </div>
       </div>

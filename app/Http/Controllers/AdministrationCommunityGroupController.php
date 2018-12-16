@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Category;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use App\CommunityGroup;
 
-class AdministrationCategoryController extends Controller
+class AdministrationCommunityGroupController extends Controller
 {
 
     public function __construct()
@@ -14,7 +16,6 @@ class AdministrationCategoryController extends Controller
         // only administrators are allowed to view this
         $this->middleware('admin');
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,8 +23,10 @@ class AdministrationCategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('name', 'asc')->get();
-        return view('administration.categories.index', compact('categories'));
+        //$community_groups = CommunityGroup::all();
+        $community_groups = CommunityGroup::orderBy('name', 'asc')->get();
+        
+        return view('administration.community.groups.index', compact('community_groups'));
     }
 
     /**
@@ -33,7 +36,7 @@ class AdministrationCategoryController extends Controller
      */
     public function create()
     {
-        return view('administration.categories.create');
+        return view('administration.community.groups.create');
     }
 
     /**
@@ -44,19 +47,18 @@ class AdministrationCategoryController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate(request(), [
-            'name' => 'required|unique:categories,name'
+            'name' => 'required|string|max:255|unique:community_groups,name'
         ]);
 
-        $category = Category::create([
-            'name' => request('name')
+        CommunityGroup::create([
+            'name' => $request['name']
         ]);
 
-        // Redirect to the home page
+        session()->flash('message', 'Grupo de communidades creada');
 
-        session()->flash('message', 'Category created');
-
-        return redirect('administration/categories');
+        return redirect('/administracion/comunidades/grupos');
     }
 
     /**
@@ -65,9 +67,9 @@ class AdministrationCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(CommunityGroup $community_group)
     {
-        return view('administration/categories/edit', compact('category'));
+        return view('administration.community.groups.edit', compact('community_group'));
     }
 
     /**
@@ -80,18 +82,18 @@ class AdministrationCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate(request(), [
-            'name' => 'required|unique:categories,name'
+            'name' => 'required|string|max:255|unique:community_groups,name'
         ]);
 
         try{
-            $category = Category::findOrFail($id);
+            $community_group = CommunityGroup::findOrFail($id);
 
-            $category->name = $request['name'];
+            $community_group->name = $request['name'];
 
-            $category->save();
+            $community_group->save();
 
-            session()->flash('message', 'Category updated');
-            return redirect('administration/categories');
+            session()->flash('message', 'Grupo de comunidades actualizado');
+            return redirect('/administracion/comunidades/grupos');
         }
         catch(ModelNotFoundException $err){
             //Show error page

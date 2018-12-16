@@ -22,25 +22,6 @@ class AdministrationUsersController extends Controller
     }
 
     /**
-     * Get a validator for an incoming request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'secondlastname' => 'required|string|max:255',
-            'cedula' => 'required|numeric|between:1,999999999|unique:people,official_id',
-            'gender' => 'required',
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -72,7 +53,17 @@ class AdministrationUsersController extends Controller
      */
     public function store(Request $request)
     {
-        validator($request);
+        $this->validate(request(), [
+            'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'secondlastname' => 'required|string|max:255',
+            'cedula' => 'required|numeric|between:1,999999999|unique:people,official_id',
+            'gender' => 'required',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:6|confirmed'
+        ]);
+
+
         $user_role = Role::where('name', 'LIKE', 'Administrador')->get();
         $gender = Gender::where('name', 'LIKE', $request['gender'])->get();
 
@@ -82,8 +73,10 @@ class AdministrationUsersController extends Controller
             'second_last_name' => $request['secondlastname'],
             'official_id' => $request['cedula'],
             'gender_id' => $gender[0]->id,
-            'foreigner' => (array_key_exists('foreigner', $request) ? TRUE : FALSE)
+            'foreigner' => ($request['active'] ? true : false)
         ]);
+
+        // (array_key_exists('foreigner', $request) ? TRUE : FALSE)
 
         User::create([
             'email' => $request['email'],

@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class SubCatReport extends Model
 {
+
+    public $timestamps = false;
+    
     public $table = "sub_cat_report";
 
 	protected $fillable = [

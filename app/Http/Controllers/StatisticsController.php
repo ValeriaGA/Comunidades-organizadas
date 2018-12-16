@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Incident;
-use App\TypeOfIncident;
+use App\CatReport;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
@@ -31,13 +31,13 @@ class StatisticsController extends Controller
         $this->validate(request(), [
             'final_date' => 'date|before_or_equal:today'
         ]);
-        $types = TypeOfIncident::orderBy('name', 'asc')->get();
+        $types = CatReport::orderBy('name', 'asc')->get();
         $first_date = '2013-10-10';
         $final_date = $date;
-        $count_per_type = DB::table('incidents')
-                     ->select(DB::raw('count(*) as count, type_id'))
+        $count_per_type = DB::table('reports')
+                     ->select(DB::raw('count(*) as count, id'))
                      ->whereBetween('date',[$first_date,$final_date])
-                     ->groupBy('type_id')
+                     ->groupBy('id')
                      ->get();
 
         $count_per_type2 = array();
@@ -68,19 +68,19 @@ class StatisticsController extends Controller
 
     public function pie()
     {
-        $types = TypeOfIncident::orderBy('name', 'asc')->get();
+        $types = CatReport::orderBy('name', 'asc')->get();
         
         $id = 1;
         
-        $selected_incident = DB::table('type_of_incidents')->where('id', $id)->get();
+        $selected_incident = DB::table('cat_report')->where('id', $id)->get();
         foreach ($selected_incident as $key) {
             $selected_incident_name = $key->name;
         }
         
-        $users_count = DB::table('incidents')
-                     ->select(DB::raw('count(*) as count, primary_victim_sex'))
-                     ->where('type_id', $id)
-                     ->groupBy('primary_victim_sex')
+        $users_count = DB::table('reports')
+                     ->select(DB::raw('count(*) as count, id'))
+                     ->where('id', $id)
+                     ->groupBy('id')
                      ->get();
         $count_per_gender = array();
         $total = 0; 
@@ -101,9 +101,15 @@ class StatisticsController extends Controller
       return view('statistics.pie', compact('types','count_per_gender','total','selected_incident_name'));
     }
 
+
+    public function reports_per_province()
+    {
+        return view('statistics.reports_per_province');
+    }
+
     public function chart()
     {
-        $month_qty = DB::select( DB::raw("SELECT MONTH(date) as month, count(*) qty FROM incidents WHERE YEAR(date) = YEAR(CURDATE()) GROUP BY MONTH(date)"));
+        $month_qty = DB::select( DB::raw("SELECT MONTH(date) as month, count(*) qty FROM reports WHERE YEAR(date) = YEAR(CURDATE()) GROUP BY MONTH(date)"));
         
         $dic = array();
         foreach($month_qty as $mq)
@@ -126,7 +132,7 @@ class StatisticsController extends Controller
             $date = request('date');
         }
 
-        $month_qty = DB::select( DB::raw("SELECT MONTH(date) as month, count(*) qty FROM incidents WHERE YEAR(date) = " . $date . " GROUP BY MONTH(date)"));
+        $month_qty = DB::select( DB::raw("SELECT MONTH(date) as month, count(*) qty FROM reports WHERE YEAR(date) = " . $date . " GROUP BY MONTH(date)"));
         
         $dic = array();
         foreach($month_qty as $mq)
@@ -139,7 +145,6 @@ class StatisticsController extends Controller
 
         return view('statistics.char', compact('dic', 'date'));
     }
-
     
     public function crime_per_type(Request $request)
     {
@@ -151,10 +156,10 @@ class StatisticsController extends Controller
         $types = TypeOfIncident::orderBy('name', 'asc')->get();
         $first_date = request('first_date');
         $final_date = request('final_date');
-        $count_per_type = DB::table('incidents')
-                     ->select(DB::raw('count(*) as count, type_id'))
+        $count_per_type = DB::table('reports')
+                     ->select(DB::raw('count(*) as count, id'))
                      ->whereBetween('created_at',[$first_date,$final_date])
-                     ->groupBy('type_id')
+                     ->groupBy('id')
                      ->get();
 
         $count_per_type2 = array();

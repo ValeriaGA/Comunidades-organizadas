@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Victim extends Model
 {
+
+    public $timestamps = false;
+    
     protected $fillable = [
     	'security_report_id', 'gender_id'
     ];

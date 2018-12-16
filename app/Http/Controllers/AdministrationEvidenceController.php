@@ -22,7 +22,7 @@ class AdministrationEvidenceController extends Controller
      */
     public function index()
     {
-        $evidences = CatEvidence::all();
+        $evidences = CatEvidence::orderBy('name', 'asc')->get();
 
         return view('administration.evidence.index', compact('evidences'));
     }
@@ -34,7 +34,7 @@ class AdministrationEvidenceController extends Controller
      */
     public function create()
     {
-        //
+        return view('administration.evidence.create');
     }
 
     /**
@@ -45,18 +45,18 @@ class AdministrationEvidenceController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:cat_evidence,name'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        CatEvidence::create([
+            'name' => $request['name'],
+            'active' => ($request['active'] ? true : false)
+        ]);
+
+        session()->flash('message', 'Tipo de evidencia creada');
+
+        return redirect('/administracion/evidencias');
     }
 
     /**
@@ -65,9 +65,9 @@ class AdministrationEvidenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CatEvidence $evidence)
     {
-        //
+        return view('administration.evidence.edit', compact('evidence'));
     }
 
     /**
@@ -79,17 +79,23 @@ class AdministrationEvidenceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:cat_evidence,name'
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        try{
+            $evidence = CatEvidence::findOrFail($id);
+
+            $evidence->name = $request['name'];
+            $evidence->active = ($request['active'] ? true : false);
+
+            $evidence->save();
+
+            session()->flash('message', 'Tipo de evidencia actualizada');
+            return redirect('/administracion/evidencias');
+        }
+        catch(ModelNotFoundException $err){
+            //Show error page
+        }
     }
 }

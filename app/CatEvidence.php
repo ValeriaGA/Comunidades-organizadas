@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class CatEvidence extends Model
 {
 
+
+	public $timestamps = false;
+
 	public $table = "cat_evidence";
 
     protected $fillable = [

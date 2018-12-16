@@ -23,7 +23,7 @@ class AdministrationGenderController extends Controller
     public function index()
     {
 
-        $genders = Gender::all();
+        $genders = Gender::orderBy('name', 'asc')->get();
 
         return view('administration.gender.index', compact('genders'));
     }
@@ -35,7 +35,7 @@ class AdministrationGenderController extends Controller
      */
     public function create()
     {
-        //
+        return view('administration.gender.create');
     }
 
     /**
@@ -46,18 +46,17 @@ class AdministrationGenderController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:genders,name'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        Gender::create([
+            'name' => $request['name'],
+        ]);
+
+        session()->flash('message', 'Genero creado');
+
+        return redirect('/administracion/generos');
     }
 
     /**
@@ -66,9 +65,9 @@ class AdministrationGenderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Gender $gender)
     {
-        //
+        return view('administration.gender.edit', compact('gender'));
     }
 
     /**
@@ -80,17 +79,22 @@ class AdministrationGenderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:genders,name'
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        try{
+            $gender = Gender::findOrFail($id);
+
+            $gender->name = $request['name'];
+
+            $gender->save();
+
+            session()->flash('message', 'Genero actualizado');
+            return redirect('/administracion/generos');
+        }
+        catch(ModelNotFoundException $err){
+            //Show error page
+        }
     }
 }

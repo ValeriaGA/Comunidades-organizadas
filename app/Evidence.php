@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Evidence extends Model
 {
 
+    public $timestamps = false;
+
     public $table = "evidence";
 
 	protected $fillable = [

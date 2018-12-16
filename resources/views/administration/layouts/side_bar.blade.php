@@ -19,7 +19,13 @@
             <li class="{{ Request::is('administracion/evidencias') ? 'active' : '' }}"><a href="/administracion/evidencias"><i class="icon icon-chevron-right"></i> Evidencia</a></li>
         </ul>
     </li>
-    <li class="{{ Request::is('administracion/comunidades') ? 'active' : '' }}"><a href="/administracion/comunidades"><i class="icon icon-group"></i> <span>Comunidades</span></a></li>
+    <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Comunidades</span></a>
+        <ul>
+            <li class="{{ Request::is('administracion/comunidades/grupos') ? 'active' : '' }}"><a href="/administracion/comunidades/grupos"><i class="icon icon-chevron-right"></i> <span>Grupos</span></a></li>
+            <li class="{{ Request::is('administracion/comunidades/comunidad') ? 'active' : '' }}"><a href="/administracion/comunidades/comunidad"><i class="icon icon-chevron-right"></i> <span>Comunidades</span></a></li>
+        </ul>
+    </li>
+    
     <li class="{{ Request::is('administracion/publicaciones') ? 'active' : '' }}"><a href="/administracion/publicaciones"><i class="icon icon-comments-alt"></i> <span>Publicaciones</span></a></li>
   </ul>
 </div>
