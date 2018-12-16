@@ -30,7 +30,7 @@
           var dict = {};
 
           dict['name'] = type['name'];
-          dict['url'] = iconBase + type['image_path'];
+          dict['url'] = iconBase + type['multimedia_path'];
           dict['size'] = new google.maps.Size(30, 38);
           dict['origin'] = new google.maps.Point(0, 0);
           dict['anchor'] = new google.maps.Point(15, 38);
@@ -38,28 +38,28 @@
           icons[type['id']] = dict;
         });
 
-        var incidents = {!! json_encode($incidents->toArray()) !!};
+        var reports = {!! json_encode($reports->toArray()) !!};
 
         var contentStrings = [];
 
         var features = [];
         var i = 0;
-        incidents.forEach(function(incident) {
+        reports.forEach(function(report) {
           var dict = {};
 
-          dict['position'] = new google.maps.LatLng(incident['latitud'], incident['longitud']);
-          dict['type'] = incident['type_id'];
+          dict['position'] = new google.maps.LatLng(report['latitud'], report['longitud']);
+          dict['type'] = report['sub_cat_report_id'];
           dict['id'] = i++;
           features.push(dict);
 
           var content = '<div id="content">'+
               '<div id="siteNotice">'+
               '</div>'+
-              '<h1 id="firstHeading" class="firstHeading">'+ icons[incident['type_id']]['name'] +'</h1>'+
+              '<h1 id="firstHeading" class="firstHeading">'+ icons[report['sub_cat_report_id']]['name'] +'</h1>'+
               '<div id="bodyContent">'+
-              '<p><b>Fecha y Hora:</b> '+ incident['date'] + ' ' + 
-              incident['time'] + ' </p>' +
-              '<p><b>Descripcion:</b> '+ incident['description'] +'</p>'+
+              '<p><b>Fecha y Hora:</b> '+ report['date'] + ' ' + 
+              report['time'] + ' </p>' +
+              '<p><b>Descripcion:</b> '+ report['description'] +'</p>'+
               '</div>'+
               '</div>';
           contentStrings.push(content);
@@ -124,7 +124,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <button type='submit' onclick="window.location.href='/incident/create'" class="btn btn-success">Agregar reporte</button>
+                            <button type='submit' onclick="window.location.href='/reporte'" class="btn btn-success">Agregar reporte</button>
                         </div>
                     </div>
                 </div>
@@ -150,7 +150,7 @@
                   <div class="col-sm-2">
                       <div class="white-box">
                         <h3 class="box-title">Numero de Reportes</h3> 
-                        <h4 class="counter text-success" title="incidentes">{{ count($incidents) }}</h4>
+                        <h4 class="counter text-success" title="incidentes">{{ count($reports) }}</h4>
                       </div>
                   </div>
                   <form action="/search" method="post" enctype="multipart/form-data">
@@ -160,9 +160,17 @@
                           <h3 class="box-title">Filtrar Por Tipo</h3>
                                 @foreach ($types as $type)
                                   @if (in_array($type->id, $type_ids))
-                                    <input type="checkbox" name="{{$type->id}}" value="{{$type->name}}" checked> {{$type->name}}<br>
+                                  <div class="checkbox checkbox-success checkbox-circle">
+                                      <input id="checkbox-{{$type->id}}" type="checkbox" name="{{$type->id}}" value="{{$type->name}}" checked>
+                                      <label for="checkbox-{{$type->id}}"> {{$type->name}} </label>
+                                  </div>
+                                    <!-- <input type="checkbox" name="{{$type->id}}" value="{{$type->name}}" checked> {{$type->name}}<br> -->
                                   @else
-                                    <input type="checkbox" name="{{$type->id}}" value="{{$type->name}}" > {{$type->name}}<br>
+                                    <div class="checkbox checkbox-success checkbox-circle">
+                                        <input id="checkbox-{{$type->id}}" type="checkbox" name="{{$type->id}}" value="{{$type->name}}">
+                                        <label for="checkbox-{{$type->id}}"> {{$type->name}} </label>
+                                    </div>
+                                    <!-- <input type="checkbox" name="{{$type->id}}" value="{{$type->name}}" > {{$type->name}}<br> -->
                                   @endif
                                 @endforeach
                         </div>
@@ -186,8 +194,42 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="white-box">
-                          <h3 class="box-title">Filtrar Por Lugar</h3> 
-                                <input id="location" type="text" placeholder="" class="form-control form-control-line" name="location">
+                          <h3 class="box-title">Filtrar Por Comunidad</h3> 
+                          <div class="form-group">
+                              <label class="col-md-12">Provincia</label>
+                              <div class="col-md-12">
+                                  <select name="province" id="provinces" class="form-control dynamic" data-dependent="cantons">
+                                      <option value="">Provincia</option>
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label class="col-md-12">Canton</label>
+                              <div class="col-md-12">
+                                  <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
+                                      <option value="">Canton</option>
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label class="col-md-12">Distrito</label>
+                              <div class="col-md-12">
+                                  <select name="district" id="districts" class="form-control dynamic" data-dependent="communities">
+                                      <option value="">Distrito</option>
+                                  </select>
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label class="col-md-12">Comunidad</label>
+                              <div class="col-md-12">
+                                  <select name="community" id="communities" class="form-control" data-dependent="community_groups">
+                                      <option value="">Comunidad</option>
+                                  </select>
+                              </div>
+                          </div>
                         </div>
                     </div>
                     <div class="col-sm-2">

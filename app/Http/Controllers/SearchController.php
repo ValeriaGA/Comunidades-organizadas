@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Report;
-use App\CatReport;
+use App\SubCatReport;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        $types = CatReport::orderBy('name', 'asc')->get();
+        $types = SubCatReport::orderBy('name', 'asc')->get();
 
         $type_ids = array();
         foreach ($types as $type)
@@ -25,12 +25,12 @@ class SearchController extends Controller
             $type_ids[] = $type->id;
         }
 
-        $incidents = Report::latest()->get(); 
+        $reports = Report::latest()->get(); 
 
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
 
-        return view('search.index', compact('types', 'type_ids', 'incidents', 'date'));
+        return view('search.index', compact('types', 'type_ids', 'reports', 'date'));
     }
 
     /**

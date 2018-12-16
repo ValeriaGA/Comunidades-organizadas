@@ -26,6 +26,8 @@ Route::get('/fontawesome', function () {
 Route::get('/provincias', 'ProvinceController@index');
 Route::post('/cantones', 'CantonController@show');
 Route::post('/distritos', 'DistrictController@show');
+Route::post('/comunidades', 'CommunitiesController@show');
+Route::post('/grupos', 'GroupController@show');
 
 
 // Profile
@@ -43,6 +45,9 @@ Route::post('/seguridad', 'SecurityReportController@store');
 
 Route::get('/servicio/agregar', 'ServiceReportController@create');
 Route::post('/servicio', 'ServiceReportController@store');
+
+Route::get('/noticia/agregar', 'NewsController@create');
+Route::post('/noticia', 'NewsController@store');
 
 // Statistics
 
@@ -64,13 +69,13 @@ Route::post('/statistics/chart', 'StatisticsController@chart_show');
 
 // Search
 
-Route::get('/search', 'SearchController@index');
+Route::get('/busqueda', 'SearchController@index');
 
-Route::post('/search', 'SearchController@show');
+Route::post('/busqueda', 'SearchController@show');
 
 
 // Communities
-Route::get('/communities', 'CommunitiesController@index');
+Route::get('/comunidades', 'CommunitiesController@index');
 /*
 |--------------------------------------------------------------------------
 | Administration

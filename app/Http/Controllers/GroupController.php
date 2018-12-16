@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\District;
+use App\CommunityGroup;
+use App\Community;
 
-class DistrictController extends Controller
+class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -46,9 +47,10 @@ class DistrictController extends Controller
      */
     public function show(Request $request)
     {
-        $districts = District::where('canton_id', $request -> input('id'))
-        -> get();
-        return \Response::json($districts ->toJson()); 
+        $community = Community::find($request -> input('id'));
+        $groups = $community->communityGroup;
+
+        return \Response::json($groups ->toJson()); 
     }
 
     /**

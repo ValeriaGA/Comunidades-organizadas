@@ -3,10 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\District;
+use App\CommunityGroup;
+use App\CatEvidence;
+use App\SubCatReport;
+use Auth;
+use DateTime;
+use DateTimeZone;
 
-class DistrictController extends Controller
+class NewsController extends Controller
 {
+
+    public function __construct()
+    {
+        // only guests are allowed to view this
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,7 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -24,7 +36,17 @@ class DistrictController extends Controller
      */
     public function create()
     {
-        //
+        $community_groups = CommunityGroup::all();
+
+        $categories = SubCatReport::all();
+
+        $cat_evidence = CatEvidence::get();
+
+        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
+        $date = $dt->format('Y-m-d');
+        $time = $dt->format('H:i:s');
+
+        return view('report.news.create', compact('categories', 'cat_evidence', 'date', 'time', 'community_groups'));
     }
 
     /**
@@ -41,14 +63,12 @@ class DistrictController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Request $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        $districts = District::where('canton_id', $request -> input('id'))
-        -> get();
-        return \Response::json($districts ->toJson()); 
+        //
     }
 
     /**

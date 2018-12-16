@@ -49,6 +49,22 @@
                             </div>
                         </div>
                     </div>
+
+                    @if (Auth::user()->role->name == 'Administrador de Comunidad')
+
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading"> Noticias
+                            </div>
+                            <div class="panel-wrapper collapse in" aria-expanded="true">
+                                <div class="panel-body">
+                                    <button type='submit' onclick="window.location.href='/noticia/agregar'" class="btn btn-success">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
                 </div>
             </div>
             <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer> 

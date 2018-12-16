@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Community;
 
 class CommunitiesController extends Controller
 {
@@ -40,12 +41,15 @@ class CommunitiesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $communities = Community::where('district_id', $request -> input('id'))
+        -> get();
+
+        return \Response::json($communities ->toJson()); 
     }
 
     /**

@@ -62,6 +62,60 @@ function fillProvinces(){
       dataType: "json",
       success: function(districts){
         fillControl('districts', districts);
+        fillCommunities();
+      },
+      error:function(xhr, ajaxOptions, errorInfo)
+      {
+        alert(xhr.status + " " + errorInfo);
+      }
+    });
+    return 1;
+  }
+
+  function fillCommunities(){
+    clearBoxes('communities');
+  
+    var communityID = getSelectedValue('districts');
+
+    var communityInfo = {
+        _token: $('meta[name="_token"]').attr('content'),
+        id: communityID
+    }
+  
+    $.ajax({
+      method: 'POST',
+      url: "/comunidades",
+      data:communityInfo,
+      dataType: "json",
+      success: function(communities){
+        fillControl('communities', communities);
+        fillGroups();
+      },
+      error:function(xhr, ajaxOptions, errorInfo)
+      {
+        alert(xhr.status + " " + errorInfo);
+      }
+    });
+    return 1;
+  }
+
+  function fillGroups(){
+    clearBoxes('community_groups');
+  
+    var groupID = getSelectedValue('communities');
+
+    var groupInfo = {
+        _token: $('meta[name="_token"]').attr('content'),
+        id: groupID
+    }
+  
+    $.ajax({
+      method: 'POST',
+      url: "/grupos",
+      data:groupInfo,
+      dataType: "json",
+      success: function(community_groups){
+        fillControl('community_groups', community_groups);
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
@@ -122,6 +176,16 @@ function fillProvinces(){
 
     $("#cantons").on('click', function(){
         fillDistricts();
+
+    });
+
+    $("#districts").on('click', function(){
+        fillCommunities();
+
+    });
+
+    $("#communities").on('click', function(){
+        fillGroups();
 
     });
   

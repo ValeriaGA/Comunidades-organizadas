@@ -11,7 +11,7 @@
                 <a href="/index" class="waves-effect"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Inicio</a>
             </li>
             <li>
-                <a href="/search" class="waves-effect"><i class="fa fa-search fa-fw" aria-hidden="true"></i>Búsqueda</a>
+                <a href="/busqueda" class="waves-effect"><i class="fa fa-search fa-fw" aria-hidden="true"></i>Búsqueda</a>
             </li>
             @auth
             <li>
@@ -20,7 +20,7 @@
            
             @endauth
             <li>
-                <a href="/communities" class="waves-effect"><i class="fa fa-group fa-fw" aria-hidden="true"></i>Comunidades</a>
+                <a href="/comunidades" class="waves-effect"><i class="fa fa-group fa-fw" aria-hidden="true"></i>Comunidades</a>
             </li>
             <li>
                 <a class="waves-effect" href="javascript:void(0);">

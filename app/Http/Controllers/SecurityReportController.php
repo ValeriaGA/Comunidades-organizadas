@@ -21,6 +21,7 @@ use Auth;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class SecurityReportController extends Controller
 {
@@ -60,9 +61,7 @@ class SecurityReportController extends Controller
         $date = $dt->format('Y-m-d');
         $time = $dt->format('H:i:s');
 
-        $countries = Country::all();
-
-        return view('report.security.create', compact('categories_security', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups', 'countries'));
+        return view('report.security.create', compact('categories_security', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups'));
     }
 
     /**

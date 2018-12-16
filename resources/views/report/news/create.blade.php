@@ -39,11 +39,11 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Reporte Seguridad</h4> </div>
+                        <h4 class="page-title">Noticia</h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="/">Inicio</a></li>
-                            <li class="active">Agregar reporte de seguridad</li>
+                            <li class="active">Agregar noticia</li>
                         </ol>
                     </div>
                 </div>
@@ -61,13 +61,10 @@
                                         <a data-toggle="tab" href="#details_tab" aria-expanded="true"> <span class="visible-xs"><i class="ti-home"></i></span> <span class="hidden-xs">Detalles</span> </a>
                                     </li>
                                     <li class="tab">
-                                        <a data-toggle="tab" href="#involved_tab" aria-expanded="false"> <span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Involucrados</span> </a>
-                                    </li>
-                                    <li class="tab">
                                         <a data-toggle="tab" href="#communities_tab" aria-expanded="false"> <span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Comunidades</span> </a>
                                     </li>
                                     <li class="tab">
-                                        <a aria-expanded="false" data-toggle="tab" href="#evidence_tab"> <span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">Evidencia</span> </a>
+                                        <a aria-expanded="false" data-toggle="tab" href="#evidence_tab"> <span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">Multimedia</span> </a>
                                     </li>
                                 </ul>
                                 <form class="form-horizontal form-material" action="/seguridad" method="post" enctype="multipart/form-data">
@@ -78,10 +75,10 @@
 
                                         <div id="details_tab" class="tab-pane active">
                                             <div class="form-group">
-                                                <label class="col-md-12">Tipo de reporte de seguridad</label>
+                                                <label class="col-md-12">Tipo de reporte</label>
                                                 <div class="col-md-12">
                                                     <select class="form-control" name="type" required>
-                                                      @foreach ($categories_security as $cat)
+                                                      @foreach ($categories as $cat)
                                                         <option value="{{$cat->name}}">{{$cat->name}}</option>
                                                       @endforeach
                                                     </select>
@@ -106,34 +103,6 @@
                                                 <label class="col-md-12" for="exampleInputLatitud">Latitud</label>
                                                 <div class="col-md-12">
                                                     <input id="exampleInputLatitud" type="decimal" placeholder="" class="form-control form-control-line" name="latitud" required> </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-12">Tipo de Arma (Si aplica)</label>
-                                                <div class="col-md-12">
-                                                    <select class="form-control" name="weapon" required>
-                                                      @foreach ($cat_weapon as $weapon)
-                                                        @if ($weapon->name == 'No Aplica')
-                                                          <option value="{{$weapon->name}}" selected="selected">{{$weapon->name}}</option>
-                                                        @else
-                                                            <option value="{{$weapon->name}}">{{$weapon->name}}</option>
-                                                        @endif
-                                                      @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-12">Medio de Transporte</label>
-                                                <div class="col-md-12">
-                                                    <select class="form-control" name="transportation" required>
-                                                      @foreach ($cat_transportation as $transport)
-                                                        @if ($transport == 'Sin vehiculo')
-                                                          <option value="{{$transport->name}}" selected="selected">{{$transport->name}}</option>
-                                                        @else
-                                                            <option value="{{$transport->name}}">{{$transport->name}}</option>
-                                                        @endif
-                                                      @endforeach
-                                                    </select>
-                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-12" for="exampleInputDescription">Descripción</label>
@@ -192,42 +161,6 @@
                                                 </div>
                                             </div>
                                                 
-                                            <div class="clearfix"></div>
-                                        </div>
-
-                                        <!-- Victims & Perpetrators w/ gender-->
-
-                                        <div id="involved_tab" class="tab-pane">
-
-                                            <div class="form-group">
-                                                <label class="col-md-12">Víctimas</label>
-                                                <div class="col-md-6">
-                                                    <label class="col-sm-2 col-form-label" for="exampleInputImage">Género</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <button id="remove_victim_button" class="btn btn-danger btn-rounded">Remover</button>
-                                                 </div>
-                                                <div class="col-md-4">
-                                                    <button id="add_victim_button" class="btn btn-success btn-rounded">Agregar</button>
-                                                 </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="col-md-12">Perpetradores</label>
-                                                <div class="col-md-4">
-                                                    <label class="col-sm-2 col-form-label">Género</label>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label class="col-sm-2 col-form-label">Descripcion</label>
-                                                 </div>
-                                                <div class="col-md-4">
-                                                    <button id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
-                                                 </div>
-                                                <div class="col-md-4">
-                                                    <button id="add_perpetrator_button" class="btn btn-success btn-rounded">Agregar</button>
-                                                 </div>
-                                            </div>
-
                                             <div class="clearfix"></div>
                                         </div>
 

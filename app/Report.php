@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     protected $fillable = [
-        'description', 'incident_type_id', 'district_id', 'state_id', 'location', 'longitud', 'latitud', 'user_id', 'date', 'time', 'active', 'news'
+        'description', 'sub_cat_report_id', 'district_id', 'state_id', 'location', 'longitud', 'latitud', 'user_id', 'date', 'time', 'active', 'news'
     ];
 
     public function subCatReport()
