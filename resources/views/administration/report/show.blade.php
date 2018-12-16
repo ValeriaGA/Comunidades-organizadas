@@ -14,31 +14,47 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
+
+        <div class="widget-box">
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#tab1">Detalles</a></li>
+              <li><a data-toggle="tab" href="#tab2">Involucrados</a></li>
+              <li><a data-toggle="tab" href="#tab3">Evidencia</a></li>
+            </ul>
+          </div>
+          <div class="widget-content tab-content">
+            <div id="tab1" class="tab-pane active">
+              
+            </div>
+            <div id="tab2" class="tab-pane">
+              
+            </div>
+            <div id="tab3" class="tab-pane">
+              
+            </div>
+          </div>
+        </div>
+
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Publicaciones reportadas</h5>
+            <h5>Reportes sobre publicación</h5>
           </div>
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
-                  <th>ID de publicacion</th>
-                  <th>ID del Usuario</th>
-                  <th>Correo del Usuario</th>
-                  <th>Reportes Recibidos</th>
-                  <th>Acción</th>
+                  <th>Usuario</th>
+                  <th>Razón</th>
+                  <th>Fecha</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($reports as $report) 
+                @foreach ($report_alerts as $alert) 
                 <tr class="">
-                  <td>{{$report->report_id}}</td>
-                  <td>{{$report->user_id}}</td>
-                  <td>{{$report->email}}</td>
-                  <td>{{$report->count}}</td>
-                  <td>
-                    <button name="{{$report->report_id}}_edit" class="btn" onclick="location.href = '/administracion/reportes/{{ $report->report_id }}';">Ver</button>
-                  </td>
+                  <td>{{$alert->email}}</td>
+                  <td>{{$alert->reason}}</td>
+                  <td>{{$alert->created_at}}</td>
                 </tr>
                 @endforeach
               </tbody>

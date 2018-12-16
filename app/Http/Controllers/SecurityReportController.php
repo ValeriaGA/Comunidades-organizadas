@@ -65,16 +65,6 @@ class SecurityReportController extends Controller
         return view('report.security.create', compact('categories_security', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups', 'countries'));
     }
 
-    public function selectAjax(Request $request)
-    {
-        if($request->ajax()){
-            $states = State::where('id',$request->country_id)->all();
-            $data = view('report.ajax-select',compact('states'))->render();
-            return response()->json(['options'=>$data]);
-
-        }
-    }
-
     /**
      * Store a newly created resource in storage.
      *

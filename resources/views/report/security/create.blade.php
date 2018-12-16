@@ -169,35 +169,4 @@
             <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer> 
         </div>
 
-
-<script type="text/javascript">
-
-  $("select[name='id_country']").change(function(){
-
-      var id_country = $(this).val();
-
-      var token = $("input[name='_token']").val();
-
-      $.ajax({
-
-          url: "<?php echo route('select-ajax') ?>",
-
-          method: 'POST',
-
-          data: {id_country:id_country, _token:token},
-
-          success: function(data) {
-
-            $("select[name='id_state'").html('');
-
-            $("select[name='id_state'").html(data.options);
-
-          }
-
-      });
-
-  });
-
-</script>
-
 @endsection

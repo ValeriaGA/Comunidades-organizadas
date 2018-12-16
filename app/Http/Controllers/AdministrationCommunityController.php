@@ -33,7 +33,7 @@ class AdministrationCommunityController extends Controller
      */
     public function create()
     {
-        //
+        return view('administration.community.community.create');
     }
 
     /**
