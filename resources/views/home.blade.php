@@ -32,15 +32,41 @@
 
 
     
-                <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'NEWS')" id="defaultOpen">Noticias</button>
-                    <button class="tablinks" onclick="openCity(event, 'SECURITY')">Reportes de Seguridad</button>
-                    <button class="tablinks" onclick="openCity(event, 'SERVICES')">Reportes de Servicios</button>
-                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"> Publicaciones </div>
+                                <div class="panel-wrapper collapse in">
+                                    <ul class="nav customtab nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"><a href="#news1" aria-controls="news" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs">Noticias</span></a></li>
+                                        <li role="presentation" class=""><a href="#security1" aria-controls="security" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Reportes de Seguridad</span></a></li>
+                                        <li role="presentation" class=""><a href="#services1" aria-controls="services" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">Reportes de Servicios</span></a></li>
+                                    </ul>
+                                    <div class="panel-body">
+                                        <div class="tab-content m-t-0">
+                                            <div role="tabpanel" class="tab-pane fade active in" id="news1">
+                                                @include('layouts.home_news_section')
+                                                <div class="clearfix"></div>
+                                            </div>
 
-                @include('layouts.home_news_section')
-                @include('layouts.home_security_section')
-                @include('layouts.home_services_section')
+                                            <div role="tabpanel" class="tab-pane fade" id="security1">
+                                                @include('layouts.home_security_section')
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                            <div role="tabpanel" class="tab-pane fade" id="services1">                                           
+                                                @include('layouts.home_services_section')
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+ 
                 {{--<div class="row">
                     <div class="col-md-12 col-lg-8 col-sm-12">
                         <div class="white-box">
