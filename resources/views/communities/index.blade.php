@@ -1,5 +1,6 @@
 @extends('layouts.master')
 
+
 @section('content')
         
         <!-- ============================================================== -->
@@ -37,7 +38,7 @@
                         <div style="margin-top: 25px; margin-left: 100px; display:inline;">
                             <label >Provincia</label>
                             
-                            <select style="width:110px; display:inline;" class="form-control" id="gender" name="gender" required>
+                            <select id="provinces" style="width:110px; display:inline;" class="form-control" id="gender" name="gender" required>
                                     <option value="1" selected>San José</option>
                                     <option value="2">Alajuela</option>
                                     <option value="3">Cartago</option>
@@ -52,7 +53,7 @@
                         <div style="margin-top: 25px; margin-left: 100px; display:inline;">
                             <label >Cantón</label>
                             
-                            <select style="width:110px; display:inline;" class="form-control" id="gender" name="gender" required>
+                            <select id="cantons" style="width:110px; display:inline;" class="form-control" id="gender" name="gender" required>
                                     <option value="1" selected="selected">Cantones</option>
                             </select>
                         </div>
@@ -61,7 +62,7 @@
                             <div style="margin-top: 25px; margin-left: 100px; display:inline;">
                                 <label >Distrito</label>
                                 
-                                <select style="width:110px; display:inline;" class="form-control" id="gender" name="gender" required>
+                                <select id="districts" style="width:110px; display:inline;" class="form-control" id="gender" name="gender" required>
                                         <option value="1" selected="selected">Distritos</option>
                                 </select>
                             </div>
