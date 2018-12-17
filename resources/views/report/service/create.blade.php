@@ -171,15 +171,15 @@
                                                 <input type="file" name="file">
                                              </div> -->
                                              <div class="form-group">
-                                                <label class="col-md-6">Evidencia</label>
+                                                <label class="col-md-4">Evidencia</label>
 
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <button id="add_perpetrator_button" class="btn btn-success btn-rounded">Agregar</button>
                                                  </div>
                                                  <hr />
-                                                <div class="col-md-12">
+                                                <div class="col-md-4">
                                                     <div class="container">
-                                                        <table class="table table-bordered" style="width: 550px;">
+                                                        <table class="table table-bordered" style="width: 50%;">
                                                             <tr class="header" >
                                                                 <td colspan="2">
                                                                     Evidencia 1

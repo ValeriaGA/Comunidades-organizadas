@@ -65,12 +65,13 @@ class ServiceReportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Report $report
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $report = Report::find($id);
+        return view('report.service.show', compact('report'));
     }
 
     /**

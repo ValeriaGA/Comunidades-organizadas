@@ -3,20 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\CommunityGroup;
 use App\Report;
-use App\CatEvidence;
+use App\Victim;
+use App\CommunityGroup;
 use App\CatReport;
 use App\SubCatReport;
+use App\CatEvidence;
 use App\CatTransportation;
 use App\CatWeapon;
-use App\Evidence;
-use App\Perpetrator;
-use App\Victim;
-use App\Province;
-use App\Canton;
-use App\District;
-use App\Country;
 use Auth;
 use DateTime;
 use DateTimeZone;
@@ -130,12 +124,13 @@ class SecurityReportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Report $report
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $report = Report::find($id);
+        return view('report.security.show', compact('report'));
     }
 
     /**

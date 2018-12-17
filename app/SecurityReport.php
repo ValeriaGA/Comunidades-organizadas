@@ -29,11 +29,11 @@ class SecurityReport extends Model
 
     public function victims()
     {
-        return $this->hasMany(Victims::class, 'security_report_id', 'id');
+        return $this->hasMany(Victim::class, 'security_report_id', 'id');
     }
 
     public function perpetrators()
     {
-        return $this->hasMany(Perpetrators::class, 'security_report_id', 'id');
+        return $this->hasMany(Perpetrator::class, 'security_report_id', 'id');
     }
 }

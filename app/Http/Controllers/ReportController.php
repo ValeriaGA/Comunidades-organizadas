@@ -23,9 +23,4 @@ class ReportController extends Controller
         $categories_security = SubCatReport::where('cat_report_id', $cat_security[0]->id)->get();
         return view('report.create', compact('categories_service', 'categories_security'));
     }
-
-    public function show(Report $report)
-    {
-        return view('report.show', compact('report'));
-    }
 }

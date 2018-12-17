@@ -38,13 +38,14 @@ Route::post('/user/update/{user}', 'UserController@update');
 
 // Report
 Route::get('/reporte', 'ReportController@index');
-Route::get('/reporte/{reporte}', 'ReportController@show');
 
 Route::get('/seguridad/agregar', 'SecurityReportController@create');
 Route::post('/seguridad', 'SecurityReportController@store');
+Route::get('/seguridad/{reporte}', 'SecurityReportController@show');
 
 Route::get('/servicio/agregar', 'ServiceReportController@create');
 Route::post('/servicio', 'ServiceReportController@store');
+Route::get('/servicio/{reporte}', 'ServiceReportController@show');
 
 Route::get('/noticia/agregar', 'NewsController@create');
 Route::post('/noticia', 'NewsController@store');

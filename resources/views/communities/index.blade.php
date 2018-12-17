@@ -87,12 +87,12 @@
                             <div class="comment-center p-t-10">
                                 <div class="container">
                                     <table class="table table-bordered">
-                                      <tr class="header">
-                                        <td colspan="2">
-                                            Grupo 1
-                                            <button style="margin-left: 700px;" id="followButton1" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0" > Seguir </button>
-                                        </td>
-                                            
+                                        <tr class="header">
+                                            <td colspan="2">
+                                                Grupo 1
+                                                <button style="margin-left: 700px;" id="followButton1" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0" > Seguir </button>
+                                            </td>
+                                        </tr>   
        
                                       <tr>
                                         <td>Comunidad 1</td>
