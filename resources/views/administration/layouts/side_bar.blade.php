@@ -5,13 +5,14 @@
   <ul>
     <li class="{{ Request::is('administracion') ? 'active' : '' }}"><a href="/administracion"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
     <li class="{{ Request::is('administracion/administradores') ? 'active' : '' }}"><a href="/administracion/administradores"><i class="icon icon-cogs"></i> <span>Administradores</span></a></li>
+    <li class="{{ Request::is('roles') ? 'active' : '' }}"><a href="/administracion/roles"><i class="icon icon-user"></i> <span>Roles</span></a> </li>
     <li class="submenu"> <a href="#"><i class="icon icon-book"></i> <span>Incidencias</span></a>
         <ul>
             <li class="{{ Request::is('administracion/seguridad') ? 'active' : '' }}"><a href="/administracion/seguridad"><i class="icon icon-chevron-right"></i> Seguridad</a></li>
             <li class="{{ Request::is('administracion/servicio') ? 'active' : '' }}"><a href="/administracion/servicio"><i class="icon icon-chevron-right"></i> Servicio</a></li>
         </ul>
     </li>
-    <li class="{{ Request::is('administracion/reportes') ? 'active' : '' }}"> <a href="/administracion/reportes"><i class="icon icon-warning-sign"></i> <span>Reportes</span> <span class="label label-important">5</span></a> </li>
+    <li class="{{ Request::is('administracion/reportes') ? 'active' : '' }}"> <a href="/administracion/reportes"><i class="icon icon-warning-sign"></i> <span>Reportes</span> <span class="label label-important">{{ $alert_qty }}</span></a> </li>
     <li class="submenu"><a href="#"><i class="icon icon-sitemap"></i> <span>Catálogos</span></a>
         <ul>
             <li class="{{ Request::is('administracion/generos') ? 'active' : '' }}"><a href="/administracion/generos"><i class="icon icon-chevron-right"></i> Género</a></li>

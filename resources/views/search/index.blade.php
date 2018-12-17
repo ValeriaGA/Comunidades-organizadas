@@ -194,42 +194,28 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="white-box">
-                          <h3 class="box-title">Filtrar Por Comunidad</h3> 
-                          <div class="form-group">
-                              <label class="col-md-12">Provincia</label>
-                              <div class="col-md-12">
-                                  <select name="province" id="provinces" class="form-control dynamic" data-dependent="cantons">
-                                      <option value="">Provincia</option>
-                                  </select>
-                              </div>
-                          </div>
+                          <h3 class="box-title">Filtrar Por Comunidad</h3>
 
-                          <div class="form-group">
-                              <label class="col-md-12">Canton</label>
-                              <div class="col-md-12">
-                                  <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
-                                      <option value="">Canton</option>
-                                  </select>
-                              </div>
-                          </div>
+                          <label class="col-md-12">Provincia</label>
+                          <select name="province" id="provinces" class="form-control dynamic" data-dependent="cantons">
+                              <option value="">Provincia</option>
+                          </select>
 
-                          <div class="form-group">
-                              <label class="col-md-12">Distrito</label>
-                              <div class="col-md-12">
-                                  <select name="district" id="districts" class="form-control dynamic" data-dependent="communities">
-                                      <option value="">Distrito</option>
-                                  </select>
-                              </div>
-                          </div>
+                          <label class="col-md-12">Canton</label>
+                          <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
+                              <option value="">Canton</option>
+                          </select>
 
-                          <div class="form-group">
-                              <label class="col-md-12">Comunidad</label>
-                              <div class="col-md-12">
-                                  <select name="community" id="communities" class="form-control" data-dependent="community_groups">
-                                      <option value="">Comunidad</option>
-                                  </select>
-                              </div>
-                          </div>
+                          <label class="col-md-12">Distrito</label>
+                          <select name="district" id="districts" class="form-control dynamic" data-dependent="communities">
+                              <option value="">Distrito</option>
+                          </select>
+
+                          <label class="col-md-12">Comunidad</label>
+                          <select name="community" id="communities" class="form-control" data-dependent="community_groups">
+                              <option value="">Comunidad</option>
+                          </select>
+                          
                         </div>
                     </div>
                     <div class="col-sm-2">

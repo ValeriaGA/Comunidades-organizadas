@@ -45,17 +45,17 @@
                                     <div class="panel-body">
                                         <div class="tab-content m-t-0">
                                             <div role="tabpanel" class="tab-pane fade active in" id="news1">
-                                                @include('layouts.home_news_section')
+                                                @include('home.news')
                                                 <div class="clearfix"></div>
                                             </div>
 
                                             <div role="tabpanel" class="tab-pane fade" id="security1">
-                                                @include('layouts.home_security_section')
+                                                @include('home.security')
                                                 <div class="clearfix"></div>
                                             </div>
 
                                             <div role="tabpanel" class="tab-pane fade" id="services1">                                           
-                                                @include('layouts.home_services_section')
+                                                @include('home.service')
                                                 <div class="clearfix"></div>
                                             </div>
 
@@ -65,23 +65,6 @@
                             </div>
                         </div>
                     </div>
-
- 
-                {{--<div class="row">
-                    <div class="col-md-12 col-lg-8 col-sm-12">
-                        <div class="white-box">
-                            <h3 class="box-title">Reportes recientes</h3>
-                            <div class="comment-center p-t-10">
-                                @foreach ($reports as $report)
-                                  @include('report.report')
-                                @endforeach 
-                                @include('report.report')
-                            </div>
-
-                            {{ $reports->links() }}
-                        </div>
-                    </div>
-                </div> --}}
             </div>
             <!-- /.container-fluid -->
 

@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Community;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use App\User;
+use App\Person;
+use App\Role;
 
-class AdministrationCommunityController extends Controller
+class AdministrationRoleController extends Controller
 {
 
     public function __construct()
@@ -14,16 +19,17 @@ class AdministrationCommunityController extends Controller
         // only administrators are allowed to view this
         $this->middleware('admin');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $communities = Community::orderBy('name', 'asc')->get();
-        return view('administration.community.community.index', compact('communities'));
+    {   
+        $roles = Role::all();
+        $users = User::orderBy('role_id', 'asc')->get();
+        return view('administration.roles.index', compact('users', 'roles'));
     }
 
     /**
@@ -33,7 +39,8 @@ class AdministrationCommunityController extends Controller
      */
     public function create()
     {
-        return view('administration.community.community.create');
+        // $roles = Role::all();
+        // return view('administration.roles.create', compact('roles'));
     }
 
     /**
@@ -61,12 +68,13 @@ class AdministrationCommunityController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Community $community
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Community $community)
+    public function edit(User $user)
     {
-        return view('administration.community.community.edit', compact('community'));
+        $roles = Role::all();
+        return view('administration.roles.create', compact('user', 'roles'));
     }
 
     /**

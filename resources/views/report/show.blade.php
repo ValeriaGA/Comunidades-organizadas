@@ -177,10 +177,11 @@
                             <h3 class="box-title panel-heading">Comentarios</h3>
 
                             <div class="form-group" >
-                                <label class="col-md-12" for="exampleInputDescription">Agregar Comentario</label>
+
                                 <div class="col-md-12" style="margin-bottom: 10px;">
                                     <textarea id="commentInput" rows="5" class="form-control form-control-line" name="description" placeholder="Nuevo comentario..."required></textarea>
                                 </div>
+
                                 <button id="commentButton" style="margin-left: 500px;" onclick="addComment('commentInput')" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0">
                                     Comentar
                                 </button>

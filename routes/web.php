@@ -97,6 +97,11 @@ Route::get('/administracion/administradores', 'AdministrationUsersController@ind
 Route::get('/administracion/administradores/agregar', 'AdministrationUsersController@create');
 Route::post('/administracion/administradores', 'AdministrationUsersController@store');
 
+// Roles
+Route::get('/administracion/roles', 'AdministrationRoleController@index');
+// Route::get('/administracion/roles/agregar', 'AdministrationRoleController@create');
+Route::get('/administracion/roles/{rol}', 'AdministrationStateController@edit');
+
 
 // Reports (Report Alerts)
 Route::get('/administracion/reportes', 'AdministrationReportController@index');
@@ -153,6 +158,7 @@ Route::post('/administracion/evidencias/update/{evidence}', 'AdministrationEvide
 // Communities
 Route::get('/administracion/comunidades/comunidad', 'AdministrationCommunityController@index');
 Route::get('/administracion/comunidades/comunidad/agregar', 'AdministrationCommunityController@create');
+Route::get('/administracion/comunidades/comunidad/{community_group}', 'AdministrationCommunityController@edit');
 
 Route::get('/administracion/comunidades/grupos', 'AdministrationCommunityGroupController@index');
 Route::get('/administracion/comunidades/grupos/agregar', 'AdministrationCommunityGroupController@create');

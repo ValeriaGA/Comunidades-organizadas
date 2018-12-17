@@ -69,6 +69,9 @@
     <script src="{{ asset('admin/js/jquery.uniform.js') }}"></script> 
     <script src="{{ asset('admin/js/select2.min.js') }}"></script> 
 
+
+    <script src="{{ asset('js/comboBoxControl.js') }}"></script>
+
 <!--problems with checkbox-->
 <!-- jquery.dataTables.min.js -->
 <!-- matrix.tables.js -->

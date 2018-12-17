@@ -16,7 +16,7 @@ class NewsController extends Controller
     public function __construct()
     {
         // only guests are allowed to view this
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('admin_community')->except(['index', 'show']);
     }
 
     /**
