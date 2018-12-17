@@ -5,7 +5,7 @@
 			@foreach ($news as $news_report)
 		        <div class="comment-body">
 				    <div class="mail-contnet">
-				        <h5>news_report->title</h5>
+				        <h5>{{ $news_report->title }} </h5>
 				        <span class="time"><b>Fecha y Hora</b>: {{ $news_report->date }} {{ $news_report->time }}</span>
 				        <br/>
 				        <span class="mail-desc"> {{ $news_report->description }} </span>
