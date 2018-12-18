@@ -100,6 +100,7 @@ Route::post('/administracion/administradores', 'AdministrationUsersController@st
 
 // Roles
 Route::get('/administracion/roles', 'AdministrationRoleController@index');
+Route::post('/administracion/roles/filtrar', 'AdministrationRoleController@show');
 // Route::get('/administracion/roles/agregar', 'AdministrationRoleController@create');
 Route::get('/administracion/roles/{rol}', 'AdministrationStateController@edit');
 
@@ -107,6 +108,11 @@ Route::get('/administracion/roles/{rol}', 'AdministrationStateController@edit');
 // Reports (Report Alerts)
 Route::get('/administracion/reportes', 'AdministrationReportController@index');
 Route::get('/administracion/reportes/{report}', 'AdministrationReportController@show');
+Route::get('/administracion/reportes/editar/{report}', 'AdministrationReportController@edit');
+Route::post('/administracion/reportes/editar/{report}', 'AdministrationReportController@update');
+
+// Requests
+Route::get('/administracion/solicitudes', 'AdministrationRequestController@index');
 
 
 // Publications (Reports)

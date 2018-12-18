@@ -38,8 +38,30 @@
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/administradores/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/roles/agregar"><button class="btn">Agregar</button></form>
           </div>
+        </div>
+
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>Filtrar por rol</h5>
+          </div>
+          <form class="form-horizontal" method="post" action="/administracion/roles/filtrar">
+          @csrf
+            <div class="widget-content nopadding">
+              <div class="control-group">
+                <label class="control-label">Roles</label>
+                <div class="controls">
+                  <select name="role" class="form-control">
+                    @foreach ($roles as $rol) 
+                      <option value="{{$rol->name}}">{{$rol->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <input type="submit" value="Filtrar" class="btn btn-success">
+            </div>
+          </form>
         </div>
 
         <div class="widget-box">

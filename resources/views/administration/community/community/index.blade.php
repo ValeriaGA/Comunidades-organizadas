@@ -31,10 +31,10 @@
               </div>
 
               <div class="control-group">
-                <label class="control-label">Canton</label>
+                <label class="control-label">Cantón</label>
                 <div class="controls">
                   <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
-                      <option value="">Canton</option>
+                      <option value="">Cantón</option>
                   </select>
                 </div>
               </div>

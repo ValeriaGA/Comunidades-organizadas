@@ -25,7 +25,49 @@
           </div>
           <div class="widget-content tab-content">
             <div id="tab1" class="tab-pane active">
-              
+              <div role="tabpanel" class="tab-pane fade active in" id="general1">
+                <table class="table" style="width: 100%;">
+                  <tr>
+                      <td>Fecha</td>
+                      <td>{{ $report->date }}</td>
+                  </tr>
+                  <tr>
+                      <td>Hora</td>
+                      <td>{{ $report->time }}</td>
+                  </tr>
+                  <tr>
+                      <td>Provincia</td>
+                      <td>{{ ($report->communityGroup->community)[0]->district->canton->province->name }}</td>
+                  </tr>
+                  <tr>
+                      <td>Cantón</td>
+                      <td>{{ ($report->communityGroup->community)[0]->district->canton->name }}</td>
+                  </tr>
+                  <tr>
+                      <td>Distrito</td>
+                      <td>{{ ($report->communityGroup->community)[0]->district->name }}</td>
+                  </tr>
+                  <tr>
+                      <td>Grupo de Comunidades</td>
+                      <td>{{ $report->communityGroup->name }}</td>
+                  </tr>
+                  <tr>
+                      <td>Comunidades</td>
+                      <td>
+                        <ul class="list-group">
+                          @foreach($report->communityGroup->community as $community)
+                            <li class="list-group-item">{{ $community->name }}</li>
+                          @endforeach
+                       </ul>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>Descripción</td>
+                      <td>{{ $report->description }}</td>
+                  </tr>
+              </table>
+                <div class="clearfix"></div>
+              </div>
             </div>
             <div id="tab2" class="tab-pane">
               
@@ -34,6 +76,7 @@
               
             </div>
           </div>
+          <button name="{{$report->name}}_edit" class="btn" onclick="location.href = '/administracion/reportes/editar/{{ $report->id }}';">Editar</button>
         </div>
 
         <div class="widget-box">
