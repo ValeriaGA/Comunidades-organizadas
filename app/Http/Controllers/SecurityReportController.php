@@ -130,6 +130,7 @@ class SecurityReportController extends Controller
     public function show($id)
     {
         $report = Report::find($id);
+  
         return view('report.security.show', compact('report'));
     }
 
