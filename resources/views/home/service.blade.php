@@ -23,6 +23,11 @@
                         <a href="/servicio/{{ $service_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5">
                             <i class="ti-check text-success m-r-5"></i>Detalles
                         </a>
+                        @if($service_report -> user_id == Auth::id())
+							<a id="editReportButton" href="/seguridad/editar/{{ $service_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5" active="0">
+								Editar
+							</a>
+						@endif
                     </div>
                 </div>
             @endforeach

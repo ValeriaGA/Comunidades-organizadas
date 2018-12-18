@@ -22,8 +22,14 @@
 				        <button id="likeButton1" onclick="{{'onclick_likeButton(this)'}}" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0">Gracias</button>
 				        <a href="/seguridad/{{ $security_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5">
 				        	<i class="ti-check text-success m-r-5"></i>Detalles
-				        </a>
-				    </div>
+						</a>
+						@if($security_report -> user_id == Auth::id())
+							<a id="editReportButton" href="/seguridad/editar/{{ $security_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5" active="0">
+								Editar
+							</a>
+						@endif
+					</div>
+					
 				</div>
 			@endforeach
         </div>
