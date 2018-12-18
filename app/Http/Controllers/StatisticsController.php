@@ -32,7 +32,7 @@ class StatisticsController extends Controller
         $this->validate(request(), [
             'final_date' => 'date|before_or_equal:today'
         ]);
-        $types = CatReport::orderBy('name', 'asc')->get();
+        $types = SubCatReport::orderBy('name', 'asc')->get();
         $first_date = '2013-10-10';
         $final_date = $date;
         $count_per_type = DB::table('reports')
@@ -48,7 +48,7 @@ class StatisticsController extends Controller
             foreach ($count_per_type as $count_type) {
                 if (!$found)
                 {
-                    if ($type->id == $count_type->type_id) {
+                    if ($type->id == $count_type->id) {
                         $sub_list=array($type->name,$count_type->count);
                         array_push($count_per_type2, $sub_list);
                         $found = true;
@@ -90,7 +90,7 @@ class StatisticsController extends Controller
         //              ->groupBy('id')
         //              ->get();
         $count_per_gender = array();
-        $total = 0; 
+        $total = 3; 
         // foreach($users_count as $users)
         // {
         //     dd($users);
