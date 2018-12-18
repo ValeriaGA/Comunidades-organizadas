@@ -43,7 +43,7 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="/">Inicio</a></li>
-                            <li class="active">Agregar reporte de servicio</li>
+                            <li class="active">Editar reporte de servicio</li>
                         </ol>
                     </div>
                 </div>

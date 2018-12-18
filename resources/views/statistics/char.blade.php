@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-md-10">
                         <div class="white-box analytics-info">
-                        <h2>Actividad delictiva de los ultimos 10 años</h2>
+                        <h2>Actividad delictiva de los últimos 10 años</h2>
 
                         <div id="graph"></div>
                         <pre id="code" class="prettyprint linenums">
@@ -57,5 +57,124 @@
                         </form>
                       </div>
                     </div>
+
+                    <div class="col-sm-2">
+                      <div class="white-box">
+                          <p  style="display:inline;">Sexo</p>
+                  <form action="/statistics/chart" method="post" enctype="multipart/form-data">
+                         {{ csrf_field() }}
+                         <div class="row">
+                          <select class="form-control" style="background-color: white;" name="date">
+
+                             <option value="Masculino" selected>Masculino</option> 
+                             <option value="Femenino">Femenino</option> 
+
+                          </select>
+                        </div>
+                        <br/>
+                        <div class="row">
+                          <button class="btn btn-success">Filtrar</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                 </div>
-                @endsection
+           
+
+              <div class="row">
+                <div class="col-sm-2">
+                    <div class="white-box">
+                        <p  style="display:inline;">Procedencia</p>
+                <form action="/statistics/chart" method="post" enctype="multipart/form-data">
+                       {{ csrf_field() }}
+                       <div class="row">
+                        <select class="form-control" style="background-color: white;" name="date">
+
+                           <option value="Nacionales" selected>Nacionales</option> 
+                           <option value="Extranjeros">Extranjeros</option> 
+                           <option value="Ambos">Ambos</option> 
+
+                        </select>
+                      </div>
+                      <br/>
+                      <div class="row">
+                        <button class="btn btn-success">Filtrar</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+
+                <div class="col-sm-2" style="width: 300px;">
+                    <div class="white-box">
+                        <p  style="display:inline;">Rango de Fechas</p>
+                          <form class="form-horizontal form-material" action="/statistics/bar" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                              <a>  Fecha de inicio:</a> 
+                              <input id="first_date" type="date" placeholder="" class="form-control form-control-line" name="first_date" value="2013-10-10">
+                              <a> Fecha de Final:</a>
+                              <input id="final_date" type="date" placeholder="" class="form-control form-control-line" name="final_date" value="{{$date}}"><br>
+                              <div class="form-group">
+                                  <div class="col-sm-12">
+                                      <button class="btn btn-success">Filtrar</button>
+                                  </div>
+                              </div>
+                          </form>
+                        </div>
+                    </div>
+
+                <div class="col-sm-2" style="width: 300px;">
+                    <div class="white-box">
+                        <p >Comunidad</p>
+                          <form class="form-horizontal form-material" action="/statistics/bar" method="post" enctype="multipart/form-data">
+                            <div style="margin-top: 25px; margin-left: 0px; display:inline;">
+                                <label >Provincia</label>
+                                
+                                <select id="provinces" style="width:110px; display:inline;" class="form-control" name="province" required>
+                                        <option value="1" selected>San José</option>
+                                        <option value="2">Alajuela</option>
+                                        <option value="3">Cartago</option>
+                                        <option value="4">Heredia</option>
+                                        <option value="5">Guanacaste</option>
+                                        <option value="6">Puntarenas</option>
+                                        <option value="7">Limón</option>
+                                 
+                                </select>
+                            </div>
+    
+                            <div style="margin-top: 25px; margin-left: 10px; display:inline;">
+                                <label >Cantón</label>
+                                
+                                <select id="cantons" style="width:110px; display:inline;" class="form-control"  name="canton" required>
+                                        <option value="1" selected="selected">Cantones</option>
+                                </select>
+                            </div>
+    
+    
+                            <div style="margin-top: 25px; margin-left: 10px; display:inline;">
+                                <label >Distrito</label>
+                                
+                                <select id="districts" style="width:110px; display:inline;" class="form-control" name="district" required>
+                                        <option value="1" selected="selected">Distritos</option>
+                                </select>
+                            </div>
+                                  
+    
+                            <div style="margin-top: 25px; margin-left: 50px; display:inline;">
+                                <label>Comunidad</label>
+                                
+                                <select id="communities1" style="width:120px; display:inline;" class="form-control"  name="community" required>
+                                        <option value="1" selected="selected">Barrio x</option>
+                                </select>
+                                
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-success">Filtrar</button>
+                                </div>
+                            </div>
+                          </form>
+                        </div>
+                    </div>
+                </div>
+@endsection

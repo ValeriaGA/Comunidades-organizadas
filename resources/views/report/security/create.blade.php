@@ -203,15 +203,16 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-md-4">Víctimas</label>
+                                                <label style="margin-left: 10px;">Víctimas</label>
 
-                                                <div class="col-md-4">
-                                                    <button id="add_perpetrator_button" class="btn btn-success btn-rounded">Agregar</button>
-                                                 </div>
-                                                 <hr />
+        
+                                                <button style="margin-left: 170px;" id="add_perpetrator_button" class="btn btn-success btn-rounded">Agregar</button>
+
+                                                <br>
+                                                <br>
                                                 <div class="col-md-4">
                                                     <div class="container">
-                                                        <table class="table table-bordered" style="width: 50%;">
+                                                        <table class="table table-bordered" style="width: 250px;">
                                                             <tr class="header" >
                                                                 <td colspan="2">
                                                                     Víctima 1
@@ -227,7 +228,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">
-                                                                    <button id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
+                                                                    <button style="margin-left: 75px;" id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -236,15 +237,15 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-md-4">Perpetradores</label>
+                                                <label style="margin-left: 10px;">Perpetradores</label>
+    
+                                                <button style="margin-left: 125px;" id="add_perpetrator_button" class="btn btn-success btn-rounded">Agregar</button>
 
-                                                <div class="col-md-4">
-                                                    <button id="add_perpetrator_button" class="btn btn-success btn-rounded">Agregar</button>
-                                                 </div>
-                                                 <hr />
+                                                <br>
+                                                <br>
                                                 <div class="col-md-4">
                                                     <div class="container">
-                                                        <table class="table table-bordered" style="width: 50%;">
+                                                        <table class="table table-bordered" style="width: 250px;">
                                                             <tr class="header" >
                                                                 <td colspan="2">
                                                                     Perpetrador 1
@@ -260,7 +261,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">
-                                                                    <button id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
+                                                                    <button style="margin-left: 75px;" id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
                                                                 </td>
                                                             </tr>
                                                             <tr class="header">
@@ -278,7 +279,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">
-                                                                    <button id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
+                                                                    <button style="margin-left: 75px;" id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -296,15 +297,14 @@
                                                 <input type="file" name="file">
                                              </div> -->
                                              <div class="form-group">
-                                                <label class="col-md-4">Evidencia</label>
-
-                                                <div class="col-md-4">
-                                                    <button id="add_perpetrator_button" class="btn btn-success btn-rounded">Agregar</button>
-                                                 </div>
-                                                 <hr />
+                                                <label style="margin-left: 10px;">Evidencia</label>
+                                                <button style="margin-left: 125px;" id="add_evidence_button" class="btn btn-success btn-rounded">Agregar</button>
+                                     
+                                                <br/>
+                                                <br/>
                                                 <div class="col-md-4">
                                                     <div class="container">
-                                                        <table class="table table-bordered" style="width: 50%;">
+                                                        <table class="table table-bordered" style="width: 250px;">
                                                             <tr class="header" >
                                                                 <td colspan="2">
                                                                     Evidencia 1
@@ -316,11 +316,11 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Imagen</td>
-                                                                <td><img src="{{ asset('/plugins/images/large/ice_e.jpg') }}" class="all studio" alt="gallery"></td>
+                                                                <td><img  height="100" width="100"  src="{{ asset('/plugins/images/large/ice_e.jpg') }}" class="all studio" alt="gallery"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">
-                                                                    <button id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
+                                                                    <button id="remove_evidence_button" class="btn btn-danger btn-rounded">Remover</button>
                                                                 </td>
                                                             </tr>
                                                         </table>

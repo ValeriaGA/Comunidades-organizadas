@@ -20,7 +20,16 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                   <div class="white-box">
                     <div class="panel panel-default">
-                        <div class="panel-heading"> Detalles </div>
+                        <div class="panel-heading"> 
+                            Detalles
+
+                            @if($report -> user_id == Auth::id())
+                                <a id="editReportButton" style="margin-left: 750px; background-color: green; color:white;" href="/seguridad/editar/{{ $report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5" active="0">
+                                    Editar
+                                </a>
+                            @endif
+
+                        </div>
                         <div class="panel-wrapper collapse in">
                             <ul class="nav customtab nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#general1" aria-controls="general" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> Generales</span></a></li>

@@ -89,11 +89,11 @@ function fillProvinces(){
       dataType: "json",
       success: function(communities){
         fillControl('communities', communities);
-        fillGroups();
+        //fillGroups();
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
-        alert(xhr.status + " " + errorInfo);
+        alert(xhr.status + " " + errorInfo + " Communities");
       }
     });
     return 1;
@@ -119,7 +119,7 @@ function fillProvinces(){
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
-        alert(xhr.status + " " + errorInfo);
+        alert(xhr.status + " " + errorInfo + " Groups");
       }
     });
     return 1;
@@ -184,7 +184,7 @@ function fillProvinces(){
 
     });
 
-    $("#communities").on('click', function(){
+    $("#communities").on('change', function(){
         fillGroups();
 
     });

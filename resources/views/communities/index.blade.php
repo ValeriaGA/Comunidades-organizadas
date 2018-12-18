@@ -87,8 +87,8 @@
                     <div class="col-md-12  col-sm-12">
                         <div class="white-box">
                             <h3 class="box-title" style="display:inline;">Grupos de Comunidades</h3>
-                            <button onclick="window.location.href='/comunidades/solicitar-comunidad'" style="margin-left: 350px; display:inline;" id="requestCommunity" class="btn btn btn-rounded btn-default btn-outline"> Solicitar Comunidad </button>
-                            <button onclick="window.location.href='/comunidades/solicitar-grupo'" style="margin-left: 25px; display:inline;" id="requestGroup"  class="btn btn btn-rounded btn-default btn-outline"> Solicitar Grupo </button>
+                            <button onclick="window.location.href='/comunidades/solicitar-comunidad'" style="margin-left: 350px; display:inline; background-color:green; color:white;" id="requestCommunity" class="btn btn btn-rounded btn-default btn-outline"> Solicitar Comunidad </button>
+                            <button onclick="window.location.href='/comunidades/solicitar-grupo'" style="margin-left: 25px; display:inline; background-color:green; color:white;" id="requestGroup"  class="btn btn btn-rounded btn-default btn-outline"> Solicitar Grupo </button>
 
                             <br>
                             <br>
@@ -103,12 +103,10 @@
                                         </tr>   
        
                                       <tr>
-                                        <td>Comunidad 1</td>
-                                        <td>San teo</td>
+                                        <td>Comunidad de San Teo</td>
                                       </tr>
                                       <tr>
-                                        <td>Comunidad 2</td>
-                                        <td>Loadad</td>
+                                        <td>Comunidad de Loaded</td>
                                       </tr>
                                       <tr class="header">
                                         <td colspan="2">
@@ -117,8 +115,7 @@
                                         </td>
                                       </tr>
                                       <tr>
-                                        <td>Comunidad 5</td>
-                                        <td>Barrio x</td>
+                                        <td>Comunidad de Barrio x</td>
                                       </tr>
 
                                       
