@@ -28,7 +28,8 @@ Route::post('/cantones', 'CantonController@show');
 Route::post('/distritos', 'DistrictController@show');
 Route::post('/comunidades', 'CommunitiesController@show');
 Route::post('/grupos', 'GroupController@show');
-
+Route::get('/comunidades/solicitar-comunidad', 'CommunitiesController@requestIndex');
+Route::get('/comunidades/solicitar-grupo', 'GroupController@requestIndex');
 
 // Profile
 
@@ -42,10 +43,12 @@ Route::get('/reporte', 'ReportController@index');
 Route::get('/seguridad/agregar', 'SecurityReportController@create');
 Route::post('/seguridad', 'SecurityReportController@store');
 Route::get('/seguridad/{reporte}', 'SecurityReportController@show');
+Route::get('/seguridad/editar/{reporte}', 'SecurityReportController@edit');
 
 Route::get('/servicio/agregar', 'ServiceReportController@create');
 Route::post('/servicio', 'ServiceReportController@store');
 Route::get('/servicio/{reporte}', 'ServiceReportController@show');
+Route::get('/servicio/editar/{reporte}', 'ServiceReportController@edit');
 
 Route::get('/noticia/agregar', 'NewsController@create');
 Route::post('/noticia', 'NewsController@store');

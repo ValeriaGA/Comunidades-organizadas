@@ -66,3 +66,47 @@
 .table .header.active td:after {
   content: "\2212";
 }
+
+div.ex3 {
+  width: 450px;
+  height: 400px;
+  overflow: auto;
+}
+
+.communitiesTable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.communitiesTable td, .communitiesTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.communitiesTable tr
+{
+  border: 1px solid;
+}
+
+.add-href
+{
+  background-color:forestgreen;
+  color: white;
+}
+
+.remove-href
+{
+  background-color: red;
+  color: white;
+}
+
+.communitiesTable tr:hover {background-color: #ddd;}
+
+.communitiesTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}

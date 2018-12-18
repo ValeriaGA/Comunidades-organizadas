@@ -39,11 +39,11 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Reporte Servicio</h4> </div>
+                        <h4 class="page-title">Reporte Seguridad</h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="/">Inicio</a></li>
-                            <li class="active">Agregar reporte de servicio</li>
+                            <li class="active">Editar reporte de seguridad</li>
                         </ol>
                     </div>
                 </div>
@@ -61,6 +61,9 @@
                                         <a data-toggle="tab" href="#details_tab" aria-expanded="true"> <span class="visible-xs"><i class="ti-home"></i></span> <span class="hidden-xs">Detalles</span> </a>
                                     </li>
                                     <li class="tab">
+                                        <a data-toggle="tab" href="#involved_tab" aria-expanded="false"> <span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Involucrados</span> </a>
+                                    </li>
+                                    <li class="tab">
                                         <a data-toggle="tab" href="#communities_tab" aria-expanded="false"> <span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Comunidades</span> </a>
                                     </li>
                                     <li class="tab">
@@ -75,10 +78,10 @@
 
                                         <div id="details_tab" class="tab-pane active">
                                             <div class="form-group">
-                                                <label class="col-md-12">Tipo de reporte de servicio</label>
+                                                <label class="col-md-12">Tipo de reporte de seguridad</label>
                                                 <div class="col-md-12">
                                                     <select class="form-control" name="type" required>
-                                                      @foreach ($categories_service as $cat)
+                                                      @foreach ($categories_security as $cat)
                                                         <option value="{{$cat->name}}">{{$cat->name}}</option>
                                                       @endforeach
                                                     </select>
@@ -105,9 +108,37 @@
                                                     <input id="exampleInputLatitud" type="decimal" placeholder="" class="form-control form-control-line" name="latitud" required> </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="col-md-12">Tipo de Arma (Si aplica)</label>
+                                                <div class="col-md-12">
+                                                    <select class="form-control" name="weapon" required>
+                                                      @foreach ($cat_weapon as $weapon)
+                                                        @if ($weapon->name == 'No Aplica')
+                                                          <option value="{{$weapon->name}}" selected="selected">{{$weapon->name}}</option>
+                                                        @else
+                                                            <option value="{{$weapon->name}}">{{$weapon->name}}</option>
+                                                        @endif
+                                                      @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12">Medio de Transporte</label>
+                                                <div class="col-md-12">
+                                                    <select class="form-control" name="transportation" required>
+                                                      @foreach ($cat_transportation as $transport)
+                                                        @if ($transport == 'Sin vehiculo')
+                                                          <option value="{{$transport->name}}" selected="selected">{{$transport->name}}</option>
+                                                        @else
+                                                            <option value="{{$transport->name}}">{{$transport->name}}</option>
+                                                        @endif
+                                                      @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="col-md-12" for="exampleInputDescription">Descripción</label>
                                                 <div class="col-md-12">
-                                                    <textarea id="exampleInputDescription" rows="5" class="form-control form-control-line" name="description" placeholder="Ingrese el relato de los sucesos."required></textarea>
+                                                    <textarea id="exampleInputDescription" rows="5" class="form-control form-control-line" name="description" placeholder="Ingrese el relato de los sucesos, especificación del medio de transporte (placa, modelo/marca de carro), pertenencias perdidas, entre otros detalles pertinentes al incidente."required></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -164,6 +195,101 @@
                                             <div class="clearfix"></div>
                                         </div>
 
+                                        <!-- Victims & Perpetrators w/ gender-->
+
+                                        <div id="involved_tab" class="tab-pane">
+                                            <div class="form-group">
+                                                
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="margin-left: 10px;">Víctimas</label>
+
+        
+                                                <button style="margin-left: 170px;" id="add_perpetrator_button" class="btn btn-success btn-rounded">Agregar</button>
+
+                                                <br>
+                                                <br>
+                                                <div class="col-md-4">
+                                                    <div class="container">
+                                                        <table class="table table-bordered" style="width: 250px;">
+                                                            <tr class="header" >
+                                                                <td colspan="2">
+                                                                    Víctima 1
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Género</strong></td>
+                                                                <td><strong>Descripción</strong></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Masculino</td>
+                                                                <td>Tatuaje en el hombro</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <button style="margin-left: 75px;" id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="margin-left: 10px;">Perpetradores</label>
+    
+                                                <button style="margin-left: 125px;" id="add_perpetrator_button" class="btn btn-success btn-rounded">Agregar</button>
+
+                                                <br>
+                                                <br>
+                                                <div class="col-md-4">
+                                                    <div class="container">
+                                                        <table class="table table-bordered" style="width: 250px;">
+                                                            <tr class="header" >
+                                                                <td colspan="2">
+                                                                    Perpetrador 1
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Género</strong></td>
+                                                                <td><strong>Descripción</strong></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Masculino</td>
+                                                                <td>Tatuaje en el hombro</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <button style="margin-left: 75px;" id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="header">
+                                                                <td colspan="2">
+                                                                    Perpetrador 2
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Género</strong></td>
+                                                                <td><strong>Descripción</strong></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Femenino</td>
+                                                                <td>Pelo Rubio</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <button style="margin-left: 75px;" id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+
                                         <!-- Evidence -->
 
                                         <div id="evidence_tab" class="tab-pane">
@@ -171,11 +297,11 @@
                                                 <input type="file" name="file">
                                              </div> -->
                                              <div class="form-group">
-                                                <label style="margin-left: 10px;" class="col-md-4">Evidencia</label>
-
-                                                <button style="margin-left: -100px;" id="add_evidence_button" class="btn btn-success btn-rounded">Agregar</button>
-                                                 <br />
-                                                 <br/>
+                                                <label style="margin-left: 10px;">Evidencia</label>
+                                                <button style="margin-left: 125px;" id="add_evidence_button" class="btn btn-success btn-rounded">Agregar</button>
+                                     
+                                                <br/>
+                                                <br/>
                                                 <div class="col-md-4">
                                                     <div class="container">
                                                         <table class="table table-bordered" style="width: 250px;">
@@ -190,7 +316,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Imagen</td>
-                                                                <td><img height="100" width="100" src="{{ asset('/plugins/images/large/ice_e.jpg') }}" class="all studio" alt="gallery"></td>
+                                                                <td><img  height="100" width="100"  src="{{ asset('/plugins/images/large/ice_e.jpg') }}" class="all studio" alt="gallery"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">

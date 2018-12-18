@@ -48,7 +48,7 @@ class GroupController extends Controller
     public function show(Request $request)
     {
         $community = Community::find($request -> input('id'));
-        $groups = $community->communityGroup;
+        $groups = $community->communityGroup();
 
         return \Response::json($groups ->toJson()); 
     }
@@ -74,6 +74,27 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function request(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function requestIndex()
+    {
+        return view('communities.groups.request');
     }
 
     /**

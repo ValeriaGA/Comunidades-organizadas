@@ -89,11 +89,11 @@ function fillProvinces(){
       dataType: "json",
       success: function(communities){
         fillControl('communities', communities);
-        fillGroups();
+        //fillGroups();
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
-        alert(xhr.status + " " + errorInfo);
+        alert(xhr.status + " " + errorInfo + " Communities");
       }
     });
     return 1;
@@ -119,7 +119,7 @@ function fillProvinces(){
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
-        alert(xhr.status + " " + errorInfo);
+        alert(xhr.status + " " + errorInfo + " Groups");
       }
     });
     return 1;
@@ -169,22 +169,22 @@ function fillProvinces(){
     
     fillProvinces();
   
-    $("#provinces").on('click', function(){
+    $("#provinces").on('change', function(){
         fillCantons();
 
     });
 
-    $("#cantons").on('click', function(){
+    $("#cantons").on('change', function(){
         fillDistricts();
 
     });
 
-    $("#districts").on('click', function(){
+    $("#districts").on('change', function(){
         fillCommunities();
 
     });
 
-    $("#communities").on('click', function(){
+    $("#communities").on('change', function(){
         fillGroups();
 
     });

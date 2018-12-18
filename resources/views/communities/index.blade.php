@@ -26,11 +26,14 @@
                  <div class="row">
                   <div class="col-sm-12">
                       <div class="white-box">
-                            <form role="search" >
+                            <form role="search" style="display:inline;">
                                     <input type="text" style="width: 400px; display:inline;" placeholder="Buscar Grupo..." class="form-control">
                                     <a href="" style="display:inline; margin-left: 10px;"><i class="fa fa-search"></i></a>
                              </form>
+
                              <br>
+                             <br>
+
 
                           Filtrar por:
                         <br>
@@ -83,34 +86,36 @@
                 <div class="row">
                     <div class="col-md-12  col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title">Grupos de Comunidades</h3>
+                            <h3 class="box-title" style="display:inline;">Grupos de Comunidades</h3>
+                            <button onclick="window.location.href='/comunidades/solicitar-comunidad'" style="margin-left: 350px; display:inline; background-color:green; color:white;" id="requestCommunity" class="btn btn btn-rounded btn-default btn-outline"> Solicitar Comunidad </button>
+                            <button onclick="window.location.href='/comunidades/solicitar-grupo'" style="margin-left: 25px; display:inline; background-color:green; color:white;" id="requestGroup"  class="btn btn btn-rounded btn-default btn-outline"> Solicitar Grupo </button>
+
+                            <br>
+                            <br>
                             <div class="comment-center p-t-10">
                                 <div class="container">
                                     <table class="table table-bordered">
-                                        <tr class="header">
+                                        <tr class="header" >
                                             <td colspan="2">
-                                                Grupo 1
-                                                <button style="margin-left: 700px;" id="followButton1" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0" > Seguir </button>
+                                                Grupo de Comunidades de San Teo y Loadad
+                                                <button style="margin-left: 700px; display:inline;" id="followButton1" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0" > Seguir </button>
                                             </td>
                                         </tr>   
        
                                       <tr>
-                                        <td>Comunidad 1</td>
-                                        <td>San teo</td>
+                                        <td>Comunidad de San Teo</td>
                                       </tr>
                                       <tr>
-                                        <td>Comunidad 2</td>
-                                        <td>Loadad</td>
+                                        <td>Comunidad de Loaded</td>
                                       </tr>
                                       <tr class="header">
                                         <td colspan="2">
-                                            Grupo 2
+                                            Grupo de Comunidades de Barrios Unidos
                                             <button style="margin-left: 700px;" id="followButton2" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0" > Seguir </button>
                                         </td>
                                       </tr>
                                       <tr>
-                                        <td>Comunidad 5</td>
-                                        <td>Barrio x</td>
+                                        <td>Comunidad de Barrio x</td>
                                       </tr>
 
                                       
