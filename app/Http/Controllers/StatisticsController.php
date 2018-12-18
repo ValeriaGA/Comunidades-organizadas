@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Incident;
-use App\CatReport;
+use App\SubCatReport;
+use App\Gender;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class StatisticsController extends Controller
         $this->validate(request(), [
             'final_date' => 'date|before_or_equal:today'
         ]);
-        $types = CatReport::orderBy('name', 'asc')->get();
+        $types = SubCatReport::orderBy('name', 'asc')->get();
         $first_date = '2013-10-10';
         $final_date = $date;
         $count_per_type = DB::table('reports')
@@ -47,7 +48,7 @@ class StatisticsController extends Controller
             foreach ($count_per_type as $count_type) {
                 if (!$found)
                 {
-                    if ($type->id == $count_type->type_id) {
+                    if ($type->id == $count_type->id) {
                         $sub_list=array($type->name,$count_type->count);
                         array_push($count_per_type2, $sub_list);
                         $found = true;
@@ -68,36 +69,46 @@ class StatisticsController extends Controller
 
     public function pie()
     {
-        $types = CatReport::orderBy('name', 'asc')->get();
+
+
+        // $male = Gender::where('name', 'Masculino');
+        // $female = Gender::where('name', 'Femenino');
+        // $other = Gender::where('name', 'Otro');
+
+        $types = SubCatReport::where('cat_report_id', 3)->orderBy('name', 'asc')->get();
         
-        $id = 1;
+        // $id = 1;
         
-        $selected_incident = DB::table('cat_report')->where('id', $id)->get();
+        $selected_incident = DB::table('sub_cat_report')->where('cat_report_id', 3)->get();
         foreach ($selected_incident as $key) {
             $selected_incident_name = $key->name;
         }
         
-        $users_count = DB::table('reports')
-                     ->select(DB::raw('count(*) as count, id'))
-                     ->where('id', $id)
-                     ->groupBy('id')
-                     ->get();
+        // $users_count = DB::table('reports')
+        //              ->select(DB::raw('count(*) as count, id'))
+        //              ->where('id', $id)
+        //              ->groupBy('id')
+        //              ->get();
         $count_per_gender = array();
-        $total = 0; 
-        foreach($users_count as $users)
-        {
-            if ($users->primary_victim_sex == 'm') {
-                $count_per_gender['masculino'] = $users->count;
-                $total += $users->count;
-            }elseif ($users->primary_victim_sex == 'f') {
-                $count_per_gender['femenino'] = $users->count;
-                $total += $users->count;
-            }else {
-                $count_per_gender['otro'] = $users->count;
-                $total += $users->count;
-            }
-        }
+        $total = 3; 
+        // foreach($users_count as $users)
+        // {
+        //     dd($users);
+        //     if ($users->gender_id == $male->id) {
+        //         $count_per_gender['masculino'] = $users->count;
+        //         $total += $users->count;
+        //     }elseif ($users->gender_id == $female->id) {
+        //         $count_per_gender['femenino'] = $users->count;
+        //         $total += $users->count;
+        //     }else {
+        //         $count_per_gender['otro'] = $users->count;
+        //         $total += $users->count;
+        //     }
+        // }
 
+        $count_per_gender['masculino'] = 1;
+        $count_per_gender['femenino'] = 2;
+        $count_per_gender['otro'] = 0;
       return view('statistics.pie', compact('types','count_per_gender','total','selected_incident_name'));
     }
 

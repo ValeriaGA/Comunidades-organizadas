@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Report;
+use App\State;
 
 class AdministrationReportController extends Controller
 {
@@ -55,9 +56,10 @@ class AdministrationReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Report $report)
     {
-        //
+        $states = State::all();
+        return view('administration.report.edit', compact('report', 'states'));
     }
 
     /**

@@ -167,12 +167,41 @@
                                         <!-- Evidence -->
 
                                         <div id="evidence_tab" class="tab-pane">
-                                            <div class="col-md-6">
-                                                <label class="col-sm-2 col-form-label" for="exampleInputImage">Evidencia</label>
-                                            </div>
-                                            <div class="col-md-5 pull-right">
+                                            <!-- <div class="col-md-5 pull-right">
                                                 <input type="file" name="file">
-                                             </div>
+                                             </div> -->
+                                             <div class="form-group">
+                                                <label class="col-md-4">Evidencia</label>
+
+                                                <div class="col-md-4">
+                                                    <button id="add_perpetrator_button" class="btn btn-success btn-rounded">Agregar</button>
+                                                 </div>
+                                                 <hr />
+                                                <div class="col-md-4">
+                                                    <div class="container">
+                                                        <table class="table table-bordered" style="width: 50%;">
+                                                            <tr class="header" >
+                                                                <td colspan="2">
+                                                                    Evidencia 1
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Tipo de Evidencia</strong></td>
+                                                                <td><strong>Archivo</strong></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Imagen</td>
+                                                                <td><img src="{{ asset('/plugins/images/large/ice_e.jpg') }}" class="all studio" alt="gallery"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <button id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>

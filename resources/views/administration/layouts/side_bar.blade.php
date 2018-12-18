@@ -13,6 +13,7 @@
         </ul>
     </li>
     <li class="{{ Request::is('administracion/reportes') ? 'active' : '' }}"> <a href="/administracion/reportes"><i class="icon icon-warning-sign"></i> <span>Reportes</span> <span class="label label-important">{{ $alert_qty }}</span></a> </li>
+    <li class="{{ Request::is('administracion/solicitudes') ? 'active' : '' }}"> <a href="/administracion/solicitudes"><i class="icon icon-warning-sign"></i> <span>Solicitudes</span> <span class="label label-important">{{ $alert_qty }}</span></a> </li>
     <li class="submenu"><a href="#"><i class="icon icon-sitemap"></i> <span>Catálogos</span></a>
         <ul>
             <li class="{{ Request::is('administracion/generos') ? 'active' : '' }}"><a href="/administracion/generos"><i class="icon icon-chevron-right"></i> Género</a></li>

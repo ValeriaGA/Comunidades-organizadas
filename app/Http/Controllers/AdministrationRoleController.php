@@ -57,12 +57,25 @@ class AdministrationRoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'role' => 'required'
+        ]);
+
+        $roles = Role::all();
+
+        $users;
+        foreach($roles as $role)
+        {
+            if ($role->name == $request['role'])
+            {
+                $users = User::where('role_id', $role->id)->orderBy('role_id', 'asc')->get();
+            }
+        }
+        return view('administration.roles.index', compact('users', 'roles'));
     }
 
     /**
