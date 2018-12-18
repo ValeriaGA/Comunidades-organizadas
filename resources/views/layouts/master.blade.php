@@ -127,6 +127,10 @@
 
     <!-- COMMENT -->
     <script src="{{ asset('js/comment.js') }}"></script>
+
+    <!-- REQUEST Communities -->
+    <script src="{{ asset('js/communities.js') }}"></script>
+
 </body>
 
 </html>

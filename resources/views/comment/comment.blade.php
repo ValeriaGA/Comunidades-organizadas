@@ -5,7 +5,7 @@
         <div class="mail-contnet">
             <h5>USER1</h5>
 
-            <span class="mail-desc"> Malditos...</span>
+            <span class="mail-desc">No podemos seguir así...</span>
         
             
         </div>
@@ -18,7 +18,7 @@
         <div class="mail-contnet">
             <h5>USER2</h5>
 
-            <span class="mail-desc"> Cárcel...</span>
+            <span class="mail-desc">Excelente, necesitamos más reportes de este tipo.</span>
         
             
         </div>

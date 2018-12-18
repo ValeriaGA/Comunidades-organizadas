@@ -28,7 +28,8 @@ Route::post('/cantones', 'CantonController@show');
 Route::post('/distritos', 'DistrictController@show');
 Route::post('/comunidades', 'CommunitiesController@show');
 Route::post('/grupos', 'GroupController@show');
-
+Route::get('/comunidades/solicitar-comunidad', 'CommunitiesController@requestIndex');
+Route::get('/comunidades/solicitar-grupo', 'GroupController@requestIndex');
 
 // Profile
 

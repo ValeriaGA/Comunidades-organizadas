@@ -169,17 +169,17 @@ function fillProvinces(){
     
     fillProvinces();
   
-    $("#provinces").on('click', function(){
+    $("#provinces").on('change', function(){
         fillCantons();
 
     });
 
-    $("#cantons").on('click', function(){
+    $("#cantons").on('change', function(){
         fillDistricts();
 
     });
 
-    $("#districts").on('click', function(){
+    $("#districts").on('change', function(){
         fillCommunities();
 
     });
