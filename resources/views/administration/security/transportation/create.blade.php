@@ -20,7 +20,7 @@
           </div>
           <div class="widget-content nopadding">
 
-            <form class="form-horizontal" method="post" action="/administracion/seguridad/categorias">
+            <form class="form-horizontal" method="post" action="/administracion/seguridad/transportes">
               @csrf
 
               <div class="control-group">
@@ -36,10 +36,9 @@
               </div>
 
               <div class="control-group">
-                <label class="control-label">Checkboxes</label>
                 <div class="controls">
                   <label>
-                    <input type="checkbox" name="radios" />
+                    <input type="checkbox" name="active" />
                     Activo</label>
                 </div>
               </div>

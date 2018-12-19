@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CatTransportation;
 
 class AdministrationTransportationController extends Controller
 {
@@ -12,16 +13,6 @@ class AdministrationTransportationController extends Controller
         
         // only administrators are allowed to view this
         $this->middleware('admin');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
     }
 
     /**
@@ -42,29 +33,29 @@ class AdministrationTransportationController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:cat_transportation,name'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        CatTransportation::create([
+            'name' => $request['name'],
+            'active' => ($request['active'] ? true : false)
+        ]);
+
+        session()->flash('message', 'Medio de Transporte creada');
+
+        return redirect('/administracion/seguridad');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  CatTransportation $catTransportation
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CatTransportation $catTransportation)
     {
-        //
+        return view('administration.security.transportation.edit', compact('catTransportation'));
     }
 
     /**
@@ -76,17 +67,23 @@ class AdministrationTransportationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:cat_transportation,name,'.$id,
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        try{
+            $cat = CatTransportation::findOrFail($id);
+
+            $cat->name = $request['name'];
+            $cat->active = ($request['active'] ? true : false);
+
+            $cat->save();
+
+            session()->flash('message', 'Medio de Transporte actualizada');
+            return redirect('/administracion/seguridad');
+        }
+        catch(ModelNotFoundException $err){
+            //Show error page
+        }
     }
 }

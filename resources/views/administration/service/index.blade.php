@@ -35,7 +35,9 @@
                   <td>
                     @if (!is_null($cat_service->multimedia_path))
                       <img src="{{ asset('/plugins/images/icons/'.$cat_service->multimedia_path) }}">
-                    @endif
+                      @else
+                        <img src="{{ asset('/plugins/images/icons/404_small.png') }}">
+                      @endif
                   </td>
                   <td>
                     @if ($cat_service->active == TRUE)

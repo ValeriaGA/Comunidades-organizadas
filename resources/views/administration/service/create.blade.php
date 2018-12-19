@@ -20,7 +20,7 @@
           </div>
           <div class="widget-content nopadding">
 
-            <form class="form-horizontal" method="post" action="/administracion/servicio">
+            <form class="form-horizontal" method="post" action="/administracion/servicio" enctype="multipart/form-data">
               @csrf
 
               <div class="control-group">

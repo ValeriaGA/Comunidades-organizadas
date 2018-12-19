@@ -103,9 +103,13 @@ Route::post('/administracion/administradores', 'AdministrationUsersController@st
 
 // Roles
 Route::get('/administracion/roles', 'AdministrationRoleController@index');
+Route::post('/administracion/roles', 'AdministrationRoleController@store');
 Route::post('/administracion/roles/filtrar', 'AdministrationRoleController@show');
-// Route::get('/administracion/roles/agregar', 'AdministrationRoleController@create');
-Route::get('/administracion/roles/{rol}', 'AdministrationStateController@edit');
+Route::get('/administracion/roles/agregar', 'AdministrationRoleController@create');
+Route::get('/administracion/roles/{role}', 'AdministrationRoleController@edit');
+Route::post('/administracion/roles/{role}', 'AdministrationRoleController@update');
+Route::get('/administracion/roles/usuarios/{user}', 'AdministrationRoleController@editUser');
+Route::post('/administracion/roles/usuarios/{user}', 'AdministrationRoleController@updateUser');
 
 
 // Reports (Report Alerts)
@@ -125,24 +129,30 @@ Route::get('/administracion/publicaciones/{publicacion}', 'AdministrationPublica
 
 // Security Category
 Route::get('/administracion/seguridad', 'AdministrationSecurityController@index');
-
-Route::get('/administracion/seguridad/transportes/agregar', 'AdministrationTransportationController@create');
-Route::get('/administracion/seguridad/armas/agregar', 'AdministrationWeaponController@create');
 Route::get('/administracion/seguridad/categorias/agregar', 'AdministrationSecurityController@create');
+Route::post('/administracion/seguridad/categorias', 'AdministrationSecurityController@store');
+Route::get('/administracion/seguridad/{subCatReport}', 'AdministrationSecurityController@edit');
+Route::post('/administracion/seguridad/categorias/{subCatReport}', 'AdministrationSecurityController@update');
 
+	// Weapon Category
+Route::get('/administracion/seguridad/armas/agregar', 'AdministrationWeaponController@create');
+Route::post('/administracion/seguridad/armas', 'AdministrationWeaponController@store');
+Route::get('/administracion/seguridad/armas/{catWeapon}', 'AdministrationWeaponController@edit');
+Route::post('/administracion/seguridad/armas/{catWeapon}', 'AdministrationWeaponController@update');
 
-Route::post('/administracion/seguridad/categorias', 'AdministrationUsersController@store');
-
-Route::get('/administracion/seguridad/{categoria}', 'AdministrationSecurityController@edit');
-Route::post('/administracion/seguridad/update/{categoria}', 'AdministrationSecurityController@update');
+	// Transportation Category
+Route::get('/administracion/seguridad/transportes/agregar', 'AdministrationTransportationController@create');
+Route::post('/administracion/seguridad/transportes', 'AdministrationTransportationController@store');
+Route::get('/administracion/seguridad/transportes/{catTransportation}', 'AdministrationTransportationController@edit');
+Route::post('/administracion/seguridad/transportes/{catTransportation}', 'AdministrationTransportationController@update');
 
 
 // Service Category
 Route::get('/administracion/servicio', 'AdministrationServiceController@index');
 Route::get('/administracion/servicio/agregar', 'AdministrationServiceController@create');
 Route::post('/administracion/servicio', 'AdministrationServiceController@store');
-Route::get('/administracion/servicio/{service}', 'AdministrationServiceController@edit');
-Route::post('/administracion/servicio/update/{service}', 'AdministrationServiceController@update');
+Route::get('/administracion/servicio/{subCatReport}', 'AdministrationServiceController@edit');
+Route::post('/administracion/servicio/{subCatReport}', 'AdministrationServiceController@update');
 
 // State
 Route::get('/administracion/estados', 'AdministrationStateController@index');

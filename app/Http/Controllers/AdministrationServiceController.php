@@ -48,12 +48,26 @@ class AdministrationServiceController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'name' => 'required|string|max:255|unique:sub_cat_report,name'
+            'name' => 'required|string|max:255|unique:sub_cat_report,name',
+            'file' => 'max:2048'
         ]);
 
-        State::create([
+        $filename = NULL;
+        if ($request->has('file') ? true: false)
+        {
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+            $filename =time().'.'.$extension;
+            $file->move('plugins/images/icons/', $filename);
+        }
+
+        $cat_report = CatReport::where('name', 'Servicio')->first();
+
+        SubCatReport::create([
+            'cat_report_id' => $cat_report->id,
             'name' => $request['name'],
-            'active' => ($request['active'] ? true : false)
+            'active' => ($request['active'] ? true : false),
+            'multimedia_path' => $filename
         ]);
 
         session()->flash('message', 'Tipo de reporte de servicio creado');
@@ -64,12 +78,12 @@ class AdministrationServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  SubCatReport $subCatReport
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubCatReport $service)
+    public function edit(SubCatReport $subCatReport)
     {
-        return view('administration.service.edit', compact('service'));
+        return view('administration.service.edit', compact('subCatReport'));
     }
 
     /**
@@ -82,16 +96,36 @@ class AdministrationServiceController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate(request(), [
-            'name' => 'required|string|max:255|unique:sub_cat_report,name'
+            'name' => 'required|string|max:255|unique:sub_cat_report,name,'.$id,
+            'file' => 'max:2048'
         ]);
 
         try{
-            $service = State::findOrFail($id);
+            $cat = SubCatReport::findOrFail($id);
 
-            $service->name = $request['name'];
-            $service->active = ($request['active'] ? true : false);
+            if ($request->has('file') ? true: false)
+            {
+                if ($cat->multimedia_path != '')
+                {
+                    // File::delete('public/image/users/'.$user->avatar_path);
+                    $path = public_path() . '/plugins/images/icons/' . $cat->multimedia_path;
+                    if(file_exists($path)) {
+                        unlink($path);
+                    }
+                }
 
-            $service->save();
+                $file = $request->file('file');
+                $extension = $file->getClientOriginalExtension();
+                $filename =time().'.'.$extension;
+                $file->move('plugins/images/icons/', $filename);
+
+                $cat->multimedia_path = $filename;
+            }
+
+            $cat->name = $request['name'];
+            $cat->active = ($request['active'] ? true : false);
+
+            $cat->save();
 
             session()->flash('message', 'Tipo de reporte de servicio actualizado');
             return redirect('/administracion/servicio');

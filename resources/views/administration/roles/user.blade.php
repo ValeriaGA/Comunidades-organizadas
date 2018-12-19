@@ -16,22 +16,27 @@
       <div class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-            <h5>Editar Rol</h5>
+            <h5>Editar rol de {{ $user->email }}</h5>
           </div>
           <div class="widget-content nopadding">
 
-            <form class="form-horizontal" method="post" action="/administracion/roles/{{ $role->id }}">
+            <form class="form-horizontal" method="post" action="/administracion/roles/usuarios/{{ $user->id }}">
               @csrf
 
               <div class="control-group">
-                <label class="control-label">Nombre</label>
+                <label class="control-label">Rol</label>
                 <div class="controls">
-                  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $role->name }}" required autofocus>
+                  <select id="role" name="role" value="{{ old('role') }}" required>
+                      @foreach ($roles as $role)
+                          <option value="{{$role->name}}">{{$role->name}}</option>
+                      @endforeach
+                  </select>
+
                   <hr />
-                  @if ($errors->has('name'))
+                  @if ($errors->has('role'))
                     <div class="alert alert-error">
                       <button class="close" data-dismiss="alert">×</button>
-                      <strong>Error!</strong> {{ $errors->first('name') }}
+                      <strong>Error!</strong> {{ $errors->first('role') }}
                     </div>
                   @endif
                 </div>

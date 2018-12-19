@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/seguridad">Seguridad</a> <a href="#" class="current">Categorias</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/seguridad">Seguridad</a> <a href="#" class="current">Transportes</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -16,17 +16,17 @@
       <div class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-            <h5>Crear categoria para reportes de seguridad</h5>
+            <h5>Editar Medio de Transporte</h5>
           </div>
           <div class="widget-content nopadding">
 
-            <form class="form-horizontal" method="post" action="/administracion/seguridad/categorias" enctype="multipart/form-data">
+            <form class="form-horizontal" method="post" action="/administracion/seguridad/transportes/{{ $catTransportation->id }}">
               @csrf
 
               <div class="control-group">
                 <label class="control-label">Nombre</label>
                 <div class="controls">
-                  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $catTransportation->name }}" required>
                   @if ($errors->has('name'))
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $errors->first('name') }}</strong>
@@ -37,16 +37,11 @@
 
               <div class="control-group">
                 <div class="controls">
-                  <label>
-                    <input type="checkbox" name="active" />
-                    Activo</label>
-                </div>
-              </div>
-
-              <div class="control-group">
-                <label class="control-label">Marcador</label>
-                <div class="controls">
-                  <input type="file" name="file"/>
+                  @if ($catTransportation->active)
+                    <label><input type="checkbox" name="active" checked/>Activo</label>
+                  @else
+                    <label><input type="checkbox" name="active"/>Activo</label>
+                  @endif
                 </div>
               </div>
 
