@@ -24,7 +24,7 @@
               <div class="control-group">
                 <label class="control-label">Provincia</label>
                 <div class="controls">
-                  <select name="province" id="provinces" class="form-control dynamic" data-dependent="cantons">
+                  <select name="province" id="provinces" class="form-control">
                       <option value="">Provincia</option>
                   </select>
                 </div>
@@ -33,8 +33,8 @@
               <div class="control-group">
                 <label class="control-label">Cantón</label>
                 <div class="controls">
-                  <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
-                      <option value="">Cantón</option>
+                  <select name="canton" id="cantons" name="canton" class="form-control">
+                    <option value="1" selected="selected">Cantones</option>
                   </select>
                 </div>
               </div>
@@ -42,8 +42,8 @@
               <div class="control-group">
                 <label class="control-label">Distrito</label>
                 <div class="controls">
-                  <select name="district" id="districts" class="form-control dynamic">
-                      <option value="">Distrito</option>
+                  <select name="district" id="districts" class="form-control">
+                    <option value="1" selected="selected">Distritos</option>
                   </select>
                 </div>
               </div>

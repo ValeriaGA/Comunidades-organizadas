@@ -28,9 +28,9 @@ class AdministrationUsersController extends Controller
      */
     public function index()
     {
-        $admin_role = Role::where('name', 'LIKE', 'Administrador')->get();
+        $admin_role = Role::where('name', 'LIKE', 'Administrador')->first();
         
-        $admins = User::where('role_id', $admin_role[0]->id)->get();
+        $admins = User::where('role_id', $admin_role->id)->get();
         return view('administration.administrator.index', compact('admins'));
     }
 

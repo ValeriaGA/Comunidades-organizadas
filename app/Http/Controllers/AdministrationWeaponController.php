@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CatWeapon;
 
 class AdministrationWeaponController extends Controller
 {
@@ -12,16 +13,6 @@ class AdministrationWeaponController extends Controller
         
         // only administrators are allowed to view this
         $this->middleware('admin');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
     }
 
     /**
@@ -42,29 +33,29 @@ class AdministrationWeaponController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:cat_weapon,name'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        CatWeapon::create([
+            'name' => $request['name'],
+            'active' => ($request['active'] ? true : false)
+        ]);
+
+        session()->flash('message', 'Tipo de arma creada');
+
+        return redirect('/administracion/seguridad');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  CatWeapon $catWeapon
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(CatWeapon $catWeapon)
     {
-        //
+        return view('administration.security.weapon.edit', compact('catWeapon'));
     }
 
     /**
@@ -76,17 +67,23 @@ class AdministrationWeaponController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:cat_weapon,name,'.$id,
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        try{
+            $cat = CatWeapon::findOrFail($id);
+
+            $cat->name = $request['name'];
+            $cat->active = ($request['active'] ? true : false);
+
+            $cat->save();
+
+            session()->flash('message', 'Tipo de arma actualizada');
+            return redirect('/administracion/seguridad');
+        }
+        catch(ModelNotFoundException $err){
+            //Show error page
+        }
     }
 }

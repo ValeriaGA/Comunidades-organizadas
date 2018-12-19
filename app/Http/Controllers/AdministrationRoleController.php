@@ -39,8 +39,7 @@ class AdministrationRoleController extends Controller
      */
     public function create()
     {
-        // $roles = Role::all();
-        // return view('administration.roles.create', compact('roles'));
+        return view('administration.roles.create');
     }
 
     /**
@@ -51,7 +50,17 @@ class AdministrationRoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:roles,name'
+        ]);
+
+        Role::create([
+            'name' => $request['name']
+        ]);
+
+        session()->flash('message', 'Rol creadp');
+
+        return redirect('/administracion/roles');
     }
 
     /**
@@ -81,13 +90,18 @@ class AdministrationRoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  User $user
+     * @param  Role $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Role $role)
+    {
+        return view('administration.roles.edit', compact('role'));
+    }
+
+    public function editUser(User $user)
     {
         $roles = Role::all();
-        return view('administration.roles.create', compact('user', 'roles'));
+        return view('administration.roles.user', compact('user', 'roles'));
     }
 
     /**
@@ -99,7 +113,47 @@ class AdministrationRoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required|string|max:255|unique:roles,name,'.$id,
+        ]);
+
+        try{
+            $role= Role::findOrFail($id);
+
+            $role->name = $request['name'];
+            
+            $role->save();
+
+            session()->flash('message', 'Role actualizado');
+            return redirect('/administracion/roles');
+        }
+        catch(ModelNotFoundException $err){
+            //Show error page
+        }
+    }
+
+
+    public function updateUser(Request $request, $id)
+    {
+        $this->validate(request(), [
+            'role' => 'required'
+        ]);
+
+        try{
+            $user= User::findOrFail($id);
+
+            $role= Role::where('name', $request['role'])->first();
+
+            $user->role_id = $role->id;
+            
+            $user->save();
+
+            session()->flash('message', 'Usuario actualizado');
+            return redirect('/administracion/roles');
+        }
+        catch(ModelNotFoundException $err){
+            //Show error page
+        }
     }
 
     /**

@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Seguridad</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/seguridad" class="current">Seguridad</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -40,19 +40,19 @@
                     <td>
                       @if (!is_null($cat_security->multimedia_path))
                         <img src="{{ asset('/plugins/images/icons/'.$cat_security->multimedia_path) }}">
+                      @else
+                        <img src="{{ asset('/plugins/images/icons/404_small.png') }}">
                       @endif
                     </td>
                     <td>
                       @if ($cat_security->active == TRUE)
-                      <input type="checkbox" checked disabled/>
+                        <input type="checkbox" checked disabled/>
                       @else
-                      <input type="checkbox" disabled/>
+                        <input type="checkbox" disabled/>
                       @endif
                     </td>
                     <td>
-                      <form action="/administracion/seguridad/categorias/editar" method="post" enctype="multipart/form-data">
-                        <button class="btn">Editar</button>
-                      </form>
+                      <button name="{{$cat_security->name}}_edit" class="btn" onclick="location.href = '/administracion/seguridad/{{ $cat_security->id }}';">Editar</button>
                     </td>
                   </tr>
                   @endforeach
@@ -82,9 +82,7 @@
                       @endif
                     </td>
                     <td>
-                      <form action="/administracion/seguridad/agregar" method="post" enctype="multipart/form-data">
-                        <button class="btn">Editar</button>
-                      </form>
+                      <button name="{{$cat_weapon->name}}_edit" class="btn" onclick="location.href = '/administracion/seguridad/armas/{{ $cat_weapon->id }}';">Editar</button>
                     </td>
                   </tr>
                   @endforeach
@@ -114,9 +112,7 @@
                       @endif
                     </td>
                     <td>
-                      <form action="/administracion/seguridad/agregar" method="post" enctype="multipart/form-data">
-                        <button class="btn">Editar</button>
-                      </form>
+                      <button name="{{$cat_transportation->name}}_edit" class="btn" onclick="location.href = '/administracion/seguridad/transportes/{{ $cat_transportation->id }}';">Editar</button>
                     </td>
                   </tr>
                   @endforeach

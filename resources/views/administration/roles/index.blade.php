@@ -32,7 +32,7 @@
                 <tr class="">
                   <td>{{$rol->name}}</td>
                   <td>
-                    <button name="{{$rol->name}}_edit" class="btn" onclick="location.href = '/administracion/roles/{{ $rol->id }}';" disabled>Editar</button>
+                    <button name="{{$rol->name}}_edit" class="btn" onclick="location.href = '/administracion/roles/{{ $rol->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
@@ -85,7 +85,7 @@
                   <td>{{$user->email}}</td>
                   <td>{{$user->role->name}}</td>
                   <td>
-                    <button name="{{$user->name}}_edit" class="btn" onclick="location.href = '/administracion/roles/{{ $user->id }}';">Editar</button>
+                    <button name="{{$user->name}}_edit" class="btn" onclick="location.href = '/administracion/roles/usuarios/{{ $user->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach

@@ -20,13 +20,13 @@
           </div>
           <div class="widget-content nopadding">
 
-            <form class="form-horizontal" method="post" action="/administracion/servicio/update/{{ $service->id }}">
+            <form class="form-horizontal" method="post" action="/administracion/servicio/{{ $subCatReport->id }}" enctype="multipart/form-data">
               @csrf
 
               <div class="control-group">
                 <label class="control-label">Nombre</label>
                 <div class="controls">
-                  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $service->name }}" required autofocus>
+                  <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $subCatReport->name }}" required>
                   <hr />
                   @if ($errors->has('name'))
                     <div class="alert alert-error">
@@ -39,11 +39,21 @@
 
               <div class="control-group">
                 <div class="controls">
-                    @if ($service->active)
-                      <label><input type="checkbox" name="active" checked/>Activo</label>
-                    @else
-                      <label><input type="checkbox" name="active"/>Activo</label>
-                    @endif
+                  @if ($subCatReport->active)
+                    <label><input type="checkbox" name="active" checked/>Activo</label>
+                  @else
+                    <label><input type="checkbox" name="active"/>Activo</label>
+                  @endif
+                </div>
+              </div>
+
+              <div class="control-group">
+                <div class="controls">
+                  @if (!is_null($subCatReport->multimedia_path))
+                    <img src="{{ asset('/plugins/images/icons/'.$subCatReport->multimedia_path) }}">
+                  @else
+                    <img src="{{ asset('/plugins/images/icons/404.png') }}">
+                  @endif
                 </div>
               </div>
 
