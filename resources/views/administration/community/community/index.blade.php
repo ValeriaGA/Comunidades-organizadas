@@ -25,7 +25,13 @@
                 <label class="control-label">Provincia</label>
                 <div class="controls">
                   <select name="province" id="provinces" class="form-control">
-                      <option value="">Provincia</option>
+                    <option value="1" selected>San José</option>
+                    <option value="2">Alajuela</option>
+                    <option value="3">Cartago</option>
+                    <option value="4">Heredia</option>
+                    <option value="5">Guanacaste</option>
+                    <option value="6">Puntarenas</option>
+                    <option value="7">Limón</option>
                   </select>
                 </div>
               </div>

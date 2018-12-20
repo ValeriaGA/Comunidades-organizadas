@@ -62,7 +62,7 @@ function fillProvinces(){
       dataType: "json",
       success: function(districts){
         fillControl('districts', districts);
-        fillCommunities();
+        //fillCommunities();
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
@@ -168,10 +168,10 @@ function fillProvinces(){
   $(document).ready(function(){
     
     fillProvinces();
-  
+
     $("#provinces").on('change', function(){
         fillCantons();
-
+        
     });
 
     $("#cantons").on('change', function(){
