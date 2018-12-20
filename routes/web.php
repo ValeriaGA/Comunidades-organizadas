@@ -23,9 +23,10 @@ Route::get('/fontawesome', function () {
 
 
 // Provinces, cantones y distritos
-Route::get('/provincias', 'ProvinceController@index');
-Route::post('/cantones', 'CantonController@show');
-Route::post('/distritos', 'DistrictController@show');
+Route::any('/provincias', 'ProvinceController@index');
+Route::any('/cantones', 'CantonController@show');
+Route::any('/distritos', 'DistrictController@show');
+
 Route::post('/comunidades', 'CommunitiesController@show');
 Route::post('/grupos', 'GroupController@show');
 Route::get('/comunidades/solicitar-comunidad', 'CommunitiesController@requestIndex');

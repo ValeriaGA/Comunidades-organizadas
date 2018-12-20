@@ -17,13 +17,13 @@ class ProvincesTableSeeder extends Seeder
                 [
                 	'name' => 'San José',
                 	'country_id' => $costa_rica->id
-            	],
-                [
-                	'name' => 'Heredia',
+				],
+				[
+                	'name' => 'Alajuela',
                 	'country_id' => $costa_rica->id
             	],
                 [
-                	'name' => 'Alajuela',
+                	'name' => 'Heredia',
                 	'country_id' => $costa_rica->id
             	],
                 [
