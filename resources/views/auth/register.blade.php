@@ -150,11 +150,17 @@
                         </div> -->
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-6 offset-md-4" style="margin-left: 300px;">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Registrar') }}
                                 </button>
                             </div>
+                        </div>
+                        <br/>
+                        <div class="form-group row mb-0" style="margin-left: 150px">
+                          
+                                Al registrarse está de acuerdo con los &nbsp; <a href="/terminos-y-condiciones" > Términos y Condiciones </a>
+                           
                         </div>
                     </form>
                 </div>
