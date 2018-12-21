@@ -22,6 +22,7 @@ Route::get('/fontawesome', function () {
 });
 
 Route::get('/informacion', 'InformationController@index');
+Route::get('/terminos-y-condiciones', 'TermsController@index');
 
 
 // Provinces, cantones y distritos

@@ -42,7 +42,12 @@
                                                                 <div class="mail-contnet">
                                                                     <span class="time"><b>Teléfonos</b>: 2435-4837</span>
                                                                     <br/>
-                                                                    <span class="mail-desc"> Brindamos servicios de prevención y protección para salvaguardar la vida, los bienes y el medio ambiente. </span>
+                                                                    <br/>
+                                                                    <span> 
+                                                                        Brindamos servicios de prevención y protección para salvaguardar la vida,
+                                                                         los bienes y el medio ambiente. 
+                                                                        
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                           
@@ -62,7 +67,8 @@
                                                                     <div class="mail-contnet">
                                                                         <span class="time"><b>Teléfonos</b>: 2435-4837</span>
                                                                         <br/>
-                                                                        <span class="mail-desc"> Seguridad ante todo, </span>
+                                                                        <br/>
+                                                                        <span > Seguridad ante todo, </span>
                                                                     </div>
                                                                 </div>
                                                               
@@ -82,7 +88,8 @@
                                                                     <div class="mail-contnet">
                                                                         <span class="time"><b>Teléfonos</b>: 2435-4837</span>
                                                                         <br/>
-                                                                        <span class="mail-desc"> Organismo de Invesigación Judicial </span>
+                                                                        <br/>
+                                                                        <span > Organismo de Invesigación Judicial </span>
                                                                     </div>
                                                                 </div>
                                                               
