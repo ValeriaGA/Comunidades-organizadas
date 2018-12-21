@@ -58,7 +58,7 @@ class AdministrationRoleController extends Controller
             'name' => $request['name']
         ]);
 
-        session()->flash('message', 'Rol creadp');
+        session()->flash('message', 'Rol creado');
 
         return redirect('/administracion/roles');
     }

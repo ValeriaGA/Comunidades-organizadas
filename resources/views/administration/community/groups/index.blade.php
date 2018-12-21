@@ -14,6 +14,61 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
+
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>Seleccionar</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <form method="post" class="form-horizontal" action="/administracion/comunidades/grupos/filtrar">
+              @csrf
+              <div class="control-group">
+                <label class="control-label">Provincia</label>
+                <div class="controls">
+                  <select name="province" id="provinces" class="form-control">
+                    <option value="1" selected>San José</option>
+                    <option value="2">Alajuela</option>
+                    <option value="3">Cartago</option>
+                    <option value="4">Heredia</option>
+                    <option value="5">Guanacaste</option>
+                    <option value="6">Puntarenas</option>
+                    <option value="7">Limón</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">Cantón</label>
+                <div class="controls">
+                  <select name="canton" id="cantons" name="canton" class="form-control">
+                    <option value="1" selected="selected">Cantones</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">Distrito</label>
+                <div class="controls">
+                  <select name="district" id="districts" class="form-control">
+                    <option value="1" selected="selected">Distritos</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">Comunidades</label>
+                <div class="controls">
+                  <select name="community" id="communities" class="form-control">
+                    <option value="1" selected="selected">Comunidades</option>
+                  </select>
+                </div>
+              </div>
+
+              <input type="submit" value="Filtrar" class="btn btn-success">
+            </form>
+          </div>
+        </div>
+
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Grupos de comunidades</h5>

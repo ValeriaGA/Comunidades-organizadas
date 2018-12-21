@@ -24,10 +24,16 @@
                             Detalles
 
                             @if($report -> user_id == Auth::id())
-                                <a id="editReportButton" style="margin-left: 750px; background-color: green; color:white;" href="/seguridad/editar/{{ $report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5" active="0">
-                                    Editar
+                                <a id="editReportButton" href="/seguridad/editar/{{ $report->id }}" class="btn btn btn-rounded btn-warning btn-outline m-r-5 pull-right" active="0">
+                                  Editar
                                 </a>
                             @endif
+
+                            <a href="/reportar/{{ $report->id }}" class="btn btn btn-rounded btn-danger btn-outline m-r-5 pull-right">
+                              Reportar
+                            </a>
+
+                            <button id="likeButton1" onclick="{{'onclick_likeButton(this)'}}" class="btn btn btn-rounded btn-success btn-outline m-r-5 like-button pull-right" active="0">Gracias</button>
 
                         </div>
                         <div class="panel-wrapper collapse in">
@@ -211,7 +217,7 @@
                                     <textarea id="commentInput" rows="5" class="form-control form-control-line" name="description" placeholder="Nuevo comentario..."required></textarea>
                                 </div>
 
-                                <button id="commentButton" style="margin-left: 500px;" onclick="addComment('commentInput')" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0">
+                                <button id="commentButton" style="margin-left: 500px;" onclick="addComment('commentInput')" class="btn btn btn-rounded btn-primary btn-outline m-r-5 like-button pull-right" active="0">
                                     Comentar
                                 </button>
                             </div>

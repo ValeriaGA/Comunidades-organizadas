@@ -7,7 +7,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/comunidades/comunidad" class="current">Comunidades</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/comunidades/comunidad">Comunidades</a></a> <a href="/administracion/comunidades/comunidad" class="current">Comunidad</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -20,7 +20,8 @@
             <h5>Seleccionar</h5>
           </div>
           <div class="widget-content nopadding">
-            <form action="#" method="get" class="form-horizontal">
+            <form method="post" class="form-horizontal" action="/administracion/comunidades/comunidad/filtrar">
+              @csrf
               <div class="control-group">
                 <label class="control-label">Provincia</label>
                 <div class="controls">
@@ -53,7 +54,8 @@
                   </select>
                 </div>
               </div>
-              
+
+              <input type="submit" value="Filtrar" class="btn btn-success">
             </form>
           </div>
         </div>
@@ -73,7 +75,7 @@
               </thead>
               <tbody>
                 @foreach ($communities as $community) 
-                <tr class="gradeX">
+                <tr class="">
                   <td>{{$community->name}}</td>
                   <td>{{$community->district->name}}</td>
                   <td>

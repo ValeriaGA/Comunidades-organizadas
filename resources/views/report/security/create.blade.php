@@ -198,29 +198,28 @@
                                         <!-- Victims & Perpetrators w/ gender-->
 
                                         <div id="involved_tab" class="tab-pane">
-                                            <div class="form-group">
-                                                
-                                            </div>
 
                                             <div class="form-group">
                                                 <label style="margin-left: 10px;">Víctimas</label>
 
         
-                                                <button style="margin-left: 170px;" id="add_perpetrator_button" class="btn btn-success btn-rounded">Agregar</button>
+                                                <input type="button" style="margin-left: 170px;" id="add_victim_button" class="btn btn-success btn-rounded" value="Agregar" />
 
                                                 <br>
                                                 <br>
                                                 <div class="col-md-4">
                                                     <div class="container">
-                                                        <table class="table table-bordered" style="width: 250px;">
-                                                            <tr class="header" >
-                                                                <td colspan="2">
-                                                                    Víctima 1
-                                                                </td>
+                                                        <table id="victim_table" class="table table-bordered" style="width: 250px;">
+                                                            <tr class="header">
+                                                                <td colspan="2"></td>
                                                             </tr>
                                                             <tr>
-                                                                <td><strong>Género</strong></td>
-                                                                <td><strong>Descripción</strong></td>
+                                                                <td>
+                                                                    <strong>Género</strong>
+                                                                </td>
+                                                                <td>
+                                                                    <strong>Descripción</strong>
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Masculino</td>
@@ -228,7 +227,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">
-                                                                    <button style="margin-left: 75px;" id="remove_perpetrator_button" class="btn btn-danger btn-rounded">Remover</button>
+                                                                    <input type="button" style="margin-left: 75px;" id="remove_victim_button" class="btn btn-danger btn-rounded" value="Remover">
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -247,9 +246,7 @@
                                                     <div class="container">
                                                         <table class="table table-bordered" style="width: 250px;">
                                                             <tr class="header" >
-                                                                <td colspan="2">
-                                                                    Perpetrador 1
-                                                                </td>
+                                                                <td colspan="2"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td><strong>Género</strong></td>
@@ -265,9 +262,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr class="header">
-                                                                <td colspan="2">
-                                                                    Perpetrador 2
-                                                                </td>
+                                                                <td colspan="2"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td><strong>Género</strong></td>
@@ -338,5 +333,4 @@
             </div>
             <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer> 
         </div>
-
 @endsection

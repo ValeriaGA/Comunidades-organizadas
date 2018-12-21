@@ -30,7 +30,13 @@
           var dict = {};
 
           dict['name'] = type['name'];
-          dict['url'] = iconBase + type['multimedia_path'];
+          if (type['multimedia_path'] != null)
+          {
+            dict['url'] = iconBase + type['multimedia_path'];
+          }else
+          {
+            dict['url'] = iconBase + '404_small.png';
+          }
           dict['size'] = new google.maps.Size(30, 38);
           dict['origin'] = new google.maps.Point(0, 0);
           dict['anchor'] = new google.maps.Point(15, 38);

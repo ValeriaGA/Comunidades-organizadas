@@ -3,6 +3,8 @@
         <div class="comment-center p-t-10">
 			@foreach ($security_reports as $security_report)
 	            <div class="comment-body">
+				        <span class="label label-table label-success">{{ $security_report->state->name }}</span>
+				        <br/>
 				    <div class="user-img"> 
 					    @if (!is_null($security_report->user->avatar_path))
 					        <img src="{{ asset('images/users/'.$security_report->user->avatar_path) }}"  alt="user" class="img-circle">
@@ -11,7 +13,7 @@
 					    @endif
 				    </div>
 				    <div class="mail-contnet">
-				        <h5>{{ $security_report->user->name }}</h5>
+				        <h5>{{ $security_report->title }}</h5>
 				        <span class="time"><b>Fecha y Hora</b>: {{ $security_report->date }} {{ $security_report->time }}</span>
 				        <br/>
 				        <span class="time"><b>Lugar:</b> {{ $security_report->communityGroup->name }}</span>
@@ -19,14 +21,11 @@
 				        <span class="time"><b>Tipo:</b> {{ $security_report->subCatReport->name }}</span>
 				        <br/>
 				        <span class="mail-desc"> {{ $security_report->description }} </span>
-				        <button id="likeButton1" onclick="{{'onclick_likeButton(this)'}}" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0">Gracias</button>
-				        <a href="/seguridad/{{ $security_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5">
-				        	<i class="ti-check text-success m-r-5"></i>Detalles
-						</a>
+				        <button id="likeButton1" onclick="{{'onclick_likeButton(this)'}}" class="btn btn btn-rounded btn-success btn-outline m-r-5 like-button" active="0">Gracias</button>
+				        <a href="/seguridad/{{ $security_report->id }}" class="btn btn btn-rounded btn-info btn-outline m-r-5">Detalles</a>
+				        <a href="/reportar/{{ $security_report->id }}" class="btn btn btn-rounded btn-danger btn-outline m-r-5">Reportar</a>
 						@if($security_report -> user_id == Auth::id())
-							<a id="editReportButton" href="/seguridad/editar/{{ $security_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5" active="0">
-								Editar
-							</a>
+							<a id="editReportButton" href="/seguridad/editar/{{ $security_report->id }}" class="btn btn btn-rounded btn-warning btn-outline m-r-5" active="0">Editar</a>
 						@endif
 					</div>
 					

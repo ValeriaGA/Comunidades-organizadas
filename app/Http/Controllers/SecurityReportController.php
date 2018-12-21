@@ -11,6 +11,8 @@ use App\SubCatReport;
 use App\CatEvidence;
 use App\CatTransportation;
 use App\CatWeapon;
+use App\State;
+use App\SecurityReport;
 use Auth;
 use DateTime;
 use DateTimeZone;
@@ -142,6 +144,9 @@ class SecurityReportController extends Controller
      */
     public function edit($id)
     {
+        $security_report = SecurityReport::find($id);
+        $report = $security_report->report;
+
         $community_groups = CommunityGroup::all();
 
         $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->get();
@@ -151,11 +156,13 @@ class SecurityReportController extends Controller
         $cat_transportation = CatTransportation::get();
         $cat_weapon = CatWeapon::get();
 
+        $states = State::get();
+
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
         $time = $dt->format('H:i:s');
 
-        return view('report.security.edit', compact('categories_security', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups'));
+        return view('report.security.edit', compact('report', 'categories_security', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups', 'states'));
     }
 
     /**

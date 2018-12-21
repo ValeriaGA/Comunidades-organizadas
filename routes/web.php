@@ -54,6 +54,9 @@ Route::get('/servicio/editar/{reporte}', 'ServiceReportController@edit');
 Route::get('/noticia/agregar', 'NewsController@create');
 Route::post('/noticia', 'NewsController@store');
 
+// Report (ReportAlert)
+Route::get('/reportar/{reporte}', 'ReportAlertController@create');
+
 // Statistics
 
 Route::get('/statistics', 'StatisticsController@index');
@@ -179,7 +182,10 @@ Route::post('/administracion/evidencias/update/{evidence}', 'AdministrationEvide
 // Communities
 Route::get('/administracion/comunidades/comunidad', 'AdministrationCommunityController@index');
 Route::get('/administracion/comunidades/comunidad/agregar', 'AdministrationCommunityController@create');
-Route::get('/administracion/comunidades/comunidad/{community_group}', 'AdministrationCommunityController@edit');
+Route::post('/administracion/comunidades/comunidad', 'AdministrationCommunityController@store');
+Route::get('/administracion/comunidades/comunidad/{community}', 'AdministrationCommunityController@edit');
+Route::post('/administracion/comunidades/comunidad/update/{community}', 'AdministrationCommunityController@update');
+Route::post('/administracion/comunidades/comunidad/filtrar', 'AdministrationCommunityController@show');
 
 Route::get('/administracion/comunidades/grupos', 'AdministrationCommunityGroupController@index');
 Route::get('/administracion/comunidades/grupos/agregar', 'AdministrationCommunityGroupController@create');

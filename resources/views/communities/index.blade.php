@@ -87,8 +87,8 @@
                     <div class="col-md-12  col-sm-12">
                         <div class="white-box">
                             <h3 class="box-title" style="display:inline;">Grupos de Comunidades</h3>
-                            <button onclick="window.location.href='/comunidades/solicitar-comunidad'" style="margin-left: 350px; display:inline; background-color:green; color:white;" id="requestCommunity" class="btn btn btn-rounded btn-default btn-outline"> Solicitar Comunidad </button>
-                            <button onclick="window.location.href='/comunidades/solicitar-grupo'" style="margin-left: 25px; display:inline; background-color:green; color:white;" id="requestGroup"  class="btn btn btn-rounded btn-default btn-outline"> Solicitar Grupo </button>
+                            <button onclick="window.location.href='/comunidades/solicitar-comunidad'" id="requestCommunity" class="btn btn btn-rounded btn-success btn-outline pull-right"> Solicitar Comunidad </button>
+                            <button onclick="window.location.href='/comunidades/solicitar-grupo'" id="requestGroup"  class="btn btn btn-rounded btn-success btn-outline pull-right"> Solicitar Grupo </button>
 
                             <br>
                             <br>
@@ -98,7 +98,7 @@
                                         <tr class="header" >
                                             <td colspan="2">
                                                 Grupo de Comunidades de San Teo y Loadad
-                                                <button style="margin-left: 700px; display:inline;" id="followButton1" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0" > Seguir </button>
+                                                <button style="margin-left: 700px; display:inline;" id="followButton1" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-success btn-outline m-r-5 like-button" active="0" > Seguir </button>
                                             </td>
                                         </tr>   
        
@@ -111,7 +111,7 @@
                                       <tr class="header">
                                         <td colspan="2">
                                             Grupo de Comunidades de Barrios Unidos
-                                            <button style="margin-left: 700px;" id="followButton2" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0" > Seguir </button>
+                                            <button style="margin-left: 700px;" id="followButton2" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-success btn-outline m-r-5 like-button" active="0" > Seguir </button>
                                         </td>
                                       </tr>
                                       <tr>
