@@ -8,6 +8,7 @@ use App\Report;
 use App\CatEvidence;
 use App\CatReport;
 use App\SubCatReport;
+use App\State;
 use Auth;
 use DateTime;
 use DateTimeZone;
@@ -84,16 +85,19 @@ class ServiceReportController extends Controller
     {
         $community_groups = CommunityGroup::all();
 
+        $report = Report::find($id);
+
         $cat_service = CatReport::where('name', 'LIKE', 'Servicio')->get();
         $categories_service = SubCatReport::where('cat_report_id', $cat_service[0]->id)->get();
 
         $cat_evidence = CatEvidence::get();
+        $states = State::get();
 
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
         $time = $dt->format('H:i:s');
 
-        return view('report.service.edit', compact('categories_service', 'cat_evidence', 'date', 'time', 'community_groups'));
+        return view('report.service.edit', compact('report', 'categories_service', 'cat_evidence', 'date', 'time', 'community_groups', 'states'));
     }
 
     /**

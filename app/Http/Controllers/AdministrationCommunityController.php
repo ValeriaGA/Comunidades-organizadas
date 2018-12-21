@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Community;
+use App\District;
 
 class AdministrationCommunityController extends Controller
 {
@@ -44,18 +45,34 @@ class AdministrationCommunityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required|string|max:255',
+            'district' => 'required'
+        ]);
+
+        Community::create([
+            'name' => $request['name'],
+            'district_id' => $request['district']
+        ]);
+
+        session()->flash('message', 'Comunidad Creada');
+
+        return redirect('/administracion/comunidades/comunidad');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'district' => 'required'
+        ]);
+
+        $communities = Community::where('district_id', $request['district'])->orderBy('name', 'asc')->get();
+        return view('administration.community.community.index', compact('communities'));
     }
 
     /**
@@ -78,17 +95,25 @@ class AdministrationCommunityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $this->validate(request(), [
+            'name' => 'required|string|max:255',
+            'district' => 'required'
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        try{
+            $community= Community::findOrFail($id);
+
+            $community->name = $request['name'];
+
+            $community->district_id = $request['district'];
+            
+            $community->save();
+
+            session()->flash('message', 'Comunidad actualizado');
+            return redirect('/administracion/comunidades/comunidad');
+        }
+        catch(ModelNotFoundException $err){
+            //Show error page
+        }
     }
 }

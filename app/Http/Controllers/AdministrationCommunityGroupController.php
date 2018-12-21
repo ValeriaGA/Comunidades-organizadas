@@ -62,6 +62,21 @@ class AdministrationCommunityGroupController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        $this->validate(request(), [
+            'district' => 'required'
+        ]);
+
+        $communities = CommunityGroup::where('district_id', $request['district'])->orderBy('name', 'asc')->get();
+        return view('administration.community.community.index', compact('communities'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  CommunityGroup $community_group

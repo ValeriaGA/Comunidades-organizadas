@@ -13,7 +13,7 @@ function onclick_likeButton(element)
     {
         element.style.backgroundColor = "white";
         $('#' + element.getAttribute("id")).attr('active', '0');
-        element.style.color = "black";
+        element.style.color = "green";
     }
 
  

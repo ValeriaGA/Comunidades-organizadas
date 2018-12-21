@@ -58,6 +58,9 @@
                             <div class="vtabs">
                                 <ul class="nav tabs-vertical">
                                     <li class="tab active">
+                                        <a data-toggle="tab" href="#settings_tab" aria-expanded="true"> <span class="visible-xs"><i class="ti-home"></i></span> <span class="hidden-xs">Administrativas</span> </a>
+                                    </li>
+                                    <li class="tab">
                                         <a data-toggle="tab" href="#details_tab" aria-expanded="true"> <span class="visible-xs"><i class="ti-home"></i></span> <span class="hidden-xs">Detalles</span> </a>
                                     </li>
                                     <li class="tab">
@@ -74,9 +77,40 @@
                                     {{ csrf_field() }}
                                     <div class="tab-content">
 
+                                        <!-- Settings -->
+
+                                        <div id="settings_tab" class="tab-pane active">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    @if ($report->active == TRUE)
+                                                        <div class="checkbox checkbox-success checkbox-circle">
+                                                          <input id="active-cb" type="checkbox" name="active-cb" checked>
+                                                          <label for="active-cb"> Activo </label>
+                                                        </div>
+                                                    @else
+                                                        <div class="checkbox checkbox-success checkbox-circle">
+                                                          <input id="active-cb" type="checkbox" name="active-cb">
+                                                          <label for="active-cb"> Activo </label>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-12">Estado</label>
+                                                <div class="col-md-12">
+                                                    <select class="form-control" name="states" required>
+                                                      @foreach ($states as $state)
+                                                          <option value="{{$state->name}}">{{$state->name}}</option>
+                                                      @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <!-- Details -->
 
-                                        <div id="details_tab" class="tab-pane active">
+                                        <div id="details_tab" class="tab-pane">
                                             <div class="form-group">
                                                 <label class="col-md-12">Tipo de reporte de seguridad</label>
                                                 <div class="col-md-12">
@@ -198,9 +232,6 @@
                                         <!-- Victims & Perpetrators w/ gender-->
 
                                         <div id="involved_tab" class="tab-pane">
-                                            <div class="form-group">
-                                                
-                                            </div>
 
                                             <div class="form-group">
                                                 <label style="margin-left: 10px;">Víctimas</label>

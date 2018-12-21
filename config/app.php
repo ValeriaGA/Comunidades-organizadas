@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'infoDenuncias'),
+    'name' => env('APP_NAME', 'Comunidades Organizadas'),
 
     /*
     |--------------------------------------------------------------------------
