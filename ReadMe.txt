@@ -13,3 +13,6 @@ php artisan key:generate
 php artisan cache:clear
 
 php artisan db:seed
+
+#Pruebas
+php artisan dusk:install
