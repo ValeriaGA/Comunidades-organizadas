@@ -21,6 +21,9 @@ Route::get('/fontawesome', function () {
     return view('fontawesome');
 });
 
+Route::get('/informacion', 'InformationController@index');
+Route::get('/terminos-y-condiciones', 'TermsController@index');
+
 
 // Provinces, cantones y distritos
 Route::any('/provincias', 'ProvinceController@index');
