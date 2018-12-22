@@ -47,6 +47,13 @@
                 <label class="control-label">Marcador</label>
                 <div class="controls">
                   <input type="file" name="file"/>
+                  <hr />
+                  @if ($errors->has('file'))
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('file') }}
+                    </div>
+                  @endif
                 </div>
               </div>
 

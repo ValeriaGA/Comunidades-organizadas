@@ -40,7 +40,7 @@
               <div class="control-group">
                 <label class="control-label">Cantón</label>
                 <div class="controls">
-                  <select name="canton" id="cantons" name="canton" class="form-control">
+                  <select name="canton" id="cantons" class="form-control">
                     <option value="1" selected="selected">Cantones</option>
                   </select>
                 </div>
@@ -61,6 +61,13 @@
                   <select name="community" id="communities" class="form-control">
                     <option value="1" selected="selected">Comunidades</option>
                   </select>
+                  <hr />
+                  @if ($errors->has('community'))
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('community') }}
+                    </div>
+                  @endif
                 </div>
               </div>
 

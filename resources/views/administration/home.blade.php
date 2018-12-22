@@ -22,23 +22,51 @@
             <div class="todo">
               <ul>
                 <li class="clearfix">
-                  <div class="txt"> Incidentes <span class="by label">Admin</span></div>
+                  <div class="txt"> Reportes <span class="by label">Funcionalidad</span></div>
                   <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
                 </li>
                 <li class="clearfix">
-                  <div class="txt"> Reportes <span class="by label">Admin</span></div>
+                  <div class="txt"> Publicaciones <span class="by label">Funcionalidad</span></div>
                   <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
                 </li>
                 <li class="clearfix">
-                  <div class="txt"> Comunidades <span class="by label">Admin</span></div>
+                  <div class="txt"> Pagina usuarios regulares <span class="by label">Funcionalidad</span></div>
                   <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
                 </li>
                 <li class="clearfix">
-                  <div class="txt"> Publicaciones <span class="by label">Admin</span></div>
+                  <div class="txt"> Pagina usuarios regulares [Paginate HomeController] <span class="by label">Funcionalidad</span></div>
                   <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
                 </li>
                 <li class="clearfix">
-                  <div class="txt"> Fix broken reg page <span class="by label">Admin</span></div>
+                  <div class="txt"> Pagina usuarios regulares [Quitar necesidad de tener id en modulo de reportes] <span class="by label">Diseño</span></div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+                <li class="clearfix">
+                  <div class="txt"> Block Users <span class="by label">Funcionalidad y Diseño</span></div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+                <li class="clearfix">
+                  <div class="txt"> Admin Logs [Triggers[<span class="by label">Funcionalidad y Diseño</span></div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+                <li class="clearfix">
+                  <div class="txt"> Solicitudes de comunidades <span class="by label">Funcionalidad y Diseño</span></div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+                <li class="clearfix">
+                  <div class="txt"> JS file fixes <span class="by label">Fixes</span></div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+                <li class="clearfix">
+                  <div class="txt"> Stored Procedures en Laravel <span class="by label">Diseño</span></div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+                <li class="clearfix">
+                  <div class="txt"> Paginate en pagina de administradores? <span class="by label">Diseño</span></div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+                <li class="clearfix">
+                  <div class="txt"> # en sidebar esta en base a reportes [Cambiar a solicitudes] <span class="by label">Funcionalidad</span></div>
                   <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
                 </li>
               </ul>

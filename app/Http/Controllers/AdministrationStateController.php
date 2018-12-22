@@ -80,7 +80,7 @@ class AdministrationStateController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate(request(), [
-            'name' => 'required|string|max:255|unique:states,name'
+            'name' => 'required|string|max:255|unique:states,name,'.$id
         ]);
 
         try{

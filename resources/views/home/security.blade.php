@@ -25,7 +25,7 @@
 				        <a href="/seguridad/{{ $security_report->id }}" class="btn btn btn-rounded btn-info btn-outline m-r-5">Detalles</a>
 				        <a href="/reportar/{{ $security_report->id }}" class="btn btn btn-rounded btn-danger btn-outline m-r-5">Reportar</a>
 						@if($security_report -> user_id == Auth::id())
-							<a id="editReportButton" href="/seguridad/editar/{{ $security_report->id }}" class="btn btn btn-rounded btn-warning btn-outline m-r-5" active="0">Editar</a>
+							<a id="editReportButton" href="/seguridad/editar/{{ $security_report->id }}" class="btn btn btn-rounded btn-warning btn-outline m-r-5">Editar</a>
 						@endif
 					</div>
 					

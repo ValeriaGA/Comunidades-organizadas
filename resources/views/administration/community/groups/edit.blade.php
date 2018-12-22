@@ -67,10 +67,18 @@
               <div class="control-group">
                 <label class="control-label">Comunidad</label>
                 <div class="controls">
-                  <select multiple name="community" id="communities" class="form-control">
-                      <option value="">Comunidad</option>
+                  <select multiple name="community[]" id="communities" class="form-control">
+                     
                   </select>
+                  <hr />
+                  @if ($errors->has('community'))
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('community') }}
+                    </div>
+                  @endif
                 </div>
+                </ul>
               </div>
 
               <div class="form-actions">

@@ -52,6 +52,13 @@
                   <select name="district" id="districts" class="form-control">
                     <option value="1" selected="selected">Distritos</option>
                   </select>
+                  <hr />
+                  @if ($errors->has('district'))
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('district') }}
+                    </div>
+                  @endif
                 </div>
               </div>
 

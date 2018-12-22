@@ -84,7 +84,7 @@ function fillProvinces(){
   
     $.ajax({
       method: 'POST',
-      url: "/comunidades",
+      url: "/comunidad",
       data:communityInfo,
       dataType: "json",
       success: function(communities){
@@ -93,7 +93,7 @@ function fillProvinces(){
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
-        alert(xhr.status + " " + errorInfo + " Communities");
+        console.log(xhr.status + " " + errorInfo);
       }
     });
     return 1;
@@ -108,7 +108,7 @@ function fillProvinces(){
         _token: $('meta[name="_token"]').attr('content'),
         id: groupID
     }
-  
+    
     $.ajax({
       method: 'POST',
       url: "/grupos",
@@ -119,7 +119,7 @@ function fillProvinces(){
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
-        alert(xhr.status + " " + errorInfo + " Groups");
+        console.log(xhr.status + " " + errorInfo);
       }
     });
     return 1;
@@ -153,8 +153,13 @@ function fillProvinces(){
               
        }));
      });
-     $("#" + controlID).val($("#" + controlID + " option:first").val());
-     selected = $("#" + controlID + " option:selected").val();
+
+    var isMulti = document.getElementById(controlID).multiple;
+    if (!isMulti)
+    {
+      $("#" + controlID).val($("#" + controlID + " option:first").val());
+      selected = $("#" + controlID + " option:selected").val();
+    }
   }
 
   
@@ -169,25 +174,40 @@ function fillProvinces(){
     
     fillProvinces();
 
-    $("#provinces").on('change', function(){
+    var cantons = document.getElementById("cantons");
+    if (cantons != null)
+    {
+      $("#provinces").on('change', function(){
         fillCantons();
         
-    });
+      });
+    }
+    
 
-    $("#cantons").on('change', function(){
-        fillDistricts();
+    var districts = document.getElementById("districts");
+    if (districts != null)
+    {
+      $("#cantons").on('change', function(){
+          fillDistricts();
+      });
+    }
 
-    });
+    var communities = document.getElementById("communities");
+    if (communities != null)
+    {
+      $("#districts").on('change', function(){
+          fillCommunities();
+      });
+    }
 
-    $("#districts").on('change', function(){
-        fillCommunities();
+    var community_groups = document.getElementById("community_groups");
+    if (community_groups != null)
+    {
+      $("#communities").on('click', function(){
+          fillGroups();
 
-    });
-
-    $("#communities").on('change', function(){
-        fillGroups();
-
-    });
+      });
+    }
   
   });
   

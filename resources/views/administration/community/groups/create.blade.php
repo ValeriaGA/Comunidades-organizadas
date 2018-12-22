@@ -37,6 +37,49 @@
                 </div>
               </div>
 
+              <div class="control-group">
+                <label class="control-label">Provincia</label>
+                <div class="controls">
+                  <select name="province" id="provinces" class="form-control">
+                      <option value="">Provincia</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">Canton</label>
+                <div class="controls">
+                  <select name="canton" id="cantons" class="form-control">
+                      <option value="">Canton</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">Distrito</label>
+                <div class="controls">
+                  <select name="district" id="districts" class="form-control">
+                      <option value="">Distrito</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">Comunidad</label>
+                <div class="controls">
+                  <select multiple name="community[]" id="communities" class="form-control">
+                      <option value="">Comunidad</option>
+                  </select>
+                  <hr />
+                  @if ($errors->has('community'))
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('community') }}
+                    </div>
+                  @endif
+                </div>
+              </div>
+
               <div class="form-actions">
                 <input type="submit" value="Confirmar" class="btn btn-success">
               </div>

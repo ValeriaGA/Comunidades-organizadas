@@ -131,7 +131,7 @@
     <!-- REQUEST Communities -->
     <script src="{{ asset('js/communities.js') }}"></script>
 
-    <!-- <script src="{{ asset('js/victims_and_perpetrators.js') }}"></script> -->
+    <script src="{{ asset('js/createReportTable.js') }}"></script>
 
 </body>
 

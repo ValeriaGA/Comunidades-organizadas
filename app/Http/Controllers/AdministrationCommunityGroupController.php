@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\CommunityGroup;
+use App\Community;
 
 class AdministrationCommunityGroupController extends Controller
 {
@@ -23,7 +24,6 @@ class AdministrationCommunityGroupController extends Controller
      */
     public function index()
     {
-        //$community_groups = CommunityGroup::all();
         $community_groups = CommunityGroup::orderBy('name', 'asc')->get();
         
         return view('administration.community.groups.index', compact('community_groups'));
@@ -49,12 +49,27 @@ class AdministrationCommunityGroupController extends Controller
     {
 
         $this->validate(request(), [
-            'name' => 'required|string|max:255|unique:community_groups,name'
+            'name' => 'required|string|max:255|unique:community_groups,name',
+            'community' => 'required'
         ]);
 
-        CommunityGroup::create([
+        $community_ids = $request['community'];
+
+        $communities = collect();
+        foreach ($community_ids as $id)
+        {
+            $community = Community::find($id);
+            $communities->push($community);
+        }
+
+        $community_group = CommunityGroup::create([
             'name' => $request['name']
         ]);
+
+        foreach($communities as $community)
+        {
+            $community_group->community()->attach($community->id);
+        }
 
         session()->flash('message', 'Grupo de communidades creada');
 
@@ -69,11 +84,14 @@ class AdministrationCommunityGroupController extends Controller
     public function show(Request $request)
     {
         $this->validate(request(), [
-            'district' => 'required'
+            'community' => 'required'
         ]);
 
-        $communities = CommunityGroup::where('district_id', $request['district'])->orderBy('name', 'asc')->get();
-        return view('administration.community.community.index', compact('communities'));
+        $community = Community::find($request['community']);
+
+        $community_groups = $community->communityGroup;
+
+        return view('administration.community.groups.index', compact('community_groups'));
     }
 
     /**
@@ -84,7 +102,8 @@ class AdministrationCommunityGroupController extends Controller
      */
     public function edit(CommunityGroup $community_group)
     {
-        return view('administration.community.groups.edit', compact('community_group'));
+        $communities = $community_group->community;
+        return view('administration.community.groups.edit', compact('community_group', 'communities'));
     }
 
     /**
@@ -94,16 +113,37 @@ class AdministrationCommunityGroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CommunityGroup $community_group)
     {
         $this->validate(request(), [
-            'name' => 'required|string|max:255|unique:community_groups,name'
+            'name' => 'required|string|max:255|unique:community_groups,name,'.$community_group->id,
+            'community' => 'required'
         ]);
 
         try{
-            $community_group = CommunityGroup::findOrFail($id);
+
+            $community_ids = $request['community'];
+            $communities = collect();
+            foreach ($community_ids as $id)
+            {
+                $community = Community::find($id);
+                $communities->push($community);
+            }
+
+            $community_group = CommunityGroup::findOrFail($community_group->id);
 
             $community_group->name = $request['name'];
+
+            // detach
+            foreach($community_group->community as $old)
+            {
+                $community_group->community()->detach($old->id);
+            }
+
+            foreach($communities as $community)
+            {
+                $community_group->community()->attach($community->id);
+            }
 
             $community_group->save();
 

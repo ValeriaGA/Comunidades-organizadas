@@ -98,7 +98,7 @@
                                         <tr class="header" >
                                             <td colspan="2">
                                                 Grupo de Comunidades de San Teo y Loadad
-                                                <button style="margin-left: 700px; display:inline;" id="followButton1" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-success btn-outline m-r-5 like-button" active="0" > Seguir </button>
+                                                <button style="margin-left: 50px; display:inline;" id="followButton1" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-success btn-outline m-r-5 like-button pull-right" active="0" > Seguir </button>
                                             </td>
                                         </tr>   
        
@@ -111,7 +111,7 @@
                                       <tr class="header">
                                         <td colspan="2">
                                             Grupo de Comunidades de Barrios Unidos
-                                            <button style="margin-left: 700px;" id="followButton2" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-success btn-outline m-r-5 like-button" active="0" > Seguir </button>
+                                            <button style="margin-left: 50px;" id="followButton2" onclick="{{'onclick_followButton(this)'}}" class="btn btn btn-rounded btn-success btn-outline m-r-5 like-button pull-right" active="0" > Seguir </button>
                                         </td>
                                       </tr>
                                       <tr>
