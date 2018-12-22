@@ -46,8 +46,7 @@ class CommunitiesController extends Controller
      */
     public function show(Request $request)
     {
-        $communities = Community::where('district_id', $request -> input('id'))
-        -> get();
+        $communities = Community::where('district_id', $request -> input('id')) -> get();
 
         return \Response::json($communities ->toJson()); 
     }

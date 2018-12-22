@@ -80,7 +80,7 @@ class AdministrationEvidenceController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate(request(), [
-            'name' => 'required|string|max:255|unique:cat_evidence,name'
+            'name' => 'required|string|max:255|unique:cat_evidence,name,'.$id
         ]);
 
         try{

@@ -25,13 +25,17 @@ Route::get('/informacion', 'InformationController@index');
 Route::get('/terminos-y-condiciones', 'TermsController@index');
 
 
+// Generos
+Route::any('/generos', 'GenderController@show');
+
 // Provinces, cantones y distritos
 Route::any('/provincias', 'ProvinceController@index');
 Route::any('/cantones', 'CantonController@show');
 Route::any('/distritos', 'DistrictController@show');
 
-Route::post('/comunidades', 'CommunitiesController@show');
-Route::post('/grupos', 'GroupController@show');
+Route::any('/comunidad', 'CommunitiesController@show');
+Route::any('/grupos', 'GroupController@show');
+
 Route::get('/comunidades/solicitar-comunidad', 'CommunitiesController@requestIndex');
 Route::get('/comunidades/solicitar-grupo', 'GroupController@requestIndex');
 
@@ -48,6 +52,7 @@ Route::get('/seguridad/agregar', 'SecurityReportController@create');
 Route::post('/seguridad', 'SecurityReportController@store');
 Route::get('/seguridad/{reporte}', 'SecurityReportController@show');
 Route::get('/seguridad/editar/{reporte}', 'SecurityReportController@edit');
+Route::post('/seguridad/update/{reporte}', 'SecurityReportController@update');
 
 Route::get('/servicio/agregar', 'ServiceReportController@create');
 Route::post('/servicio', 'ServiceReportController@store');
@@ -59,6 +64,7 @@ Route::post('/noticia', 'NewsController@store');
 
 // Report (ReportAlert)
 Route::get('/reportar/{reporte}', 'ReportAlertController@create');
+Route::post('/reportar/{reporte}', 'ReportAlertController@store');
 
 // Statistics
 
@@ -195,6 +201,7 @@ Route::get('/administracion/comunidades/grupos/agregar', 'AdministrationCommunit
 Route::post('/administracion/comunidades/grupos', 'AdministrationCommunityGroupController@store');
 Route::get('/administracion/comunidades/grupos/{community_group}', 'AdministrationCommunityGroupController@edit');
 Route::post('/administracion/comunidades/grupos/update/{community_group}', 'AdministrationCommunityGroupController@update');
+Route::post('/administracion/comunidades/grupos/filtrar', 'AdministrationCommunityGroupController@show');
 
 
 // ~~~

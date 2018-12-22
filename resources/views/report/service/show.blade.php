@@ -113,8 +113,8 @@
                                               <td><strong>Archivo</strong></td>
                                           </tr>
                                           <tr>
-                                              <td>{{ $evidence->evidenceType->name}}</td>
-                                              <td>{{ $evidence->multimedia_path}}</td>
+                                              <td>{{ $evidence->evidenceType->name }}</td>
+                                              <td>{{ $evidence->multimedia_path }}</td>
                                               <!-- <img src="{{-- asset('images/evidence/'.$evidence->multimedia_path) --}}" style="display: block; margin-left: auto; margin-right: auto;"> -->
                                           </tr>
                                           @endforeach

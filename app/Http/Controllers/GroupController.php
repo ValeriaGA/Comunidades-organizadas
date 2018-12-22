@@ -47,8 +47,7 @@ class GroupController extends Controller
      */
     public function show(Request $request)
     {
-        $community = Community::find($request -> input('id'));
-        $groups = $community->communityGroup();
+        $groups = Community::find($request -> input('id'))->communityGroup;
 
         return \Response::json($groups ->toJson()); 
     }
