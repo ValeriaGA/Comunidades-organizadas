@@ -14,6 +14,9 @@ Route::get('/index', 'HomeController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/recientes', 'HomeController@showRecent');
+// Route::get('/home/populares', 'HomeController@showPopular');
+Route::post('/home/comunidades', 'HomeController@show');
 
 Route::get('/logout', 'SessionsController@destroy');
 
@@ -21,8 +24,13 @@ Route::get('/fontawesome', function () {
     return view('fontawesome');
 });
 
-Route::get('/informacion', 'InformationController@index');
-Route::get('/terminos-y-condiciones', 'TermsController@index');
+Route::get('/informacion', function () {
+    return view('information');
+});
+
+Route::get('/terminos-y-condiciones', function () {
+    return view('terms');
+});
 
 
 // Generos
@@ -47,17 +55,15 @@ Route::post('/user/update/{user}', 'UserController@update');
 
 // Report
 Route::get('/reporte', 'ReportController@index');
+Route::get('/reporte/{reporte}', 'ReportController@show');
+Route::get('/reporte/editar/{reporte}', 'ReportController@edit');
 
 Route::get('/seguridad/agregar', 'SecurityReportController@create');
 Route::post('/seguridad', 'SecurityReportController@store');
-Route::get('/seguridad/{reporte}', 'SecurityReportController@show');
-Route::get('/seguridad/editar/{reporte}', 'SecurityReportController@edit');
 Route::post('/seguridad/update/{reporte}', 'SecurityReportController@update');
 
 Route::get('/servicio/agregar', 'ServiceReportController@create');
 Route::post('/servicio', 'ServiceReportController@store');
-Route::get('/servicio/{reporte}', 'ServiceReportController@show');
-Route::get('/servicio/editar/{reporte}', 'ServiceReportController@edit');
 
 Route::get('/noticia/agregar', 'NewsController@create');
 Route::post('/noticia', 'NewsController@store');
@@ -65,6 +71,11 @@ Route::post('/noticia', 'NewsController@store');
 // Report (ReportAlert)
 Route::get('/reportar/{reporte}', 'ReportAlertController@create');
 Route::post('/reportar/{reporte}', 'ReportAlertController@store');
+
+// Like
+
+Route::any('/like', 'LikeController@store');
+Route::any('/unlike', 'LikeController@destroy');
 
 // Statistics
 

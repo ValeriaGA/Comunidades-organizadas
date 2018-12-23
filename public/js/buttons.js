@@ -3,21 +3,52 @@
 
 function onclick_likeButton(element)
 {
+    var report_id = element.getAttribute("reportid");
     if (element.getAttribute("active") == "0")
     {
-        element.style.backgroundColor = "green";
-        element.style.color = "white";
-        $('#' + element.getAttribute("id")).attr('active', '1');
-    }
-    else
+        var likeInfo = {
+            _token: $('meta[name="_token"]').attr('content'),
+            report_id: report_id
+        }
+        
+        $.ajax({
+          method:'POST',
+          url: "/like",
+          data:likeInfo,
+          dataType: "json",
+          success: function(){
+            element.setAttribute("class", "btn btn-success waves-effect waves-light like");
+            element.setAttribute("active", "1");
+          },
+          error:function(xhr, ajaxOptions, errorInfo)
+          {
+            alert(xhr.status + " " + errorInfo);
+          }
+        });
+    }else
     {
-        element.style.backgroundColor = "white";
-        $('#' + element.getAttribute("id")).attr('active', '0');
-        element.style.color = "green";
+        var likeInfo = {
+            _token: $('meta[name="_token"]').attr('content'),
+            report_id: report_id
+        }
+        
+        $.ajax({
+          method:'POST',
+          url: "/unlike",
+          data:likeInfo,
+          dataType: "json",
+          success: function(){
+            element.setAttribute("class", "btn btn-success waves-effect waves-light btn-outline like");
+            element.setAttribute("active", "0");
+          },
+          error:function(xhr, ajaxOptions, errorInfo)
+          {
+            alert(xhr.status + " " + errorInfo);
+          }
+        });
     }
-
- 
 };
+
 
 function onclick_followButton(element)
 {

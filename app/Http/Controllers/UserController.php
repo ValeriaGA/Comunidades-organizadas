@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Report;
 use App\CatReport;
+use App\SubCatReport;
+use App\Like;
+use App\CommunityGroup;
 
 use File;
 use Auth;
@@ -26,47 +29,34 @@ class UserController extends Controller
     public function index()
     {
         $cat_service = CatReport::where('name', 'LIKE', 'Servicio')->first();
+        $sub_cat_service = SubCatReport::where('cat_report_id', $cat_service->id)->get();
+        $sub_cat_service_ids = array();
+        foreach($sub_cat_service as $cat)
+        {
+            array_push($sub_cat_service_ids, $cat->id);
+        }
+
+        $service_reports = Report::whereIn('sub_cat_report_id', $sub_cat_service_ids)
+                            ->where('reports.news', false)
+                            ->latest()
+                            ->paginate(10);
+
         $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->first();
+        $sub_cat_security = SubCatReport::where('cat_report_id', $cat_security->id)->get();
+        $sub_cat_security_ids = array();
+        foreach($sub_cat_security as $cat)
+        {
+            array_push($sub_cat_security_ids, $cat->id);
+        }
+
+        $security_reports = Report::whereIn('sub_cat_report_id', $sub_cat_security_ids)
+                            ->where('reports.news', false)
+                            ->latest()
+                            ->paginate(10);
 
         $news = Report::where('news', true)
-                        ->where('active', true)
-                        ->where('user_id', Auth::id())
                         ->latest()
                         ->paginate(10);
-
-        $security_reports_results = DB::table('reports')
-                            ->join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
-                            ->select('reports.*')
-                            ->where('sub_cat_report.cat_report_id', $cat_security->id)
-                            ->where('reports.news', false)
-                            ->where('reports.active', true)
-                            ->where('user_id', Auth::id())
-                            ->latest()
-                            ->get();
-                            // ->paginate(10);
-
-        $security_reports = collect();
-
-        foreach ($security_reports_results as $result) {
-            $security_reports->push(new Report( (array) $result ));
-        }
-
-        $service_reports_results = DB::table('reports')
-                            ->join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
-                            ->select('reports.*')
-                            ->where('sub_cat_report.cat_report_id', $cat_service->id)
-                            ->where('reports.news', false)
-                            ->where('reports.active', true)
-                            ->where('user_id', Auth::id())
-                            ->latest()
-                            ->get();
-                            // ->paginate(10);
-
-        $service_reports = collect();
-
-        foreach ($service_reports_results as $result) {
-            $service_reports->push(new Report( (array) $result));
-        }
 
         return view('user.index', compact('news', 'security_reports', 'service_reports'));
     }

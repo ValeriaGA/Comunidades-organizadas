@@ -6,11 +6,11 @@
       <div class="container-fluid">
           <div class="row bg-title">
               <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                  <h4 class="page-title">Incidente</h4> </div>
+                  <h4 class="page-title">Reportes</h4> </div>
               <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                   <ol class="breadcrumb">
                       <li><a href="/">Home</a></li>
-                      <li class="active">Incidente</li>
+                      <li class="active">Reportes</li>
                   </ol>
               </div>
               <!-- /.col-lg-12 -->
@@ -21,18 +21,7 @@
                   <div class="white-box">
                     <div class="panel panel-default">
                         <div class="panel-heading"> 
-                            Detalles 
-                            @if($report -> user_id == Auth::id())
-                                <a id="editReportButton" href="/seguridad/editar/{{ $report->id }}" class="btn btn btn-rounded btn-warning btn-outline m-r-5 pull-right" active="0">
-                                  Editar
-                                </a>
-                            @endif
-
-                            <a href="/reportar/{{ $report->id }}" class="btn btn btn-rounded btn-danger btn-outline m-r-5 pull-right">
-                              Reportar
-                            </a>
-
-                            <button id="likeButton1" onclick="{{'onclick_likeButton(this)'}}" class="btn btn btn-rounded btn-success btn-outline m-r-5 like-button pull-right" active="0">Gracias</button>
+                            Detalles
                         </div>
                         <div class="panel-wrapper collapse in">
                             <ul class="nav customtab nav-tabs" role="tablist">
@@ -51,7 +40,7 @@
                                               </td>
                                           </tr>
                                           <tr>
-                                              <td>Categoría Reporte</td>
+                                              <td>Tipo</td>
                                               <td>{{ $report->subCatReport->name }}</td>
                                           </tr>
                                           <tr>
@@ -99,7 +88,7 @@
                                       </table>
                                         <div class="clearfix"></div>
                                     </div>
-                                    
+
                                     <div role="tabpanel" class="tab-pane fade" id="evidence1">
                                         <table class="table table-bordered" style="width: 100%;">
                                           @foreach($report->evidence as $evidence)
@@ -113,8 +102,8 @@
                                               <td><strong>Archivo</strong></td>
                                           </tr>
                                           <tr>
-                                              <td>{{ $evidence->evidenceType->name }}</td>
-                                              <td>{{ $evidence->multimedia_path }}</td>
+                                              <td>{{ $evidence->evidenceType->name}}</td>
+                                              <td>{{ $evidence->multimedia_path}}</td>
                                               <!-- <img src="{{-- asset('images/evidence/'.$evidence->multimedia_path) --}}" style="display: block; margin-left: auto; margin-right: auto;"> -->
                                           </tr>
                                           @endforeach
@@ -125,7 +114,7 @@
                                     <div role="tabpanel" class="tab-pane fade" id="user1">
                                         <div class="col-md-4">
                                           @if (!is_null($report->user->avatar_path))
-                                              <img src="{{ asset('images/users/'.$incident->user->avatar_path) }}"  alt="user" class="img-responsive thumbnail m-r-15">
+                                              <img src="{{ asset('images/users/'.$report->user->avatar_path) }}"  alt="user" class="img-responsive thumbnail m-r-15">
                                           @else
                                               <img src="../plugins/images/users/profile.png"  alt="user" class="img-responsive thumbnail m-r-15">
                                           @endif
@@ -138,6 +127,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                          @include ('layouts.action_buttons')
                         </div>
                     </div>
                   </div>
@@ -154,7 +145,7 @@
                                     <textarea id="commentInput" rows="5" class="form-control form-control-line" name="description" placeholder="Nuevo comentario..."required></textarea>
                                 </div>
 
-                                <button id="commentButton" style="margin-left: 500px;" onclick="addComment('commentInput')" class="btn btn btn-rounded btn-primary btn-outline m-r-5 like-button" active="0">
+                                <button id="commentButton" onclick="addComment('commentInput')" class="btn btn btn-block btn-primary btn-outline m-r-5" active="0">
                                     Comentar
                                 </button>
                             </div>
