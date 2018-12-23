@@ -64,43 +64,6 @@ class ServiceReportController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  Report $report
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $report = Report::find($id);
-        return view('report.service.show', compact('report'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $community_groups = CommunityGroup::all();
-
-        $report = Report::find($id);
-
-        $cat_service = CatReport::where('name', 'LIKE', 'Servicio')->get();
-        $categories_service = SubCatReport::where('cat_report_id', $cat_service[0]->id)->get();
-
-        $cat_evidence = CatEvidence::get();
-        $states = State::get();
-
-        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
-        $date = $dt->format('Y-m-d');
-        $time = $dt->format('H:i:s');
-
-        return view('report.service.edit', compact('report', 'categories_service', 'cat_evidence', 'date', 'time', 'community_groups', 'states'));
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -108,17 +71,6 @@ class ServiceReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }

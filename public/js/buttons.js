@@ -17,7 +17,7 @@ function onclick_likeButton(element)
           data:likeInfo,
           dataType: "json",
           success: function(){
-            element.setAttribute("class", "btn btn-rounded btn-success m-r-5 like");
+            element.setAttribute("class", "btn btn-success waves-effect waves-light like");
             element.setAttribute("active", "1");
           },
           error:function(xhr, ajaxOptions, errorInfo)
@@ -38,7 +38,7 @@ function onclick_likeButton(element)
           data:likeInfo,
           dataType: "json",
           success: function(){
-            element.setAttribute("class", "btn btn-rounded btn-success btn-outline m-r-5 like");
+            element.setAttribute("class", "btn btn-success waves-effect waves-light btn-outline like");
             element.setAttribute("active", "0");
           },
           error:function(xhr, ajaxOptions, errorInfo)
