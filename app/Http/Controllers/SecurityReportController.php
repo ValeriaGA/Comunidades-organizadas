@@ -115,8 +115,8 @@ class SecurityReportController extends Controller
 
         $security_report = SecurityReport::create([
             'report_id' => $report->id,
-            'weapon_id' => $weapon->id,
-            'transportation_id' => $transportation->id
+            'cat_weapon_id' => $weapon->id,
+            'cat_transportation_id' => $transportation->id
         ]);
 
         // $evidence = Evidence::create([
@@ -210,26 +210,25 @@ class SecurityReportController extends Controller
             //     $file->move('images/evidence', $filename);
             // }
 
-            $report = Report::create([
-                'community_group_id' => request('community_group'),
-                'title' => request('title'),
-                'description' => request('description'),
-                'longitud' => request('longitud'),
-                'latitud' => request('latitud'),
-                'date' => request('date'),
-                'time' => request('time'),
-                'state_id' => $state->id,
-                'sub_cat_report_id' => $categories_security->id,
-                'user_id' => Auth::user()->id,
-                'active' => true,
-                'news' => false
-            ]);
 
-            $security_report = SecurityReport::create([
-                'report_id' => $report->id,
-                'weapon_id' => $weapon->id,
-                'transportation_id' => $transportation->id
-            ]);
+            $report = Report::findOrFail($id);
+
+            $report->community_group_id = request('community_group');
+            $report->title = request('title');
+            $report->description = request('description');
+            $report->longitud = request('longitud');
+            $report->latitud = request('latitud');
+            $report->date = request('date');
+            $report->time = request('time');
+            $report->state_id = $state->id;
+            $report->sub_cat_report_id = $categories_security->id;
+            $report->active = request('active');
+            $report->save();
+
+            $security_report = SecurityReport::where('report_id', $report->id)->first();
+            $security_report->cat_transportation_id = $transportation->id;
+            $security_report->cat_weapon_id = $weapon->id;
+            $security_report->save();
 
             // $evidence = Evidence::create([
             //     'incident_id' => $report->id,

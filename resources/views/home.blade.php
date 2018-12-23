@@ -64,21 +64,66 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-2" style="width: 300px;">
+
+                    <div class="col-sm-2">
                         <div class="white-box">
-                            Filtrar por Grupo de Comunidades
+                            <h3 class="box-title">Filtrar por Grupo de Comunidades</h3>
                             <br/>
-                            <form class="form-horizontal form-material" action="/statistics/bar" method="post" enctype="multipart/form-data">
-                                <div style="margin-top: 25px; margin-left: 0px; display:inline;">
+                            <form class="form-horizontal form-material" action="/index/show" method="post">
+                                <!-- <div style="margin-top: 25px; margin-left: 0px; display:inline;">
                                     <label >Grupo</label>
                                     
                                     <select id="communityGroupsFilter" style="width:250px; display:inline;" class="form-control" name="province" required>
                                         <option value="1" selected>Comunidades de San Mateo</option>
                                         
                                     </select>
-                                </div>
-                                <br/>
-                                <br/>
+                                </div> -->
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">Provincia</label>
+                                        <div class="col-md-12">
+                                            <select name="province" id="provinces" class="form-control dynamic" data-dependent="cantons">
+                                                <option value="">Provincia</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">Canton</label>
+                                        <div class="col-md-12">
+                                            <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
+                                                <option value="">Canton</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">Distrito</label>
+                                        <div class="col-md-12">
+                                            <select name="district" id="districts" class="form-control dynamic" data-dependent="communities">
+                                                <option value="">Distrito</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">Comunidad</label>
+                                        <div class="col-md-12">
+                                            <select name="community" id="communities" class="form-control" data-dependent="community_groups">
+                                                <option value="">Comunidad</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">Grupos de Comunidades</label>
+                                        <div class="col-md-12">
+                                            <select name="community_group" id="community_groups" class="form-control" required>
+                                                <option value="">Grupo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <button class="btn btn-success">Filtrar</button>
@@ -87,6 +132,35 @@
                             </form>
                         </div>
                     </div>
+
+                    <div class="col-sm-2">
+                        <div class="white-box">
+                            <h3 class="box-title">Filtrar por Cantidad de Agradecimientos</h3>
+                            <br/>
+                            <form class="form-horizontal form-material" action="/index/show" method="post">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success">Filtrar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="white-box">
+                            <h3 class="box-title">Filtrar por Antiguedad</h3>
+                            <br/>
+                            <form class="form-horizontal form-material" action="/index/show" method="post">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success">Filtrar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <!-- /.container-fluid -->
@@ -96,11 +170,5 @@
         <!-- ============================================================== -->
         <!-- End Page Content -->
         <!-- ============================================================== -->
-
-            <!-- google maps api -->
-<!-- <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script src="../plugins/bower_components/gmaps/gmaps.min.js"></script>
-    <script src="../plugins/bower_components/gmaps/jquery.gmaps.js"></script> -->
-
     
 @endsection

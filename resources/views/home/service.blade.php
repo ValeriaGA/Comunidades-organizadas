@@ -3,8 +3,6 @@
         <div class="comment-center p-t-10">
             @foreach ($service_reports as $service_report)
                 <div class="comment-body">
-                        <span class="label label-table label-success">{{ $security_report->state->name }}</span>
-                        <br/>
                     <div class="user-img"> 
                         @if (!is_null($service_report->user->avatar_path))
                             <img src="{{ asset('images/users/'.$service_report->user->avatar_path) }}"  alt="user" class="img-circle">
@@ -21,16 +19,24 @@
                         <span class="time"><b>Tipo:</b> {{ $service_report->subCatReport->name }}</span>
                         <br/>
                         <span class="mail-desc"> {{ $service_report->description }} </span>
-                        <button id="likeButton1" onclick="{{'onclick_likeButton(this)'}}" class="btn btn btn-rounded btn-default btn-outline m-r-5 like-button" active="0">Gracias</button>
+                        @auth
+                            @if (Auth::user()->like()->where('report_id', $service_report->id)->first())
+                                <button onclick="{{'onclick_likeButton(this)'}}" class="btn btn-rounded btn-success m-r-5 like" reportid="{{$service_report->id }}" active="1">Gracias</button>
+                            @else
+                                <button onclick="{{'onclick_likeButton(this)'}}" class="btn btn-rounded btn-success btn-outline m-r-5 like" reportid="{{$service_report->id }}" active="0">Gracias</button>
+                            @endif
+                        @endauth
                         <a href="/servicio/{{ $service_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5">Detalles</a>
                         <a href="/reportar/{{ $service_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5">Reportar</a>
                         @if($service_report -> user_id == Auth::id())
-							<a id="editReportButton" href="/seguridad/editar/{{ $service_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5" active="0">Editar</a>
+							<a id="editReportButton" href="/seguridad/editar/{{ $service_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5">Editar</a>
 						@endif
+                        <hr>
+                        <span class="label label-table label-success">{{ $service_report->state->name }}</span>
                     </div>
                 </div>
             @endforeach
         </div>
-        {{-- $service_reports->links() --}}
+        {{ $service_reports->links() }}
     </div>
 </div>

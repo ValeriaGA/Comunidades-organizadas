@@ -66,6 +66,11 @@ Route::post('/noticia', 'NewsController@store');
 Route::get('/reportar/{reporte}', 'ReportAlertController@create');
 Route::post('/reportar/{reporte}', 'ReportAlertController@store');
 
+// Like
+
+Route::any('/like', 'LikeController@store');
+Route::any('/unlike', 'LikeController@destroy');
+
 // Statistics
 
 Route::get('/statistics', 'StatisticsController@index');
