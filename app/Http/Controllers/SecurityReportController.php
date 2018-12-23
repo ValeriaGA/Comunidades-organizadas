@@ -130,48 +130,6 @@ class SecurityReportController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  Report $report
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $report = Report::find($id);
-  
-        return view('report.security.show', compact('report'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $security_report = SecurityReport::find($id);
-        $report = $security_report->report;
-
-        $community_groups = CommunityGroup::all();
-
-        $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->get();
-        $categories_security = SubCatReport::where('cat_report_id', $cat_security[0]->id)->get();
-
-        $cat_evidence = CatEvidence::get();
-        $cat_transportation = CatTransportation::get();
-        $cat_weapon = CatWeapon::get();
-
-        $states = State::get();
-
-        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
-        $date = $dt->format('Y-m-d');
-        $time = $dt->format('H:i:s');
-
-        return view('report.security.edit', compact('report', 'categories_security', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups', 'states'));
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

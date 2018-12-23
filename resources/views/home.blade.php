@@ -35,7 +35,17 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading"> Publicaciones </div>
+                            <div class="panel-heading"> Publicaciones 
+                                <div class="btn-group m-r-10 pull-right">
+                                    <button aria-expanded="false" data-toggle="dropdown" class="btn btn-info dropdown-toggle waves-effect waves-light" type="button"><span class="btn-label"><i class="fa fa-sort-amount-desc m-l-5"></i></span> Filtros <span class="caret"></span></button>
+                                    <ul role="menu" class="dropdown-menu animated flipInX">
+                                        <li><a href="/home/recientes">Más recientes</a></li>
+                                        <!-- <li><a href="/home/populares">Más agradecidas</a></li> -->
+                                        <li class="divider"></li>
+                                        <li><a href="/">Mostrar todas</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                             <div class="panel-wrapper collapse in">
                                 <ul class="nav customtab nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a href="#news1" aria-controls="news" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs">Noticias</span></a></li>
@@ -65,93 +75,57 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         <div class="white-box">
                             <h3 class="box-title">Filtrar por Grupo de Comunidades</h3>
                             <br/>
-                            <form class="form-horizontal form-material" action="/index/show" method="post">
-                                <!-- <div style="margin-top: 25px; margin-left: 0px; display:inline;">
-                                    <label >Grupo</label>
-                                    
-                                    <select id="communityGroupsFilter" style="width:250px; display:inline;" class="form-control" name="province" required>
-                                        <option value="1" selected>Comunidades de San Mateo</option>
-                                        
-                                    </select>
-                                </div> -->
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Provincia</label>
-                                        <div class="col-md-12">
-                                            <select name="province" id="provinces" class="form-control dynamic" data-dependent="cantons">
-                                                <option value="">Provincia</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Canton</label>
-                                        <div class="col-md-12">
-                                            <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
-                                                <option value="">Canton</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Distrito</label>
-                                        <div class="col-md-12">
-                                            <select name="district" id="districts" class="form-control dynamic" data-dependent="communities">
-                                                <option value="">Distrito</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Comunidad</label>
-                                        <div class="col-md-12">
-                                            <select name="community" id="communities" class="form-control" data-dependent="community_groups">
-                                                <option value="">Comunidad</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Grupos de Comunidades</label>
-                                        <div class="col-md-12">
-                                            <select name="community_group" id="community_groups" class="form-control" required>
-                                                <option value="">Grupo</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
+                            <form class="form-horizontal form-material" action="/home/comunidades" method="post">
+                                {{ csrf_field() }}
                                 <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <button class="btn btn-success">Filtrar</button>
+                                    <label class="col-md-12">Provincia</label>
+                                    <div class="col-md-12">
+                                        <select name="province" id="provinces" class="form-control dynamic" data-dependent="cantons">
+                                            <option value="">Provincia</option>
+                                        </select>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
 
-                    <div class="col-sm-2">
-                        <div class="white-box">
-                            <h3 class="box-title">Filtrar por Cantidad de Agradecimientos</h3>
-                            <br/>
-                            <form class="form-horizontal form-material" action="/index/show" method="post">
                                 <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <button class="btn btn-success">Filtrar</button>
+                                    <label class="col-md-12">Canton</label>
+                                    <div class="col-md-12">
+                                        <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
+                                            <option value="">Canton</option>
+                                        </select>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
 
-                    <div class="col-sm-2">
-                        <div class="white-box">
-                            <h3 class="box-title">Filtrar por Antiguedad</h3>
-                            <br/>
-                            <form class="form-horizontal form-material" action="/index/show" method="post">
+                                <div class="form-group">
+                                    <label class="col-md-12">Distrito</label>
+                                    <div class="col-md-12">
+                                        <select name="district" id="districts" class="form-control dynamic" data-dependent="communities">
+                                            <option value="">Distrito</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-12">Comunidad</label>
+                                    <div class="col-md-12">
+                                        <select name="community" id="communities" class="form-control" data-dependent="community_groups">
+                                            <option value="">Comunidad</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-12">Grupos de Comunidades</label>
+                                    <div class="col-md-12">
+                                        <select name="community_group" id="community_groups" class="form-control" required>
+                                            <option value="">Grupo</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <button class="btn btn-success">Filtrar</button>

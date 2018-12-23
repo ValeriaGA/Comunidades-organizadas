@@ -1,38 +1,29 @@
-<div class="col-md-12 col-lg-8 col-sm-12">
+<div class="col-md-12 col-lg-12 col-sm-12">
     <div class="white-box">
         <div class="comment-center p-t-10">
-            @foreach ($service_reports as $service_report)
+            @foreach ($service_reports as $report)
                 <div class="comment-body">
                     <div class="user-img"> 
-                        @if (!is_null($service_report->user->avatar_path))
-                            <img src="{{ asset('images/users/'.$service_report->user->avatar_path) }}"  alt="user" class="img-circle">
+                        @if (!is_null($report->user->avatar_path))
+                            <img src="{{ asset('images/users/'.$report->user->avatar_path) }}"  alt="user" class="img-circle">
                         @else
                             <img src="../plugins/images/users/profile.png"  alt="user" class="img-circle">
                         @endif
                     </div>
                     <div class="mail-contnet">
-                        <h5>{{ $service_report->title }}</h5>
-                        <span class="time"><b>Fecha y Hora</b>: {{ $service_report->date }} {{ $service_report->time }}</span>
+                        <h5>{{ $report->title }}</h5>
+                        <span class="time"><b>Fecha y Hora :</b> {{ $report->date }} {{ $report->time }}</span>
                         <br/>
-                        <span class="time"><b>Lugar:</b> {{ $service_report->communityGroup->name }}</span>
+                        <span class="time"><b>Lugar :</b> {{ $report->communityGroup->name }}</span>
                         <br/>
-                        <span class="time"><b>Tipo:</b> {{ $service_report->subCatReport->name }}</span>
+                        <span class="time"><b>Tipo :</b> {{ $report->subCatReport->name }}</span>
                         <br/>
-                        <span class="mail-desc"> {{ $service_report->description }} </span>
-                        @auth
-                            @if (Auth::user()->like()->where('report_id', $service_report->id)->first())
-                                <button onclick="{{'onclick_likeButton(this)'}}" class="btn btn-rounded btn-success m-r-5 like" reportid="{{$service_report->id }}" active="1">Gracias</button>
-                            @else
-                                <button onclick="{{'onclick_likeButton(this)'}}" class="btn btn-rounded btn-success btn-outline m-r-5 like" reportid="{{$service_report->id }}" active="0">Gracias</button>
-                            @endif
-                        @endauth
-                        <a href="/servicio/{{ $service_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5">Detalles</a>
-                        <a href="/reportar/{{ $service_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5">Reportar</a>
-                        @if($service_report -> user_id == Auth::id())
-							<a id="editReportButton" href="/seguridad/editar/{{ $service_report->id }}" class="btn btn btn-rounded btn-default btn-outline m-r-5">Editar</a>
-						@endif
+                        <span class="time"><b>Agradecimientos :</b> {{ count($report->like) }}</span>
+                        <br/>
+                        <span class="mail-desc"> {{ $report->description }} </span>
+                        @include ('layouts.action_buttons')
                         <hr>
-                        <span class="label label-table label-success">{{ $service_report->state->name }}</span>
+                        <span class="label label-table label-success">{{ $report->state->name }}</span>
                     </div>
                 </div>
             @endforeach

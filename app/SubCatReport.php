@@ -17,7 +17,7 @@ class SubCatReport extends Model
 
     public function CatReport()
     {
-    	return $this->belongsTo(Incident::class, 'cat_report_id');
+    	return $this->belongsTo(CatReport::class, 'cat_report_id');
     }
 
     public function report()

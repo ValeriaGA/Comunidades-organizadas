@@ -6,11 +6,11 @@
       <div class="container-fluid">
           <div class="row bg-title">
               <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                  <h4 class="page-title">Incidente</h4> </div>
+                  <h4 class="page-title">Reportes</h4> </div>
               <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                   <ol class="breadcrumb">
                       <li><a href="/">Home</a></li>
-                      <li class="active">Incidente</li>
+                      <li class="active">Reportes</li>
                   </ol>
               </div>
               <!-- /.col-lg-12 -->
@@ -22,26 +22,6 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"> 
                             Detalles
-
-                            @if($report -> user_id == Auth::id())
-                                <a id="editReportButton" href="/seguridad/editar/{{ $report->id }}" class="btn btn btn-rounded btn-warning btn-outline m-r-5 pull-right" active="0">
-                                  Editar
-                                </a>
-                            @endif
-
-                            <a href="/reportar/{{ $report->id }}" class="btn btn btn-rounded btn-danger btn-outline m-r-5 pull-right">
-                              Reportar
-                            </a>
-
-                            
-                            @auth
-                              @if (Auth::user()->like()->where('report_id', $security_report->id)->first())
-                                <button onclick="{{'onclick_likeButton(this)'}}" class="btn btn-rounded btn-success m-r-5 like" reportid="{{$security_report->id }}" active="1">Gracias</button>
-                              @else
-                                <button onclick="{{'onclick_likeButton(this)'}}" class="btn btn-rounded btn-success btn-outline m-r-5 like" reportid="{{$security_report->id }}" active="0">Gracias</button>
-                              @endif
-                            @endauth
-
                         </div>
                         <div class="panel-wrapper collapse in">
                             <ul class="nav customtab nav-tabs" role="tablist">
@@ -122,7 +102,7 @@
                                             <br>
                                             <p class="text-muted">{{ $report->securityReport->catTransportation->name }}</p>
                                         </div>
-                                        <div class="col-md-2 col-xs-6 b-r"> <strong># Víctima</strong>
+                                        <div class="col-md-2 col-xs-6 b-r"> <strong># Víctimas</strong>
                                             <br>
                                             <p class="text-muted">{{ count($report->securityReport->victims) }}</p>
                                         </div>
@@ -195,7 +175,7 @@
                                     <div role="tabpanel" class="tab-pane fade" id="user1">
                                         <div class="col-md-4">
                                           @if (!is_null($report->user->avatar_path))
-                                              <img src="{{ asset('images/users/'.$incident->user->avatar_path) }}"  alt="user" class="img-responsive thumbnail m-r-15">
+                                              <img src="{{ asset('images/users/'.$report->user->avatar_path) }}"  alt="user" class="img-responsive thumbnail m-r-15">
                                           @else
                                               <img src="../plugins/images/users/profile.png"  alt="user" class="img-responsive thumbnail m-r-15">
                                           @endif
@@ -208,6 +188,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                          @include ('layouts.action_buttons')
                         </div>
                     </div>
                   </div>
@@ -224,7 +206,7 @@
                                     <textarea id="commentInput" rows="5" class="form-control form-control-line" name="description" placeholder="Nuevo comentario..."required></textarea>
                                 </div>
 
-                                <button id="commentButton" style="margin-left: 500px;" onclick="addComment('commentInput')" class="btn btn btn-rounded btn-primary btn-outline m-r-5 like-button pull-right" active="0">
+                                <button id="commentButton" onclick="addComment('commentInput')" class="btn btn btn-block btn-primary btn-outline m-r-5" active="0">
                                     Comentar
                                 </button>
                             </div>
