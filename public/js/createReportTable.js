@@ -38,7 +38,7 @@ function remove_victim()
 function add_perpetrator()
 {
     perpetrator_counter++;
-    $("#perpetrator_table").append('<tr id="perpetrator_row_'+perpetrator_counter+'" style="display: table-row;"><td><select name="perpetrator_gender_'+perpetrator_counter+'" id="perpetrator_genders_'+perpetrator_counter+'" class="form-control"></td><td><textarea rows="2" class="form-control form-control-line" name="description_'+perpetrator_counter+'"></textarea></td><td><input type="button" onclick="remove_perpetrator()" id="remove_victim_button" class="btn btn-danger btn-rounded" value="Remover"></td></tr>');
+    $("#perpetrator_table").append('<tr id="perpetrator_row_'+perpetrator_counter+'" ><td><select name="perpetrator_gender_'+perpetrator_counter+'" id="perpetrator_genders_'+perpetrator_counter+'" class="form-control"></td><td><textarea rows="2" class="form-control form-control-line" name="description_'+perpetrator_counter+'"></textarea></td><td><input type="button" onclick="remove_perpetrator()" id="remove_victim_button" class="btn btn-danger btn-rounded" value="Remover"></td></tr>');
     $.ajax({
       url: "/generos",
       success: function(genders){
