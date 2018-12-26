@@ -114,7 +114,7 @@ var EvidenceList = {
                         <div class="col-sm-1"> \
                             <a href="#" class="btn btn-default btn-sm remove-victim"><span class="fa fa-minus"></span></a> \
                         </div> \
-                        <div class="col-sm-10 victim-gender"> \
+                        <div class="col-sm-11 victim-gender"> \
                             <div class="fileinput fileinput-new input-group" data-provides="fileinput"> \
                               <div class="form-control" data-trigger="fileinput"> \
                                 <i class="glyphicon glyphicon-file fileinput-exists"></i> \
