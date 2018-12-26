@@ -194,21 +194,12 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label style="margin-left: 10px;">Evidencia</label>
-                                            <input type="button" id="add_evidence_button" class="btn btn-success btn-rounded pull-right" value="Agregar" />
-
-                                            <br>
-                                            <br>
-                                                <table id="evidence_table" class="table table-bordered" style="width: 100%;">
-                                                    <tr class="header">
-                                                        <td colspan="2"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Archivo</strong></td>
-                                                        <td><strong>Acción</strong></td>
-                                                    </tr>
-                                                </table>
+                                            <a href="#" class="btn btn-default btn-sm pull-right" id="add-evidence"><span class="fa fa-plus"></span></a>
+                                            <hr />
+                                            <div class="evidence-item row form-group">
+                                            </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
 

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreSecurityReport;
 use App\Report;
 use App\Victim;
+use App\Perpetrator;
 use App\CommunityGroup;
 use App\CatReport;
 use App\SubCatReport;
@@ -14,6 +16,7 @@ use App\CatWeapon;
 use App\State;
 use App\SecurityReport;
 use App\Evidence;
+use App\Gender;
 use Auth;
 use DateTime;
 use DateTimeZone;
@@ -64,39 +67,18 @@ class SecurityReportController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreSecurityReport  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSecurityReport $request)
     {
-        $this->validate(request(), [
-            'title' => 'required|string|max:255',
-            'community_group' => 'required',
-            'date' => 'required|date|before_or_equal:today',
-            'time' => 'required',
-            'description' => 'required',
-            'longitud' => 'required|numeric|between:-90,90',
-            'latitud' => 'required|numeric|between:-180,180',
-            'type' => 'required',
-            'weapon' => 'required',
-            'transportation' => 'required'
-        ]);
-        // dd($request->all());
+        $validated = $request->validated();
 
         $categories_security = SubCatReport::where('name', 'LIKE', request('type'))->first();
         $weapon = CatWeapon::where('name', 'LIKE', request('weapon'))->first();
         $transportation = CatTransportation::where('name', 'LIKE', request('transportation'))->first();
 
         $state = State::where('name', 'LIKE', 'Sin Procesar')->first();
-
-        // $filename = '';
-        // if ($request->hasFile('file'))
-        // {
-        //     $file = $request->file('file');
-        //     $extension = $file->getClientOriginalExtension();
-        //     $filename = time().'.'.$extension;
-        //     $file->move('images/evidence', $filename);
-        // }
 
         $report = Report::create([
             'community_group_id' => request('community_group'),
@@ -119,10 +101,61 @@ class SecurityReportController extends Controller
             'cat_transportation_id' => $transportation->id
         ]);
 
-        // $evidence = Evidence::create([
-        //     'incident_id' => $report->id,
-        //     'multimedia_path' => $filename
-        // ]);
+        if ($request->has('victim_gender'))
+        {
+            $victims = request('victim_gender');
+            foreach($victims as $victim)
+            {
+                Victim::create([
+                    'security_report_id' => $security_report->id,
+                    'gender_id' => $victim
+                ]);
+            }
+        }
+
+        if ($request->has('perpetrator_gender')
+            && $request->has('perpetrator_description'))
+        {
+            $perpetrator_genders = request('perpetrator_gender');
+            $perpetrator_descriptions = request('perpetrator_description');
+            if (count($perpetrator_genders) == count($perpetrator_descriptions))
+            {
+                for($i = 0; $i < count($perpetrator_descriptions); ++$i)
+                {
+                    $perp = Perpetrator::create([
+                        'description' => $perpetrator_descriptions[$i],
+                        'security_report_id' => $security_report->id,
+                        'gender_id' => $perpetrator_genders[$i]
+                    ]);
+                }
+            }
+            
+        }
+
+        if ($request->has('evidence_file'))
+        {
+            $evidence = request('evidence_file');
+            foreach($evidence as $e)
+            {
+                $filename = '';
+                $extension = $e->getClientOriginalExtension();
+                $filename = time().'.'.$extension;
+                $e->move('evidence/'.$report->id, $filename);
+
+                $cat_evidence = CatEvidence::get_cat_evidence($extension);
+                if ($cat_evidence != null)
+                {
+                    Evidence::create([
+                        'report_id' => $report->id,
+                        'multimedia_path' => $filename,
+                        'cat_evidence_id' => $cat_evidence->id
+                    ]);
+                }else
+                {
+                    // Not supported type
+                }
+            }
+        }
 
         session()->flash('message', 'Reporte Creado');
 

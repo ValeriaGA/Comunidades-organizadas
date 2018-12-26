@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Report;
+use App\Gender;
 use App\CatReport;
 use App\SubCatReport;
 use App\Like;
@@ -101,7 +103,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user.edit', compact('user'));
+        $genders = Gender::all();
+        return view('user.edit', compact('user', 'genders'));
     }
 
     /**
@@ -118,21 +121,26 @@ class UserController extends Controller
             'lastname' => 'required|string|max:255',
             'secondlastname' => 'required|string|max:255',
             'gender' => 'required',
-            'file' => 'max:2048'
+            'file' => 'image|max:2048|dimensions:min_width=50,min_height=50,max_width=700,max_height=700'
         ]);
 
         try{
             $user= User::findOrFail($id);
+            $person = Person::find($user->person_id);
 
-            $user->name = $request['name'];
+            $person->name = $request['name'];
+            $person->last_name = $request['lastname'];
+            $person->second_last_name = $request['secondlastname'];
+
+            $person->gender_id = $request['gender'];
+            $person->save();
 
             if ($request->has('file') ? true: false)
             {
-                // Deleting not working
                 if ($user->avatar_path != '')
                 {
                     // File::delete('public/image/users/'.$user->avatar_path);
-                    $path = public_path() . '/image/users/' . $user->avatar_path;
+                    $path = public_path() . '/users/'. $user->id . '/' . $cat->avatar_path;
                     if(file_exists($path)) {
                         unlink($path);
                     }
@@ -141,7 +149,7 @@ class UserController extends Controller
                 $file = $request->file('file');
                 $extension = $file->getClientOriginalExtension();
                 $filename =time().'.'.$extension;
-                $file->move('images/users', $filename);
+                $file->move('users/'.$user->id, $filename);
 
                 $user->avatar_path = $filename;
             }

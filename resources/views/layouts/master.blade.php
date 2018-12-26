@@ -128,6 +128,8 @@
     <!-- COMMENT -->
     <script src="{{ asset('js/comment.js') }}"></script>
 
+    <script src="{{ asset('js/fileinput.js') }}"></script>
+
     <!-- REQUEST Communities -->
     <script src="{{ asset('js/communities.js') }}"></script>
 

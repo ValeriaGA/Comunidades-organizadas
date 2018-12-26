@@ -25,7 +25,7 @@
                                 <div class="overlay-box">
                                     <div class="user-content">
                                         @if (isset(Auth::user()->avatar_path) && !is_null(Auth::user()->avatar_path))
-                                            <img src="{{ asset('images/users/'.Auth::user()->avatar_path) }}" class="thumb-lg img-circle" alt="img">
+                                            <img src="{{ asset('users/'.Auth::user()->id.'/'.Auth::user()->avatar_path) }}" class="thumb-lg img-circle" alt="img">
                                         @else
                                             <img src="../plugins/images/users/profile.png" class="thumb-lg img-circle" alt="img">
                                         @endif

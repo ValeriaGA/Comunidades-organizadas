@@ -27,7 +27,7 @@
                                 <div class="overlay-box">
                                     <div class="user-content">
                                         @if (isset(Auth::user()->avatar_path) && !is_null(Auth::user()->avatar_path))
-                                            <img src="{{ asset('images/users/'.Auth::user()->avatar_path) }}" class="thumb-lg img-circle" alt="img">
+                                            <img src="{{ asset('users/'.Auth::user()->id.'/'.Auth::user()->avatar_path) }}" class="thumb-lg img-circle" alt="img">
                                         @else
                                             <img src="../plugins/images/users/profile.png" class="thumb-lg img-circle" alt="img">
                                         @endif
@@ -68,15 +68,14 @@
                                     <label class="col-md-12">Género</label>
                                     <div class="col-md-12">
                                         <select class="form-control" id="gender" name="gender" required>
-                                            @if (Auth::user()->person->gender->name == 'Masculino')
-                                                <option value="Masculino" selected="selected">Masculino</option>
-                                                <option value="Femenino">Femenino</option>
-                                                <option value="Otro">Otro</option>
-                                            @else
-                                                <option value="Masculino">Masculino</option>
-                                                <option value="Femenino" selected="selected">Femenino</option>
-                                                <option value="Otro">Otro</option>
-                                            @endif
+                                            @foreach ($genders as $gender)
+                                                @if (Auth::user()->person->gender_id == $gender->id)
+                                                    <option value="{{ $gender->id }}" selected="selected">{{ $gender->name }}</option>
+                                                @else
+                                                    <option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                                @endif
+                                            @endforeach
+                                            
                                         </select>
                                     </div>
                                 </div>
@@ -84,7 +83,18 @@
                                 <div class="form-group">
                                   <label class="col-md-12" for="exampleInputImage">Foto de perfil</label>
                                   <div class="col-md-12">
-                                    <input type="file" name="file">
+                                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                      <div class="form-control" data-trigger="fileinput">
+                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                        <span class="fileinput-filename"></span>
+                                      </div>
+                                      <span class="input-group-addon btn btn-default btn-file">
+                                        <span class="fileinput-new">Seleccionar</span>
+                                        <span class="fileinput-exists">Cambiar</span>
+                                        <input type="file" name="file">
+                                      </span>
+                                      <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+                                    </div>
                                   </div>
                                 </div>
 

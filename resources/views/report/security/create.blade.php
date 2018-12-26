@@ -69,6 +69,7 @@
                                 <a aria-expanded="false" data-toggle="tab" href="#evidence_tab"> <span class="visible-xs"><i class="fa fa-legal fa-fw"></i></span> <span class="hidden-xs">Evidencia</span> </a>
                             </li>
                         </ul>
+
                         <form class="form-horizontal form-material" action="/seguridad" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                             <div class="tab-content" style="width: 800px;">
@@ -199,40 +200,20 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label style="margin-left: 10px;">Víctimas</label>
-                                            <input type="button" id="add_victim_button" class="btn btn-success btn-rounded pull-right" value="Agregar" />
-
-                                            <br>
-                                            <br>
-                                                <table id="victim_table" class="table table-bordered" style="width: 100%;">
-                                                    <tr class="header">
-                                                        <td colspan="2"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Género</strong></td>
-                                                        <td><strong>Acción</strong></td>
-                                                    </tr>
-                                                </table>
+                                            <a href="#" class="btn btn-default btn-sm pull-right" id="add-victim"><span class="fa fa-plus"></span></a>
+                                            <hr />
+                                            <div class="victim-item row form-group">
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label style="margin-left: 10px;">Perpetradores</label>
-
-                                            <input type="button" id="add_perpetrator_button" class="btn btn-success btn-rounded pull-right" value="Agregar" />
-
-                                            <br>
-                                            <br>
-                                                <table id="perpetrator_table" class="table table-bordered" style="width: 100%;">
-                                                    <tr class="header">
-                                                        <td colspan="3"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Género</strong></td>
-                                                        <td><strong>Descripción</strong></td>
-                                                        <td><strong>Acción</strong></td>
-                                                    </tr>
-                                                </table>
+                                            <a href="#" class="btn btn-default btn-sm pull-right" id="add-perpetrator"><span class="fa fa-plus"></span></a>
+                                            <hr />
+                                            <div class="perpetrator-item row form-group">
+                                            </div>
                                         </div>
                                     </div>
 
@@ -262,21 +243,12 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label style="margin-left: 10px;">Evidencia</label>
-                                            <input type="button" id="add_evidence_button" class="btn btn-success btn-rounded pull-right" value="Agregar" />
-
-                                            <br>
-                                            <br>
-                                                <table id="evidence_table" class="table table-bordered" style="width: 100%;">
-                                                    <tr class="header">
-                                                        <td colspan="2"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Archivo</strong></td>
-                                                        <td><strong>Acción</strong></td>
-                                                    </tr>
-                                                </table>
+                                            <a href="#" class="btn btn-default btn-sm pull-right" id="add-evidence"><span class="fa fa-plus"></span></a>
+                                            <hr />
+                                            <div class="evidence-item row form-group">
+                                            </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
 
