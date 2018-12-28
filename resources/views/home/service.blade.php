@@ -5,9 +5,9 @@
                 <div class="comment-body">
                     <div class="user-img"> 
                         @if (!is_null($report->user->avatar_path))
-                            <img src="{{ asset('images/users/'.$report->user->avatar_path) }}"  alt="user" class="img-circle">
+                            <img src="{{ asset('users/'.$report->user->id.'/'.$report->user->avatar_path) }}" alt="user" class="img-circle">
                         @else
-                            <img src="../plugins/images/users/profile.png"  alt="user" class="img-circle">
+                            <img src="../plugins/images/users/profile.png"  alt="user-img" width="36" class="img-circle">
                         @endif
                     </div>
                     <div class="mail-contnet">

@@ -22,7 +22,8 @@
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
-                  <th>ID de publicacion</th>
+                  <th>ID de publicación</th>
+                  <th>Título de publicación</th>
                   <th>ID del Usuario</th>
                   <th>Correo del Usuario</th>
                   <th>Reportes Recibidos</th>
@@ -33,6 +34,7 @@
                 @foreach ($reports as $report) 
                 <tr class="">
                   <td>{{$report->report_id}}</td>
+                  <td>{{$report->title}}</td>
                   <td>{{$report->user_id}}</td>
                   <td>{{$report->email}}</td>
                   <td>{{$report->count}}</td>

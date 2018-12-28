@@ -26,7 +26,27 @@
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
+                <div class="txt"> Ver informacion de incidencias reportadas <span class="by label">Funcionalidad</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Agregar/Eliminar incidencias reportadas <span class="by label">Funcionalidad</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Filtrar Incidencias reportadas <span class="by label">Funcionalidad</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
                 <div class="txt"> Publicaciones <span class="by label">Funcionalidad</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Inspeccionar una publicacion <span class="by label">Funcionalidad</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Activar/Desactivar publicacion <span class="by label">Funcionalidad</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
@@ -53,6 +73,10 @@
                 <div class="txt"> Estilo de checkboxes <span class="by label">Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
+              <li class="clearfix">
+                <div class="txt"> Solicitudes de comunidades <span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -66,7 +90,19 @@
           <div class="todo">
             <ul>
               <li class="clearfix">
-                <div class="txt"> ... <span class="by label">Funcionalidad</span></div>
+                <div class="txt"> Crear/Editar Publicaciones <span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Ver/Crear/Editar Noticias <span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Crear/Editar Comentarios <span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Seguir/Dejar de seguir una comunidad <span class="by label">Funcionalidad y Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
@@ -97,6 +133,34 @@
                 <div class="txt"> Perfil de Usuarios poner privado la parte de editar<span class="by label">Funcionalidad y Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
+              <li class="clearfix">
+                <div class="txt"> codigo duplicado en el controlador de servicio/seguridad/noticias <span class="by label"> Diseño</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Mostrar evidencia en reportes/noticias (publicaciones)<span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Modulo de Search <span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Estadisticas <span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Advertir si un contenido en una publicacion es grafico (NSFW) <span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> subir archivos con tipo incorrecto (validar al crear/editar reportes/noticias) <span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> subir dos archivos como evidencia : bug (sol: agregar mas caracteristicas al name path del archivo) <span class="by label">Bugs</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -115,6 +179,10 @@
               </li>
               <li class="clearfix">
                 <div class="txt"> Stored Procedures en Laravel <span class="by label">Diseño</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Usuarios bloqueados <span class="by label">Diseño y Funcionalidad</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
             </ul>

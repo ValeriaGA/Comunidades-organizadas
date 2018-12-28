@@ -27,7 +27,7 @@ class AdministrationReportController extends Controller
         $reports = DB::table('report_alert')
                     ->join('reports', 'report_alert.report_id', '=', 'reports.id')
                     ->join('users', 'reports.user_id', '=', 'users.id')
-                    ->select('report_alert.report_id', 'reports.user_id', 'users.email', DB::raw('count(report_alert.report_id) as count'))
+                    ->select('report_alert.report_id', 'reports.user_id', 'reports.title', 'users.email', DB::raw('count(report_alert.report_id) as count'))
                     ->groupBy('report_alert.report_id')
                     ->get();
         return view('administration.report.index', compact('reports'));
