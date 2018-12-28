@@ -103,8 +103,11 @@
                                           </tr>
                                           <tr>
                                               <td>{{ $evidence->evidenceType->name}}</td>
-                                              <td>{{ $evidence->multimedia_path}}</td>
-                                              <!-- <img src="{{-- asset('images/evidence/'.$evidence->multimedia_path) --}}" style="display: block; margin-left: auto; margin-right: auto;"> -->
+                                              @if ($evidence->evidenceType->name == 'Imagen')
+                                                <td><img src="{{ asset('evidence/'.$report->id.'/'.$evidence->multimedia_path) }}" style="display: block; margin-left: auto; margin-right: auto;"></td>
+                                              @else
+                                                <td>{{ $evidence->multimedia_path}}</td>
+                                              @endif
                                           </tr>
                                           @endforeach
                                       </table>
@@ -116,7 +119,7 @@
                                           @if (!is_null($report->user->avatar_path))
                                               <img src="{{ asset('images/users/'.$report->user->avatar_path) }}"  alt="user" class="img-responsive thumbnail m-r-15">
                                           @else
-                                              <img src="../plugins/images/users/profile.png"  alt="user" class="img-responsive thumbnail m-r-15">
+                                              <img src="{{ asset('plugins/images/users/profile.png') }}"  alt="user" class="img-responsive thumbnail m-r-15">
                                           @endif
                                             
                                         </div>

@@ -81,7 +81,7 @@
                                 <a aria-expanded="false" data-toggle="tab" href="#evidence_tab"> <span class="visible-xs"><i class="fa fa-legal fa-fw"></i></span> <span class="hidden-xs">Evidencia</span> </a>
                             </li>
                         </ul>
-                        <form class="form-horizontal form-material" action="/seguridad/update/{{ $report->id }}" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal form-material" action="/servicio/update/{{ $report->id }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                             <div class="tab-content" style="width: 800px;">
 
@@ -92,12 +92,12 @@
                                         <div class="col-md-12">
                                             @if ($report->active == TRUE)
                                                 <div class="checkbox checkbox-success checkbox-circle">
-                                                  <input id="active-cb" type="checkbox" name="active-cb" checked>
+                                                  <input id="active-cb" type="checkbox" name="active" checked>
                                                   <label for="active-cb"> Activo </label>
                                                 </div>
                                             @else
                                                 <div class="checkbox checkbox-success checkbox-circle">
-                                                  <input id="active-cb" type="checkbox" name="active-cb">
+                                                  <input id="active-cb" type="checkbox" name="active">
                                                   <label for="active-cb"> Activo </label>
                                                 </div>
                                             @endif
@@ -243,7 +243,7 @@
                                         <label class="col-md-12">Grupos de Comunidades</label>
                                         <div class="col-md-12">
                                             <select name="community_group" id="community_groups" class="form-control">
-                                                <option value="">Grupo</option>
+                                                <option value="{{ $report->community_group_id }}">{{ $report->communityGroup->name }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -251,46 +251,69 @@
                                     <div class="clearfix"></div>
                                 </div>
 
-                                <!-- Victims & Perpetrators w/ gender-->
+                               <!-- Victims & Perpetrators w/ gender-->
 
                                 <div id="involved_tab" class="tab-pane">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label style="margin-left: 10px;">Víctimas</label>
-                                            <input type="button" id="add_victim_button" class="btn btn-success btn-rounded pull-right" value="Agregar" />
+                                            <a href="#" class="btn btn-default btn-sm pull-right" id="add-victim"><span class="fa fa-plus"></span></a>
+                                            <hr />
+                                            <div class="victim-item row form-group">
+                                            </div>
+                                            @foreach($report->securityReport->victims as $victim)
 
-                                            <br>
-                                            <br>
-                                                <table id="victim_table" class="table table-bordered" style="width: 100%;">
-                                                    <tr class="header">
-                                                        <td colspan="2"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Género</strong></td>
-                                                        <td><strong>Acción</strong></td>
-                                                    </tr>
-                                                </table>
+                                                <div class="victim-item row form-group">
+                                                    <div class="col-sm-1">
+                                                        <a href="#" class="btn btn-default btn-sm remove-victim"><span class="fa fa-minus"></span></a>
+                                                    </div>
+                                                    <div class="col-sm-10 victim-gender">
+                                                        <select name="victim_gender[]" class="form-control gender_select">
+                                                            @foreach($genders as $gender)
+                                                                @if ($victim->gender_id == $gender->id)
+                                                                    <option value="{{ $gender->id }}" selected>{{ $gender->name }}</option>
+                                                                @else
+                                                                    <option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            @endforeach
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label style="margin-left: 10px;">Perpetradores</label>
+                                            <a href="#" class="btn btn-default btn-sm pull-right" id="add-perpetrator"><span class="fa fa-plus"></span></a>
+                                            <hr />
+                                            <div class="perpetrator-item row form-group">
+                                            </div>
+                                            @foreach($report->securityReport->perpetrators as $perpetrator)
 
-                                            <input type="button" id="add_perpetrator_button" class="btn btn-success btn-rounded pull-right" value="Agregar" />
+                                                <div class="perpetrator-item row form-group">
+                                                    <div class="col-sm-1">
+                                                        <a href="#" class="btn btn-default btn-sm remove-perpetrator"><span class="fa fa-minus"></span></a>
+                                                    </div>
+                                                    <div class="col-sm-5 perpetrator-gender">
+                                                        <select name="perpetrator_gender[]" class="form-control gender_select">
+                                                            @foreach($genders as $gender)
+                                                                @if ($perpetrator->gender_id == $gender->id)
+                                                                    <option value="{{ $gender->id }}" selected>{{ $gender->name }}</option>
+                                                                @else
+                                                                    <option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-sm-5 perpetrator-description">
+                                                        <textarea name="perpetrator_description[]" rows="2" class="form-control form-control-line" placeholder="Una breve descripción del sujeto">{{ $perpetrator->description }}</textarea>
+                                                    </div>
+                                                </div>
 
-                                            <br>
-                                            <br>
-                                                <table id="perpetrator_table" class="table table-bordered" style="width: 100%;">
-                                                    <tr class="header">
-                                                        <td colspan="3"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Género</strong></td>
-                                                        <td><strong>Descripción</strong></td>
-                                                        <td><strong>Acción</strong></td>
-                                                    </tr>
-                                                </table>
+                                            @endforeach
                                         </div>
                                     </div>
 
@@ -320,21 +343,12 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label style="margin-left: 10px;">Evidencia</label>
-                                            <input type="button" id="add_evidence_button" class="btn btn-success btn-rounded pull-right" value="Agregar" />
-
-                                            <br>
-                                            <br>
-                                                <table id="evidence_table" class="table table-bordered" style="width: 100%;">
-                                                    <tr class="header">
-                                                        <td colspan="2"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><strong>Archivo</strong></td>
-                                                        <td><strong>Acción</strong></td>
-                                                    </tr>
-                                                </table>
+                                            <a href="#" class="btn btn-default btn-sm pull-right" id="add-evidence"><span class="fa fa-plus"></span></a>
+                                            <hr />
+                                            <div class="evidence-item row form-group">
+                                            </div>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
 

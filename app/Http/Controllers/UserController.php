@@ -103,6 +103,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+
+        if (Auth::user()->id != $user->id)
+        {
+            return redirect('/');
+        }
+
         $genders = Gender::all();
         return view('user.edit', compact('user', 'genders'));
     }
@@ -140,7 +146,7 @@ class UserController extends Controller
                 if ($user->avatar_path != '')
                 {
                     // File::delete('public/image/users/'.$user->avatar_path);
-                    $path = public_path() . '/users/'. $user->id . '/' . $cat->avatar_path;
+                    $path = public_path() . '/users/'. $user->id . '/' . $user->avatar_path;
                     if(file_exists($path)) {
                         unlink($path);
                     }

@@ -25,7 +25,7 @@
                         @if (isset(Auth::user()->avatar_path) && !is_null(Auth::user()->avatar_path))
                             <img src="{{ asset('users/'.Auth::user()->id.'/'.Auth::user()->avatar_path) }}" alt="user-img" width="36" class="img-circle">
                         @else
-                            <img src="../plugins/images/users/profile.png" alt="user-img" width="36" class="img-circle">
+                            <img src="{{ asset('plugins/images/users/profile.png') }}" alt="user-img" width="36" class="img-circle">
                         @endif
 
                      <b class="hidden-xs">{{ Auth::user()->name }}</b></a>

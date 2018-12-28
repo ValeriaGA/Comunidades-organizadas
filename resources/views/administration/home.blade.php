@@ -90,14 +90,6 @@
           <div class="todo">
             <ul>
               <li class="clearfix">
-                <div class="txt"> Crear/Editar Publicaciones <span class="by label">Funcionalidad y Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Ver/Crear/Editar Noticias <span class="by label">Funcionalidad y Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
                 <div class="txt"> Crear/Editar Comentarios <span class="by label">Funcionalidad y Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
@@ -122,15 +114,7 @@
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
-                <div class="txt"> Agregar victima/perpetrador cuando esta hidden la tabla <span class="by label">Bug Fixes</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
                 <div class="txt"> Perfil de Usuarios <span class="by label">Funcionalidad y Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Perfil de Usuarios poner privado la parte de editar<span class="by label">Funcionalidad y Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
@@ -158,7 +142,7 @@
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
-                <div class="txt"> subir dos archivos como evidencia : bug (sol: agregar mas caracteristicas al name path del archivo) <span class="by label">Bugs</span></div>
+                <div class="txt"> Al equivocarse creando un reporte que no se borren todos los datos cuando le retorna los errores <span class="by label">Bugs</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
             </ul>

@@ -110,11 +110,11 @@ var PerpetratorList = {
 var EvidenceList = {
 
     addEvidenceBtn: $('#add-evidence'),
-    evidenceTemplate: '<div class="victim-item row form-group"> \
+    evidenceTemplate: '<div class="evidence-item row form-group"> \
                         <div class="col-sm-1"> \
-                            <a href="#" class="btn btn-default btn-sm remove-victim"><span class="fa fa-minus"></span></a> \
+                            <a href="#" class="btn btn-default btn-sm remove-evidence"><span class="fa fa-minus"></span></a> \
                         </div> \
-                        <div class="col-sm-11 victim-gender"> \
+                        <div class="col-sm-11"> \
                             <div class="fileinput fileinput-new input-group" data-provides="fileinput"> \
                               <div class="form-control" data-trigger="fileinput"> \
                                 <i class="glyphicon glyphicon-file fileinput-exists"></i> \

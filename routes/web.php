@@ -64,9 +64,11 @@ Route::post('/seguridad/update/{reporte}', 'SecurityReportController@update');
 
 Route::get('/servicio/agregar', 'ServiceReportController@create');
 Route::post('/servicio', 'ServiceReportController@store');
+Route::post('/servicio/update/{reporte}', 'ServiceReportController@update');
 
 Route::get('/noticia/agregar', 'NewsController@create');
 Route::post('/noticia', 'NewsController@store');
+Route::post('/noticia/update/{reporte}', 'NewsController@update');
 
 // Report (ReportAlert)
 Route::get('/reportar/{reporte}', 'ReportAlertController@create');
