@@ -47,11 +47,11 @@
     <div class="container-fluid">
         <div class="row bg-title">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h4 class="page-title">Reporte Servicio</h4> </div>
+                <h4 class="page-title">Noticia</h4> </div>
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="/">Inicio</a></li>
-                    <li class="active">Editar reporte de servicio</li>
+                    <li class="active">Editar noticia</li>
                 </ol>
             </div>
         </div>
@@ -78,7 +78,7 @@
                                 <a aria-expanded="false" data-toggle="tab" href="#evidence_tab"> <span class="visible-xs"><i class="fa fa-legal fa-fw"></i></span> <span class="hidden-xs">Evidencia</span> </a>
                             </li>
                         </ul>
-                        <form class="form-horizontal form-material" action="/seguridad/update/{{ $report->id }}" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal form-material" action="/noticia/update/{{ $report->id }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                             <div class="tab-content" style="width: 800px;">
 
@@ -127,10 +127,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12">Tipo de reporte de servicio</label>
+                                        <label class="col-md-12">Tipo de noticia</label>
                                         <div class="col-md-12">
                                             <select class="form-control" name="type" required>
-                                              @foreach ($categories_security as $cat)
+                                              @foreach ($categories as $cat)
                                                 @if ($report->sub_cat_report_id == $cat->id)
                                                     <option value="{{$cat->name}}" selected>{{$cat->name}}</option>
                                                 @else

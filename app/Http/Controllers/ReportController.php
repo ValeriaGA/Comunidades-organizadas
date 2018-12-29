@@ -9,6 +9,12 @@ use App\Report;
 use App\CatEvidence;
 use App\CatTransportation;
 use App\CatWeapon;
+use App\Gender;
+use App\State;
+use App\CommunityGroup;
+use Auth;
+use DateTime;
+use DateTimeZone;
 
 class ReportController extends Controller
 {
@@ -48,10 +54,17 @@ class ReportController extends Controller
     public function edit($id)
     {
         $report = Report::find($id);
+
+        if (Auth::user()->id != $report->user_id)
+        {
+            return redirect('/');
+        }
+
         $community_groups = CommunityGroup::all();
 
         $cat_evidence = CatEvidence::get();
         $states = State::get();
+        $genders = Gender::all();
 
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
@@ -59,7 +72,8 @@ class ReportController extends Controller
   
         if ($report->news == true)
         {
-            return view('report.news.show', compact('report'));
+            $categories = SubCatReport::all(); 
+            return view('report.news.edit', compact('report', 'categories', 'cat_evidence', 'date', 'time', 'community_groups', 'states'));
 
 
         }else if ($report->subCatReport->CatReport->name == 'Seguridad')
@@ -70,7 +84,7 @@ class ReportController extends Controller
             $cat_transportation = CatTransportation::get();
             $cat_weapon = CatWeapon::get();
 
-            return view('report.security.edit', compact('report', 'categories_security', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups', 'states'));
+            return view('report.security.edit', compact('report', 'categories_security', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups', 'states', 'genders'));
 
 
         }else if ($report->subCatReport->CatReport->name == 'Servicio')
