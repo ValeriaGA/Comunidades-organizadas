@@ -1,5 +1,15 @@
 @extends('layouts.master')
 
+@section('js')
+    
+    <!-- chartist chart -->
+    <script src="{{ asset('plugins/bower_components/chartist-js/dist/chartist.min.js') }}"></script>
+    <script src="{{ asset('plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script>
+    <!-- Sparkline chart JavaScript -->
+    <script src="{{ asset('plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+    <script src="{{ asset('js/dashboard1.js') }}"></script>
+@endsection
+
 @section('content')
 
     <!-- jvectormap CSS -->

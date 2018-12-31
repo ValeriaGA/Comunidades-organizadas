@@ -51,7 +51,7 @@ class SecurityReportController extends Controller
         $community_groups = CommunityGroup::all();
 
         $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->get();
-        $categories_security = SubCatReport::where('cat_report_id', $cat_security[0]->id)->get();
+        $categories = SubCatReport::where('cat_report_id', $cat_security[0]->id)->get();
 
         $cat_evidence = CatEvidence::get();
         $cat_transportation = CatTransportation::get();
@@ -61,7 +61,7 @@ class SecurityReportController extends Controller
         $date = $dt->format('Y-m-d');
         $time = $dt->format('H:i:s');
 
-        return view('report.security.create', compact('categories_security', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups'));
+        return view('report.security.create', compact('categories', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups'));
     }
 
     /**

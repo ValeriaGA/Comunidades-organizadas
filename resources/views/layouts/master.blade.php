@@ -10,11 +10,11 @@
     <meta name="author" content="">
     <!-- <meta name="_token" content="{{csrf_token()}}" /> -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('plugins/images/info-logo-dark.png') }}">
-    <title>Comunidades Organizadas</title>
+    <title>@yield('title', 'Comunidades Organizadas')</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-    <!-- Menu CSS -->
-    <link href="{{ asset('plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css') }}" rel="stylesheet">
+
     <!-- toast CSS -->
     <link href="{{ asset('plugins/bower_components/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
     <!-- morris CSS -->
@@ -22,28 +22,26 @@
     <!-- chartist CSS -->
     <link href="{{ asset('plugins/bower_components/chartist-js/dist/chartist.min.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css') }}" rel="stylesheet">
+
+    <!-- Menu CSS -->
+    <link href="{{ asset('plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css') }}" rel="stylesheet">
     <!-- animation CSS -->
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <!-- color CSS -->
     <link href="{{ asset('css/colors/default.css') }}" id="theme" rel="stylesheet">
-    <!-- Message CSS -->
+    <!-- Flash Message CSS -->
     <link href="{{ asset('css/messages.css') }}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-
     <![endif]-->
 
     <!-- dropdown table -->
     <link href="{{ asset('css/dropdownTableRows.css')}}" rel="stylesheet">
-
-    <!--Report section tabs-->
-    <link rel="stylesheet" href="{{ asset('css/styleTabs.css')}}">
-    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
     
 </head>
 
@@ -74,9 +72,10 @@
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
+
+
+
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
     <script src="{{ asset('plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -89,18 +88,12 @@
     <!--Counter js -->
     <script src="{{ asset('plugins/bower_components/waypoints/lib/jquery.waypoints.js') }}"></script>
     <script src="{{ asset('plugins/bower_components/counterup/jquery.counterup.min.js') }}"></script>
-    <!-- chartist chart -->
-    <script src="{{ asset('plugins/bower_components/chartist-js/dist/chartist.min.js') }}"></script>
-    <script src="{{ asset('plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script>
-    <!-- Sparkline chart JavaScript -->
-    <script src="{{ asset('plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+
+    @yield ('js')
+    
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('js/custom.min.js') }}"></script>
-    <script src="{{ asset('js/dashboard1.js') }}"></script>
     <script src="{{ asset('plugins/bower_components/toast-master/js/jquery.toast.js') }}"></script>
-
-    <!-- BUTTON -->
-    <script src="{{ asset('js/buttons.js') }}"></script>
 
     <script type="text/javascript">
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -115,26 +108,7 @@
     </script>
     <!--End of Tawk.to Script-->
 
-
-    <script src="{{ asset('js/dropdownTableRows.js')}}"></script>
-
-    <!--Report section tabs-->
-    <script src="{{ asset('js/tabs-control.js') }}"></script>
-
-
-    <!-- PROVINCES -->
-    <script src="{{ asset('js/comboBoxControl.js') }}"></script>
-
-    <!-- COMMENT -->
-    <script src="{{ asset('js/comment.js') }}"></script>
-
-    <script src="{{ asset('js/fileinput.js') }}"></script>
-
-    <!-- REQUEST Communities -->
-    <script src="{{ asset('js/communities.js') }}"></script>
-
-    <script src="{{ asset('js/createReportTable.js') }}"></script>
-
+    
 </body>
 
 </html>

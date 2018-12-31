@@ -1,5 +1,11 @@
 @extends('layouts.master')
 
+@section('js')
+    
+    <!-- FILE INPUT -->
+    <script src="{{ asset('js/fileinput.js') }}"></script>
+@endsection
+
 @section('content')
         <!-- ============================================================== -->
         <!-- Page Content -->

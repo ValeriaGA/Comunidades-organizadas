@@ -1,5 +1,18 @@
 @extends('layouts.master')
 
+@section('js')
+    
+    <!-- DROP DOWN TABLE -->
+    <script src="{{ asset('js/dropdownTableRows.js')}}"></script>
+
+    <!-- PROVINCES -->
+    <script src="{{ asset('js/comboBoxControl.js') }}"></script>
+
+    <!-- REQUEST Communities -->
+    <script src="{{ asset('js/communities.js') }}"></script>
+
+    <script src="{{ asset('js/createReportTable.js') }}"></script>
+@endsection
 
 @section('content')
         

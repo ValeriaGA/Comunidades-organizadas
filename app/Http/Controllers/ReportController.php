@@ -79,20 +79,20 @@ class ReportController extends Controller
         }else if ($report->subCatReport->CatReport->name == 'Seguridad')
         {
             $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->first();
-            $categories_security = SubCatReport::where('cat_report_id', $cat_security->id)->get();        
+            $categories = SubCatReport::where('cat_report_id', $cat_security->id)->get();        
             
             $cat_transportation = CatTransportation::get();
             $cat_weapon = CatWeapon::get();
 
-            return view('report.security.edit', compact('report', 'categories_security', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups', 'states', 'genders'));
+            return view('report.security.edit', compact('report', 'categories', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups', 'states', 'genders'));
 
 
         }else if ($report->subCatReport->CatReport->name == 'Servicio')
         {
             $cat_service = CatReport::where('name', 'LIKE', 'Servicio')->first();
-            $categories_service = SubCatReport::where('cat_report_id', $cat_service->id)->get();
+            $categories = SubCatReport::where('cat_report_id', $cat_service->id)->get();
 
-            return view('report.service.edit', compact('report', 'categories_service', 'cat_evidence', 'date', 'time', 'community_groups', 'states'));
+            return view('report.service.edit', compact('report', 'categories', 'cat_evidence', 'date', 'time', 'community_groups', 'states'));
         }else
         {
             // 

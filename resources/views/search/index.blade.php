@@ -1,5 +1,11 @@
 @extends('layouts.master')
 
+@section('js')
+
+    <!-- PROVINCES -->
+    <script src="{{ asset('js/comboBoxControl.js') }}"></script>
+@endsection
+
 @section('content')
 <style>
             #legend {

@@ -1,5 +1,14 @@
 @extends('layouts.master')
 
+@section('js')
+    
+    <!-- LIKE FOLLOW BUTTON -->
+    <script src="{{ asset('js/buttons.js') }}"></script>
+
+    <!-- PROVINCES -->
+    <script src="{{ asset('js/comboBoxControl.js') }}"></script>
+@endsection
+
 @section('content')
         
         <!-- ============================================================== -->
@@ -12,7 +21,7 @@
                         <h4 class="page-title">Inicio</h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="#">Inicio</a></li>
+                            <li><a href="/">Inicio</a></li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->

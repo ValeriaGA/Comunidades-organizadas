@@ -20,10 +20,6 @@ Route::post('/home/comunidades', 'HomeController@show');
 
 Route::get('/logout', 'SessionsController@destroy');
 
-Route::get('/fontawesome', function () {
-    return view('fontawesome');
-});
-
 Route::get('/informacion', function () {
     return view('information');
 });
