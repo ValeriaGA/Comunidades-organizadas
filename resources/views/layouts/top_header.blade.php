@@ -35,7 +35,7 @@
                 </li>
             @else
                 <li>
-                     <a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Log In</a>
+                     <a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Iniciar Sesión</a>
                 </li>
                 <li>
                      <a href="{{ route('register') }}"><i class="fa fa-pencil-square-o"></i> Registrar</a>
