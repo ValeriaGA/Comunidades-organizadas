@@ -20,7 +20,9 @@
           </div>
           <div class="widget-content nopadding">
 
-            <form class="form-horizontal" method="post" action="/administracion/estados/update/{{ $state->id }}">
+            <form class="form-horizontal" method="post" action="/administracion/estados/{{ $state->id }}">
+              @method('PATCH')
+
               @csrf
 
               <div class="control-group">

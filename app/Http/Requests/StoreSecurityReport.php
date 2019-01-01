@@ -48,8 +48,8 @@ class StoreSecurityReport extends FormRequest
                 $rules['perpetrator_description.'.$key] = 'required';
             }
         }
-        if($this->request->get('evidence_file')){
-            foreach($this->request->get('evidence_file') as $key => $val)
+        if($this->files->get('evidence_file')){
+            foreach($this->files->get('evidence_file') as $key => $val)
             {
                 $rules['evidence_file.'.$key] = 'required|file|max:2048';
             }

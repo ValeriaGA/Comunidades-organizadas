@@ -6,7 +6,7 @@ composer dump-autoload
 
 CREATE DATABASE ComunidadesOrganizadas;
 
-php artisan migrate:refresh --seed
+php artisan migrate:fresh --seed
 
 php artisan serve
 php artisan key:generate

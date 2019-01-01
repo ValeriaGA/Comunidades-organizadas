@@ -20,7 +20,9 @@
           </div>
           <div class="widget-content nopadding">
 
-            <form class="form-horizontal" method="post" action="/administracion/comunidades/comunidad/update/{{ $community->id }}">
+            <form class="form-horizontal" method="post" action="/administracion/comunidades/comunidad/{{ $community->id }}">
+              @method('PATCH')
+
               @csrf
 
               <div class="control-group">

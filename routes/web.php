@@ -47,28 +47,28 @@ Route::get('/comunidades/solicitar-grupo', 'GroupController@requestIndex');
 
 Route::get('/user', 'UserController@index');
 Route::get('/user/{user}', 'UserController@edit');
-Route::post('/user/update/{user}', 'UserController@update');
+Route::patch('/user/{user}', 'UserController@update');
 
 // Report
 Route::get('/reporte', 'ReportController@index');
-Route::get('/reporte/{reporte}', 'ReportController@show');
-Route::get('/reporte/editar/{reporte}', 'ReportController@edit');
+Route::get('/reporte/{report}', 'ReportController@show');
+Route::get('/reporte/editar/{report}', 'ReportController@edit');
 
 Route::get('/seguridad/agregar', 'SecurityReportController@create');
 Route::post('/seguridad', 'SecurityReportController@store');
-Route::post('/seguridad/update/{reporte}', 'SecurityReportController@update');
+Route::patch('/seguridad/{report}', 'SecurityReportController@update');
 
 Route::get('/servicio/agregar', 'ServiceReportController@create');
 Route::post('/servicio', 'ServiceReportController@store');
-Route::post('/servicio/update/{reporte}', 'ServiceReportController@update');
+Route::patch('/servicio/{report}', 'ServiceReportController@update');
 
 Route::get('/noticia/agregar', 'NewsController@create');
 Route::post('/noticia', 'NewsController@store');
-Route::post('/noticia/update/{reporte}', 'NewsController@update');
+Route::patch('/noticia/{report}', 'NewsController@update');
 
 // Report (ReportAlert)
-Route::get('/reportar/{reporte}', 'ReportAlertController@create');
-Route::post('/reportar/{reporte}', 'ReportAlertController@store');
+Route::get('/reportar/{report}', 'ReportAlertController@create');
+Route::post('/reportar/{report}', 'ReportAlertController@store');
 
 // Like
 
@@ -129,7 +129,7 @@ Route::post('/administracion/roles', 'AdministrationRoleController@store');
 Route::post('/administracion/roles/filtrar', 'AdministrationRoleController@show');
 Route::get('/administracion/roles/agregar', 'AdministrationRoleController@create');
 Route::get('/administracion/roles/{role}', 'AdministrationRoleController@edit');
-Route::post('/administracion/roles/{role}', 'AdministrationRoleController@update');
+Route::patch('/administracion/roles/{role}', 'AdministrationRoleController@update');
 Route::get('/administracion/roles/usuarios/{user}', 'AdministrationRoleController@editUser');
 Route::post('/administracion/roles/usuarios/{user}', 'AdministrationRoleController@updateUser');
 
@@ -138,7 +138,7 @@ Route::post('/administracion/roles/usuarios/{user}', 'AdministrationRoleControll
 Route::get('/administracion/reportes', 'AdministrationReportController@index');
 Route::get('/administracion/reportes/{report}', 'AdministrationReportController@show');
 Route::get('/administracion/reportes/editar/{report}', 'AdministrationReportController@edit');
-Route::post('/administracion/reportes/editar/{report}', 'AdministrationReportController@update');
+Route::patch('/administracion/reportes/editar/{report}', 'AdministrationReportController@update');
 
 // Requests
 Route::get('/administracion/solicitudes', 'AdministrationRequestController@index');
@@ -154,19 +154,19 @@ Route::get('/administracion/seguridad', 'AdministrationSecurityController@index'
 Route::get('/administracion/seguridad/categorias/agregar', 'AdministrationSecurityController@create');
 Route::post('/administracion/seguridad/categorias', 'AdministrationSecurityController@store');
 Route::get('/administracion/seguridad/{subCatReport}', 'AdministrationSecurityController@edit');
-Route::post('/administracion/seguridad/categorias/{subCatReport}', 'AdministrationSecurityController@update');
+Route::patch('/administracion/seguridad/categorias/{subCatReport}', 'AdministrationSecurityController@update');
 
 	// Weapon Category
 Route::get('/administracion/seguridad/armas/agregar', 'AdministrationWeaponController@create');
 Route::post('/administracion/seguridad/armas', 'AdministrationWeaponController@store');
 Route::get('/administracion/seguridad/armas/{catWeapon}', 'AdministrationWeaponController@edit');
-Route::post('/administracion/seguridad/armas/{catWeapon}', 'AdministrationWeaponController@update');
+Route::patch('/administracion/seguridad/armas/{catWeapon}', 'AdministrationWeaponController@update');
 
 	// Transportation Category
 Route::get('/administracion/seguridad/transportes/agregar', 'AdministrationTransportationController@create');
 Route::post('/administracion/seguridad/transportes', 'AdministrationTransportationController@store');
 Route::get('/administracion/seguridad/transportes/{catTransportation}', 'AdministrationTransportationController@edit');
-Route::post('/administracion/seguridad/transportes/{catTransportation}', 'AdministrationTransportationController@update');
+Route::patch('/administracion/seguridad/transportes/{catTransportation}', 'AdministrationTransportationController@update');
 
 
 // Service Category
@@ -174,49 +174,40 @@ Route::get('/administracion/servicio', 'AdministrationServiceController@index');
 Route::get('/administracion/servicio/agregar', 'AdministrationServiceController@create');
 Route::post('/administracion/servicio', 'AdministrationServiceController@store');
 Route::get('/administracion/servicio/{subCatReport}', 'AdministrationServiceController@edit');
-Route::post('/administracion/servicio/{subCatReport}', 'AdministrationServiceController@update');
+Route::patch('/administracion/servicio/{subCatReport}', 'AdministrationServiceController@update');
 
 // State
 Route::get('/administracion/estados', 'AdministrationStateController@index');
 Route::get('/administracion/estados/agregar', 'AdministrationStateController@create');
 Route::post('/administracion/estados', 'AdministrationStateController@store');
 Route::get('/administracion/estados/{state}', 'AdministrationStateController@edit');
-Route::post('/administracion/estados/update/{state}', 'AdministrationStateController@update');
+Route::patch('/administracion/estados/{state}', 'AdministrationStateController@update');
 
 // Gender
 Route::get('/administracion/generos', 'AdministrationGenderController@index');
 Route::get('/administracion/generos/agregar', 'AdministrationGenderController@create');
 Route::post('/administracion/generos', 'AdministrationGenderController@store');
 Route::get('/administracion/generos/{gender}', 'AdministrationGenderController@edit');
-Route::post('/administracion/generos/update/{gender}', 'AdministrationGenderController@update');
+Route::patch('/administracion/generos/{gender}', 'AdministrationGenderController@update');
 
 // Evidence
 Route::get('/administracion/evidencias', 'AdministrationEvidenceController@index');
 Route::get('/administracion/evidencias/agregar', 'AdministrationEvidenceController@create');
 Route::post('/administracion/evidencias', 'AdministrationEvidenceController@store');
 Route::get('/administracion/evidencias/{evidence}', 'AdministrationEvidenceController@edit');
-Route::post('/administracion/evidencias/update/{evidence}', 'AdministrationEvidenceController@update');
+Route::patch('/administracion/evidencias/{evidence}', 'AdministrationEvidenceController@update');
 
 // Communities
 Route::get('/administracion/comunidades/comunidad', 'AdministrationCommunityController@index');
 Route::get('/administracion/comunidades/comunidad/agregar', 'AdministrationCommunityController@create');
 Route::post('/administracion/comunidades/comunidad', 'AdministrationCommunityController@store');
 Route::get('/administracion/comunidades/comunidad/{community}', 'AdministrationCommunityController@edit');
-Route::post('/administracion/comunidades/comunidad/update/{community}', 'AdministrationCommunityController@update');
+Route::patch('/administracion/comunidades/comunidad/{community}', 'AdministrationCommunityController@update');
 Route::post('/administracion/comunidades/comunidad/filtrar', 'AdministrationCommunityController@show');
 
 Route::get('/administracion/comunidades/grupos', 'AdministrationCommunityGroupController@index');
 Route::get('/administracion/comunidades/grupos/agregar', 'AdministrationCommunityGroupController@create');
 Route::post('/administracion/comunidades/grupos', 'AdministrationCommunityGroupController@store');
 Route::get('/administracion/comunidades/grupos/{community_group}', 'AdministrationCommunityGroupController@edit');
-Route::post('/administracion/comunidades/grupos/update/{community_group}', 'AdministrationCommunityGroupController@update');
+Route::patch('/administracion/comunidades/grupos/{community_group}', 'AdministrationCommunityGroupController@update');
 Route::post('/administracion/comunidades/grupos/filtrar', 'AdministrationCommunityGroupController@show');
-
-
-// ~~~
-
-Route::get('/administracion/products', 'AdministrationProductController@index');
-Route::get('/administracion/products/create', 'AdministrationProductController@create');
-Route::post('/administracion/products', 'AdministrationProductController@store');
-Route::get('/administracion/products/{product}', 'AdministrationProductController@edit');
-Route::post('/administracion/products/update/{product}', 'AdministrationProductController@update');

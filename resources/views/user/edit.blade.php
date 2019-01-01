@@ -46,8 +46,10 @@
                     </div>
                     <div class="col-md-8 col-xs-12">
                         <div class="white-box">
-                            <form class="form-horizontal form-material" action="/user/update/{{ Auth::user()->id }}" method="post" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                            <form class="form-horizontal form-material" action="/user/{{ Auth::user()->id }}" method="post" enctype="multipart/form-data">
+                                @method('PATCH')
+
+                                @csrf
 
                                 <div class="form-group">
                                     <label class="col-md-12">Nombre</label>

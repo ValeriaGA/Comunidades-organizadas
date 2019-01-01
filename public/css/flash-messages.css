@@ -1,9 +1,9 @@
 #flash-message {
-    bottom: 20px;
+    top: 5%;
     position: absolute;
-    right: 20px;
+    right: 5%;
     z-index: 10;
-    animation: flash-message 6s forwards;
+    animation: flash-message 5s forwards;
 }
 
 @keyframes flash-message {

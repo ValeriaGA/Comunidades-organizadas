@@ -36,4 +36,30 @@ class SecurityReport extends Model
     {
         return $this->hasMany(Perpetrator::class, 'security_report_id', 'id');
     }
+
+    public function addVictim($victims)
+    {
+        foreach($victims as $victim)
+        {
+            Victim::create([
+                'security_report_id' => $this->id,
+                'gender_id' => $victim
+            ]);
+        }
+    }
+
+    public function addPerpetrator($perpetrator_genders, $perpetrator_descriptions)
+    {
+        if (count($perpetrator_genders) == count($perpetrator_descriptions))
+        {
+            for($i = 0; $i < count($perpetrator_descriptions); ++$i)
+            {
+                $perp = Perpetrator::create([
+                    'description' => $perpetrator_descriptions[$i],
+                    'security_report_id' => $this->id,
+                    'gender_id' => $perpetrator_genders[$i]
+                ]);
+            }
+        }
+    }
 }

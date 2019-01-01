@@ -21,6 +21,8 @@
           <div class="widget-content nopadding">
 
             <form class="form-horizontal" method="post" action="/administracion/seguridad/categorias/{{ $subCatReport->id }}" enctype="multipart/form-data">
+              @method('PATCH')
+
               @csrf
 
               <div class="control-group">

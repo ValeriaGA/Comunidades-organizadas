@@ -83,3 +83,27 @@
         <div class="clearfix"></div>
     </div>
 @endsection
+
+@section('details')
+    <div class="form-group">
+        <label class="col-md-12">Tipo de Arma (Si aplica)</label>
+        <div class="col-md-12">
+            <select class="form-control" name="weapon" required>
+              @foreach ($cat_weapon as $weapon)
+                <option value="{{$weapon->name}}" {{ $weapon->name == $report->securityReport->catWeapon->name ? 'selected' : '' }}>{{$weapon->name}}</option>
+              @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-12">Medio de Transporte</label>
+        <div class="col-md-12">
+            <select class="form-control" name="transportation" required>
+                @foreach ($cat_transportation as $transport)
+                    <option value="{{$transport->name}}" {{ $transport->name == $report->securityReport->catTransportation->name ? 'selected' : '' }}>{{$transport->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    
+@endsection

@@ -32,7 +32,7 @@
     <!-- color CSS -->
     <link href="{{ asset('css/colors/default.css') }}" id="theme" rel="stylesheet">
     <!-- Flash Message CSS -->
-    <link href="{{ asset('css/messages.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/flash-messages.css') }}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

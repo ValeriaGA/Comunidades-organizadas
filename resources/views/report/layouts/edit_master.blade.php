@@ -89,8 +89,10 @@
                                 <a aria-expanded="false" data-toggle="tab" href="#evidence_tab"> <span class="visible-xs"><i class="fa fa-legal fa-fw"></i></span> <span class="hidden-xs">Evidencia</span> </a>
                             </li>
                         </ul>
-                        <form class="form-horizontal form-material" action="@yield ('form')/update/{{ $report->id }}" method="post" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                        <form class="form-horizontal form-material" action="@yield ('form')/{{ $report->id }}" method="post" enctype="multipart/form-data">
+                        @method('PATCH')
+
+                        @csrf
                             <div class="tab-content" style="width: 800px;">
 
                                 <!-- Settings -->

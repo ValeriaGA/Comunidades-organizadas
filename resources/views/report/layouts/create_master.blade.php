@@ -90,7 +90,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Título</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="" class="form-control form-control-line" name="title" required> 
+                                            <input type="text" placeholder="" class="form-control form-control-line" name="title" value="{{ old('title') }}" required> 
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -98,7 +98,7 @@
                                         <div class="col-md-12">
                                             <select class="form-control" name="type" required>
                                               @foreach ($categories as $cat)
-                                                <option value="{{$cat->name}}">{{$cat->name}}</option>
+                                                <option value="{{$cat->name}}" {{ $cat->name == old('type') ? 'selected' : '' }}>{{$cat->name}}</option>
                                               @endforeach
                                             </select>
                                         </div>
@@ -106,28 +106,28 @@
                                     <div class="form-group">
                                         <label class="col-md-12" for="date">Fecha</label>
                                         <div class="col-md-12">
-                                            <input id="date" type="date" placeholder="" class="form-control form-control-line" name="date" value="{{$date}}" required> </div>
+                                            <input id="date" type="date" placeholder="" class="form-control form-control-line" name="date" value="{{ $errors->any() ? old('date') : $date }}" required> </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12" for="time">Hora</label>
                                         <div class="col-md-12">
-                                            <input id="time" type="time" placeholder="" class="form-control form-control-line" name="time" value="{{$time}}" required> </div>
+                                            <input id="time" type="time" placeholder="" class="form-control form-control-line" name="time" value="{{ $errors->any() ? old('time') : $time }}" required> </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12" for="InputLongitud">Longitud</label>
                                         <div class="col-md-12">
-                                            <input id="InputLongitud" type="decimal" placeholder="" class="form-control form-control-line" name="longitud" required> </div>
+                                            <input id="InputLongitud" type="decimal" placeholder="" class="form-control form-control-line" name="longitud" value="{{ old('longitud') }}" required> </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12" for="InputLatitud">Latitud</label>
                                         <div class="col-md-12">
-                                            <input id="InputLatitud" type="decimal" placeholder="" class="form-control form-control-line" name="latitud" required> </div>
+                                            <input id="InputLatitud" type="decimal" placeholder="" class="form-control form-control-line" name="latitud" value="{{ old('latitud') }}" required> </div>
                                     </div>
                                     @yield ('details')
                                     <div class="form-group">
                                         <label class="col-md-12" for="exampleInputDescription">Descripción</label>
                                         <div class="col-md-12">
-                                            <textarea rows="5" class="form-control form-control-line" name="description" placeholder="Ingrese el relato de los sucesos, especificación del medio de transporte (placa, modelo/marca de carro), pertenencias perdidas, entre otros detalles pertinentes al incidente."required></textarea>
+                                            <textarea rows="5" class="form-control form-control-line" name="description" placeholder="Ingrese el relato de los sucesos, especificación del medio de transporte (placa, modelo/marca de carro), pertenencias perdidas, entre otros detalles pertinentes al incidente." required>{{ old('description') }}</textarea>
                                         </div>
                                     </div>
                                 </div>

@@ -51,14 +51,9 @@ class ReportController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit(Report $report)
     {
-        $report = Report::find($id);
-
-        if (Auth::user()->id != $report->user_id)
-        {
-            return redirect('/');
-        }
+        $this->authorize('update', $report);
 
         $community_groups = CommunityGroup::all();
 

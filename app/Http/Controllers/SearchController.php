@@ -62,10 +62,6 @@ class SearchController extends Controller
      */
     public function show(Request $request)
     {
-        // location
-        // date
-        // sex
-        // 
         $this->validate(request(), [
             'date' => 'date|before_or_equal:today'
         ]);

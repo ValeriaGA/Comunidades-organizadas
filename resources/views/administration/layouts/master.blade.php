@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="{{ asset('admin/css/jquery.gritter.css') }}" />
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel='stylesheet' type='text/css'>
         <!-- Message CSS -->
-        <link href="{{ asset('css/messages.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/flash-messages.css') }}" rel="stylesheet">
     </head>
     <body>
 
