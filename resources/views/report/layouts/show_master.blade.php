@@ -165,24 +165,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12 col-lg-12 col-sm-12">
-                        <div class="white-box">
-                            <div class="form-group" >
-                                <input name="idReport" type="hidden" value="{{$report->id}}"/>
+
+                @auth
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <div class="white-box">
+                                <div class="form-group" >
+                                    <input name="idReport" type="hidden" value="{{$report->id}}"/>
 
 
-                                <div class="col-md-12" style="margin-bottom: 10px;">
-                                    <textarea id="commentInput" rows="5" class="form-control form-control-line" name="description" placeholder="Nuevo comentario..."required></textarea>
+                                    <div class="col-md-12" style="margin-bottom: 10px;">
+                                        <textarea id="commentInput" rows="5" class="form-control form-control-line" name="description" placeholder="Nuevo comentario..."required></textarea>
+                                    </div>
+
+                                    <button id="commentButton" onclick="addComment('commentInput')" class="btn btn btn-block btn-primary btn-outline m-r-5" active="0" type="submit">
+                                        Comentar
+                                    </button>
                                 </div>
-
-                                <button id="commentButton" onclick="addComment('commentInput')" class="btn btn btn-block btn-primary btn-outline m-r-5" active="0" type="submit">
-                                    Comentar
-                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endauth
             </div>
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
