@@ -28,6 +28,10 @@ Route::get('/terminos-y-condiciones', function () {
     return view('terms');
 });
 
+// Comments
+Route::post('/add-comment', 'CommentController@store');
+Route::post('/update-comment', 'CommentController@update');
+Route::post('/remove-comment', 'CommentController@destroy');
 
 // Generos
 Route::any('/generos', 'GenderController@show');
