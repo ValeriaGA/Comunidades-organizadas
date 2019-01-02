@@ -12,6 +12,7 @@ use App\CatWeapon;
 use App\Gender;
 use App\State;
 use App\CommunityGroup;
+use App\Comment;
 use Auth;
 use DateTime;
 use DateTimeZone;
@@ -35,15 +36,43 @@ class ReportController extends Controller
 
     public function show(Report $report)
     {
+        $generalComments = null;
+        $userComments = null;
+
+        if (Auth::check())
+        {
+            $userComments = Comment::select('users.email', 'users.avatar_path', 'users.id',
+                                        'comments.comment', 'comments.user_id', 'comments.id')
+                                    ->join('users', 'users.id', '=', 'user_id')
+                                    -> where('user_id', '=', Auth::id())
+                                    -> where('report_id', '=', $report->id)
+                                    -> get();
+
+            $generalComments = Comment::select('users.email', 'users.avatar_path', 'users.id',
+                                            'comments.comment', 'comments.user_id', 'comments.id')
+                                        ->join('users', 'users.id', '=', 'user_id')
+                                        -> where('user_id', '<>', Auth::id())
+                                        -> where('report_id', '=', $report->id)
+                                        -> get();
+        }
+        else
+        {
+            $generalComments = Comment::select('users.email', 'users.avatar_path', 'users.id',
+                                        'comments.comment', 'comments.user_id', 'comments.id')
+                                    ->join('users', 'users.id', '=', 'user_id')
+                                    -> where('report_id', '=', $report->id)
+                                    -> get();
+        }
+
         if ($report->news == 1)
         {
-            return view('report.news.show', compact('report'));
+            return view('report.news.show', compact('report', 'generalComments', 'userComments'));
         }else if ($report->subCatReport->CatReport->name == 'Seguridad')
         {
-            return view('report.security.show', compact('report'));
+            return view('report.security.show', compact('report', 'generalComments', 'userComments'));
         }else if ($report->subCatReport->CatReport->name == 'Servicio')
         {
-            return view('report.service.show', compact('report'));
+            return view('report.service.show', compact('report', 'generalComments', 'userComments'));
         }else
         {
             // 
