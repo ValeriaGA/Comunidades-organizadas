@@ -33,9 +33,8 @@ class ReportController extends Controller
         return view('report.create', compact('categories_service', 'categories_security'));
     }
 
-    public function show($id)
+    public function show(Report $report)
     {
-        $report = Report::find($id);
         if ($report->news == 1)
         {
             return view('report.news.show', compact('report'));
@@ -58,7 +57,7 @@ class ReportController extends Controller
         $community_groups = CommunityGroup::all();
 
         $cat_evidence = CatEvidence::get();
-        $states = State::get();
+        $states = State::where('active', true)->get();
         $genders = Gender::all();
 
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));

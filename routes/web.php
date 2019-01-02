@@ -146,7 +146,8 @@ Route::get('/administracion/solicitudes', 'AdministrationRequestController@index
 
 // Publications (Reports)
 Route::get('/administracion/publicaciones', 'AdministrationPublicationController@index');
-Route::get('/administracion/publicaciones/{publicacion}', 'AdministrationPublicationController@show');
+Route::get('/administracion/publicaciones/{report}', 'AdministrationPublicationController@show');
+Route::patch('/administracion/publicaciones/activo/{report}', 'AdministrationPublicationController@toggle');
 
 
 // Security Category
@@ -155,18 +156,21 @@ Route::get('/administracion/seguridad/categorias/agregar', 'AdministrationSecuri
 Route::post('/administracion/seguridad/categorias', 'AdministrationSecurityController@store');
 Route::get('/administracion/seguridad/{subCatReport}', 'AdministrationSecurityController@edit');
 Route::patch('/administracion/seguridad/categorias/{subCatReport}', 'AdministrationSecurityController@update');
+Route::patch('/administracion/seguridad/categorias/activo/{subCatReport}', 'AdministrationSecurityController@toggle');
 
 	// Weapon Category
 Route::get('/administracion/seguridad/armas/agregar', 'AdministrationWeaponController@create');
 Route::post('/administracion/seguridad/armas', 'AdministrationWeaponController@store');
 Route::get('/administracion/seguridad/armas/{catWeapon}', 'AdministrationWeaponController@edit');
 Route::patch('/administracion/seguridad/armas/{catWeapon}', 'AdministrationWeaponController@update');
+Route::patch('/administracion/seguridad/armas/activo/{catWeapon}', 'AdministrationWeaponController@toggle');
 
 	// Transportation Category
 Route::get('/administracion/seguridad/transportes/agregar', 'AdministrationTransportationController@create');
 Route::post('/administracion/seguridad/transportes', 'AdministrationTransportationController@store');
 Route::get('/administracion/seguridad/transportes/{catTransportation}', 'AdministrationTransportationController@edit');
 Route::patch('/administracion/seguridad/transportes/{catTransportation}', 'AdministrationTransportationController@update');
+Route::patch('/administracion/seguridad/transportes/activo/{catTransportation}', 'AdministrationTransportationController@toggle');
 
 
 // Service Category
@@ -175,6 +179,7 @@ Route::get('/administracion/servicio/agregar', 'AdministrationServiceController@
 Route::post('/administracion/servicio', 'AdministrationServiceController@store');
 Route::get('/administracion/servicio/{subCatReport}', 'AdministrationServiceController@edit');
 Route::patch('/administracion/servicio/{subCatReport}', 'AdministrationServiceController@update');
+Route::patch('/administracion/servicio/activo/{subCatReport}', 'AdministrationServiceController@toggle');
 
 // State
 Route::get('/administracion/estados', 'AdministrationStateController@index');
@@ -182,6 +187,7 @@ Route::get('/administracion/estados/agregar', 'AdministrationStateController@cre
 Route::post('/administracion/estados', 'AdministrationStateController@store');
 Route::get('/administracion/estados/{state}', 'AdministrationStateController@edit');
 Route::patch('/administracion/estados/{state}', 'AdministrationStateController@update');
+Route::patch('/administracion/estados/activo/{state}', 'AdministrationStateController@toggle');
 
 // Gender
 Route::get('/administracion/generos', 'AdministrationGenderController@index');
@@ -196,6 +202,7 @@ Route::get('/administracion/evidencias/agregar', 'AdministrationEvidenceControll
 Route::post('/administracion/evidencias', 'AdministrationEvidenceController@store');
 Route::get('/administracion/evidencias/{evidence}', 'AdministrationEvidenceController@edit');
 Route::patch('/administracion/evidencias/{evidence}', 'AdministrationEvidenceController@update');
+Route::patch('/administracion/evidencias/activo/{evidence}', 'AdministrationEvidenceController@toggle');
 
 // Communities
 Route::get('/administracion/comunidades/comunidad', 'AdministrationCommunityController@index');

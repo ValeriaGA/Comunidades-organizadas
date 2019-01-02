@@ -17,4 +17,14 @@ class State extends Model
     {
         return $this->hasMany(Report::class, 'state_id', 'id');
     }
+
+    public function activate($active = true)
+    {
+        $this->update(compact('active'));
+    }
+    
+    public function deactivate()
+    {
+        $this->activate(false);
+    }
 }

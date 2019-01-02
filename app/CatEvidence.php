@@ -45,4 +45,14 @@ class CatEvidence extends Model
             return null;
         }
     }
+
+    public function activate($active = true)
+    {
+        $this->update(compact('active'));
+    }
+    
+    public function deactivate()
+    {
+        $this->activate(false);
+    }
 }

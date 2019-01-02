@@ -24,4 +24,14 @@ class SubCatReport extends Model
     {
         return $this->hasMany(Report::class, 'sub_cat_report_id', 'id');
     }
+
+    public function activate($active = true)
+    {
+        $this->update(compact('active'));
+    }
+    
+    public function deactivate()
+    {
+        $this->activate(false);
+    }
 }

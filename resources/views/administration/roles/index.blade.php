@@ -1,5 +1,14 @@
 @extends('administration.layouts.master')
 
+@section('css')
+@endsection
+
+@section('js')
+    <script src="{{ asset('admin/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/js/matrix.tables.js') }}"></script>
+@endsection
+
 @section('content')
 
 <!--main-container-part-->
@@ -32,13 +41,13 @@
                 <tr class="">
                   <td>{{$rol->name}}</td>
                   <td>
-                    <button name="{{$rol->name}}_edit" class="btn" onclick="location.href = '/administracion/roles/{{ $rol->id }}';">Editar</button>
+                    <button name="{{$rol->name}}_edit" class="btn btn-warning" onclick="location.href = '/administracion/roles/{{ $rol->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/roles/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/roles/agregar"><button class="btn btn-success">Agregar</button></form>
           </div>
         </div>
 
@@ -59,7 +68,7 @@
                   </select>
                 </div>
               </div>
-              <input type="submit" value="Filtrar" class="btn btn-success">
+              <input type="submit" value="Filtrar" class="btn btn-info">
             </div>
           </form>
         </div>
@@ -85,7 +94,7 @@
                   <td>{{$user->email}}</td>
                   <td>{{$user->role->name}}</td>
                   <td>
-                    <button name="{{$user->name}}_edit" class="btn" onclick="location.href = '/administracion/roles/usuarios/{{ $user->id }}';">Editar</button>
+                    <button name="{{$user->name}}_edit" class="btn btn-warning" onclick="location.href = '/administracion/roles/usuarios/{{ $user->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach

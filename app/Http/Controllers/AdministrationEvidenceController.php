@@ -98,4 +98,11 @@ class AdministrationEvidenceController extends Controller
             //Show error page
         }
     }
+    
+    public function toggle(CatEvidence $evidence)
+    {
+        request()->has('active') ? $evidence->activate() : $evidence->deactivate();
+        
+        return back();
+    }
 }

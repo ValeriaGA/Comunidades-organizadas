@@ -1,5 +1,15 @@
 @extends('administration.layouts.master')
 
+@section('css')
+
+@endsection
+
+@section('js')
+    <script src="{{ asset('admin/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/js/matrix.tables.js') }}"></script>
+@endsection
+
 @section('content')
 
 <!--main-container-part-->
@@ -31,13 +41,13 @@
                 <tr class="">
                   <td>{{$gender->name}}</td>
                   <td>
-                    <button name="{{$gender->name}}_edit" class="btn" onclick="location.href = '/administracion/generos/{{ $gender->id }}';">Editar</button>
+                    <button name="{{$gender->name}}_edit" class="btn btn-warning" onclick="location.href = '/administracion/generos/{{ $gender->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/generos/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/generos/agregar"><button class="btn btn-success">Agregar</button></form>
           </div>
         </div>
       </div>

@@ -251,4 +251,14 @@ class Report extends Model
             $security_report->addPerpetrator(request('perpetrator_gender'), request('perpetrator_description'));
         }
     }
+    
+    public function activate($active = true)
+    {
+        $this->update(compact('active'));
+    }
+    
+    public function deactivate()
+    {
+        $this->activate(false);
+    }
 }

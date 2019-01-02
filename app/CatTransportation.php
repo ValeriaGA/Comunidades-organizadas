@@ -19,4 +19,14 @@ class CatTransportation extends Model
     {
         return $this->hasMany(SecurityReport::class, 'cat_transportation_id', 'id');
     }
+
+    public function activate($active = true)
+    {
+        $this->update(compact('active'));
+    }
+    
+    public function deactivate()
+    {
+        $this->activate(false);
+    }
 }

@@ -1,5 +1,15 @@
 @extends('administration.layouts.master')
 
+@section('css')
+
+@endsection
+
+@section('js')
+    <script src="{{ asset('admin/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/js/matrix.tables.js') }}"></script>
+@endsection
+
 @section('content')
 
 <!--main-container-part-->
@@ -39,7 +49,7 @@
                   <td>{{$report->email}}</td>
                   <td>{{$report->count}}</td>
                   <td>
-                    <button name="{{$report->report_id}}_edit" class="btn" onclick="location.href = '/administracion/reportes/{{ $report->report_id }}';">Ver</button>
+                    <button name="{{$report->report_id}}_edit" class="btn btn-info" onclick="location.href = '/administracion/reportes/{{ $report->report_id }}';">Ver</button>
                   </td>
                 </tr>
                 @endforeach

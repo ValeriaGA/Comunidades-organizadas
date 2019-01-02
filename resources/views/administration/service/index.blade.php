@@ -1,5 +1,15 @@
 @extends('administration.layouts.master')
 
+@section('css')
+
+@endsection
+
+@section('js')
+    <script src="{{ asset('admin/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/js/matrix.tables.js') }}"></script>
+@endsection
+
 @section('content')
 
 <!--main-container-part-->
@@ -40,20 +50,20 @@
                       @endif
                   </td>
                   <td>
-                    @if ($cat_service->active == TRUE)
-                    <input type="checkbox" checked disabled/>
-                    @else
-                    <input type="checkbox" disabled/>
-                    @endif
+                    <form method="POST" action="/administracion/servicio/activo/{{ $cat_service->id }}">
+                        @method('PATCH')
+                        @csrf
+                        <input type="checkbox" name="active" onChange="this.form.submit()" {{ $cat_service->active ? 'checked' : '' }}/>
+                    </form>
                   </td>
                   <td>
-                    <button name="{{$cat_service->name}}_edit" class="btn" onclick="location.href = '/administracion/servicio/{{ $cat_service->id }}';">Editar</button>
+                    <button name="{{$cat_service->name}}_edit" class="btn btn-warning" onclick="location.href = '/administracion/servicio/{{ $cat_service->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/servicio/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/servicio/agregar"><button class="btn btn-success">Agregar</button></form>
           </div>
         </div>
       </div>

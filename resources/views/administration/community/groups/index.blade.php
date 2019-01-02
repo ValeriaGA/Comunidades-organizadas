@@ -1,5 +1,16 @@
 @extends('administration.layouts.master')
 
+@section('css')
+
+@endsection
+
+@section('js')
+    <script src="{{ asset('admin/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/js/matrix.tables.js') }}"></script>
+    <script src="{{ asset('js/comboBoxControl.js') }}"></script>
+@endsection
+
 @section('content')
 
 <!--main-container-part-->
@@ -71,7 +82,7 @@
                 </div>
               </div>
 
-              <input type="submit" value="Filtrar" class="btn btn-success">
+              <input type="submit" value="Filtrar" class="btn btn-info">
             </form>
           </div>
         </div>
@@ -101,13 +112,13 @@
                     @endforeach
                   </td>
                   <td>
-                      <button name="{{$community_group->name}}_edit" class="btn" onclick="location.href = '/administracion/comunidades/grupos/{{ $community_group->id }}';">Editar</button>
+                      <button name="{{$community_group->name}}_edit" class="btn btn-warning" onclick="location.href = '/administracion/comunidades/grupos/{{ $community_group->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/comunidades/grupos/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/comunidades/grupos/agregar"><button class="btn btn-success">Agregar</button></form>
           </div>
         </div>
       </div>

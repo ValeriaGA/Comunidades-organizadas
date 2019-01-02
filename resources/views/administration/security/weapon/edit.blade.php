@@ -1,5 +1,19 @@
 @extends('administration.layouts.master')
 
+@section('css')
+
+  <link rel="stylesheet" href="{{ asset('css/colorpicker.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/datepicker.css') }}" />
+@endsection
+
+@section('js')
+
+    <script src="{{ asset('admin/js/bootstrap-colorpicker.js') }}"></script> 
+    <script src="{{ asset('admin/js/bootstrap-datepicker.js') }}"></script> 
+    <script src="{{ asset('admin/js/masked.js') }}"></script>
+    <script src="{{ asset('admin/js/matrix.form_common.js') }}"></script> 
+@endsection
+
 @section('content')
 
 <!--main-container-part-->
@@ -39,11 +53,7 @@
 
               <div class="control-group">
                 <div class="controls">
-                  @if ($catWeapon->active)
-                    <label><input type="checkbox" name="active" checked/>Activo</label>
-                  @else
-                    <label><input type="checkbox" name="active"/>Activo</label>
-                  @endif
+                  <label><input type="checkbox" name="active"{{ $catWeapon->active ? 'checked' : '' }}/>Activo</label>
                 </div>
               </div>
 

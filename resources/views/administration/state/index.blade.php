@@ -1,5 +1,15 @@
 @extends('administration.layouts.master')
 
+@section('css')
+
+@endsection
+
+@section('js')
+    <script src="{{ asset('admin/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/js/matrix.tables.js') }}"></script>
+@endsection
+
 @section('content')
 
 <!--main-container-part-->
@@ -32,20 +42,20 @@
                 <tr class="">
                   <td>{{$state->name}}</td>
                   <td>
-                    @if ($state->active == TRUE)
-                    <input type="checkbox" checked disabled/>
-                    @else
-                    <input type="checkbox" disabled/>
-                    @endif
+                    <form method="POST" action="/administracion/estados/activo/{{ $state->id }}">
+                        @method('PATCH')
+                        @csrf
+                        <input type="checkbox" name="active" onChange="this.form.submit()" {{ $state->active ? 'checked' : '' }}/>
+                    </form>
                   </td>
                   <td>
-                    <button name="{{$state->name}}_edit" class="btn" onclick="location.href = '/administracion/estados/{{ $state->id }}';">Editar</button>
+                    <button name="{{$state->name}}_edit" class="btn btn-warning" onclick="location.href = '/administracion/estados/{{ $state->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/estados/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/estados/agregar"><button class="btn btn-success">Agregar</button></form>
           </div>
         </div>
       </div>

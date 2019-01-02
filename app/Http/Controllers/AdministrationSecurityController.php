@@ -139,4 +139,11 @@ class AdministrationSecurityController extends Controller
             //Show error page
         }
     }
+
+    public function toggle(SubCatReport $subCatReport)
+    {
+        request()->has('active') ? $subCatReport->activate() : $subCatReport->deactivate();
+        
+        return back();
+    }
 }

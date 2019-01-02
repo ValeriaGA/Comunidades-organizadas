@@ -19,4 +19,14 @@ class CatWeapon extends Model
     {
         return $this->hasMany(SecurityReport::class, 'cat_weapon_id', 'id');
     }
+    
+    public function activate($active = true)
+    {
+        $this->update(compact('active'));
+    }
+    
+    public function deactivate()
+    {
+        $this->activate(false);
+    }
 }

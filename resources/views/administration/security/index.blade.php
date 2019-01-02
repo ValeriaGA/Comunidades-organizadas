@@ -1,5 +1,15 @@
 @extends('administration.layouts.master')
 
+@section('css')
+
+@endsection
+
+@section('js')
+    <script src="{{ asset('admin/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/js/matrix.tables.js') }}"></script>
+@endsection
+
 @section('content')
 
 <!--main-container-part-->
@@ -45,20 +55,20 @@
                       @endif
                     </td>
                     <td>
-                      @if ($cat_security->active == TRUE)
-                        <input type="checkbox" checked disabled/>
-                      @else
-                        <input type="checkbox" disabled/>
-                      @endif
+                        <form method="POST" action="/administracion/seguridad/categorias/activo/{{ $cat_security->id }}">
+                          @method('PATCH')
+                          @csrf
+                          <input type="checkbox" name="active" onChange="this.form.submit()" {{ $cat_security->active ? 'checked' : '' }}/>
+                        </form>
                     </td>
                     <td>
-                      <button name="{{$cat_security->name}}_edit" class="btn" onclick="location.href = '/administracion/seguridad/{{ $cat_security->id }}';">Editar</button>
+                      <button name="{{$cat_security->name}}_edit" class="btn btn-warning" onclick="location.href = '/administracion/seguridad/{{ $cat_security->id }}';">Editar</button>
                     </td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
-              <form action="/administracion/seguridad/categorias/agregar"><button class="btn">Agregar</button></form>
+              <form action="/administracion/seguridad/categorias/agregar"><button class="btn btn-success">Agregar</button></form>
             </div>
 
             <div id="tab2" class="tab-pane">
@@ -75,20 +85,20 @@
                   <tr class="gradeX">
                     <td>{{$cat_weapon->name}}</td>
                     <td>
-                      @if ($cat_weapon->active == TRUE)
-                      <input type="checkbox" checked disabled/>
-                      @else
-                      <input type="checkbox" disabled/>
-                      @endif
+                      <form method="POST" action="/administracion/seguridad/armas/activo/{{ $cat_weapon->id }}">
+                          @method('PATCH')
+                          @csrf
+                          <input type="checkbox" name="active" onChange="this.form.submit()" {{ $cat_weapon->active ? 'checked' : '' }}/>
+                      </form>
                     </td>
                     <td>
-                      <button name="{{$cat_weapon->name}}_edit" class="btn" onclick="location.href = '/administracion/seguridad/armas/{{ $cat_weapon->id }}';">Editar</button>
+                      <button name="{{$cat_weapon->name}}_edit" class="btn btn-warning" onclick="location.href = '/administracion/seguridad/armas/{{ $cat_weapon->id }}';">Editar</button>
                     </td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
-              <form action="/administracion/seguridad/armas/agregar"><button class="btn">Agregar</button></form>
+              <form action="/administracion/seguridad/armas/agregar"><button class="btn btn-success">Agregar</button></form>
             </div>
 
             <div id="tab3" class="tab-pane">
@@ -105,20 +115,20 @@
                   <tr class="gradeX">
                     <td>{{$cat_transportation->name}}</td>
                     <td>
-                      @if ($cat_transportation->active == TRUE)
-                      <input type="checkbox" checked disabled/>
-                      @else
-                      <input type="checkbox" disabled/>
-                      @endif
+                      <form method="POST" action="/administracion/seguridad/transportes/activo/{{ $cat_transportation->id }}">
+                          @method('PATCH')
+                          @csrf
+                          <input type="checkbox" name="active" onChange="this.form.submit()" {{ $cat_transportation->active ? 'checked' : '' }}/>
+                      </form>
                     </td>
                     <td>
-                      <button name="{{$cat_transportation->name}}_edit" class="btn" onclick="location.href = '/administracion/seguridad/transportes/{{ $cat_transportation->id }}';">Editar</button>
+                      <button name="{{$cat_transportation->name}}_edit" class="btn btn-warning" onclick="location.href = '/administracion/seguridad/transportes/{{ $cat_transportation->id }}';">Editar</button>
                     </td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
-              <form action="/administracion/seguridad/transportes/agregar"><button class="btn">Agregar</button></form>
+              <form action="/administracion/seguridad/transportes/agregar"><button class="btn btn-success">Agregar</button></form>
             </div>
           </div>
         </div>

@@ -99,4 +99,11 @@ class AdministrationStateController extends Controller
         }
     }
 
+    public function toggle(State $state)
+    {
+        request()->has('active') ? $state->activate() : $state->deactivate();
+        
+        return back();
+    }
+
 }

@@ -86,4 +86,11 @@ class AdministrationWeaponController extends Controller
             //Show error page
         }
     }
+
+    public function toggle(CatWeapon $catWeapon)
+    {
+        request()->has('active') ? $catWeapon->activate() : $catWeapon->deactivate();
+        
+        return back();
+    }
 }

@@ -3,7 +3,7 @@
     position: absolute;
     right: 5%;
     z-index: 10;
-    animation: flash-message 5s forwards;
+    animation: flash-message 8s forwards;
 }
 
 @keyframes flash-message {

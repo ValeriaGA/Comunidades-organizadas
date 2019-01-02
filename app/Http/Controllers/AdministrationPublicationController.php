@@ -91,4 +91,11 @@ class AdministrationPublicationController extends Controller
     {
         //
     }
+
+    public function toggle(Report $report)
+    {
+        request()->has('active') ? $report->activate() : $report->deactivate();
+        
+        return back();
+    }
 }

@@ -1,5 +1,16 @@
 @extends('administration.layouts.master')
 
+@section('css')
+
+@endsection
+
+@section('js')
+    <script src="{{ asset('admin/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/js/matrix.tables.js') }}"></script>
+    <script src="{{ asset('js/comboBoxControl.js') }}"></script>
+@endsection
+
 @section('content')
 
 <!--main-container-part-->
@@ -62,7 +73,7 @@
                 </div>
               </div>
 
-              <input type="submit" value="Filtrar" class="btn btn-success">
+              <input type="submit" value="Filtrar" class="btn btn-info">
             </form>
           </div>
         </div>
@@ -86,13 +97,13 @@
                   <td>{{$community->name}}</td>
                   <td>{{$community->district->name}}</td>
                   <td>
-                    <button name="{{$community->name}}_edit" class="btn" onclick="location.href = '/administracion/comunidades/comunidad/{{ $community->id }}';">Editar</button>
+                    <button name="{{$community->name}}_edit" class="btn btn-warning" onclick="location.href = '/administracion/comunidades/comunidad/{{ $community->id }}';">Editar</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/comunidades/comunidad/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/comunidades/comunidad/agregar"><button class="btn btn-success">Agregar</button></form>
           </div>
         </div>
 

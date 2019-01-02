@@ -1,5 +1,15 @@
 @extends('administration.layouts.master')
 
+@section('css')
+
+@endsection
+
+@section('js')
+    <script src="{{ asset('admin/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/js/matrix.tables.js') }}"></script>
+@endsection
+
 @section('content')
 
 <!--main-container-part-->
@@ -35,11 +45,11 @@
                   <td>{{$report->id}}</td>
                   <td>{{$report->user->email}}</td>
                   <td>
-                    @if ($report->active == TRUE)
-                    <input type="checkbox" checked disabled/>
-                    @else
-                    <input type="checkbox" disabled/>
-                    @endif
+                    <form method="POST" action="/administracion/publicaciones/activo/{{ $report->id }}">
+                        @method('PATCH')
+                        @csrf
+                        <input type="checkbox" name="active" onChange="this.form.submit()" {{ $report->active ? 'checked' : '' }} disabled/>
+                    </form>
                   </td>
                   <td>{{$report->state->name}}</td>
                   <td>

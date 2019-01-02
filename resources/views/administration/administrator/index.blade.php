@@ -1,5 +1,14 @@
 @extends('administration.layouts.master')
 
+@section('css')
+@endsection
+
+@section('js')
+    <script src="{{ asset('admin/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/js/matrix.tables.js') }}"></script>
+@endsection
+
 @section('content')
 
 <!--main-container-part-->
@@ -37,7 +46,7 @@
                 @endforeach
               </tbody>
             </table>
-            <form action="/administracion/administradores/agregar"><button class="btn">Agregar</button></form>
+            <form action="/administracion/administradores/agregar"><button class="btn btn-success">Agregar</button></form>
           </div>
         </div>
       </div>

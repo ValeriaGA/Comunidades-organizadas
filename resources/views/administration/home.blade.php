@@ -58,10 +58,6 @@
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
-                <div class="txt"> Estilo de checkboxes <span class="by label">Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
                 <div class="txt"> Solicitudes de comunidades <span class="by label">Funcionalidad y Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
@@ -86,27 +82,7 @@
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
-                <div class="txt"> Paginate HomeController <span class="by label">Funcionalidad</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Quitar necesidad de tener id en modulo de reportes <span class="by label">Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li> 
-              <li class="clearfix">
                 <div class="txt"> Solicitudes de comunidades <span class="by label">Funcionalidad y Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Mostrar # Likes en publicaciones <span class="by label">Funcionalidad y Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Perfil de Usuarios <span class="by label">Funcionalidad y Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> codigo duplicado en el controlador de servicio/seguridad/noticias <span class="by label"> Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
@@ -133,6 +109,14 @@
                 <div class="txt"> Al equivocarse creando un reporte que no se borren todos los datos cuando le retorna los errores <span class="by label">Bugs</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
+              <li class="clearfix">
+                <div class="txt"> Editando publicacion -> evidencias se borran las que se tenia guardado <span class="by label">Bugs</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Agregar un gate para que solo el usuario que creo la publicacion pueda verla si esta desactivada (actualmente otras personas la pueden ver si van al url de la publicacion) <span class="by label">Bugs</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -146,15 +130,11 @@
           <div class="todo">
             <ul>
               <li class="clearfix">
-                <div class="txt"> JS file fixes <span class="by label">Bug Fixes</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Stored Procedures en Laravel <span class="by label">Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
                 <div class="txt"> Usuarios bloqueados <span class="by label">Diseño y Funcionalidad</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Cambiar los flash messages a toast js <span class="by label">QoL</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
             </ul>

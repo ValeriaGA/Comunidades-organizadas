@@ -42,7 +42,7 @@ class AdministrationTransportationController extends Controller
             'active' => ($request['active'] ? true : false)
         ]);
 
-        session()->flash('message', 'Medio de Transporte creada');
+        session()->flash('message', 'Medio de Transporte creado');
 
         return redirect('/administracion/seguridad');
     }
@@ -79,11 +79,18 @@ class AdministrationTransportationController extends Controller
 
             $cat->save();
 
-            session()->flash('message', 'Medio de Transporte actualizada');
+            session()->flash('message', 'Medio de Transporte actualizado');
             return redirect('/administracion/seguridad');
         }
         catch(ModelNotFoundException $err){
             //Show error page
         }
+    }
+    
+    public function toggle(CatTransportation $catTransportation)
+    {
+        request()->has('active') ? $catTransportation->activate() : $catTransportation->deactivate();
+        
+        return back();
     }
 }
