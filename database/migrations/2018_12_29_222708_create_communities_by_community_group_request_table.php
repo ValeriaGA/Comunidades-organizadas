@@ -13,13 +13,13 @@ class CreateCommunitiesByCommunityGroupRequestTable extends Migration
      */
     public function up()
     {
-        Schema::create('communities_by_community_group_request', function (Blueprint $table) {
+        Schema::create('communities_by_group_request', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('community_group_request_id');
             $table->unsignedInteger('community_id');
         });
 
-        Schema::table('communities_by_community_group_request', function (Blueprint $table) {
+        Schema::table('communities_by_group_request', function (Blueprint $table) {
             $table->foreign('community_group_request_id')->references('id')->on('community_group_requests');
             $table->foreign('community_id')->references('id')->on('communities');
         });

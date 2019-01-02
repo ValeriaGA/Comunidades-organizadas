@@ -40,9 +40,6 @@ Route::any('/distritos', 'DistrictController@show');
 Route::any('/comunidad', 'CommunitiesController@show');
 Route::any('/grupos', 'GroupController@show');
 
-Route::get('/comunidades/solicitar-comunidad', 'CommunitiesController@requestIndex');
-Route::get('/comunidades/solicitar-grupo', 'GroupController@requestIndex');
-
 // Profile
 
 Route::get('/user', 'UserController@index');
@@ -71,7 +68,6 @@ Route::get('/reportar/{report}', 'ReportAlertController@create');
 Route::post('/reportar/{report}', 'ReportAlertController@store');
 
 // Like
-
 Route::any('/like', 'LikeController@store');
 Route::any('/unlike', 'LikeController@destroy');
 
@@ -94,14 +90,16 @@ Route::get('/statistics/chart', 'StatisticsController@chart');
 Route::post('/statistics/chart', 'StatisticsController@chart_show');
 
 // Search
-
 Route::get('/busqueda', 'SearchController@index');
-
 Route::post('/busqueda', 'SearchController@show');
 
 
 // Communities
 Route::get('/comunidades', 'CommunitiesController@index');
+Route::get('/comunidades/solicitar-comunidad', 'CommunitiesController@create');
+Route::post('/comunidades/solicitar-comunidad', 'CommunitiesController@store');
+Route::get('/comunidades/solicitar-grupo', 'GroupController@create');
+
 /*
 |--------------------------------------------------------------------------
 | Administration

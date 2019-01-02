@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="white-box">
-                            <form class="form-horizontal form-material" action="/reportar/{{$report->id}}" method="post" enctype="multipart/form-data">
+                            <form class="form-horizontal form-material" action="/reportar/{{$report->id}}" method="post">
                                 {{ csrf_field() }}
 
                                 <div class="form-group">

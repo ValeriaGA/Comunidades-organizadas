@@ -24,4 +24,9 @@ class District extends Model
     {
         return $this->hasMany(Community::class, 'district_id', 'id');
     }
+
+    public function communityRequest()
+    {
+        return $this->hasMany(CommunityRequest::class, 'district_id', 'id');
+    }
 }

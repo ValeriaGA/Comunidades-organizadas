@@ -28,7 +28,7 @@
                             <img src="{{ asset('plugins/images/users/profile.png') }}" alt="user-img" width="36" class="img-circle">
                         @endif
 
-                     <b class="hidden-xs">{{ Auth::user()->name }}</b></a>
+                     <b class="hidden-xs">{{ Auth::user()->person->name }}</b></a>
                 </li>
                 <li>
                      <a href="/logout"><i class="fa fa-sign-out"></i> Cerrar sesión</a>

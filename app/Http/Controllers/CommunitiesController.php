@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Community;
+use Auth;
 
 class CommunitiesController extends Controller
 {
+    public function __construct()
+    {
+        // only guests are allowed to view this
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +31,7 @@ class CommunitiesController extends Controller
      */
     public function create()
     {
-        //
+        return view('communities.create');
     }
 
     /**
@@ -35,7 +42,16 @@ class CommunitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required|string|max:255',
+            'district' => 'required'
+        ]);
+
+        Auth::user()->addCommunityRequest($request);
+
+        session()->flash('message', 'Solicitud realizada');
+
+        return redirect('/');
     }
 
     /**
@@ -72,27 +88,6 @@ class CommunitiesController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function request(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function requestIndex()
-    {
-        return view('communities.request');
     }
 
 

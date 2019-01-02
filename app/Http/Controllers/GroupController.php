@@ -8,6 +8,12 @@ use App\Community;
 
 class GroupController extends Controller
 {
+    public function __construct()
+    {
+        // only guests are allowed to view this
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +31,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('communities.groups.create');
     }
 
     /**
@@ -36,7 +42,16 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required|string|max:255',
+            'district' => 'required'
+        ]);
+
+        Auth::user()->addCommunityGroupRequest($request);
+
+        session()->flash('message', 'Solicitud realizada');
+
+        return redirect('/');
     }
 
     /**
@@ -73,27 +88,6 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function request(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function requestIndex()
-    {
-        return view('communities.groups.request');
     }
 
     /**

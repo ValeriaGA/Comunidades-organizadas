@@ -83,11 +83,7 @@
 
                                 <select dusk="register-genre-select" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" id="gender" name="gender" value="{{ old('gender') }}">
                                     @foreach ($genders as $gender)
-                                        @if($gender->name == "Femenino")
-                                            <option value="{{$gender->name}}" selected>{{$gender->name}}</option>
-                                        @else
-                                            <option value="{{$gender->name}}">{{$gender->name}}</option>
-                                        @endif
+                                        <option value="{{$gender->name}}">{{$gender->name}}</option>
                                     @endforeach
                                 </select>
 

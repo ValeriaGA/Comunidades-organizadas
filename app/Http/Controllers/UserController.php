@@ -14,7 +14,6 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        // only guests are allowed to view this
         $this->middleware('auth');
     }
     /**

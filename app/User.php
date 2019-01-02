@@ -63,6 +63,21 @@ class User extends Authenticatable
         return $this->belongsToMany(Report::class, 'report_alert', 'user_id', 'report_id');
     }
 
+    public function communityRequest()
+    {
+        return $this->hasMany(CommunityRequest::class, 'user_id', 'id');
+    }
+
+    public function community()
+    {
+        return $this->belongsToMany(Community::class, 'admins_by_community', 'user_id', 'community_id');
+    }
+
+    public function communityGroupRequest()
+    {
+        return $this->hasMany(CommunityGroupRequest::class, 'user_id', 'id');
+    }
+
     public function changeAvatar($file)
     {
         if ($this->avatar_path != '')
@@ -187,5 +202,16 @@ class User extends Authenticatable
         {
             $security_report->addPerpetrator(request('perpetrator_gender'), request('perpetrator_description'));
         }
+    }
+
+    public function addCommunityRequest($request)
+    {
+        $district = District::findOrFail(request('district'));
+        
+        return CommunityRequest::create([
+            'user_id' => $this->id,
+            'district_id' => $district->id,
+            'name' => request('name')
+        ]);
     }
 }
