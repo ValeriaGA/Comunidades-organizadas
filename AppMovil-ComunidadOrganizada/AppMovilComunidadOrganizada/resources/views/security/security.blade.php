@@ -2,7 +2,6 @@
 
 
 @section('title', 'Reportes de seguridad')
-    <a href="profile.html" class="close_session" data-icon="home">Perfil</a>
 
 @section('navbar') 
     <li><a href="reports.html" >Noticias</a></li>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @include ('layout.imports') 
 </head>
@@ -8,7 +8,7 @@
 
     <div data-role="header">
         <a href="index.html" class="close_session">Salir</a>
-        @yield('title')
+        <h1>@yield('title')</h1>
         <a href="profile.html" class="close_session" data-icon="home">Perfil</a>
                    
     </div><!-- /header -->
