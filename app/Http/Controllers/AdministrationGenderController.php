@@ -77,24 +77,17 @@ class AdministrationGenderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Gender $gender)
     {
         $this->validate(request(), [
             'name' => 'required|string|max:255|unique:genders,name,'.$id
         ]);
 
-        try{
-            $gender = Gender::findOrFail($id);
+        $gender->name = $request['name'];
 
-            $gender->name = $request['name'];
+        $gender->save();
 
-            $gender->save();
-
-            session()->flash('message', 'Genero actualizado');
-            return redirect('/administracion/generos');
-        }
-        catch(ModelNotFoundException $err){
-            //Show error page
-        }
+        session()->flash('message', 'Genero actualizado');
+        return redirect('/administracion/generos');
     }
 }

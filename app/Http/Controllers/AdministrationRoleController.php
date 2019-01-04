@@ -26,7 +26,7 @@ class AdministrationRoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $roles = Role::all();
         $users = User::orderBy('role_id', 'asc')->get();
         return view('administration.roles.index', compact('users', 'roles'));
@@ -111,49 +111,35 @@ class AdministrationRoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
         $this->validate(request(), [
             'name' => 'required|string|max:255|unique:roles,name,'.$id,
         ]);
 
-        try{
-            $role= Role::findOrFail($id);
 
-            $role->name = $request['name'];
-            
-            $role->save();
+        $role->name = $request['name'];
+        
+        $role->save();
 
-            session()->flash('message', 'Role actualizado');
-            return redirect('/administracion/roles');
-        }
-        catch(ModelNotFoundException $err){
-            //Show error page
-        }
-    }
+        session()->flash('message', 'Role actualizado');
+        return redirect('/administracion/roles');
 
 
-    public function updateUser(Request $request, $id)
+    public function updateUser(Request $request, User $user)
     {
         $this->validate(request(), [
             'role' => 'required'
         ]);
 
-        try{
-            $user= User::findOrFail($id);
+        $role= Role::where('name', $request['role'])->firstOrFail();;
 
-            $role= Role::where('name', $request['role'])->first();
+        $user->role_id = $role->id;
+        
+        $user->save();
 
-            $user->role_id = $role->id;
-            
-            $user->save();
-
-            session()->flash('message', 'Usuario actualizado');
-            return redirect('/administracion/roles');
-        }
-        catch(ModelNotFoundException $err){
-            //Show error page
-        }
+        session()->flash('message', 'Usuario actualizado');
+        return redirect('/administracion/roles');
     }
 
     /**

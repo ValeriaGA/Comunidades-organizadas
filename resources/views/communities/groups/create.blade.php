@@ -31,133 +31,121 @@
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-                
-                @auth
-               
-                @endauth
+                <form class="form-horizontal" action="/comunidades/solicitar-comunidad" method="post">
+                {{ csrf_field() }}
                  <!-- row -->
                  <div class="row">
-                  <div class="col-sm-12">
-                      <div class="white-box">
-                            <form role="search" >
-                                <label> Nombre del Grupo</label>
-                                <input type="text" style="width: 400px; display:inline;" placeholder="Nombre de Comunidad" class="form-control" required>
-                                <br>
-                                <br>
-                                <label>Descripción</label>
-                                <textarea id="commentInput" rows="5" style="width: 600px;" class="form-control form-control-line" name="description" placeholder="Descripción" required></textarea>
-                                <br>
-                                <br>
-                                Comunidades Asociadas
-                                <br>
-                                
-                                <div style="margin-top: 25px; margin-left: 50px; display:inline;">
-                                    <label >Provincia</label>
-                                    
-                                    <select id="provinces" style="width:110px; display:inline;" class="form-control" name="province" required>
-                                            <option value="1" selected>San José</option>
-                                            <option value="2">Alajuela</option>
-                                            <option value="3">Cartago</option>
-                                            <option value="4">Heredia</option>
-                                            <option value="5">Guanacaste</option>
-                                            <option value="6">Puntarenas</option>
-                                            <option value="7">Limón</option>
-                                    
-                                    </select>
-                                </div>
-
-                                <div style="margin-top: 25px; margin-left: 50px; display:inline;">
-                                    <label >Cantón</label>
-                                    
-                                    <select id="cantons" style="width:110px; display:inline;" class="form-control"  name="canton" required>
-                                            <option value="1" selected="selected">Cantones</option>
-                                    </select>
-                                </div>
-
-
-                                <div style="margin-top: 25px; margin-left: 50px; display:inline;">
-                                    <label >Distrito</label>
-                                    
-                                    <select id="districts" style="width:110px; display:inline;" class="form-control" name="district" required>
-                                            <option value="1" selected="selected">Distritos</option>
-                                    </select>
-                                </div>
- 
-                                <br>
-                                <br>
-                                <br>
-                            
-                                    
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="white-box">
-                                <h3 class="box-title" style="display:inline;">Comunidades</h3>
-                                <div class="comment-center p-t-10">
-                                    <div class="container" >
-                                        <div class="ex3">
-                                            <table id="communitiesToAdd"  class="communitiesTable"  style="width: 400px;">
-                                                <tr id="tr1">
-                                                    <td id="td1" colspan="2">
-                                                        Comunidad de Barrio Amón 
-
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-rounded btn-outline m-r-5 add-href"  value="tr1" onclick="addCommunityRow(this)" style="margin-left: 0px; display:inline;" id="addButton1" type="button"> Agregar </button>
-                                                    </td>
-                                                </tr>   
-                                                <tr id="tr2">
-                                                    <td id="td2" colspan="2">
-                                                        Comunidad de Otoya
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-rounded btn-outline m-r-5 add-href"  value="tr2" onclick="addCommunityRow(this)" style="margin-left: 0px; display:inline;" id="addButton2" type="button"> Agregar </button>
-                                                    </td>
-                                                </tr>  
-                    
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <div class="white-box">
-                                <h3 class="box-title" style="display:inline;">Comunidades Agregadas</h3>
-                                <div class="comment-center p-t-10">
-                                    <div class="container" >
-                                        <div class="ex3">
-                                            <table id="communitiesAdded" class="communitiesTable" style="width: 400px;">
-                                                <tr id="tr3">
-                                                    <td id="td3" colspan="2">
-                                                        Comunidad de Barrio Escalante
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-rounded btn-outline m-r-5 remove-href"  value="tr3" onclick="removeCommunityRow(this)" style="margin-left: 0px; display:inline;" id="removeButton1" type="button"> Quitar </button>
-                                                    </td>
-                                                </tr>   
-                                                
-                    
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
+                    <div class="col-sm-12">
                         <div class="white-box">
-                            <button style="margin-left: 350px; display:inline;" id="requestCommunity1" class="btn btn btn-rounded btn-default btn-outline" type="submit" onclick="window.location.href='/comunidades'">Cancelar</button>
-                            <button style="margin-left: 25px; display:inline;" id="requestCommunity1" class="btn btn btn-rounded btn-default btn-outline" type="submit" onclick="window.location.href='/comunidades'">Solicitar Grupo</button>
+                            <h3 class="box-title m-b-0">Solicitar grupo de comunidades</h3>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    
+                                        <div class="form-group">
+                                            <label for="communityName">Nombre del Grupo </label>
+                                            <input type="text" class="form-control" id="communityName" name="name" placeholder="Nombre de Comunidad" required> 
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="provinces">Provincia</label>
+                                        
+                                            <select id="provinces" class="form-control" name="province" required>
+                                                    <option value="1" selected>San José</option>
+                                                    <option value="2">Alajuela</option>
+                                                    <option value="3">Cartago</option>
+                                                    <option value="4">Heredia</option>
+                                                    <option value="5">Guanacaste</option>
+                                                    <option value="6">Puntarenas</option>
+                                                    <option value="7">Limón</option>
+                                            
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cantons">Cantón</label>
+                                        
+                                            <select id="cantons" class="form-control" name="canton" required>
+                                                    <option value="1" selected="selected">Cantones</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="districts">Distrito</label>
+                                        
+                                            <select id="districts"class="form-control" name="district" required>
+                                                    <option value="1" selected="selected">Distritos</option>
+                                            </select>
+                                        </div>
+                                </div>
+                            </div>    
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="white-box">
+                            <h3 class="box-title" style="display:inline;">Comunidades</h3>
+                            <div class="comment-center p-t-10">
+                                <div class="container" >
+                                    <div class="ex3">
+                                        <table id="communitiesToAdd"  class="communitiesTable"  style="width: 400px;">
+                                            <tr id="tr1">
+                                                <td id="td1" colspan="2">
+                                                    Comunidad de Barrio Amón
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success btn-rounded btn-outline m-r-5 add-href"  value="tr1" onclick="addCommunityRow(this)" style="margin-left: 0px; display:inline;" id="addButton1" type="button"> Agregar </button>
+                                                </td>
+                                            </tr>   
+                                            <tr id="tr2">
+                                                <td id="td2" colspan="2">
+                                                    Comunidad de Otoya
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success btn-rounded btn-outline m-r-5 add-href"  value="tr2" onclick="addCommunityRow(this)" style="margin-left: 0px; display:inline;" id="addButton2" type="button"> Agregar </button>
+                                                </td>
+                                            </tr>  
+                
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="white-box">
+                            <h3 class="box-title" style="display:inline;">Comunidades Agregadas</h3>
+                            <div class="comment-center p-t-10">
+                                <div class="container">
+                                    <div class="ex3">
+                                        <table id="communitiesAdded" class="communitiesTable" style="width: 400px;">
+                                            <tr id="tr3">
+                                                <td id="td3" colspan="2">
+                                                    Comunidad de Barrio Escalante
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-danger btn-rounded btn-outline m-r-5 remove-href"  value="tr3" onclick="removeCommunityRow(this)" style="margin-left: 0px; display:inline;" id="removeButton1" type="button"> Quitar </button>
+                                                </td>
+                                            </tr>   
+                                            
+                
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <div class="container" style="width: 100%">
+                                <button class="btn btn-success waves-effect waves-light m-r-10 pull-right" type="submit">Acceptar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 </form>
             </div>
             <!-- /.container-fluid -->

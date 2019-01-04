@@ -126,7 +126,7 @@ class AdministrationCommunityGroupController extends Controller
             $communities = collect();
             foreach ($community_ids as $id)
             {
-                $community = Community::find($id);
+                $community = Community::findOrFail($id);
                 $communities->push($community);
             }
 

@@ -35,25 +35,28 @@
                 <tr>
                   <th>Usuario</th>
                   <th>Nombre de Comunidad</th>
-                  <th>Fecha</th>
                   <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="">
-                  <td>philip@localhost.com</td>
-                  <td>Barrio Amón</td>
-                  <td></td>
-                  <td><button>Borrar</button></td>
+                @foreach ($community_requests as $request) 
+                <tr>
+                  <td>{{$request->user->email}}</td>
+                  <td>{{$request->name}}</td>
+                  <td>
+
+                    <form method="POST" action="/administracion/request/community/agregar/{{ $request->id }}">
+                      @csrf
+                      <button name="{{$request->id}}_community_add" class="btn btn-success" style="width:100%">Agregar</button>
+                    </form>
+                    <form method="POST" action="/administracion/request/community/{{ $request->id }}">
+                      @method('DELETE')
+                      @csrf
+                      <button name="{{$request->id}}_community_delete" class="btn btn-danger" onClick="this.form.submit()" style="width:100%">Borrar</button>
+                    </form>
+                  </td>
                 </tr>
-                <!-- {{-- @foreach ($report_alerts as $alert) 
-                <tr class="">
-                  <td>{{$alert->email}}</td>
-                  <td>{{$alert->reason}}</td>
-                  <td>{{$alert->created_at}}</td>
-                  <td><button name="{{$rol->name}}_edit" class="btn" onclick="location.href = '/administracion/roles/{{ $rol->id }}';" disabled>Editar</button></td>
-                </tr>
-                @endforeach --}} -->
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -68,26 +71,36 @@
               <thead>
                 <tr>
                   <th>Usuario</th>
-                  <th>Descripción</th>
                   <th>Nombre de Grupo</th>
                   <th>Comunidades</th>
-                  <th>Fecha</th>
                   <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="">
-                  <td>philip@localhost.com</td>
-                  <td>Solicitud para crear una grupo con las comunidades Barrio Amón y Barrio Otoya</td>
-                  <td>Comunidad Barrio Amón y Barrio Otoya</td>
+                @foreach ($group_requests as $request) 
+                <tr>
+                  <td>{{$request->user->email}}</td>
+                  <td>{{$request->name}}</td>
                   <td>
                     <ul>
-                      <li>Barrio Amón</li>
-                      <li>Barrio Otoya</li>
+                      @foreach ($request->community as $community)
+                        <li>$community->name</li>
+                      @endforeach
                     </ul>
-                  <td>Fecha</td>
-                  <td><button>Borrar</button></td>
+                  </td>
+                  <td>
+                    <form method="POST" action="/administracion/request/group/agregar/{{ $request->id }}">
+                      @csrf
+                      <button name="{{$request->id}}_group_add" class="btn btn-success" style="width:100%">Agregar</button>
+                    </form>
+                    <form method="POST" action="/administracion/request/group/{{ $request->id }}">
+                      @method('DELETE')
+                      @csrf
+                      <button name="{{$request->id}}_group_delete" class="btn btn-danger" onClick="this.form.submit()" style="width:100%">Borrar</button>
+                    </form>
+                  </td>
                 </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

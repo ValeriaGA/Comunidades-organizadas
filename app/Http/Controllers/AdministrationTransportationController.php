@@ -65,26 +65,19 @@ class AdministrationTransportationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CatTransportation $catTransportation)
     {
         $this->validate(request(), [
             'name' => 'required|string|max:255|unique:cat_transportation,name,'.$id,
         ]);
 
-        try{
-            $cat = CatTransportation::findOrFail($id);
+        $catTransportation->name = $request['name'];
+        $catTransportation->active = ($request['active'] ? true : false);
 
-            $cat->name = $request['name'];
-            $cat->active = ($request['active'] ? true : false);
+        $catTransportation->save();
 
-            $cat->save();
-
-            session()->flash('message', 'Medio de Transporte actualizado');
-            return redirect('/administracion/seguridad');
-        }
-        catch(ModelNotFoundException $err){
-            //Show error page
-        }
+        session()->flash('message', 'Medio de Transporte actualizado');
+        return redirect('/administracion/seguridad');
     }
     
     public function toggle(CatTransportation $catTransportation)

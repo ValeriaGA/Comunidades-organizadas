@@ -14,7 +14,7 @@ function removeCommunityRow(buttonObject)
         + communityName
 
         + "<td>" + 
-        '<button class="btn btn-rounded btn-outline m-r-5 add-href"  value="tr' + communityID + '" onclick="addCommunityRow(this)" style="margin-left: 0px; display:inline;" id="addButton' + communityID + '" type="button"> Agregar </button>'
+        '<button class="btn btn-success btn-rounded btn-outline m-r-5 add-href"  value="tr' + communityID + '" onclick="addCommunityRow(this)" style="margin-left: 0px; display:inline;" id="addButton' + communityID + '" type="button"> Agregar </button>'
         +" </td>"
 
         + "</td>"
@@ -39,7 +39,7 @@ function addCommunityRow(buttonObject)
         + communityName
 
         + "<td>" + 
-        '<button class="btn btn-rounded btn-outline m-r-5 remove-href"  value="tr' + communityID + '" onclick="removeCommunityRow(this)" style="margin-left: 0px; display:inline;" id="removeButton' + communityID + '" type="button"> Quitar </button>'
+        '<button class="btn btn-danger btn-rounded btn-outline m-r-5 remove-href"  value="tr' + communityID + '" onclick="removeCommunityRow(this)" style="margin-left: 0px; display:inline;" id="removeButton' + communityID + '" type="button"> Quitar </button>'
         +" </td>"
 
         + "</td>"

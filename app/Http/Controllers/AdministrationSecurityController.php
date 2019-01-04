@@ -98,46 +98,40 @@ class AdministrationSecurityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, SubCatReport $subCatReport)
     {
         $this->validate(request(), [
             'name' => 'required|string|max:255|unique:sub_cat_report,name,'.$id,
             'file' => 'max:2048'
         ]);
 
-        try{
-            $cat = SubCatReport::findOrFail($id);
-
-            if ($request->has('file') ? true: false)
+        if ($request->has('file') ? true: false)
+        {
+            if ($subCatReport->multimedia_path != '')
             {
-                if ($cat->multimedia_path != '')
-                {
-                    // File::delete('public/image/users/'.$user->avatar_path);
-                    $path = public_path() . '/plugins/images/icons/' . $cat->multimedia_path;
-                    if(file_exists($path)) {
-                        unlink($path);
-                    }
+                // File::delete('public/image/users/'.$user->avatar_path);
+                $path = public_path() . '/plugins/images/icons/' . $subCatReport->multimedia_path;
+                if(file_exists($path)) {
+                    unlink($path);
                 }
-
-                $file = $request->file('file');
-                $extension = $file->getClientOriginalExtension();
-                $filename =time().'.'.$extension;
-                $file->move('plugins/images/icons/', $filename);
-
-                $cat->multimedia_path = $filename;
             }
 
-            $cat->name = $request['name'];
-            $cat->active = ($request['active'] ? true : false);
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+            $filename =time().'.'.$extension;
+            $file->move('plugins/images/icons/', $filename);
 
-            $cat->save();
+            $subCatReport->multimedia_path = $filename;
+        }
 
-            session()->flash('message', 'Tipo de reporte de seguridad actualizado');
-            return redirect('/administracion/seguridad');
-        }
-        catch(ModelNotFoundException $err){
-            //Show error page
-        }
+        $subCatReport->name = $request['name'];
+        $subCatReport->active = ($request['active'] ? true : false);
+
+        $subCatReport->save();
+
+        session()->flash('message', 'Tipo de reporte de seguridad actualizado');
+        return redirect('/administracion/seguridad');
+        
     }
 
     public function toggle(SubCatReport $subCatReport)

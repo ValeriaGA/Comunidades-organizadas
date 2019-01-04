@@ -21,13 +21,11 @@ class ReportAlertController extends Controller
         return view('report_alert.create', compact('report'));
     }
 
-    public function store(Request $request, $id)
+    public function store(Request $request, Report $report)
     {
         $this->validate(request(), [
             'reason' => 'required|string|max:500'
         ]);
-
-        $report = Report::findOrFail($id);
 
         ReportAlert::create([
             'user_id' => Auth::user()->id,

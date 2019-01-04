@@ -17,7 +17,7 @@ class LikeController extends Controller
 
     public function store(Request $request)
     {
-        $report = Report::find($request['report_id']);
+        $report = Report::findOrFail($request['report_id']);
 
         if (!$report) return null;
 
@@ -28,7 +28,7 @@ class LikeController extends Controller
 
     public function destroy(Request $request)
     {
-    	$report = Report::find($request['report_id']);
+    	$report = Report::findOrFail($request['report_id']);
 
         if (!$report) return null;
 

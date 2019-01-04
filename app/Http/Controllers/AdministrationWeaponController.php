@@ -65,26 +65,19 @@ class AdministrationWeaponController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CatWeapon $catWeapon)
     {
         $this->validate(request(), [
             'name' => 'required|string|max:255|unique:cat_weapon,name,'.$id,
         ]);
 
-        try{
-            $cat = CatWeapon::findOrFail($id);
+        $catWeapon->name = $request['name'];
+        $catWeapon->active = ($request['active'] ? true : false);
 
-            $cat->name = $request['name'];
-            $cat->active = ($request['active'] ? true : false);
+        $catWeapon->save();
 
-            $cat->save();
-
-            session()->flash('message', 'Tipo de arma actualizada');
-            return redirect('/administracion/seguridad');
-        }
-        catch(ModelNotFoundException $err){
-            //Show error page
-        }
+        session()->flash('message', 'Tipo de arma actualizada');
+        return redirect('/administracion/seguridad');
     }
 
     public function toggle(CatWeapon $catWeapon)
