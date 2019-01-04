@@ -11,7 +11,7 @@ class CommunitiesController extends Controller
     public function __construct()
     {
         // only guests are allowed to view this
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['show']);
     }
 
     /**
