@@ -112,4 +112,5 @@ class AdministrationCommunityController extends Controller
 
         session()->flash('message', 'Comunidad actualizado');
         return redirect('/administracion/comunidades/comunidad');
+    }
 }

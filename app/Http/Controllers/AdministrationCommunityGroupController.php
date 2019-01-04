@@ -87,7 +87,7 @@ class AdministrationCommunityGroupController extends Controller
             'community' => 'required'
         ]);
 
-        $community = Community::find($request['community']);
+        $community = Community::findOrFail($request['community']);
 
         $community_groups = $community->communityGroup;
 

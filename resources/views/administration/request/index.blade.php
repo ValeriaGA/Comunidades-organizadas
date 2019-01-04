@@ -45,11 +45,11 @@
                   <td>{{$request->name}}</td>
                   <td>
 
-                    <form method="POST" action="/administracion/request/community/agregar/{{ $request->id }}">
+                    <form method="POST" action="/administracion/solicitudes/comunidad/agregar/{{ $request->id }}">
                       @csrf
                       <button name="{{$request->id}}_community_add" class="btn btn-success" style="width:100%">Agregar</button>
                     </form>
-                    <form method="POST" action="/administracion/request/community/{{ $request->id }}">
+                    <form method="POST" action="/administracion/solicitudes/comunidad/{{ $request->id }}">
                       @method('DELETE')
                       @csrf
                       <button name="{{$request->id}}_community_delete" class="btn btn-danger" onClick="this.form.submit()" style="width:100%">Borrar</button>
@@ -84,16 +84,16 @@
                   <td>
                     <ul>
                       @foreach ($request->community as $community)
-                        <li>$community->name</li>
+                        <li>{{$community->name}}</li>
                       @endforeach
                     </ul>
                   </td>
                   <td>
-                    <form method="POST" action="/administracion/request/group/agregar/{{ $request->id }}">
+                    <form method="POST" action="/administracion/solicitudes/grupo/agregar/{{ $request->id }}">
                       @csrf
                       <button name="{{$request->id}}_group_add" class="btn btn-success" style="width:100%">Agregar</button>
                     </form>
-                    <form method="POST" action="/administracion/request/group/{{ $request->id }}">
+                    <form method="POST" action="/administracion/solicitudes/grupo/{{ $request->id }}">
                       @method('DELETE')
                       @csrf
                       <button name="{{$request->id}}_group_delete" class="btn btn-danger" onClick="this.form.submit()" style="width:100%">Borrar</button>

@@ -216,4 +216,33 @@ class User extends Authenticatable
             'name' => request('name')
         ]);
     }
+
+    public function addCommunityGroupRequest($request)
+    {
+        $community_group_request = CommunityGroupRequest::create([
+            'user_id' => $this->id,
+            'name' => request('name')
+        ]);
+
+        if ($request->has('community_id'))
+        {
+            $community_group_request->addCommunities(request('community_id'));
+        }
+    }
+
+    public function makeCommunityAdmin($community)
+    {
+        $community_admin = Role::where('name', 'LIKE', 'Administrador de Comunidad')->first();
+        $admin = Role::where('name', 'LIKE', 'Administrador')->first();
+
+        if ($this->role_id != $community_admin->id
+            && $this->role_id != $admin->id)
+        {
+            $this->update([
+                'role_id' => $community_admin->id
+            ]);
+        }
+
+        $community->user()->attach($this->id);
+    }
 }

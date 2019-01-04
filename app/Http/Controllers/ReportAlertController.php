@@ -15,9 +15,8 @@ class ReportAlertController extends Controller
         $this->middleware('auth')->except(['index', 'show']);
     }
 
-    public function create($id)
+    public function create(Report $report)
     {
-        $report = Report::find($id);
         return view('report_alert.create', compact('report'));
     }
 

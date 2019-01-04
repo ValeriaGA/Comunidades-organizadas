@@ -10,11 +10,10 @@ function removeCommunityRow(buttonObject)
 
     $("#" + tableToAdd).append(
         "<tr id='tr"+ communityID + "'>\n"
-        + "<td id='td" + communityID + "' colspan='2'>"
+        + "<td id='td" + communityID + "' style='width: 100%;'>"
         + communityName
-
         + "<td>" + 
-        '<button class="btn btn-success btn-rounded btn-outline m-r-5 add-href"  value="tr' + communityID + '" onclick="addCommunityRow(this)" style="margin-left: 0px; display:inline;" id="addButton' + communityID + '" type="button"> Agregar </button>'
+        '<button class="btn btn-success btn-rounded btn-outline m-r-5 add-href"  value="tr' + communityID + '" onclick="addCommunityRow(this)" style="width: 100%;" id="addButton' + communityID + '" type="button"> Agregar </button>'
         +" </td>"
 
         + "</td>"
@@ -35,14 +34,14 @@ function addCommunityRow(buttonObject)
     
     $("#" + tableToAdd).append(
         "<tr id='tr"+ communityID + "'>\n"
-        + "<td id='td" + communityID + "' colspan='2'>"
+        + "<td id='td" + communityID + "' style='width: 100%;'>"
         + communityName
-
         + "<td>" + 
-        '<button class="btn btn-danger btn-rounded btn-outline m-r-5 remove-href"  value="tr' + communityID + '" onclick="removeCommunityRow(this)" style="margin-left: 0px; display:inline;" id="removeButton' + communityID + '" type="button"> Quitar </button>'
+        '<button class="btn btn-danger btn-rounded btn-outline m-r-5 remove-href"  value="tr' + communityID + '" onclick="removeCommunityRow(this)" style="width: 100%;" id="removeButton' + communityID + '" type="button"> Quitar </button>'
         +" </td>"
 
         + "</td>"
+        + "<input type='hidden' id='hid"+communityID+"' name='community_id[]' value='"+communityID+"' >"
         + "</tr>"
     );
 }
