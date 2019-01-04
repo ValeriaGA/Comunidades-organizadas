@@ -5,9 +5,9 @@
     
 
 @section('navbar') 
-    <li><a href="reports.html" class="ui-btn-active">Noticias</a></li>
-    <li><a href="security.html">Seguridad</a></li>
-    <li><a href="services.html">Servicios</a></li>   
+    <li><a href="/news" class="ui-btn-active">Noticias</a></li>
+    <li><a href="/security">Seguridad</a></li>
+    <li><a href="/service">Servicios</a></li>   
 @endsection              
 
 @section('content')
@@ -29,7 +29,7 @@
             
                
 @section('footer')
-    <li><a href="reports.html" data-icon="grid" data-theme="b">Publicaciones</a></li>                    
-    <li><a href="map.html" data-icon="star" >Mapa</a></li>
-    <li><a href="about.html" data-icon="info">Sobre nosotros</a></li>
+    <li><a href="/news" data-icon="grid" data-theme="b">Publicaciones</a></li>                    
+    <li><a href="/map" data-icon="star" >Mapa</a></li>
+    <li><a href="/about" data-icon="info">Sobre nosotros</a></li>
 @endsection

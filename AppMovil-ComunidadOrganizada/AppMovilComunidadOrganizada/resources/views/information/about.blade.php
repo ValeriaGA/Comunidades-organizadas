@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @include ('layout.imports')
 </head>
@@ -7,9 +7,9 @@
    <div id="reports_page" data-role="page">
 
     <div data-role="header">
-        <a href="index.html" class="close_session">Salir</a>
+        <a href="/signin" class="close_session">Salir</a>
         <h1>Reportes de servicios</h1>
-        <a href="profile.html" class="close_session" data-icon="home">Perfil</a>
+        <a href="/profile" class="close_session" data-icon="home">Perfil</a>
                    
     </div><!-- /header -->
     <div data-role="content">                   
@@ -27,9 +27,9 @@
     <div data-role="footer" data-position="fixed">
         <div data-role="navbar" data-iconpos="bottom" >
             <ul >
-                <li><a href="reports.html" data-icon="grid" >Publicaciones</a></li>                    
-                <li><a href="map.html" data-icon="star" >Mapa</a></li>
-                <li><a href="about.html" data-icon="info" data-theme="b">Sobre nosotros</a></li>
+                <li><a href="/news" data-icon="grid" >Publicaciones</a></li>                    
+                <li><a href="/map" data-icon="star" >Mapa</a></li>
+                <li><a href="/about" data-icon="info" data-theme="b">Sobre nosotros</a></li>
             </ul>
         </div>
     </div>
