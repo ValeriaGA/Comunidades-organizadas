@@ -50,15 +50,7 @@
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
-                <div class="txt"> # en sidebar esta en base a reportes [Cambiar a solicitudes] <span class="by label">Funcionalidad</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
                 <div class="txt"> Arreglar el search <span class="by label">Funcionalidad</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Solicitudes de comunidades <span class="by label">Funcionalidad y Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
             </ul>
@@ -82,11 +74,7 @@
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
-                <div class="txt"> Solicitudes de comunidades <span class="by label">Funcionalidad y Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Mostrar evidencia en reportes/noticias (publicaciones)<span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="txt"> Mostrar otros tipos de evidencia en reportes/noticias (publicaciones)<span class="by label">Funcionalidad y Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
