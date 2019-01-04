@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @include ('layout.imports')
 </head>
@@ -7,7 +7,7 @@
     <div id="add_report_page" data-role="page">
         <div data-role="header">
             <h1>Perfil</h1>    
-            <a href="reports.html" data-rel="back">Atras</a>
+            <a href="/news" data-rel="back">Atras</a>
         </div><!-- /header -->
         
         <div data-role="content">  

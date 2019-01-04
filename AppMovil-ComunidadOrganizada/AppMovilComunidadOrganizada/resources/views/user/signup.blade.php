@@ -8,7 +8,7 @@
     
         <div data-role="header">
             <h1>Registrarse</h1>
-            <a href="" data-rel="back">Atras</a>
+            <a href="/signin" data-rel="back">Atras</a>
         </div>
         <div data-role="content">
             <form id="signup_form">
