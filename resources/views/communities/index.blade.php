@@ -2,13 +2,15 @@
 
 @section('js')
     
+   
+
     <!-- DROP DOWN TABLE -->
     <script src="{{ asset('js/dropdownTableRows.js')}}"></script>
 
     <!-- REQUEST Communities -->
     <script src="{{ asset('js/communities.js') }}"></script>
 
-    <!-- PROVINCES -->
+    <!-- PLACES -->
     <script src="{{ asset('js/communitiesPlacesControl.js') }}"></script>
 
 

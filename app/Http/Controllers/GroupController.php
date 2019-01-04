@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\CommunityGroup;
 use App\Community;
+use Auth;
 
 class GroupController extends Controller
 {
@@ -63,8 +64,13 @@ class GroupController extends Controller
      */
     public function show(Request $request)
     {
-        $groups = Community::find($request -> input('id'))->communityGroup;
+        $groups = Community::find($request -> input('id'))->communityGroup()
+                            -> leftJoin("users_by_community_groups", "users_by_community_groups.community_group_id", "=", "community_groups.id")
+                            -> select("users_by_community_groups.id as userGroupID", "community_groups.*")
+                            ->orderBy('userGroupID', 'desc')
+                            -> get();
 
+                                
         return \Response::json($groups ->toJson()); 
     }
 
@@ -96,6 +102,60 @@ class GroupController extends Controller
         }
 
         return \Response::json($communities);
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function follow(Request $request)
+    {
+
+        $communityGroup = CommunityGroup::find($request -> input('id'));
+        $exists = $communityGroup -> user() -> exists();
+
+        if (!$exists)
+        {
+            $communityGroup -> user() -> attach($request -> input('id'), ['user_id' => Auth::id()]);
+    
+        }
+
+        $response = array(
+            "status" => "done"
+        );
+
+        return \Response::json($response);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function unfollow(Request $request)
+    {
+
+        $communityGroup = CommunityGroup::find($request -> input('id'));
+        $exists = $communityGroup -> user() -> exists();
+
+        if ($exists)
+        {
+            $communityGroup -> user() -> detach([
+                'user_id' => Auth::id(),
+                'community_id' => $request -> input('id')     
+            ]);
+    
+        }
+
+        $response = array(
+            "status" => "done"
+        );
+
+        return \Response::json($response);
     }
 
     /**
