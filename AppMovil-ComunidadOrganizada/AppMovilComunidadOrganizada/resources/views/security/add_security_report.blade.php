@@ -1,7 +1,5 @@
 @extends('layout.add')
 
-
-
 @section('title', 'Reporte de seguridad')   
            
 @section('content')

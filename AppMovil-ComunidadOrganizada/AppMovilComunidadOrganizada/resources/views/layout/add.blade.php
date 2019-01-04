@@ -9,7 +9,7 @@
        
         <div data-role="header">
             <h1>@yield('title')</h1>    
-            <a href="report_type.html" data-rel="back">Back</a>
+            <a href="/report-type" data-rel="back">Back</a>
         </div><!-- /header -->
         
         

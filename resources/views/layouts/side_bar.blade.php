@@ -18,10 +18,10 @@
                 <a href="/user" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Perfil</a>
             </li>
            
-            @endauth
             <li>
                 <a href="/comunidades" class="waves-effect"><i class="fa fa-group fa-fw" aria-hidden="true"></i>Comunidades</a>
             </li>
+            @endauth
             <li>
                 <a href="/informacion" class="waves-effect"><i class="fa fa-info fa-fw" aria-hidden="true"></i>Información</a>
             </li>

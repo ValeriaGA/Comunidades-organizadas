@@ -4,9 +4,9 @@
 @section('title', 'Reportes de servicios')
 
 @section('navbar') 
-    <li><a href="reports.html" >Noticias</a></li>
-    <li><a href="security.html">Seguridad</a></li>
-    <li><a href="services.html" class="ui-btn-active">Servicios</a></li>   
+    <li><a href="/news" >Noticias</a></li>
+    <li><a href="/security">Seguridad</a></li>
+    <li><a href="/service" class="ui-btn-active">Servicios</a></li>   
 @endsection              
 
 @section('content')
@@ -19,7 +19,7 @@
             
         </div><!-- /report -->
         
-        <h2>Titulo de noticia</h2>
+        <h2>Titulo de reporte</h2>
         <p>Descripcion de noticia: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero assumenda eaque sed praesentium deleniti recusandae odio neque totam excepturi aut, quo natus nostrum tempore voluptas omnis. Dolores mollitia dolor quis!</p>
         
         <a href="#" class="ui-btn-left" style="text-decoration: none"><img src="///png.icons8.com/thumbs_up/android/24/5B5B5B" alt=""><strong>20</strong></a>
@@ -54,9 +54,9 @@
             
                
 @section('footer')
-    <li><a href="reports.html" data-icon="grid" data-theme="b">Publicaciones</a></li>                    
-    <li><a href="map.html" data-icon="star">Mapa</a></li>
-    <li><a href="about.html" data-icon="info">Sobre nosotros</a></li>
+    <li><a href="/news" data-icon="grid" data-theme="b">Publicaciones</a></li>                    
+    <li><a href="/map" data-icon="star">Mapa</a></li>
+    <li><a href="/about" data-icon="info">Sobre nosotros</a></li>
 @endsection
 
 

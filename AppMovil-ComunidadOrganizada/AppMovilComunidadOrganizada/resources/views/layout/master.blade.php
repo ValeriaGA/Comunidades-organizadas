@@ -7,13 +7,13 @@
    <div id="reports_page" data-role="page">
 
     <div data-role="header">
-        <a href="index.html" class="close_session">Salir</a>
+        <a href="/signin" class="close_session">Salir</a>
         <h1>@yield('title')</h1>
-        <a href="profile.html" class="close_session" data-icon="home">Perfil</a>
+        <a href="/profile" class="close_session" data-icon="home">Perfil</a>
                    
     </div><!-- /header -->
     <div data-role="content">                   
-            <a href="report_type.html"  data-role="button" data-theme="b">Nueva publicación</a> 
+            <a href="/report-type"  data-role="button" data-theme="b">Nueva publicación</a> 
 
              <div style="margin:30px"></div>
 
@@ -23,7 +23,8 @@
                 </ul>
             </div><!-- /navbar -->
                               
-            @include('filter')      
+            @include ('layout.filter')    
+
             <form>
                 <input data-type="search" id="searchForCollapsibleSetChildren" placeholder="Buscar">
             </form>
