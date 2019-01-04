@@ -52,11 +52,13 @@ function onclick_likeButton(element)
 
 function onclick_followButton(element)
 {
+    alert(element.id);
     if (element.getAttribute("active") == "0")
     {
         element.style.backgroundColor = "green";
         element.style.color = "white";
-        $('#' + element.getAttribute("id")).text('Siguiendo');
+        document.getElementById(element.getAttribute("id")).text = "Siguiendo";
+        //$('#' + element.getAttribute("id")).text('Siguiendo');
         $('#' + element.getAttribute("id")).attr('active', '1');
     }
     else
