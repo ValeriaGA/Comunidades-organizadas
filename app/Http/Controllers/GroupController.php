@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\CommunityGroup;
 use App\Community;
 use App\District;
+use App\User;
 use Auth;
 
 class GroupController extends Controller
@@ -177,36 +178,30 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function userCommunitiesIndex(Request $request)
     {
-        //
+
+        return view('communities.groups.myCommunitiesGroups');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
-     * Remove the specified resource from storage.
+     * Display a listing of the resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function userCommunitiesShow()
     {
-        //
+        $groups = Auth::user() -> communityGroup() 
+                -> select("users_by_community_groups.id as userGroupID", "community_groups.*")
+                -> get();
+
+        return \Response::json($groups -> toJson());
     }
+
 }
