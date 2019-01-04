@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\CommunityGroup;
 use App\Community;
+use App\District;
 use Auth;
 
 class GroupController extends Controller
@@ -44,11 +45,15 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(request(), [
-            'name' => 'required|string|max:255',
-            'district' => 'required'
-        ]);
+        $rules = [
+            'name' => 'required|string|max:255'
+        ];
 
+        if(! $request->get('community_id')){
+            $rules['community_id'] = 'required';
+        }
+
+        $this->validate(request(), $rules);
         Auth::user()->addCommunityGroupRequest($request);
 
         session()->flash('message', 'Solicitud realizada');
@@ -64,14 +69,27 @@ class GroupController extends Controller
      */
     public function show(Request $request)
     {
-        $groups = Community::find($request -> input('id'))->communityGroup()
+        $groups = Community::findOrFail($request -> input('id'))->communityGroup()
                             -> leftJoin("users_by_community_groups", "users_by_community_groups.community_group_id", "=", "community_groups.id")
                             -> select("users_by_community_groups.id as userGroupID", "community_groups.*")
                             ->orderBy('userGroupID', 'desc')
                             -> get();
-
                                 
         return \Response::json($groups ->toJson()); 
+    }
+
+    public function fetchCommunitiesByDistrict(Request $request)
+    {
+        $this->validate(request(), [
+            'district' => 'required'
+        ]);
+
+        $district = District::findOrFail(request('district'));
+
+        $communities = Community::where('district_id', $district->id)->get();
+
+        return redirect()->back()->with('data', $communities);
+        //return view('communities.groups.create', compact('communities'));
     }
 
     /**

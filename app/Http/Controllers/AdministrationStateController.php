@@ -77,26 +77,19 @@ class AdministrationStateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, State $state)
     {
         $this->validate(request(), [
             'name' => 'required|string|max:255|unique:states,name,'.$id
         ]);
 
-        try{
-            $state = State::findOrFail($id);
+        $state->name = $request['name'];
+        $state->active = ($request['active'] ? true : false);
 
-            $state->name = $request['name'];
-            $state->active = ($request['active'] ? true : false);
+        $state->save();
 
-            $state->save();
-
-            session()->flash('message', 'Estado actualizada');
-            return redirect('/administracion/estados');
-        }
-        catch(ModelNotFoundException $err){
-            //Show error page
-        }
+        session()->flash('message', 'Estado actualizada');
+        return redirect('/administracion/estados');
     }
 
     public function toggle(State $state)

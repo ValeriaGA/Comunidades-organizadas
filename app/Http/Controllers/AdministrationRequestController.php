@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\CommunityRequest;
+use App\CommunityGroupRequest;
 
 class AdministrationRequestController extends Controller
 {
@@ -21,6 +23,8 @@ class AdministrationRequestController extends Controller
      */
     public function index()
     {
-        return view('administration.request.index');
+        $community_requests = CommunityRequest::all();
+        $group_requests = CommunityGroupRequest::all();
+        return view('administration.request.index', compact('community_requests', 'group_requests'));
     }
 }

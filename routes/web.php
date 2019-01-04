@@ -108,6 +108,8 @@ Route::post('/dejar-grupo', 'GroupController@unfollow');
 Route::get('/comunidades/solicitar-comunidad', 'CommunitiesController@create');
 Route::post('/comunidades/solicitar-comunidad', 'CommunitiesController@store');
 Route::get('/comunidades/solicitar-grupo', 'GroupController@create');
+Route::post('/comunidades/solicitar-grupo', 'GroupController@store');
+Route::post('/comunidades/solicitar-grupo/filtrar', 'GroupController@fetchCommunitiesByDistrict');
 
 /*
 |--------------------------------------------------------------------------
@@ -149,6 +151,11 @@ Route::patch('/administracion/reportes/editar/{report}', 'AdministrationReportCo
 
 // Requests
 Route::get('/administracion/solicitudes', 'AdministrationRequestController@index');
+Route::post('/administracion/solicitudes/comunidad/agregar/{communityRequest}', 'AdministrationCommunityRequestController@store');
+Route::delete('/administracion/solicitudes/comunidad/{communityRequest}', 'AdministrationCommunityRequestController@destroy');
+
+Route::post('/administracion/solicitudes/grupo/agregar/{communityGroupRequest}', 'AdministrationGroupRequestController@store');
+Route::delete('/administracion/solicitudes/grupo/{communityGroupRequest}', 'AdministrationGroupRequestController@destroy');
 
 
 // Publications (Reports)

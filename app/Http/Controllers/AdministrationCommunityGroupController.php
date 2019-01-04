@@ -87,7 +87,7 @@ class AdministrationCommunityGroupController extends Controller
             'community' => 'required'
         ]);
 
-        $community = Community::find($request['community']);
+        $community = Community::findOrFail($request['community']);
 
         $community_groups = $community->communityGroup;
 
@@ -126,7 +126,7 @@ class AdministrationCommunityGroupController extends Controller
             $communities = collect();
             foreach ($community_ids as $id)
             {
-                $community = Community::find($id);
+                $community = Community::findOrFail($id);
                 $communities->push($community);
             }
 

@@ -142,12 +142,14 @@ class User extends Authenticatable
 
     public function addReport($request, $news = false)
     {
-        $categories_security = SubCatReport::where('name', 'LIKE', request('type'))->first();
+        $categories_security = SubCatReport::where('name', 'LIKE', request('type'))->firstOrFail();
 
         $state = State::where('name', 'LIKE', 'Sin Procesar')->first();
 
+        $community_group = CommunityGroup::findOrFail(request('community_group'));
+
         $report = Report::create([
-            'community_group_id' => request('community_group'),
+            'community_group_id' => $community_group->id,
             'title' => request('title'),
             'description' => request('description'),
             'longitud' => request('longitud'),
@@ -183,8 +185,8 @@ class User extends Authenticatable
     {
         $report = $this->addReport($request);
 
-        $weapon = CatWeapon::where('name', 'LIKE', request('weapon'))->first();
-        $transportation = CatTransportation::where('name', 'LIKE', request('transportation'))->first();
+        $weapon = CatWeapon::where('name', 'LIKE', request('weapon'))->firstOrFail();
+        $transportation = CatTransportation::where('name', 'LIKE', request('transportation'))->firstOrFail();
 
         $security_report = SecurityReport::create([
             'report_id' => $report->id,
@@ -213,5 +215,34 @@ class User extends Authenticatable
             'district_id' => $district->id,
             'name' => request('name')
         ]);
+    }
+
+    public function addCommunityGroupRequest($request)
+    {
+        $community_group_request = CommunityGroupRequest::create([
+            'user_id' => $this->id,
+            'name' => request('name')
+        ]);
+
+        if ($request->has('community_id'))
+        {
+            $community_group_request->addCommunities(request('community_id'));
+        }
+    }
+
+    public function makeCommunityAdmin($community)
+    {
+        $community_admin = Role::where('name', 'LIKE', 'Administrador de Comunidad')->first();
+        $admin = Role::where('name', 'LIKE', 'Administrador')->first();
+
+        if ($this->role_id != $community_admin->id
+            && $this->role_id != $admin->id)
+        {
+            $this->update([
+                'role_id' => $community_admin->id
+            ]);
+        }
+
+        $community->user()->attach($this->id);
     }
 }

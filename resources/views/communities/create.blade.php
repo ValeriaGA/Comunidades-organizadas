@@ -14,7 +14,6 @@
     <script src="{{ asset('js/createReportTable.js') }}"></script>
 @endsection
 
-
 @section('content')
         
         <!-- ============================================================== -->

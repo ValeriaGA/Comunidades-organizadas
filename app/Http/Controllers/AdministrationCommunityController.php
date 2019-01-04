@@ -50,9 +50,11 @@ class AdministrationCommunityController extends Controller
             'district' => 'required'
         ]);
 
+        $district = District::findOrFail($request['district']);
+
         Community::create([
             'name' => $request['name'],
-            'district_id' => $request['district']
+            'district_id' => $district->id
         ]);
 
         session()->flash('message', 'Comunidad Creada');
@@ -93,27 +95,22 @@ class AdministrationCommunityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Community $community)
     {
         $this->validate(request(), [
             'name' => 'required|string|max:255',
             'district' => 'required'
         ]);
 
-        try{
-            $community= Community::findOrFail($id);
+        $district = District::findOrFail($request['district']);
 
-            $community->name = $request['name'];
+        $community->name = $request['name'];
 
-            $community->district_id = $request['district'];
-            
-            $community->save();
+        $community->district_id = $district->id;
+        
+        $community->save();
 
-            session()->flash('message', 'Comunidad actualizado');
-            return redirect('/administracion/comunidades/comunidad');
-        }
-        catch(ModelNotFoundException $err){
-            //Show error page
-        }
+        session()->flash('message', 'Comunidad actualizado');
+        return redirect('/administracion/comunidades/comunidad');
     }
 }

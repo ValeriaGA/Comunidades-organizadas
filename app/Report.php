@@ -178,12 +178,14 @@ class Report extends Model
 
     public function editReport($request)
     {
-        $categories_security = SubCatReport::where('name', 'LIKE', request('type'))->first();
+        $categories_security = SubCatReport::where('name', 'LIKE', request('type'))->firstOrFail();;
 
-        $state = State::where('name', 'LIKE', request('states'))->first();
+        $state = State::where('name', 'LIKE', request('states'))->firstOrFail();;
+
+        $community_group = CommunityGroup::findOrFail(request('community_group'));
 
         $this->update([
-            'community_group_id' => request('community_group'),
+            'community_group_id' => $community_group->id,
             'title' => request('title'),
             'description' => request('description'),
             'longitud' => request('longitud'),
@@ -228,8 +230,8 @@ class Report extends Model
     {
         $this->editReport($request);
 
-        $weapon = CatWeapon::where('name', 'LIKE', request('weapon'))->first();
-        $transportation = CatTransportation::where('name', 'LIKE', request('transportation'))->first();
+        $weapon = CatWeapon::where('name', 'LIKE', request('weapon'))->firstOrFail();
+        $transportation = CatTransportation::where('name', 'LIKE', request('transportation'))->firstOrFail();
 
         $security_report = SecurityReport::where('report_id', $this->id)->first();
 
