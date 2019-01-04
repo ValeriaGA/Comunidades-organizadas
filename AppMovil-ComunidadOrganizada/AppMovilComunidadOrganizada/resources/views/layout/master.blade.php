@@ -23,7 +23,8 @@
                 </ul>
             </div><!-- /navbar -->
                               
-            @include('filter')      
+            @include ('layout.filter')    
+
             <form>
                 <input data-type="search" id="searchForCollapsibleSetChildren" placeholder="Buscar">
             </form>
