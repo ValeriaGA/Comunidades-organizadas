@@ -1,14 +1,8 @@
 <!DOCTYPE html> 
 <html> 
     <head> 
-    <title>Comunidad organizada</title> 
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="../jquery.mobile-1.1.1.min.css" />
-    <script src="../jquery-1.8.2.min.js"></script>
-    <script src="../jquery.mobile-1.1.1.min.js"></script>
-
-</head> 
+        @include ('layout.imports')  
+    </head> 
 <body> 
 
 <div id="login_page" data-role="page">
