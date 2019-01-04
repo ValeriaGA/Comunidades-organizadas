@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\CommunityGroup;
 use App\Community;
 
@@ -65,6 +66,36 @@ class GroupController extends Controller
         $groups = Community::find($request -> input('id'))->communityGroup;
 
         return \Response::json($groups ->toJson()); 
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function communities(Request $request)
+    {
+
+        $exists = DB::table('community_groups')->where('id', $request -> input('id'))->exists();
+
+
+        
+        if($exists > 0)
+        {
+            $communities = CommunityGroup::find($request -> input('id')) -> community;
+            $communities = $communities -> toJson();
+        }
+
+
+        else
+        {
+            $communities = array(
+                "status" => "Empty"
+            );
+        }
+
+        return \Response::json($communities);
     }
 
     /**

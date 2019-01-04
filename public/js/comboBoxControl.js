@@ -62,7 +62,7 @@ function fillProvinces(){
       dataType: "json",
       success: function(districts){
         fillControl('districts', districts);
-        //fillCommunities();
+        fillCommunities();
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
@@ -89,7 +89,6 @@ function fillProvinces(){
       dataType: "json",
       success: function(communities){
         fillControl('communities', communities);
-        //fillGroups();
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
@@ -124,6 +123,8 @@ function fillProvinces(){
     });
     return 1;
   }
+
+
   
   
   function getSelectedValue(elementId){
@@ -168,6 +169,8 @@ function fillProvinces(){
     $('#'+controlID).empty();
   }
   
+
+
 
 
   $(document).ready(function(){
