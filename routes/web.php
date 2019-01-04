@@ -104,6 +104,8 @@ Route::get('/comunidades', 'CommunitiesController@index');
 Route::post('/grupo-comunidades', 'GroupController@communities');
 Route::post('/seguir-grupo', 'GroupController@follow');
 Route::post('/dejar-grupo', 'GroupController@unfollow');
+Route::get('/mis-grupos', 'GroupController@userCommunitiesIndex');
+Route::get('/obtener-grupos', 'GroupController@userCommunitiesShow');
 
 Route::get('/comunidades/solicitar-comunidad', 'CommunitiesController@create');
 Route::post('/comunidades/solicitar-comunidad', 'CommunitiesController@store');

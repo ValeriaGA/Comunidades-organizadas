@@ -11,7 +11,7 @@
     <script src="{{ asset('js/communities.js') }}"></script>
 
     <!-- PLACES -->
-    <script src="{{ asset('js/communitiesPlacesControl.js') }}"></script>
+    <script src="{{ asset('js/myCommunitiesControl.js') }}"></script>
 
 
     <script src="{{ asset('js/createReportTable.js') }}"></script>
@@ -26,10 +26,10 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Comunidades</h4> </div>
+                        <h4 class="page-title">Mis Grupos de Comunidades</h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="#">Comunidades</a></li>
+                            <li><a href="/comunidades">Comunidades</a></li>
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -45,64 +45,6 @@
                             
                             <input id="communityGroupSearch" type="text" style="width: 400px; display:inline;" placeholder="Buscar Grupo..." class="form-control">
                             <button id="communityGroupSearchButton"  style="display:inline; margin-left: 10px;"><i class="fa fa-search"></i></button>
-
-                            @auth
-                                <a href="/mis-grupos" class="btn btn-info waves-effect waves-light btn-outline" style="display:inline; margin-left: 185px;"><span class="btn-label"><i class="fa fa-info-circle m-l-5"></i></span> Mis Grupos de Comunidades </a>
-                            @endauth
-
-                             <br>
-                             <br>
-
-
-                          Filtrar por:
-                        <br>
-                        
-                        <form id="communityGroupSubmit" method="GET" action="/comunidadesd">
-                            <div style="margin-top: 25px; margin-left: 25px; display:inline;">
-                                <label >Provincia</label>
-                                
-                                <select id="provinces" style="width:110px; display:inline;" class="form-control" name="province" required>
-                                        <option value="1" selected>San José</option>
-                                        <option value="2">Alajuela</option>
-                                        <option value="3">Cartago</option>
-                                        <option value="4">Heredia</option>
-                                        <option value="5">Guanacaste</option>
-                                        <option value="6">Puntarenas</option>
-                                        <option value="7">Limón</option>
-                                
-                                </select>
-                            </div>
-
-                            <div style="margin-top: 25px; margin-left: 25px; display:inline;">
-                                <label >Cantón</label>
-                                
-                                <select id="cantons" style="width:110px; display:inline;" class="form-control"  name="canton" required>
-                                        <option value="1" selected="selected">Cantones</option>
-                                </select>
-                            </div>
-
-
-                            <div style="margin-top: 25px; margin-left: 25px; display:inline;">
-                                <label >Distrito</label>
-                                
-                                <select id="districts" style="width:110px; display:inline;" class="form-control" name="district" required>
-                                        <option value="1" selected="selected">Distritos</option>
-                                </select>
-                            </div>
-                                
-
-                            <div style="margin-top: 25px; margin-left: 25px; display:inline;">
-                                <label>Comunidad</label>
-                                
-                                <select id="communities" style="width:200px; display:inline;" class="form-control"  name="community" required>
-                                        <option value="1" selected="selected">Comunidad</option>
-                                </select>
-                            </div>
-
-                            <!--<div style="margin-top: 25px; margin-left: 25px; display:inline;">
-                                <input type="submit" value="Filtrar" class="btn btn-info">
-                            </div>-->
-                        </form>
 
                       </div>
                   </div>
@@ -138,7 +80,7 @@
 
                                         
 
-                            <h3 class="box-title" style="display:inline;">Grupos de Comunidades</h3>
+                            <h3 class="box-title" style="display:inline;">Mis Grupos de Comunidades</h3>
                             <button onclick="window.location.href='/comunidades/solicitar-comunidad'" id="requestCommunity" class="btn btn-rounded btn-success btn-outline pull-right"> Solicitar Comunidad </button>
                             <button onclick="window.location.href='/comunidades/solicitar-grupo'" id="requestGroup"  class="btn btn-rounded btn-success btn-outline pull-right" style="margin-right: 10px;"> Solicitar Grupo </button>
 
