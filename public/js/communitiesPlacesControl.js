@@ -215,6 +215,14 @@ function getCommunityGroupsOfCommunity()
           }
       });
     }
+    else
+    {
+        var communityGroupsTable = document.getElementById("communityGroupsTable");
+        var row = communityGroupsTable.insertRow(communityGroupsTable.rows.length);
+        var cell = row.insertCell(0);
+            cell.setAttribute('colspan', "2");
+            cell.innerHTML = "No hay grupos que mostrar";
+    }
 }
 
 
@@ -234,30 +242,40 @@ function fillGroup(groups)
     var communityGroupsTable = document.getElementById("communityGroupsTable");
 
 
-    $.each(json, function(key, value){
-        
+    if (currentGroupJson != null)
+    {
+        $.each(json, function(key, value){
+            
+            var row = communityGroupsTable.insertRow(communityGroupsTable.rows.length);
+
+            var groupItem = value['name'] + "\n";
+                
+                
+            if (value['userGroupID'] == null)
+            {
+                groupItem += '<button style="margin-left: 10px; display:inline;" id="followButton' + value['id'] + '" onclick="{{onclick_followButton(this)}}" class="btn btn-rounded btn-success btn-outline m-r-5 like-button pull-right" active="0" > Seguir </button>\n';
+            }
+            else
+            {
+                groupItem += '<button style="margin-left: 10px; display:inline; background-color:#7ace4c; color:white;" id="followButton' + value['id'] + '" onclick="{{onclick_unfollowButton(this)}}" class="btn btn-rounded btn-success btn-outline m-r-5 like-button pull-right" active="1" > Seguiendo </button>\n';
+            }
+
+            groupItem += '<button style="margin-left: 10px; display:inline; border: 1px solid #41b3f9; color:#41b3f9" id="groupDetail' + value['id'] + '" onclick="getCommunitiesByGroup(this)" class="btn btn-rounded btn-outline m-r-5 pull-right" active="0" > Comunidades </button>\n'
+            + '<input name="idGroup' + value['id'] + '" type="hidden" value="' + value['name'] + '"/>';
+                
+                
+            var cell = row.insertCell(0);
+            cell.setAttribute('colspan', "2");
+            cell.innerHTML = groupItem;
+        });
+    }
+    else
+    {
         var row = communityGroupsTable.insertRow(communityGroupsTable.rows.length);
-
-        var groupItem = value['name'] + "\n";
-            
-            
-        if (value['userGroupID'] == null)
-        {
-            groupItem += '<button style="margin-left: 10px; display:inline;" id="followButton' + value['id'] + '" onclick="{{onclick_followButton(this)}}" class="btn btn-rounded btn-success btn-outline m-r-5 like-button pull-right" active="0" > Seguir </button>\n';
-        }
-        else
-        {
-            groupItem += '<button style="margin-left: 10px; display:inline; background-color:#7ace4c; color:white;" id="followButton' + value['id'] + '" onclick="{{onclick_unfollowButton(this)}}" class="btn btn-rounded btn-success btn-outline m-r-5 like-button pull-right" active="1" > Seguiendo </button>\n';
-        }
-
-        groupItem += '<button style="margin-left: 10px; display:inline; border: 1px solid #41b3f9; color:#41b3f9" id="groupDetail' + value['id'] + '" onclick="getCommunitiesByGroup(this)" class="btn btn-rounded btn-outline m-r-5 pull-right" active="0" > Comunidades </button>\n'
-        + '<input name="idGroup' + value['id'] + '" type="hidden" value="' + value['name'] + '"/>';
-            
-            
         var cell = row.insertCell(0);
-        cell.setAttribute('colspan', "2");
-        cell.innerHTML = groupItem;
-     });
+            cell.setAttribute('colspan', "2");
+            cell.innerHTML = "No hay grupos que mostrar";
+    }
 }
 
 
