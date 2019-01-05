@@ -36,6 +36,8 @@ function addComment(id_input)
 
 function commentDetail(serverData)
 {
+    $("#noCommentsMesaggeDelete").remove();
+    
     $('#myCommentSection').append(
         '<div id="comment' + serverData.commentID + '" class="comment-body">' + 
             '<div class="user-img"> '+

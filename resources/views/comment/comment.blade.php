@@ -44,5 +44,17 @@
             </div>
         </div>
     @endforeach
+   
+
+    <div id="noCommentsMessageMain">
+        @if($generalComments -> isEmpty() && (is_null($userComments) || $userComments -> isEmpty()))
+            <div id="noCommentsMesaggeDelete" class="comment-body">
+                    <div class="mail-contnet">
+                            <h5>Esta publicación no tiene comentarios.</h5>
+                            
+                    </div>
+            </div>
+        @endif
+    </div>
 
 </div>
