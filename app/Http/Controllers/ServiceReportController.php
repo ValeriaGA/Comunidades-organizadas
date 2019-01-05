@@ -26,16 +26,7 @@ class ServiceReportController extends Controller
     public function __construct()
     {
         // only guests are allowed to view this
-        $this->middleware('auth')->except(['index', 'show']);
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('report.service.index');
+        $this->middleware('auth');
     }
 
     /**

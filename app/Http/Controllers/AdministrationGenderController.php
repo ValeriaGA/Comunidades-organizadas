@@ -80,7 +80,7 @@ class AdministrationGenderController extends Controller
     public function update(Request $request, Gender $gender)
     {
         $this->validate(request(), [
-            'name' => 'required|string|max:255|unique:genders,name,'.$id
+            'name' => 'required|string|max:255|unique:genders,name,'.$gender->id
         ]);
 
         $gender->name = $request['name'];

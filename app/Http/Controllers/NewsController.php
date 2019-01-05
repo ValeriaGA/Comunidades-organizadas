@@ -67,7 +67,7 @@ class NewsController extends Controller
      */
     public function store(StoreNewsReport $request)
     {
-        $this->authorize('create', $report);
+        $this->authorize('create', Report::class);
         $request->validated();
         Auth::user()->addNews( $request );
 

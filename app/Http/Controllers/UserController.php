@@ -45,6 +45,7 @@ class UserController extends Controller
         {
             return redirect('/');
         }
+        // $this->authorize('update', $user);
 
         $genders = Gender::all();
         return view('user.edit', compact('user', 'genders'));

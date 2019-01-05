@@ -56,14 +56,23 @@ Route::get('/reporte', 'ReportController@index');
 Route::get('/reporte/{report}', 'ReportController@show');
 Route::get('/reporte/editar/{report}', 'ReportController@edit');
 
+Route::get('/seguridad', function () {
+    return abort(404);
+});
 Route::get('/seguridad/agregar', 'SecurityReportController@create');
 Route::post('/seguridad', 'SecurityReportController@store');
 Route::patch('/seguridad/{report}', 'SecurityReportController@update');
 
+Route::get('/servicio', function () {
+    return abort(404);
+});
 Route::get('/servicio/agregar', 'ServiceReportController@create');
 Route::post('/servicio', 'ServiceReportController@store');
 Route::patch('/servicio/{report}', 'ServiceReportController@update');
 
+Route::get('/noticia', function () {
+    return abort(404);
+});
 Route::get('/noticia/agregar', 'NewsController@create');
 Route::post('/noticia', 'NewsController@store');
 Route::patch('/noticia/{report}', 'NewsController@update');

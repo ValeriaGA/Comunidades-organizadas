@@ -22,7 +22,7 @@ class ReportController extends Controller
     public function __construct()
     {
         // only guests are allowed to view this
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth')->except(['show']);
     }
 
     public function index()

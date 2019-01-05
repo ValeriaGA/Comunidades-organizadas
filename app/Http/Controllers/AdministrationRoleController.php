@@ -114,7 +114,7 @@ class AdministrationRoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $this->validate(request(), [
-            'name' => 'required|string|max:255|unique:roles,name,'.$id,
+            'name' => 'required|string|max:255|unique:roles,name,'.$role->id,
         ]);
 
 
@@ -124,6 +124,7 @@ class AdministrationRoleController extends Controller
 
         session()->flash('message', 'Role actualizado');
         return redirect('/administracion/roles');
+    }
 
 
     public function updateUser(Request $request, User $user)
@@ -132,7 +133,7 @@ class AdministrationRoleController extends Controller
             'role' => 'required'
         ]);
 
-        $role= Role::where('name', $request['role'])->firstOrFail();;
+        $role = Role::where('name', $request['role'])->firstOrFail();;
 
         $user->role_id = $role->id;
         

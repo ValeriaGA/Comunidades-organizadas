@@ -68,7 +68,7 @@ class AdministrationTransportationController extends Controller
     public function update(Request $request, CatTransportation $catTransportation)
     {
         $this->validate(request(), [
-            'name' => 'required|string|max:255|unique:cat_transportation,name,'.$id,
+            'name' => 'required|string|max:255|unique:cat_transportation,name,'.$catTransportation->id,
         ]);
 
         $catTransportation->name = $request['name'];

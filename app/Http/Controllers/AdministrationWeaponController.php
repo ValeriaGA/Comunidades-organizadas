@@ -68,7 +68,7 @@ class AdministrationWeaponController extends Controller
     public function update(Request $request, CatWeapon $catWeapon)
     {
         $this->validate(request(), [
-            'name' => 'required|string|max:255|unique:cat_weapon,name,'.$id,
+            'name' => 'required|string|max:255|unique:cat_weapon,name,'.$catWeapon->id,
         ]);
 
         $catWeapon->name = $request['name'];

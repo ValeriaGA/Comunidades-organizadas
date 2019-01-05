@@ -77,26 +77,19 @@ class AdministrationEvidenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Evidence $evidence)
     {
         $this->validate(request(), [
-            'name' => 'required|string|max:255|unique:cat_evidence,name,'.$id
+            'name' => 'required|string|max:255|unique:cat_evidence,name,'.$evidence->id
         ]);
 
-        try{
-            $evidence = CatEvidence::findOrFail($id);
+        $evidence->name = $request['name'];
+        $evidence->active = ($request['active'] ? true : false);
 
-            $evidence->name = $request['name'];
-            $evidence->active = ($request['active'] ? true : false);
+        $evidence->save();
 
-            $evidence->save();
-
-            session()->flash('message', 'Tipo de evidencia actualizada');
-            return redirect('/administracion/evidencias');
-        }
-        catch(ModelNotFoundException $err){
-            //Show error page
-        }
+        session()->flash('message', 'Tipo de evidencia actualizada');
+        return redirect('/administracion/evidencias');
     }
     
     public function toggle(CatEvidence $evidence)

@@ -101,7 +101,7 @@ class AdministrationSecurityController extends Controller
     public function update(Request $request, SubCatReport $subCatReport)
     {
         $this->validate(request(), [
-            'name' => 'required|string|max:255|unique:sub_cat_report,name,'.$id,
+            'name' => 'required|string|max:255|unique:sub_cat_report,name,'.$subCatReport->id,
             'file' => 'max:2048'
         ]);
 
