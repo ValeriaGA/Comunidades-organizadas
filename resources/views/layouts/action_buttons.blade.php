@@ -6,8 +6,8 @@
     @endif
 @endauth
 
-<a href="/reporte/{{ $report->id }}" class="btn btn-info waves-effect waves-light btn-outline"><span class="btn-label"><i class="fa fa-info-circle m-l-5"></i></span> Detalles</a>
-<a href="/reportar/{{ $report->id }}" class="btn btn-danger waves-effect waves-light btn-outline"><span class="btn-label"><i class="fa fa-exclamation-triangle m-l-5"></i></span> Reportar</a>
+<a href="/reporte/{{ $report->id }}" class="btn btn-info waves-effect waves-light btn-outline" style="width: 125px;"><span class="btn-label"><i class="fa fa-info-circle m-l-5"></i></span> Detalles</a>
+<a href="/reportar/{{ $report->id }}" class="btn btn-danger waves-effect waves-light btn-outline" style="width: 125px;"><span class="btn-label"><i class="fa fa-exclamation-triangle m-l-5"></i></span> Reportar</a>
 @can('update', $report)
-	<a id="editReportButton" href="/reporte/editar/{{ $report->id }}" class="btn btn-warning waves-effect waves-light btn-outline"><span class="btn-label"><i class="fa fa-wrench m-l-5"></i></span> Editar</a>
+	<a id="editReportButton" href="/reporte/editar/{{ $report->id }}" class="btn btn-warning waves-effect waves-light btn-outline" ><span class="btn-label"><i class="fa fa-wrench m-l-5" ></i></span> Editar</a>
 @endif
