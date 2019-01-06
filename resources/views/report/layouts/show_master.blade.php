@@ -37,10 +37,10 @@
                         </div>
                         <div class="panel-wrapper collapse in">
                             <ul class="nav customtab nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#general1" aria-controls="general" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> Generales</span></a></li>
+                                <li role="presentation" class="active"><a href="#general1" aria-controls="general" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="fa fa-info"></i></span><span class="hidden-xs"> Generales</span></a></li>
                                 @yield ('tabs')
-                                <li role="presentation" class=""><a href="#evidence1" aria-controls="evidence" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">Evidencia</span></a></li>
-                                <li role="presentation" class=""><a href="#user1" aria-controls="user" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> Usuario</span></a></li>
+                                <li role="presentation" class=""><a href="#evidence1" aria-controls="evidence" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="fa fa-legal"></i></span> <span class="hidden-xs">Evidencia</span></a></li>
+                                <li role="presentation" class=""><a href="#user1" aria-controls="user" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="fa fa-user"></i></span><span class="hidden-xs"> Usuario</span></a></li>
                             </ul>
                             <div class="panel-body">
                                 <div class="tab-content m-t-0">
@@ -158,7 +158,7 @@
                             <h3 class="box-title panel-heading">Comentarios</h3>
 
 
-                            <div class="ex3" style="width:900px;">
+                            <div class="ex3" style="width:100%;">
                                 @include('comment.comment')
                             </div>         
 
