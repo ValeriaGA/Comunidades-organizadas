@@ -14,11 +14,10 @@
              </span> </a>
         </div>
         <!-- /Logo -->
-        <ul class="nav navbar-top-links navbar-right pull-right">
-            <li>
-                <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                    <input type="text" placeholder="Buscar..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
-            </li>
+        <ul class="nav navbar-top-links navbar-left">
+            <li><a class="open-close waves-effect waves-light"><i class="fa fa-navicon"></i></a></li>
+        </ul>
+        <ul class="nav navbar-top-links navbar-right">
             @auth
                 <li>
                     <a class="profile-pic" href="/user">
@@ -31,7 +30,7 @@
                      <b class="hidden-xs">{{ Auth::user()->person->name }}</b></a>
                 </li>
                 <li>
-                     <a href="/logout"><i class="fa fa-sign-out"></i> Cerrar sesión</a>
+                     <a href="/logout"><i class="fa fa-sign-out"></i> Salir</a>
                 </li>
             @else
                 <li>
