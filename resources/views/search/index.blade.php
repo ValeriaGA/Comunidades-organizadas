@@ -206,6 +206,8 @@
                           <label class="col-md-12">Comunidad</label>
                           <select name="community" id="communities" class="form-control">
                           </select>
+
+                          <a href="/comunidades/solicitar-grupo"> ¿No ve su grupo de comunidades? Haga click aquí para solicitarla.</a>
                           
                         </div>
                     </div>

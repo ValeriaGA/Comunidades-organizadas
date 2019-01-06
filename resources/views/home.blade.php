@@ -140,6 +140,12 @@
                                         <button class="btn btn-success">Filtrar</button>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <a href="/comunidades/solicitar-grupo"> ¿No ve su grupo de comunidades? Haga click aquí para solicitarla.</a>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
