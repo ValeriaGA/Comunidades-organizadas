@@ -27,9 +27,9 @@
                             <div class="panel-heading"> Información </div>
                             <div class="panel-wrapper collapse in">
                                 <ul class="nav customtab nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#news1" aria-controls="news" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs">Bomberos</span></a></li>
-                                    <li role="presentation" class=""><a href="#security1" aria-controls="security" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Policía</span></a></li>
-                                    <li role="presentation" class=""><a href="#services1" aria-controls="services" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-email"></i></span> <span class="hidden-xs">OIJ</span></a></li>
+                                    <li role="presentation" class="active"><a href="#news1" aria-controls="news" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="fa fa-fire-extinguisher"></i></span><span class="hidden-xs">Bomberos</span></a></li>
+                                    <li role="presentation" class=""><a href="#security1" aria-controls="security" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="fa fa-gavel"></i></span> <span class="hidden-xs">Policía</span></a></li>
+                                    <li role="presentation" class=""><a href="#services1" aria-controls="services" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="fa fa-group"></i></span> <span class="hidden-xs">OIJ</span></a></li>
                                 </ul>
                                 <div class="panel-body">
                                     <div class="tab-content m-t-0">

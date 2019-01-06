@@ -131,36 +131,18 @@
                             </div>
                         </div>
 
-                        <!-- <div class="form-group row">
-                            <label for="sex" class="col-md-4 col-form-label text-md-right">{{ __('Sex') }}</label>
-
-                            <div class="col-md-6">
-                                <label for="sex_m" class="col-form-label text-md-right">{{ __('Male') }}</label>
-                                <input id="sex_m" type="radio" class="form-control{{ $errors->has('sex') ? ' is-invalid' : '' }}" name="sex" required>
-
-                                <label for="sex_f" class="col-form-label text-md-right">{{ __('Female') }}</label>
-                                <input id="sex_f" type="radio" class="form-control{{ $errors->has('sex') ? ' is-invalid' : '' }}" name="sex" required>
-
-                                @if ($errors->has('sex'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('sex') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div> -->
-
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4" style="margin-left: 300px;">
+                            <div class="col-md-6 offset-md-4">
                                 <button dusk="register-button" type="submit" class="btn btn-primary">
                                     {{ __('Registrar') }}
                                 </button>
                             </div>
                         </div>
                         <br/>
-                        <div class="form-group row mb-0" style="margin-left: 150px">
-                          
-                                Al registrarse está de acuerdo con los &nbsp; <a href="/terminos-y-condiciones" > Términos y Condiciones </a>
-                           
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                Al registrarse está de acuerdo con los &nbsp;<a href="/terminos-y-condiciones" >Términos y Condiciones </a>
+                            </div>
                         </div>
                     </form>
                 </div>
