@@ -171,16 +171,21 @@
                         <div class="col-md-12 col-lg-12 col-sm-12">
                             <div class="white-box">
                                 <div class="form-group" >
+
+                                <form>
                                     <input name="idReport" type="hidden" value="{{$report->id}}"/>
 
 
                                     <div class="col-md-12" style="margin-bottom: 10px;">
-                                        <textarea id="commentInput" rows="5" class="form-control form-control-line" name="description" placeholder="Nuevo comentario..."required></textarea>
+                                        <textarea id="commentInput" rows="5" class="form-control form-control-line" name="description" placeholder="Nuevo comentario..." required></textarea>
                                     </div>
 
                                     <button id="commentButton" onclick="addComment('commentInput')" class="btn btn btn-block btn-primary btn-outline m-r-5" active="0" type="submit">
                                         Comentar
                                     </button>
+                                
+                                </form>
+                                
                                 </div>
                             </div>
                         </div>

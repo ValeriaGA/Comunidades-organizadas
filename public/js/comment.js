@@ -10,6 +10,7 @@ function addComment(id_input)
             comment: commentContent
         }
 
+
         $.ajax({
             method:'POST',
             url:'/add-comment',
@@ -27,7 +28,7 @@ function addComment(id_input)
             },
             error:function(xhr, ajaxOptions, errorInfo)
             {
-                alert(xhr.status + " " + errorInfo);
+                alert("Por favor escriba un comentario válido.");
             }
         });
     
@@ -37,7 +38,7 @@ function addComment(id_input)
 function commentDetail(serverData)
 {
     $("#noCommentsMesaggeDelete").remove();
-    
+
     $('#myCommentSection').append(
         '<div id="comment' + serverData.commentID + '" class="comment-body">' + 
             '<div class="user-img"> '+
