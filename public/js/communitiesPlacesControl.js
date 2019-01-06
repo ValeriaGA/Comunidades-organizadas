@@ -335,6 +335,8 @@ function onclick_unfollowButton(element)
     element.style.backgroundColor = "white";
     $('#' + element.getAttribute("id")).text('Seguir');
     $('#' + element.getAttribute("id")).attr('active', '0');
+    $('#' + element.getAttribute("id")).attr("onclick", 'onclick_followButton(this)');
+
     element.style.color = "#7ace4c";
 
     $.ajax({
@@ -352,6 +354,7 @@ function onclick_unfollowButton(element)
             element.style.color = "white";
             $('#' + element.getAttribute("id")).text('Siguiendo');
             $('#' + element.getAttribute("id")).attr('active', '1');
+            $('#' + element.getAttribute("id")).attr("onclick", 'onclick_unfollowButton(this)');
         }
     });
 }
@@ -369,6 +372,7 @@ function onclick_followButton(element)
     element.style.color = "white";
     $('#' + element.getAttribute("id")).text('Siguiendo');
     $('#' + element.getAttribute("id")).attr('active', '1');
+    $('#' + element.getAttribute("id")).attr("onclick", 'onclick_unfollowButton(this)');
 
     $.ajax({
         method: 'POST',
@@ -384,6 +388,7 @@ function onclick_followButton(element)
             element.style.backgroundColor = "white";
             $('#' + element.getAttribute("id")).text('Seguir');
             $('#' + element.getAttribute("id")).attr('active', '0');
+            $('#' + element.getAttribute("id")).attr("onclick", 'onclick_followButton(this)');
             element.style.color = "#7ace4c";
         }
     });
