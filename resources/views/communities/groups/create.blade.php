@@ -70,8 +70,9 @@
                                             <option value="1" selected="selected">Distritos</option>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Filtrar</button>
-
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Filtrar</button>
+                                </div>
                             </form>   
                         </div>
                     </div>
@@ -112,6 +113,11 @@
                                     @endforeach
                                 @endif
                             </table>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <a href="/comunidades/solicitar-comunidad"> ¿No ve su comunidad? Haga click aquí para solicitarla.</a>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     

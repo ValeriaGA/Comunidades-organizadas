@@ -1,8 +1,8 @@
 @extends('report.layouts.show_master')
 
 @section('tabs')
-  <li role="presentation" class=""><a href="#specific1" aria-controls="specific" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Específicos</span></a></li>
-  <li role="presentation" class=""><a href="#perpetrator1" aria-controls="perpetrator" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="ti-user"></i></span> <span class="hidden-xs">Involucrados</span></a></li>
+  <li role="presentation" class=""><a href="#specific1" aria-controls="specific" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="fa fa-book"></i></span> <span class="hidden-xs">Específicos</span></a></li>
+  <li role="presentation" class=""><a href="#perpetrator1" aria-controls="perpetrator" role="tab" data-toggle="tab" aria-expanded="false"><span class="visible-xs"><i class="fa fa-group"></i></span> <span class="hidden-xs">Involucrados</span></a></li>
 @endsection
 
 @section('tab-content')

@@ -157,6 +157,52 @@ class StatisticsController extends Controller
         return view('statistics.char', compact('dic', 'date'));
     }
     
+
+    public function service()
+    {
+        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
+        $date = $dt->format('Y-m-d');
+
+        $this->validate(request(), [
+            'final_date' => 'date|before_or_equal:today'
+        ]);
+        $types = SubCatReport::orderBy('name', 'asc')->get();
+        $first_date = '2013-10-10';
+        $final_date = $date;
+        $count_per_type = DB::table('reports')
+                     ->select(DB::raw('count(*) as count, id'))
+                     ->whereBetween('date',[$first_date,$final_date])
+                     ->groupBy('id')
+                     ->get();
+
+        $count_per_type2 = array();
+
+        foreach ($types as $type) {
+            $found = false;
+            foreach ($count_per_type as $count_type) {
+                if (!$found)
+                {
+                    if ($type->id == $count_type->id) {
+                        $sub_list=array($type->name,$count_type->count);
+                        array_push($count_per_type2, $sub_list);
+                        $found = true;
+                    }
+                }
+            }
+            if (!$found)
+            {
+                $sub_list=array($type->name, 0);
+                array_push($count_per_type2, $sub_list);
+            }
+        }
+       // foreach ($count_per_type2 as $count_type) {
+       //  echo '<br/>Name: '.$count_type[0].'<br/>Count: '.$count_type[1];
+       // }
+        return view('statistics.service', compact('date','types','count_per_type2'));
+    } 
+
+
+
     public function crime_per_type(Request $request)
     {
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));

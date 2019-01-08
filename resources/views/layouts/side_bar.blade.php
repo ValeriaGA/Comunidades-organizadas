@@ -4,7 +4,9 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav slimscrollsidebar">
         <div class="sidebar-head">
-            <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navegación</span></h3>
+            <h3>
+                <span class="fa-fw open-close"><i class="fa fa-navicon"></i></span> <span class="hide-menu">Navegación</span>
+            </h3>
         </div>
         <ul class="nav" id="side-menu">
             <li style="padding: 70px 0 0;">
@@ -36,9 +38,15 @@
                     <li>
                         <a href="/statistics/cr_map" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Reportes por Provincia</a>
                     </li>
+
                     <li>
-                    <a href="/statistics/bar" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Delíto</a>
+                        <a href="/statistics/service" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Reportes de Servicios</a>
                     </li>
+                    
+                    <li>
+                        <a href="/statistics/bar" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Reportes de Seguridad</a>
+                    </li>
+
                     <li>
                         <a href="/statistics/pie" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Sexo</a>
                     </li>
