@@ -48,12 +48,12 @@
                     <form method="POST" action="/administracion/publicaciones/activo/{{ $report->id }}">
                         @method('PATCH')
                         @csrf
-                        <input type="checkbox" name="active" onChange="this.form.submit()" {{ $report->active ? 'checked' : '' }} disabled/>
+                        <input type="checkbox" name="active" onChange="this.form.submit()" {{ $report->active ? 'checked' : '' }}/>
                     </form>
                   </td>
                   <td>{{$report->state->name}}</td>
                   <td>
-                    <button name="{{$report->id}}_edit" class="btn" onclick="location.href = '/administracion/publicaciones/{{ $report->id }}';">Ver</button>
+                    <button name="{{$report->id}}_edit" class="btn btn-info" onclick="location.href = '/administracion/publicaciones/{{ $report->id }}';">Ver</button>
                   </td>
                 </tr>
                 @endforeach

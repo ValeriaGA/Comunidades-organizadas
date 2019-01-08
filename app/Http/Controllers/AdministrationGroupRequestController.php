@@ -35,7 +35,7 @@ class AdministrationGroupRequestController extends Controller
         return redirect('/administracion/solicitudes');
     }
 
-    public function destroy(Request $request, CommunityGroupRequest $communityGroupRequest)
+    public function destroy(CommunityGroupRequest $communityGroupRequest)
     {
     	$communities = $communityGroupRequest->community()->get();
 		foreach ($communities as $community)

@@ -28,13 +28,7 @@ Route::get('/add-news', function () {
     return view('news.add_news');
 });
 
-////Reports
-Route::get('/report-type', function () {
-    return view('reports.report_type');
-});
-Route::get('/map', function () {
-    return view('reports.map');
-});
+
 
 ////Security
 Route::get('/security', function () {
@@ -50,6 +44,14 @@ Route::get('/service', function () {
 });
 Route::get('/add-service-report', function () {
     return view('service.add_service_report');
+});
+
+////Reports
+Route::get('/report-type', function () {
+    return view('reports.report_type');
+});
+Route::get('/map', function () {
+    return view('reports.map');
 });
 
 ////User

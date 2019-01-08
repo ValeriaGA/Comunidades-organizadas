@@ -32,7 +32,7 @@ class AdministrationCommunityRequestController extends Controller
         return redirect('/administracion/solicitudes');
     }
 
-    public function destroy(Request $request, CommunityRequest $communityRequest)
+    public function destroy(CommunityRequest $communityRequest)
     {
         CommunityRequest::destroy($communityRequest->id);
 

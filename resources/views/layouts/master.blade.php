@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- <meta name="_token" content="{{csrf_token()}}" /> -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('plugins/images/info-logo-dark.png') }}">
     <title>@yield('title', 'Comunidades Organizadas')</title>
 
