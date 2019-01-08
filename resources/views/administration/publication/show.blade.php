@@ -48,7 +48,7 @@
                   <tr>
                       <td><b>Activo</b></td>
                       <td>
-                        <form method="POST" action="/administracion/reportes/activo/{{ $report->id }}">
+                        <form method="POST" action="/administracion/publicaciones/activo/{{ $report->id }}">
                           @method('PATCH')
                           @csrf
                           <input type="checkbox" name="active" onChange="this.form.submit()" {{ $report->active ? 'checked' : '' }}/>
@@ -159,47 +159,10 @@
                 <button name="{{ $report->id }}_delete" class="btn btn-danger" type="submit" form="report_form_{{ $report->id }}" title="Borrar la publicación">Eliminar</button>
 
                 <button type=button name="{{ $report->id }}_edit" class="btn btn-warning" onclick="location.href = '/administracion/publicaciones/editar/{{ $report->id }}';" title="Editar la publicación">Editar</button>
-
-                <button type=button name="{{ $report->id }}_ignore" class="btn btn-success" onclick="location.href = '/administracion/reportes/ignorar/{{ $report->id }}';" title="Borrar todos los reportes sobre la publicación">Ignorar</button>
               </form>
               
             </div>
 
-          </div>
-        </div>
-
-        <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Reportes sobre publicación</h5>
-          </div>
-          <div class="widget-content nopadding">
-            <table class="table table-bordered data-table">
-              <thead>
-                <tr>
-                  <th>Usuario</th>
-                  <th>Razón</th>
-                  <th>Fecha</th>
-                  <th>Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($report_alerts as $alert) 
-                <tr>
-                  <td>{{$alert->email}}</td>
-                  <td>{{$alert->reason}}</td>
-                  <td>{{$alert->created_at}}</td>
-                  <td>
-                    <form class="form-horizontal" id="alert_form_{{ $alert->id }}" method="post" action="/administracion/reportes/alertas/{{ $alert->id }}">
-                      @method('DELETE')
-
-                      @csrf
-                      <button name="{{$alert->id}}_edit" class="btn btn-danger" type="submit" form="alert_form_{{ $alert->id }}">Eliminar</button>
-                    </form>
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
           </div>
         </div>
       </div>

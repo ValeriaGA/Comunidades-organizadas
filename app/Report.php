@@ -45,9 +45,9 @@ class Report extends Model
         return $this->hasMany(Evidence::class, 'report_id', 'id');
     }
 
-    public function report_alert()
+    public function reportAlert()
     {
-        return $this->belongsToMany(User::class, 'report_alert', 'report_id', 'user_id');
+        return $this->hasMany(ReportAlert::class, 'report_id', 'id');
     }
 
     public function securityReport()
@@ -178,9 +178,9 @@ class Report extends Model
 
     public function editReport($request)
     {
-        $categories_security = SubCatReport::where('name', 'LIKE', request('type'))->firstOrFail();;
+        $categories_security = SubCatReport::where('name', 'LIKE', request('type'))->firstOrFail();
 
-        $state = State::where('name', 'LIKE', request('states'))->firstOrFail();;
+        $state = State::where('name', 'LIKE', request('states'))->firstOrFail();
 
         $community_group = CommunityGroup::findOrFail(request('community_group'));
 
@@ -262,5 +262,28 @@ class Report extends Model
     public function deactivate()
     {
         $this->activate(false);
+    }
+
+    public function delete()
+    {
+        foreach ($this->comment() as $comment)
+        {
+            $comment->delete();
+        }
+
+        foreach ($this->like() as $like)
+        {
+            $like->delete();
+        }
+
+        if ($this->subCatReport->CatReport->name == 'Seguridad')
+        {
+            $this->securityReport->delete();
+        }
+
+        //evidence
+        //reportes
+
+        //publicacion (report)
     }
 }

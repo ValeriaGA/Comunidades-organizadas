@@ -133,7 +133,7 @@ class AdministrationRoleController extends Controller
             'role' => 'required'
         ]);
 
-        $role = Role::where('name', $request['role'])->firstOrFail();;
+        $role = Role::where('name', $request['role'])->firstOrFail();
 
         $user->role_id = $role->id;
         

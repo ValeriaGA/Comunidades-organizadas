@@ -22,22 +22,6 @@
           <div class="todo">
             <ul>
               <li class="clearfix">
-                <div class="txt"> Agregar/Eliminar incidencias reportadas <span class="by label">Funcionalidad</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Publicaciones <span class="by label">Funcionalidad</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Inspeccionar una publicacion <span class="by label">Funcionalidad</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Activar/Desactivar publicacion <span class="by label">Funcionalidad</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
                 <div class="txt"> Block Users <span class="by label">Funcionalidad y Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
@@ -51,6 +35,10 @@
               </li>
               <li class="clearfix">
                 <div class="txt"> Arreglar el search <span class="by label">Funcionalidad</span></div>
+                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+              </li>
+              <li class="clearfix">
+                <div class="txt"> Soft Deleting <span class="by label">Funcionalidad</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
             </ul>

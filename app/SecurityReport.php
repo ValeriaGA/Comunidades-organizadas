@@ -62,4 +62,9 @@ class SecurityReport extends Model
             }
         }
     }
+
+    public function delete()
+    {
+        
+    }
 }
