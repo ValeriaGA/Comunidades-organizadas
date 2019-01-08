@@ -100,10 +100,10 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-12">Canton</label>
+                                    <label class="col-md-12">Cantón</label>
                                     <div class="col-md-12">
                                         <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
-                                            <option value="">Canton</option>
+                                            <option value="">Cantón</option>
                                         </select>
                                     </div>
                                 </div>
