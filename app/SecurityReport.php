@@ -63,8 +63,16 @@ class SecurityReport extends Model
         }
     }
 
-    public function delete()
+    public function deleteDependencies()
     {
-        
+        foreach ($this->victims as $victim)
+        {
+            $victim->delete();
+        }
+
+        foreach ($this->perpetrators as $perpetrator)
+        {
+            $perpetrator->delete();
+        }
     }
 }

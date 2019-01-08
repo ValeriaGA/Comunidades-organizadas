@@ -105,11 +105,12 @@ class AdministrationPublicationController extends Controller
      */
     public function destroy(Report $report)
     {
-        // $report->delete();
+        $report->deleteDependencies();
+        $report->delete();
 
         session()->flash('message', 'Publicación Removida');
 
-        return redirect('/administracion/reportes/');
+        return redirect('/administracion/publicaciones/');
     }
 
         /**
