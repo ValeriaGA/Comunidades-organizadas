@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-md-10">
                         <div class="white-box analytics-info">
-                        <h2>Proporcion de mujeres y hombres victimas</h2>
+                        <h2>Proporción de mujeres y hombres víctimas</h2>
                         <a>Seleccione un delito:</a>
                         <form class="form-horizontal form-material" action="/statistics/pie"  method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}

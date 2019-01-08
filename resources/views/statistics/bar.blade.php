@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-md-10">
                         <div class="white-box analytics-info">
-                        <h2>Numero de delitos por tipos</h2>
+                        <h2>Número de delitos por tipos</h2>
                         <form class="form-horizontal form-material" action="/statistics/bar" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                           <a>  Fecha de inicio:</a> 
