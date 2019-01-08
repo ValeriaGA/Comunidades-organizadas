@@ -220,7 +220,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <button class="btn btn-primary" style="width: 100%;">Acceptar</button>
+                                    <button class="btn btn-primary" style="width: 100%;">Aceptar</button>
                                 </div>
                             </div>
                         </form>

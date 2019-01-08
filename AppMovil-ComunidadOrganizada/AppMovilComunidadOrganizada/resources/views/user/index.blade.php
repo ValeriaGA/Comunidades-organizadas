@@ -17,7 +17,7 @@
                    placeholder="Username" required />
             <input type="password" name="password" id="password" value="" 
                    placeholder="Password" required />
-            <a href="/news" id="login_button" data-role="button" data-theme="b">Login</a> 
+            <a href="/news" id="login_button" data-role="button" data-theme="b">Iniciar sesión</a> 
             <a href="/signup" data-role="button" data-theme="a" >Registrarse</a> 
         </form>
     </div> 

@@ -13,10 +13,10 @@
     <label for="community" class="select">Comunidad:</label>
     <select name="community" id="community" data-native-menu="false">
         <option>Comunidad</option>
-        <option value="1">Comunidad 1</option>
-        <option value="2">Comunidad 2</option>
-        <option value="3">Comunidad 3</option>
-        <option value="4">Comunidad 4</option>
+        <option id="1" value="1">Comunidad 1</option>
+        <option id="2" value="2">Comunidad 2</option>
+        <option id="3" value="3">Comunidad 3</option>
+        <option id="4" value="4">Comunidad 4</option>
     </select>
     
     

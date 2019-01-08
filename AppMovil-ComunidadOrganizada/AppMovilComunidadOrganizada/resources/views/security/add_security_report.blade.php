@@ -3,7 +3,7 @@
 @section('title', 'Reporte de seguridad')   
            
 @section('content')
-<form id="security<_report_form" data-ajax="false">
+<form id="security_report_form" data-ajax="false">
     
     <label for="title_security">Titulo:</label>
     <input type="text" name="title" id="title_security" value="" placeholder="Titulo" required />               
