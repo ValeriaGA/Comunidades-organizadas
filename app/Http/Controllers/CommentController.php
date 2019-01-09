@@ -17,7 +17,6 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-
         $comment = Comment::create([
             'user_id' => Auth::id(),
             'report_id' => $request -> input('reportID'),
@@ -31,7 +30,6 @@ class CommentController extends Controller
             $userPath = asset('users/'.$user->id.'/'.$user->avatar_path);
         else
             $userPath = asset('plugins/images/users/profile.png');
-
 
         $data = array(
            "userAvatar" => $userPath,

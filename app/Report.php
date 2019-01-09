@@ -264,26 +264,37 @@ class Report extends Model
         $this->activate(false);
     }
 
-    public function delete()
+    public function deleteDependencies()
     {
-        foreach ($this->comment() as $comment)
+        foreach ($this->comment as $comment)
         {
             $comment->delete();
         }
 
-        foreach ($this->like() as $like)
+        foreach ($this->like as $user)
         {
-            $like->delete();
+            $this->like()->detach($user->id);
         }
 
         if ($this->subCatReport->CatReport->name == 'Seguridad')
         {
+            $this->securityReport->deleteDependencies();
             $this->securityReport->delete();
         }
 
-        //evidence
-        //reportes
+        foreach($this->evidence as $evidence)
+        {
+            $path = public_path() . '/evidence/'. $this->id . '/' . $evidence->multimedia_path;
+            if(file_exists($path)) {
+                unlink($path);
+            }
 
-        //publicacion (report)
+            $evidence->delete();
+        }
+
+        foreach ($this->reportAlert as $alert)
+        {
+            $alert->delete();
+        }
     }
 }
