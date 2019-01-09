@@ -172,7 +172,7 @@
                             <div class="white-box">
                                 <div class="form-group" >
 
-                                <form>
+                           
                                     <input name="idReport" type="hidden" value="{{$report->id}}"/>
 
 
@@ -184,7 +184,7 @@
                                         Comentar
                                     </button>
                                 
-                                </form>
+                            
                                 
                                 </div>
                             </div>
