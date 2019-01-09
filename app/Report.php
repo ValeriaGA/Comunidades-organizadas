@@ -205,14 +205,22 @@ class Report extends Model
                 if(file_exists($path)) {
                     unlink($path);
                 }
+
+                $evidence->delete();
             }
-            
-            $report->evidence()->delete();
 
             $this->addEvidence(request('evidence_file'));
         }else
         {
-            $this->evidence()->delete();
+            // foreach($this->evidence as $evidence)
+            // {
+            //     $path = public_path() . '/evidence/'. $this->id . '/' . $evidence->multimedia_path;
+            //     if(file_exists($path)) {
+            //         unlink($path);
+            //     }
+
+            //     $evidence->delete();
+            // }
         }
     }
 

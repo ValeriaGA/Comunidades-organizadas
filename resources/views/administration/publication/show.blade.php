@@ -139,12 +139,14 @@
                   </tr>
                   @foreach($report->evidence as $evidence)
                     <tr>
+                      <td>
                         <td>{{ $evidence->evidenceType->name}}</td>
                         @if ($evidence->evidenceType->name == 'Imagen')
                           <td><img src="{{ asset('evidence/'.$report->id.'/'.$evidence->multimedia_path) }}" style="display: block; margin-left: auto; margin-right: auto;"></td>
                         @else
-                          <td><button class="btn btn-info" onclick="{{ link_to_asset('evidence/'.$report->id.'/'.$evidence->multimedia_path) }};">Descargar</button></td>
+                          <td><a href="{{ URL::to( '/evidence/'.$report->id.'/'.$evidence->multimedia_path)  }}" target="_blank">{{ $evidence->multimedia_path }}</a></td>
                         @endif
+                      </td>
                     </tr>
                   @endforeach
                 </table>
