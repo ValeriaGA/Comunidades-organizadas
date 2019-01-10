@@ -121,7 +121,7 @@
                                               @if ($evidence->evidenceType->name == 'Imagen')
                                                 <td><img src="{{ asset('evidence/'.$report->id.'/'.$evidence->multimedia_path) }}" style="display: block; margin-left: auto; margin-right: auto;"></td>
                                               @else
-                                                <td>{{ $evidence->multimedia_path}}</td>
+                                                <td><a href="{{ URL::to( '/evidence/'.$report->id.'/'.$evidence->multimedia_path)  }}" target="_blank">{{ $evidence->multimedia_path }}</a></td>
                                               @endif
                                           </tr>
                                           @endforeach
@@ -172,7 +172,7 @@
                             <div class="white-box">
                                 <div class="form-group" >
 
-                                <form>
+                           
                                     <input name="idReport" type="hidden" value="{{$report->id}}"/>
 
 
@@ -184,7 +184,7 @@
                                         Comentar
                                     </button>
                                 
-                                </form>
+                            
                                 
                                 </div>
                             </div>

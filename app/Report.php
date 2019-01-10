@@ -45,9 +45,9 @@ class Report extends Model
         return $this->hasMany(Evidence::class, 'report_id', 'id');
     }
 
-    public function report_alert()
+    public function reportAlert()
     {
-        return $this->belongsToMany(User::class, 'report_alert', 'report_id', 'user_id');
+        return $this->hasMany(ReportAlert::class, 'report_id', 'id');
     }
 
     public function securityReport()
@@ -178,9 +178,9 @@ class Report extends Model
 
     public function editReport($request)
     {
-        $categories_security = SubCatReport::where('name', 'LIKE', request('type'))->firstOrFail();;
+        $categories_security = SubCatReport::where('name', 'LIKE', request('type'))->firstOrFail();
 
-        $state = State::where('name', 'LIKE', request('states'))->firstOrFail();;
+        $state = State::where('name', 'LIKE', request('states'))->firstOrFail();
 
         $community_group = CommunityGroup::findOrFail(request('community_group'));
 
@@ -205,14 +205,22 @@ class Report extends Model
                 if(file_exists($path)) {
                     unlink($path);
                 }
+
+                $evidence->delete();
             }
-            
-            $report->evidence()->delete();
 
             $this->addEvidence(request('evidence_file'));
         }else
         {
-            $this->evidence()->delete();
+            // foreach($this->evidence as $evidence)
+            // {
+            //     $path = public_path() . '/evidence/'. $this->id . '/' . $evidence->multimedia_path;
+            //     if(file_exists($path)) {
+            //         unlink($path);
+            //     }
+
+            //     $evidence->delete();
+            // }
         }
     }
 
@@ -262,5 +270,39 @@ class Report extends Model
     public function deactivate()
     {
         $this->activate(false);
+    }
+
+    public function deleteDependencies()
+    {
+        foreach ($this->comment as $comment)
+        {
+            $comment->delete();
+        }
+
+        foreach ($this->like as $user)
+        {
+            $this->like()->detach($user->id);
+        }
+
+        if ($this->subCatReport->CatReport->name == 'Seguridad')
+        {
+            $this->securityReport->deleteDependencies();
+            $this->securityReport->delete();
+        }
+
+        foreach($this->evidence as $evidence)
+        {
+            $path = public_path() . '/evidence/'. $this->id . '/' . $evidence->multimedia_path;
+            if(file_exists($path)) {
+                unlink($path);
+            }
+
+            $evidence->delete();
+        }
+
+        foreach ($this->reportAlert as $alert)
+        {
+            $alert->delete();
+        }
     }
 }

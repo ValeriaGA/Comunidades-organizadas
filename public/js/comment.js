@@ -10,7 +10,6 @@ function addComment(id_input)
             comment: commentContent
         }
 
-
         $.ajax({
             method:'POST',
             url:'/add-comment',
@@ -28,10 +27,10 @@ function addComment(id_input)
             },
             error:function(xhr, ajaxOptions, errorInfo)
             {
-                alert("Por favor escriba un comentario válido.");
+                // alert("Por favor escriba un comentario válido.");
+                alert(xhr + ' : ' + errorInfo + ' : ' + ajaxOptions);
             }
         });
-    
     }
 }
 

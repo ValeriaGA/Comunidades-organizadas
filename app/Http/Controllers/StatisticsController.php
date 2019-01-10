@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Incident;
 use App\SubCatReport;
 use App\Gender;
+use App\CatReport;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
@@ -27,22 +28,34 @@ class StatisticsController extends Controller
     public function bar()
     {
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
+        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
 
         $this->validate(request(), [
             'final_date' => 'date|before_or_equal:today'
         ]);
-        $types = SubCatReport::orderBy('name', 'asc')->get();
+
+        $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->get();
+        $types = SubCatReport::where('cat_report_id', $cat_security[0]->id)
+                                -> orderBy('name', 'asc')
+                                ->get();
+
         $first_date = '2013-10-10';
         $final_date = $date;
         $count_per_type = DB::table('reports')
-                     ->select(DB::raw('count(*) as count, id'))
+                     ->select(DB::raw('count(*) as count, sub_cat_report.id'))
+                     ->join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
+                     ->join('cat_report', 'sub_cat_report.cat_report_id', '=', 'cat_report.id')
+                     ->where('cat_report.id', '=', $cat_security[0]->id)
                      ->whereBetween('date',[$first_date,$final_date])
-                     ->groupBy('id')
+                     ->groupBy('sub_cat_report.id')
                      ->get();
 
         $count_per_type2 = array();
 
+
+
+    
         foreach ($types as $type) {
             $found = false;
             foreach ($count_per_type as $count_type) {
@@ -57,6 +70,7 @@ class StatisticsController extends Controller
             }
             if (!$found)
             {
+                
                 $sub_list=array($type->name, 0);
                 array_push($count_per_type2, $sub_list);
             }
@@ -166,17 +180,28 @@ class StatisticsController extends Controller
         $this->validate(request(), [
             'final_date' => 'date|before_or_equal:today'
         ]);
-        $types = SubCatReport::orderBy('name', 'asc')->get();
+
+        $cat_service = CatReport::where('name', 'LIKE', 'Servicio')->get();
+        $types = SubCatReport::where('cat_report_id', $cat_service[0]->id)
+                                -> orderBy('name', 'asc')
+                                ->get();
+
         $first_date = '2013-10-10';
         $final_date = $date;
         $count_per_type = DB::table('reports')
-                     ->select(DB::raw('count(*) as count, id'))
-                     ->whereBetween('date',[$first_date,$final_date])
-                     ->groupBy('id')
-                     ->get();
+            ->select(DB::raw('count(*) as count, sub_cat_report.id'))
+            ->join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
+            ->join('cat_report', 'sub_cat_report.cat_report_id', '=', 'cat_report.id')
+            ->where('cat_report.id', '=', $cat_service[0]->id)
+            ->whereBetween('date',[$first_date,$final_date])
+            ->groupBy('sub_cat_report.id')
+            ->get();
 
         $count_per_type2 = array();
 
+        
+
+    
         foreach ($types as $type) {
             $found = false;
             foreach ($count_per_type as $count_type) {
@@ -191,6 +216,7 @@ class StatisticsController extends Controller
             }
             if (!$found)
             {
+                
                 $sub_list=array($type->name, 0);
                 array_push($count_per_type2, $sub_list);
             }

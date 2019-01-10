@@ -28,22 +28,22 @@ class SubCatReportTableSeeder extends Seeder
 	            [
 	            	'name' => 'Agua',
 	            	'cat_report_id' => $service[0]->id,
-	            	'multimedia_path' => NULL
+	            	'multimedia_path' => 'water_small.png'
 	            ],
 	            [
 	            	'name' => 'Luz',
 	            	'cat_report_id' => $service[0]->id,
-	            	'multimedia_path' => NULL
+	            	'multimedia_path' => 'light_small.png'
 	            ],
 	            [
 	            	'name' => 'Basura',
 	            	'cat_report_id' => $service[0]->id,
-	            	'multimedia_path' => NULL
+	            	'multimedia_path' => 'trash_small.png'
 	            ],
 	            [
 	            	'name' => 'Calle',
 	            	'cat_report_id' => $service[0]->id,
-	            	'multimedia_path' => NULL
+	            	'multimedia_path' => 'road_small.png'
 	            ],
 
 	            // Seguridad

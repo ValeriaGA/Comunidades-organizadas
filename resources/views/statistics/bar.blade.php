@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-md-10">
                         <div class="white-box analytics-info">
-                        <h2>Numero de delitos por tipos</h2>
+                        <h2>Número de delitos por tipos</h2>
                         <form class="form-horizontal form-material" action="/statistics/bar" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                           <a>  Fecha de inicio:</a> 
@@ -25,21 +25,18 @@
                         // Use Morris.Bar
                         var count_per_type = <?php echo json_encode($count_per_type2); ?>;
       
+                        var data_array_x = [];
+                        $.each(count_per_type, function(key, value){
+                              item = {}
+                              item ["x"] = value[0];
+                              item ["num"] = value[1];
+                      
+                              data_array_x.push(item);
+                         });
+
                         Morris.Bar({
                           element: 'graph',
-                          data: [
-                          
-                          {x: count_per_type[0][0], num: count_per_type[0][1]},
-                          {x: count_per_type[1][0], num: count_per_type[1][1]},
-                          {x: count_per_type[2][0], num: count_per_type[2][1]},
-                          {x: count_per_type[3][0], num: count_per_type[3][1]},
-                          {x: count_per_type[4][0], num: count_per_type[4][1]},
-                          {x: count_per_type[5][0], num: count_per_type[5][1]},
-                          {x: count_per_type[6][0], num: count_per_type[6][1]},
-                          {x: count_per_type[7][0], num: count_per_type[7][1]},
-                          {x: count_per_type[8][0], num: count_per_type[8][1]}
-                       
-                        ],
+                          data: data_array_x,
                           xkey: 'x',
                           ykeys: ['num'],
                           labels: ['Num'],

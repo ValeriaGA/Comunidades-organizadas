@@ -72,7 +72,7 @@ class SearchController extends Controller
         {
             $community = Community::findOrFail(request('community'));
 
-            foreach ($community->communityGroup() as $group)
+            foreach ($community->communityGroup as $group)
             {
                 $groups_id[] = $group->id;
             }

@@ -159,8 +159,9 @@ Route::post('/administracion/roles/usuarios/{user}', 'AdministrationRoleControll
 // Reports (Report Alerts)
 Route::get('/administracion/reportes', 'AdministrationReportController@index');
 Route::get('/administracion/reportes/{report}', 'AdministrationReportController@show');
-Route::get('/administracion/reportes/editar/{report}', 'AdministrationReportController@edit');
-Route::patch('/administracion/reportes/editar/{report}', 'AdministrationReportController@update');
+Route::patch('/administracion/reportes/activo/{report}', 'AdministrationPublicationController@toggle');
+Route::get('/administracion/reportes/ignorar/{report}', 'AdministrationPublicationController@ignore');
+Route::delete('/administracion/reportes/alertas/{reportAlert}', 'AdministrationReportController@destroy');
 
 // Requests
 Route::get('/administracion/solicitudes', 'AdministrationRequestController@index');
@@ -174,7 +175,10 @@ Route::delete('/administracion/solicitudes/grupo/{communityGroupRequest}', 'Admi
 // Publications (Reports)
 Route::get('/administracion/publicaciones', 'AdministrationPublicationController@index');
 Route::get('/administracion/publicaciones/{report}', 'AdministrationPublicationController@show');
+Route::get('/administracion/publicaciones/editar/{report}', 'AdministrationPublicationController@edit');
 Route::patch('/administracion/publicaciones/activo/{report}', 'AdministrationPublicationController@toggle');
+Route::patch('/administracion/publicaciones/{report}', 'AdministrationPublicationController@update');
+Route::delete('/administracion/publicaciones/{report}', 'AdministrationPublicationController@destroy');
 
 
 // Security Category
