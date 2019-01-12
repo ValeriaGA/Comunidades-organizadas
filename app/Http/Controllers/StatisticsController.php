@@ -96,7 +96,8 @@ class StatisticsController extends Controller
 
         $countByGender = DB::table('victims')
                         -> select('genders.name as gender')
-                        -> join('reports', 'victims.security_report_id', '=', 'reports.id')
+                        -> join('security_reports', 'victims.security_report_id', '=', 'security_reports.id')
+                        -> join('reports', 'security_reports.report_id', '=', 'reports.id')
                         -> join('genders', 'victims.gender_id', '=', 'genders.id')
                         -> join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
                         -> where('sub_cat_report.name', $selected_incident_name)
@@ -106,7 +107,8 @@ class StatisticsController extends Controller
 
                 
         $total = DB::table('victims')
-        -> join('reports', 'victims.security_report_id', '=', 'reports.id')
+        -> join('security_reports', 'victims.security_report_id', '=', 'security_reports.id')
+        -> join('reports', 'security_reports.report_id', '=', 'reports.id')
         -> join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
         -> where('sub_cat_report.name', $selected_incident_name)
         -> selectRaw('count(victims.id) as victimsNumber')
@@ -135,7 +137,9 @@ class StatisticsController extends Controller
         
         $selected_incident = DB::table('sub_cat_report')->where('cat_report_id', 3)->get();
         
+
         $id = request('delitos');
+
 
         $selected_incident_name = SubCatReport::select('name')
                                             -> where('id', $id)
@@ -143,7 +147,8 @@ class StatisticsController extends Controller
 
         $countByGender = DB::table('victims')
                         -> select('genders.name as gender')
-                        -> join('reports', 'victims.security_report_id', '=', 'reports.id')
+                        -> join('security_reports', 'victims.security_report_id', '=', 'security_reports.id')
+                        -> join('reports', 'security_reports.report_id', '=', 'reports.id')
                         -> join('genders', 'victims.gender_id', '=', 'genders.id')
                         -> join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
                         -> where('sub_cat_report.id', $id)
@@ -153,7 +158,8 @@ class StatisticsController extends Controller
 
                 
         $total = DB::table('victims')
-        -> join('reports', 'victims.security_report_id', '=', 'reports.id')
+        -> join('security_reports', 'victims.security_report_id', '=', 'security_reports.id')
+        -> join('reports', 'security_reports.report_id', '=', 'reports.id')
         -> join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
         -> where('sub_cat_report.id', $id)
         -> selectRaw('count(victims.id) as victimsNumber')
