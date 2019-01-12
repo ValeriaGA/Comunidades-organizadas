@@ -104,25 +104,6 @@
                   </div>
                 </div>
 
-
-                <div class="col-sm-2" style="width: 300px;">
-                    <div class="white-box">
-                        <p  style="display:inline;">Rango de Fechas</p>
-                          <form class="form-horizontal form-material" action="/statistics/bar" method="post" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                              <a>  Fecha de inicio:</a> 
-                              <input id="first_date" type="date" placeholder="" class="form-control form-control-line" name="first_date" value="2013-10-10">
-                              <a> Fecha de Final:</a>
-                              <input id="final_date" type="date" placeholder="" class="form-control form-control-line" name="final_date" value="{{$date}}"><br>
-                              <div class="form-group">
-                                  <div class="col-sm-12">
-                                      <button class="btn btn-success">Filtrar</button>
-                                  </div>
-                              </div>
-                          </form>
-                        </div>
-                    </div>
-
                 <div class="col-sm-2" style="width: 300px;">
                     <div class="white-box">
                         <p >Comunidad</p>

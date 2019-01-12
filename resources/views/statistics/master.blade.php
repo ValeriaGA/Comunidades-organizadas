@@ -41,7 +41,7 @@
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/maps.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-    <script src="{{ asset('js/CRmap.js') }}"></script>
+
 
         <!-- ============================================================== -->
         <!-- Page Content -->

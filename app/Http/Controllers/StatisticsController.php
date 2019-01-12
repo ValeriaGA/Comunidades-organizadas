@@ -25,9 +25,8 @@ class StatisticsController extends Controller
         return view('statistics.index');
     }
 
-    public function bar()
+    public function securityBar()
     {
-        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
 
@@ -40,7 +39,7 @@ class StatisticsController extends Controller
                                 -> orderBy('name', 'asc')
                                 ->get();
 
-        $first_date = '2013-10-10';
+        $first_date = $date;
         $final_date = $date;
         $count_per_type = DB::table('reports')
                      ->select(DB::raw('count(*) as count, sub_cat_report.id'))
@@ -78,60 +77,116 @@ class StatisticsController extends Controller
        // foreach ($count_per_type2 as $count_type) {
        //  echo '<br/>Name: '.$count_type[0].'<br/>Count: '.$count_type[1];
        // }
-        return view('statistics.bar', compact('date','types','count_per_type2'));
+        return view('statistics.securityBar', compact('first_date', 'final_date','types','count_per_type2'));
     }
 
-    public function pie()
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function statisticsBySex()
     {
-
-
-        // $male = Gender::where('name', 'Masculino');
-        // $female = Gender::where('name', 'Femenino');
-        // $other = Gender::where('name', 'Otro');
-
         $types = SubCatReport::where('cat_report_id', 3)->orderBy('name', 'asc')->get();
-        
-        // $id = 1;
         
         $selected_incident = DB::table('sub_cat_report')->where('cat_report_id', 3)->get();
         foreach ($selected_incident as $key) {
             $selected_incident_name = $key->name;
         }
-        
-        // $users_count = DB::table('reports')
-        //              ->select(DB::raw('count(*) as count, id'))
-        //              ->where('id', $id)
-        //              ->groupBy('id')
-        //              ->get();
-        $count_per_gender = array();
-        $total = 3; 
-        // foreach($users_count as $users)
-        // {
-        //     dd($users);
-        //     if ($users->gender_id == $male->id) {
-        //         $count_per_gender['masculino'] = $users->count;
-        //         $total += $users->count;
-        //     }elseif ($users->gender_id == $female->id) {
-        //         $count_per_gender['femenino'] = $users->count;
-        //         $total += $users->count;
-        //     }else {
-        //         $count_per_gender['otro'] = $users->count;
-        //         $total += $users->count;
-        //     }
-        // }
 
-        $count_per_gender['masculino'] = 1;
-        $count_per_gender['femenino'] = 2;
-        $count_per_gender['otro'] = 0;
-      return view('statistics.pie', compact('types','count_per_gender','total','selected_incident_name'));
+        $countByGender = DB::table('victims')
+                        -> select('genders.name as gender')
+                        -> join('reports', 'victims.security_report_id', '=', 'reports.id')
+                        -> join('genders', 'victims.gender_id', '=', 'genders.id')
+                        -> join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
+                        -> where('sub_cat_report.name', $selected_incident_name)
+                        -> selectRaw('count(victims.id) as victimsNumber')
+                        -> groupBy('genders.name')
+                        -> get();
+
+                
+        $total = DB::table('victims')
+        -> join('reports', 'victims.security_report_id', '=', 'reports.id')
+        -> join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
+        -> where('sub_cat_report.name', $selected_incident_name)
+        -> selectRaw('count(victims.id) as victimsNumber')
+        -> first() -> victimsNumber;
+       
+
+        $count_per_gender = array();
+        foreach($countByGender as $genderCount)
+        {
+            $count_per_gender[$genderCount -> gender] = $genderCount -> victimsNumber;
+        }
+
+
+      return view('statistics.genderPie', compact('types','count_per_gender','total','selected_incident_name'));
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function statisticsBySexIncident(Request $request)
+    {
+        $types = SubCatReport::where('cat_report_id', 3)->orderBy('name', 'asc')->get();
+        
+        $selected_incident = DB::table('sub_cat_report')->where('cat_report_id', 3)->get();
+        
+        $id = request('delitos');
+
+        $selected_incident_name = SubCatReport::select('name')
+                                            -> where('id', $id)
+                                            ->first() -> name;
+
+        $countByGender = DB::table('victims')
+                        -> select('genders.name as gender')
+                        -> join('reports', 'victims.security_report_id', '=', 'reports.id')
+                        -> join('genders', 'victims.gender_id', '=', 'genders.id')
+                        -> join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
+                        -> where('sub_cat_report.id', $id)
+                        -> selectRaw('count(victims.id) as victimsNumber')
+                        -> groupBy('genders.name')
+                        -> get();
+
+                
+        $total = DB::table('victims')
+        -> join('reports', 'victims.security_report_id', '=', 'reports.id')
+        -> join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
+        -> where('sub_cat_report.id', $id)
+        -> selectRaw('count(victims.id) as victimsNumber')
+        -> first() -> victimsNumber;
+       
+
+        $count_per_gender = array();
+        foreach($countByGender as $genderCount)
+        {
+            $count_per_gender[$genderCount -> gender] = $genderCount -> victimsNumber;
+        }
+
+
+      return view('statistics.genderPie', compact('types','count_per_gender','total','selected_incident_name'));
     }
 
 
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function reports_per_province()
     {
-        return view('statistics.reports_per_province');
+        
+        return view('statistics.reports_per_province', compact('example'));
     }
 
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function chart()
     {
         $month_qty = DB::select( DB::raw("SELECT MONTH(date) as month, count(*) qty FROM reports WHERE YEAR(date) = YEAR(CURDATE()) GROUP BY MONTH(date)"));
@@ -149,6 +204,13 @@ class StatisticsController extends Controller
         return view('statistics.char', compact('dic', 'date'));
     }
 
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function chart_show(Request $request)
     {
         $date = '2018';
@@ -172,7 +234,12 @@ class StatisticsController extends Controller
     }
     
 
-    public function service()
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function serviceBar()
     {
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
@@ -186,7 +253,7 @@ class StatisticsController extends Controller
                                 -> orderBy('name', 'asc')
                                 ->get();
 
-        $first_date = '2013-10-10';
+        $first_date = $date;
         $final_date = $date;
         $count_per_type = DB::table('reports')
             ->select(DB::raw('count(*) as count, sub_cat_report.id'))
@@ -198,9 +265,6 @@ class StatisticsController extends Controller
             ->get();
 
         $count_per_type2 = array();
-
-        
-
     
         foreach ($types as $type) {
             $found = false;
@@ -224,35 +288,48 @@ class StatisticsController extends Controller
        // foreach ($count_per_type2 as $count_type) {
        //  echo '<br/>Name: '.$count_type[0].'<br/>Count: '.$count_type[1];
        // }
-        return view('statistics.service', compact('date','types','count_per_type2'));
+        return view('statistics.serviceBar', compact('first_date', 'final_date', 'types','count_per_type2'));
     } 
 
 
-
-    public function crime_per_type(Request $request)
+     /**
+     * Display the specified resource.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function serviceByDate(Request $request)
     {
-        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
-        $date = $dt->format('Y-m-d');
+
         $this->validate(request(), [
             'final_date' => 'date|before_or_equal:today'
         ]);
-        $types = TypeOfIncident::orderBy('name', 'asc')->get();
-        $first_date = request('first_date');
-        $final_date = request('final_date');
+
+        $cat_service = CatReport::where('name', 'LIKE', 'Servicio')->get();
+        $types = SubCatReport::where('cat_report_id', $cat_service[0]->id)
+                                -> orderBy('name', 'asc')
+                                ->get();
+
+        $first_date = $request -> input('first_date');
+        $final_date = $request -> input('final_date');
+
         $count_per_type = DB::table('reports')
-                     ->select(DB::raw('count(*) as count, id'))
-                     ->whereBetween('created_at',[$first_date,$final_date])
-                     ->groupBy('id')
-                     ->get();
+            ->select(DB::raw('count(*) as count, sub_cat_report.id'))
+            ->join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
+            ->join('cat_report', 'sub_cat_report.cat_report_id', '=', 'cat_report.id')
+            ->where('cat_report.id', '=', $cat_service[0]->id)
+            ->whereBetween('date',[$first_date,$final_date])
+            ->groupBy('sub_cat_report.id')
+            ->get();
 
         $count_per_type2 = array();
-
+    
         foreach ($types as $type) {
             $found = false;
             foreach ($count_per_type as $count_type) {
                 if (!$found)
                 {
-                    if ($type->id == $count_type->type_id) {
+                    if ($type->id == $count_type->id) {
                         $sub_list=array($type->name,$count_type->count);
                         array_push($count_per_type2, $sub_list);
                         $found = true;
@@ -261,45 +338,73 @@ class StatisticsController extends Controller
             }
             if (!$found)
             {
+                
                 $sub_list=array($type->name, 0);
                 array_push($count_per_type2, $sub_list);
             }
         }
-        return view('statistics.bar', compact('types','count_per_type2','date'));
+       // foreach ($count_per_type2 as $count_type) {
+       //  echo '<br/>Name: '.$count_type[0].'<br/>Count: '.$count_type[1];
+       // }
+        return view('statistics.serviceBar', compact('first_date', 'final_date', 'types','count_per_type2'));
     } 
 
-    public function crime_per_gender(Request $request)
+    
+     /**
+     * Display the specified resource.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function securityByDate(Request $request)
     {
-        
-        $types = TypeOfIncident::orderBy('name', 'asc')->get();
-        
-        $id = request('delitos');
-        
-        $selected_incident = DB::table('type_of_incidents')->where('id', $id)->get();
-        foreach ($selected_incident as $key) {
-            $selected_incident_name = $key->name;
-        }
-        $users_count = DB::table('incidents')
-                     ->select(DB::raw('count(*) as count, primary_victim_sex'))
-                     ->where('type_id', $id)
-                     ->groupBy('primary_victim_sex')
+        $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
+        $date = $dt->format('Y-m-d');
+
+        $this->validate(request(), [
+            'final_date' => 'date|before_or_equal:today'
+        ]);
+
+        $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->get();
+        $types = SubCatReport::where('cat_report_id', $cat_security[0]->id)
+                                -> orderBy('name', 'asc')
+                                ->get();
+
+        $first_date = $request -> input('first_date');
+        $final_date = $request -> input('final_date');
+        $count_per_type = DB::table('reports')
+                     ->select(DB::raw('count(*) as count, sub_cat_report.id'))
+                     ->join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
+                     ->join('cat_report', 'sub_cat_report.cat_report_id', '=', 'cat_report.id')
+                     ->where('cat_report.id', '=', $cat_security[0]->id)
+                     ->whereBetween('date',[$first_date,$final_date])
+                     ->groupBy('sub_cat_report.id')
                      ->get();
-        $count_per_gender = array();
-        $total = 0; 
-        foreach($users_count as $users)
-        {
-            if ($users->primary_victim_sex == 'm') {
-                $count_per_gender['masculino'] = $users->count;
-                $total += $users->count;
-            }elseif ($users->primary_victim_sex == 'f') {
-                $count_per_gender['femenino'] = $users->count;
-                $total += $users->count;
-            }else {
-                $count_per_gender['otro'] = $users->count;
-                $total += $users->count;
+
+        $count_per_type2 = array();
+    
+        foreach ($types as $type) {
+            $found = false;
+            foreach ($count_per_type as $count_type) {
+                if (!$found)
+                {
+                    if ($type->id == $count_type->id) {
+                        $sub_list=array($type->name,$count_type->count);
+                        array_push($count_per_type2, $sub_list);
+                        $found = true;
+                    }
+                }
+            }
+            if (!$found)
+            {
+                
+                $sub_list=array($type->name, 0);
+                array_push($count_per_type2, $sub_list);
             }
         }
 
-      return view('statistics.pie', compact('types','count_per_gender','total','id_type','selected_incident_name'));
+        return view('statistics.securityBar', compact('first_date', 'final_date','types','count_per_type2'));
     } 
+
+   
 }

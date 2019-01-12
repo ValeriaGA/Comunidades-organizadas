@@ -40,15 +40,15 @@
                     </li>
 
                     <li>
-                        <a href="/statistics/service" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Reportes de Servicios</a>
+                        <a href="/statistics/serviceBar" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Reportes de Servicios</a>
                     </li>
                     
                     <li>
-                        <a href="/statistics/bar" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Reportes de Seguridad</a>
+                        <a href="/statistics/securityBar" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Reportes de Seguridad</a>
                     </li>
 
                     <li>
-                        <a href="/statistics/pie" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Sexo</a>
+                        <a href="/statistics/genero" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Sexo</a>
                     </li>
                     <li>
                         <a href="/statistics/chart" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Tiempo</a>
