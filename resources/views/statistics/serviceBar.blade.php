@@ -6,13 +6,13 @@
                 <div class="row">
                     <div class="col-md-10">
                         <div class="white-box analytics-info">
-                        <h2>Número de delitos por tipos</h2>
-                        <form class="form-horizontal form-material" action="/statistics/bar" method="post" enctype="multipart/form-data">
+                        <h2>Número de Servicios por tipos</h2>
+                        <form class="form-horizontal form-material" action="/statistics/service" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                           <a>  Fecha de inicio:</a> 
-                          <input id="first_date" type="date" placeholder="" class="form-control form-control-line" name="first_date" value="2013-10-10">
+                          <input id="first_date" type="date" placeholder="" class="form-control form-control-line" name="first_date" value="{{$first_date}}">
                           <a> Fecha de Final:</a>
-                          <input id="final_date" type="date" placeholder="" class="form-control form-control-line" name="final_date" value="{{$date}}"><br>
+                          <input id="final_date" type="date" placeholder="" class="form-control form-control-line" name="final_date" value="{{$final_date}}"><br>
                           <div class="form-group">
                               <div class="col-sm-12">
                                   <button class="btn btn-success">Actualizar</button>
@@ -22,9 +22,9 @@
                         
                         <div id="graph"></div>
                         <pre id="code" class="prettyprint linenums">
-                        // Use Morris.Bar
+                            // Use Morris.Bar
                         var count_per_type = <?php echo json_encode($count_per_type2); ?>;
-      
+                        
                         var data_array_x = [];
                         $.each(count_per_type, function(key, value){
                               item = {}

@@ -23,11 +23,11 @@ class ProvincesTableSeeder extends Seeder
                 	'country_id' => $costa_rica->id
             	],
                 [
-                	'name' => 'Heredia',
-                	'country_id' => $costa_rica->id
-            	],
-                [
                 	'name' => 'Cartago',
+                	'country_id' => $costa_rica->id
+				],
+				[
+                	'name' => 'Heredia',
                 	'country_id' => $costa_rica->id
             	],
                 [
