@@ -7,7 +7,7 @@
                     <div class="col-md-10">
                         <div class="white-box analytics-info">
                         <h2>Número de Servicios por tipos</h2>
-                        <form class="form-horizontal form-material" action="/statistics/service" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal form-material" action="/statistics/serviceBar" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                           <a>  Fecha de inicio:</a> 
                           <input id="first_date" type="date" placeholder="" class="form-control form-control-line" name="first_date" value="{{$first_date}}">
