@@ -12,7 +12,7 @@ class AdminNavigationComposer {
 	
 	public function compose(View $view)
 	{
-        $alert_qty = DB::table('report_alert')->count(DB::raw('DISTINCT report_id'));
+        $alert_qty = DB::table('report_alert')->whereNull('report_alert.deleted_at')->count(DB::raw('DISTINCT report_id'));
 
         $cat_state = CatRequestState::where('name', 'Pendiente')->first();
         $community_requests = CommunityRequest::where('cat_request_state_id', $cat_state->id)->get();

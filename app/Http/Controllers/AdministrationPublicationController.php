@@ -105,7 +105,7 @@ class AdministrationPublicationController extends Controller
      */
     public function destroy(Report $report)
     {
-        $report->deleteDependencies();
+        //$report->deleteDependencies();
         $report->delete();
 
         session()->flash('message', 'Publicación Removida');
@@ -123,7 +123,8 @@ class AdministrationPublicationController extends Controller
     {
         foreach ($report->reportAlert as $reportAlert)
         {
-            ReportAlert::destroy($reportAlert->id);
+            // ReportAlert::destroy($reportAlert->id);
+            $reportAlert->delete();
         }
         
         session()->flash('message', 'Reportes de publicación removidos');
