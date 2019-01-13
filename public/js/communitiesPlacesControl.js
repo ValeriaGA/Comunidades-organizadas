@@ -4,8 +4,6 @@ function fillProvinces(){
       url: "/provincias",
       success: function(provinces){
         fillControl('provinces', provinces);
-        
-        fillCantons();
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
@@ -34,7 +32,6 @@ function fillProvinces(){
       dataType: "json",
       success: function(cantons){
         fillControl('cantons', cantons);
-        fillDistricts();
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
@@ -62,7 +59,6 @@ function fillProvinces(){
       dataType: "json",
       success: function(districts){
         fillControl('districts', districts);
-        fillCommunities();
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
@@ -352,7 +348,7 @@ function onclick_unfollowButton(element)
             console.log(xhr.status + " " + errorInfo);
             element.style.backgroundColor = "#7ace4c";
             element.style.color = "white";
-            $('#' + element.getAttribute("id")).text('Siguiendo');
+            $('#' + element.getAttribute("id")).text('Parar de Seguir');
             $('#' + element.getAttribute("id")).attr('active', '1');
             $('#' + element.getAttribute("id")).attr("onclick", 'onclick_unfollowButton(this)');
         }
@@ -370,7 +366,7 @@ function onclick_followButton(element)
 
     element.style.backgroundColor = "#7ace4c";
     element.style.color = "white";
-    $('#' + element.getAttribute("id")).text('Siguiendo');
+    $('#' + element.getAttribute("id")).text('Parar de Seguir');
     $('#' + element.getAttribute("id")).attr('active', '1');
     $('#' + element.getAttribute("id")).attr("onclick", 'onclick_unfollowButton(this)');
 

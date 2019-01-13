@@ -39,15 +39,25 @@ class ServiceReportController extends Controller
         $community_groups = CommunityGroup::all();
 
         $cat_service = CatReport::where('name', 'LIKE', 'Servicio')->get();
-        $categories = SubCatReport::where('cat_report_id', $cat_service[0]->id)->get();
+        $categories = SubCatReport::where('cat_report_id', $cat_service[0]->id)
+                                    ->where('active', true)
+                                    ->get();
 
-        $cat_evidence = CatEvidence::get();
+        $cat_evidence = CatEvidence::where('active', true)->get();
 
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
         $time = $dt->format('H:i:s');
 
-        return view('report.service.create', compact('categories', 'cat_evidence', 'date', 'time', 'community_groups'));
+        $activeCommunity = null;
+        $communityGroups = [];
+
+        $communities = [];
+        $districts = [];
+        $cantons = [];
+        $provinces = [];
+
+        return view('report.service.create', compact('categories', 'cat_evidence', 'date', 'time', 'communityGroups', 'communities', 'districts', 'cantons', 'provinces', 'activeCommunity'));
     }
 
     /**

@@ -74,10 +74,10 @@ class AdministrationEvidenceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  CatEvidence $evidence
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Evidence $evidence)
+    public function update(Request $request, CatEvidence $evidence)
     {
         $this->validate(request(), [
             'name' => 'required|string|max:255|unique:cat_evidence,name,'.$evidence->id

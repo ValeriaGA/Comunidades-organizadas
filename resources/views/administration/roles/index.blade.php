@@ -23,11 +23,15 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
-
+        <div class="alert alert-danger">
+          <strong>Editar los roles de: Administrador, Administrador de Comunidad, y Regular puede tener efectos secundarios en el sistema. </strong>
+        </div>
         <div class="widget-box">
+          
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Roles</h5>
           </div>
+          
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
@@ -37,7 +41,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($roles as $rol) 
+                @foreach ($roles as $rol)
                 <tr class="">
                   <td>{{$rol->name}}</td>
                   <td>
@@ -83,7 +87,7 @@
                 <tr>
                   <th>Nombre</th>
                   <th>Correo</th>
-                  <th>Role</th>
+                  <th>Rol</th>
                   <th>Editar</th>
                 </tr>
               </thead>

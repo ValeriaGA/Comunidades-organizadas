@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -16,8 +18,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'avatar_path', 'role_id', 'person_id'
+        'email', 'password', 'avatar_path', 'role_id', 'person_id', 'deleted_at'
     ];
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -68,14 +72,14 @@ class User extends Authenticatable
         return $this->hasMany(CommunityRequest::class, 'user_id', 'id');
     }
 
-    public function community()
-    {
-        return $this->belongsToMany(Community::class, 'admins_by_community', 'user_id', 'community_id');
-    }
-
     public function communityGroupRequest()
     {
         return $this->hasMany(CommunityGroupRequest::class, 'user_id', 'id');
+    }
+
+    public function communityAdmin()
+    {
+        return $this->hasOne(CommunityAdmin::class, 'user_id', 'id');
     }
 
     public function changeAvatar($file)
@@ -114,6 +118,50 @@ class User extends Authenticatable
 
     }
 
+    public function fetchAllFavoriteSecurityReports()
+    {
+        $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->first();
+        $sub_cat_security = SubCatReport::where('cat_report_id', $cat_security->id)->get();
+        $sub_cat_security_ids = array();
+        foreach($sub_cat_security as $cat)
+        {
+            array_push($sub_cat_security_ids, $cat->id);
+        }
+
+        $community_groups = $this->communityGroup;
+
+        $community_group_ids = array();
+        foreach($community_groups as $group)
+        {
+            array_push($community_group_ids, $group->id);
+        }
+
+        return Report::whereIn('sub_cat_report_id', $sub_cat_security_ids)
+                            ->whereIn('community_group_id', $community_group_ids)
+                            ->where('reports.news', false)
+                            ->latest()
+                            ->paginate(10);
+
+    }
+
+    public function fetchFavoriteSecurityReports(CommunityGroup $communityGroup)
+    {
+        $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->first();
+        $sub_cat_security = SubCatReport::where('cat_report_id', $cat_security->id)->get();
+        $sub_cat_security_ids = array();
+        foreach($sub_cat_security as $cat)
+        {
+            array_push($sub_cat_security_ids, $cat->id);
+        }
+
+        return Report::whereIn('sub_cat_report_id', $sub_cat_security_ids)
+                            ->where('community_group_id', $communityGroup->id)
+                            ->where('reports.news', false)
+                            ->latest()
+                            ->paginate(10);
+
+    }
+
     public function fetchServiceReports()
     {
         $cat_service = CatReport::where('name', 'LIKE', 'Servicio')->first();
@@ -132,10 +180,76 @@ class User extends Authenticatable
 
     }
 
+    public function fetchAllFavoriteServiceReports()
+    {
+        $cat_service = CatReport::where('name', 'LIKE', 'Servicio')->first();
+        $sub_cat_service = SubCatReport::where('cat_report_id', $cat_service->id)->get();
+        $sub_cat_service_ids = array();
+        foreach($sub_cat_service as $cat)
+        {
+            array_push($sub_cat_service_ids, $cat->id);
+        }
+
+        $community_groups = $this->communityGroup;
+
+        $community_group_ids = array();
+        foreach($community_groups as $group)
+        {
+            array_push($community_group_ids, $group->id);
+        }
+
+        return Report::whereIn('sub_cat_report_id', $sub_cat_service_ids)
+                            ->whereIn('community_group_id', $community_group_ids)
+                            ->where('reports.news', false)
+                            ->latest()
+                            ->paginate(10);
+    }
+
+    public function fetchFavoriteServiceReports(CommunityGroup $communityGroup)
+    {
+        $cat_service = CatReport::where('name', 'LIKE', 'Servicio')->first();
+        $sub_cat_service = SubCatReport::where('cat_report_id', $cat_service->id)->get();
+        $sub_cat_service_ids = array();
+        foreach($sub_cat_service as $cat)
+        {
+            array_push($sub_cat_service_ids, $cat->id);
+        }
+
+        return Report::whereIn('sub_cat_report_id', $sub_cat_service_ids)
+                            ->where('community_group_id', $communityGroup->id)
+                            ->where('reports.news', false)
+                            ->latest()
+                            ->paginate(10);
+    }
+
     public function fetchNews()
     {
         return Report::where('news', true)
                         ->where('reports.user_id', $this->id)
+                        ->latest()
+                        ->paginate(10);
+    }
+
+    public function fetchAllFavoriteNews()
+    {
+        $community_groups = $this->communityGroup;
+
+        $community_group_ids = array();
+        foreach($community_groups as $group)
+        {
+            array_push($community_group_ids, $group->id);
+        }
+
+        return Report::whereIn('community_group_id', $community_group_ids)
+                        ->where('news', true)
+                        ->latest()
+                        ->paginate(10);
+    }
+
+    public function fetchFavoriteNews(CommunityGroup $communityGroup)
+    {
+        return Report::where('community_group_id', $communityGroup->id)
+                        ->where('news', true)
                         ->latest()
                         ->paginate(10);
     }
@@ -209,19 +323,23 @@ class User extends Authenticatable
     public function addCommunityRequest($request)
     {
         $district = District::findOrFail(request('district'));
+        $state = CatRequestState::where('name', 'Pendiente')->first();
         
         return CommunityRequest::create([
             'user_id' => $this->id,
             'district_id' => $district->id,
-            'name' => request('name')
+            'name' => request('name'),
+            'cat_request_state_id' => $state->id
         ]);
     }
 
     public function addCommunityGroupRequest($request)
     {
+        $state = CatRequestState::where('name', 'Pendiente')->first();
         $community_group_request = CommunityGroupRequest::create([
             'user_id' => $this->id,
-            'name' => request('name')
+            'name' => request('name'),
+            'cat_request_state_id' => $state->id
         ]);
 
         if ($request->has('community_id'))
@@ -230,19 +348,28 @@ class User extends Authenticatable
         }
     }
 
-    public function makeCommunityAdmin($community)
+    public function makeCommunityAdmin()
     {
-        $community_admin = Role::where('name', 'LIKE', 'Administrador de Comunidad')->first();
-        $admin = Role::where('name', 'LIKE', 'Administrador')->first();
+        $community_admin_role = Role::where('name', 'LIKE', 'Administrador de Comunidad')->first();
+        $admin_role = Role::where('name', 'LIKE', 'Administrador')->first();
 
-        if ($this->role_id != $community_admin->id
-            && $this->role_id != $admin->id)
+        if ($this->role_id != $admin_role->id)
         {
-            $this->update([
-                'role_id' => $community_admin->id
-            ]);
+            if ($this->role_id != $community_admin_role->id)
+            {
+                $this->update([
+                    'role_id' => $community_admin_role->id
+                ]);
+            }
+            
+            $communityAdmin = CommunityAdmin::where('user_id', $this->id)->first();
+            if ($communityAdmin == NULL)
+            {
+                CommunityAdmin::create([
+                    'user_id' => $this->id,
+                    'active_community_id' => NULL
+                ]);
+            }
         }
-
-        $community->user()->attach($this->id);
     }
 }

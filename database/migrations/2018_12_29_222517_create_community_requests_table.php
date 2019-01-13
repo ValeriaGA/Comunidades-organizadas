@@ -18,11 +18,13 @@ class CreateCommunityRequestsTable extends Migration
             $table->string('name', 255);
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('district_id');
+            $table->unsignedInteger('cat_request_state_id');
         });
 
         Schema::table('community_requests', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('district_id')->references('id')->on('districts');
+            $table->foreign('cat_request_state_id')->references('id')->on('cat_request_state');
         });
     }
 

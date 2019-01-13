@@ -24,10 +24,10 @@ class AdministrationGroupRequestController extends Controller
 		foreach ($communities as $community)
         {
         	$group->community()->attach($community->id);
-        	$communityGroupRequest->community()->detach($community->id);
+        	// $communityGroupRequest->community()->detach($community->id);
         }
 
-        CommunityGroupRequest::destroy($communityGroupRequest->id);
+        $communityGroupRequest->accept();
 
 
         session()->flash('message', 'Grupo de Comunidades Agregado');
@@ -43,9 +43,9 @@ class AdministrationGroupRequestController extends Controller
         	$communityGroupRequest->community()->detach($community->id);
         }
 
-        CommunityGroupRequest::destroy($communityGroupRequest->id);
+        $communityGroupRequest->deny();
 
-        session()->flash('message', 'Solicitud Removida');
+        session()->flash('message', 'Solicitud Rechazada');
 
         return redirect('/administracion/solicitudes');
     }

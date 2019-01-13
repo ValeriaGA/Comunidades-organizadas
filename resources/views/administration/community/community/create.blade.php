@@ -56,13 +56,6 @@
                 <label class="control-label">Provincia</label>
                 <div class="controls">
                   <select name="province" id="provinces" class="form-control">
-                    <option value="1" selected>San José</option>
-                    <option value="2">Alajuela</option>
-                    <option value="3">Cartago</option>
-                    <option value="4">Heredia</option>
-                    <option value="5">Guanacaste</option>
-                    <option value="6">Puntarenas</option>
-                    <option value="7">Limón</option>
                   </select>
                 </div>
               </div>
@@ -71,7 +64,6 @@
                 <label class="control-label">Cantón</label>
                 <div class="controls">
                   <select name="canton" id="cantons" name="canton" class="form-control">
-                    <option value="1" selected="selected">Cantones</option>
                   </select>
                 </div>
               </div>
@@ -80,13 +72,30 @@
                 <label class="control-label">Distrito</label>
                 <div class="controls">
                   <select name="district" id="districts" class="form-control">
-                    <option value="1" selected="selected">Distritos</option>
                   </select>
                   <hr />
                   @if ($errors->has('district'))
                     <div class="alert alert-error">
                       <button class="close" data-dismiss="alert">×</button>
                       <strong>Error!</strong> {{ $errors->first('district') }}
+                    </div>
+                  @endif
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">Administradores</label>
+                <div class="controls">
+                  <select multiple name="administrator[]" id="administrators" class="form-control">
+                      @foreach ($community_admins as $community_admin)
+                        <option value="{{$community_admin->id}}">{{$community_admin->email}}</option>
+                      @endforeach
+                  </select>
+                  <hr />
+                  @if ($errors->has('administrator'))
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('administrator') }}
                     </div>
                   @endif
                 </div>

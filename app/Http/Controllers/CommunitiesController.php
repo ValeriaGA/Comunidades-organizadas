@@ -51,7 +51,7 @@ class CommunitiesController extends Controller
 
         session()->flash('message', 'Solicitud realizada');
 
-        return redirect('/');
+        return redirect('/user');
     }
 
     /**

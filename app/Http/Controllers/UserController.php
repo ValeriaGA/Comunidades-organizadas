@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Gender;
+use Illuminate\Pagination\Paginator as Paginator;
 
 use File;
 use Auth;
@@ -29,7 +30,13 @@ class UserController extends Controller
 
         $news = auth()->user()->fetchNews();
 
-        return view('user.index', compact('news', 'security_reports', 'service_reports'));
+        $communities = auth()->user()->communityAdmin->community;
+
+        $community_requests = auth()->user()->communityRequest;
+
+        $group_requests = auth()->user()->communityGroupRequest;
+
+        return view('user.index', compact('news', 'security_reports', 'service_reports', 'communities', 'community_requests', 'group_requests'));
     }
 
     /**

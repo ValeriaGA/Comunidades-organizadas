@@ -28,6 +28,7 @@ class CreateReportsTable extends Migration
             $table->decimal('latitud', 10, 8);
             $table->boolean('active')->default(TRUE);
             $table->boolean('news')->default(FALSE);
+            $table->softDeletes();
         });
 
         Schema::table('reports', function (Blueprint $table) {

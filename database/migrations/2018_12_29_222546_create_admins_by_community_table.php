@@ -15,12 +15,12 @@ class CreateAdminsByCommunityTable extends Migration
     {
         Schema::create('admins_by_community', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('community_admin_id');
             $table->unsignedInteger('community_id');
         });
 
         Schema::table('admins_by_community', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('community_admin_id')->references('id')->on('community_admins');
             $table->foreign('community_id')->references('id')->on('communities');
         });
     }

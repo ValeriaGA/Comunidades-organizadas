@@ -8,6 +8,8 @@
     <script src="{{ asset('js/comboBoxControl.js') }}"></script>
 
     <script src="{{ asset('js/createReportTable.js') }}"></script>
+    <!-- TABS -->
+     <script src="{{ asset('js/reportTabs.js') }}"></script>
 @endsection
 
 @section('content')
@@ -75,18 +77,18 @@
                 <div class="white-box">
                     <div class="vtabs customvtab" style="width: 100%;">
                         <ul class="nav tabs-vertical">
-                            <li class="tab active">
-                                <a data-toggle="tab" href="#settings_tab" aria-expanded="true"> <span class="visible-xs"><i class="fa fa-home fa-fw"></i></span> <span class="hidden-xs">Administrativas</span> </a>
+                            <li id="li_tab1" class="tab active">
+                                <a data-toggle="tab" href="#tab1" aria-expanded="true"> <span class="visible-xs"><i class="fa fa-home fa-fw"></i></span> <span class="hidden-xs">Administrativas</span> </a>
                             </li>
-                            <li class="tab">
-                                <a data-toggle="tab" href="#details_tab" aria-expanded="true"> <span class="visible-xs"><i class="fa fa-cog fa-fw"></i></span> <span class="hidden-xs">Detalles</span> </a>
+                            <li id="li_tab2" class="tab">
+                                <a data-toggle="tab" href="#tab2" aria-expanded="true"> <span class="visible-xs"><i class="fa fa-cog fa-fw"></i></span> <span class="hidden-xs">Detalles</span> </a>
                             </li>
-                            <li class="tab">
-                                <a data-toggle="tab" href="#communities_tab" aria-expanded="false"> <span class="visible-xs"><i class="fa fa-globe fa-fw"></i></span> <span class="hidden-xs">Comunidades</span> </a>
+                            <li id="li_tab3" class="tab">
+                                <a data-toggle="tab" href="#tab3" aria-expanded="false"> <span class="visible-xs"><i class="fa fa-globe fa-fw"></i></span> <span class="hidden-xs">Comunidades</span> </a>
                             </li>
                             @yield ('tabs')
-                            <li class="tab">
-                                <a aria-expanded="false" data-toggle="tab" href="#evidence_tab"> <span class="visible-xs"><i class="fa fa-legal fa-fw"></i></span> <span class="hidden-xs">Evidencia</span> </a>
+                            <li id="li_tabN" class="tab">
+                                <a aria-expanded="false" data-toggle="tab" href="#tabN"> <span class="visible-xs"><i class="fa fa-legal fa-fw"></i></span> <span class="hidden-xs">Evidencia</span> </a>
                             </li>
                         </ul>
                         <form class="form-horizontal form-material" action="@yield ('form')/{{ $report->id }}" method="post" enctype="multipart/form-data">
@@ -97,7 +99,10 @@
 
                                 <!-- Settings -->
 
-                                <div id="settings_tab" class="tab-pane active">
+                                <div id="tab1" class="tab-pane active">
+
+                                    @include ('report.layouts.progress_bar', ['progress' => 0])
+
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             @if ($report->active == TRUE)
@@ -111,28 +116,20 @@
                                                   <label for="active-cb"> Activo </label>
                                                 </div>
                                             @endif
+                                            <small class="text-danger">Publicaciones desactivadas no seran visibles por otros usuarios. Aún podrán ser accesadas desde su perfil.</small>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Estado</label>
-                                        <div class="col-md-12">
-                                            <select class="form-control" name="states" required>
-                                              @foreach ($states as $state)
-                                                @if ($report->state_id == $state->id)
-                                                  <option value="{{$state->name}}" selected>{{$state->name}}</option>
-                                                @else
-                                                    <option value="{{$state->name}}">{{$state->name}}</option>
-                                                @endif
-                                              @endforeach
-                                            </select>
-                                        </div>
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-primary" style="width: 100%;" value="2" onclick="nextTab(this)">Siguiente</button>
                                     </div>
                                 </div>
 
                                 <!-- Details -->
 
-                                <div id="details_tab" class="tab-pane">
+                                <div id="tab2" class="tab-pane">
+
+                                    @include ('report.layouts.progress_bar', ['progress' => 5])
+
                                     <div class="form-group">
                                         <label class="col-md-12">Título</label>
                                         <div class="col-md-12">
@@ -177,20 +174,29 @@
                                     <div class="form-group">
                                         <label class="col-md-12" for="exampleInputDescription">Descripción</label>
                                         <div class="col-md-12">
-                                            <textarea rows="5" class="form-control form-control-line" name="description" placeholder="Ingrese el relato de los sucesos, especificación del medio de transporte (placa, modelo/marca de carro), pertenencias perdidas, entre otros detalles pertinentes al incidente."required>{{$report->description}}</textarea>
+                                            <textarea rows="5" class="form-control form-control-line" name="description" placeholder="Ingrese el relato de los sucesos, especificación del medio de transporte (placa, modelo/marca de carro), pertenencias perdidas, entre otros detalles pertinentes al incidente." required>{{$report->description}}</textarea>
                                         </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-primary" style="width: 100%;" value="3" onclick="nextTab(this)">Siguiente</button>
                                     </div>
                                 </div>
 
                                 <!-- Communities -->
 
-                                <div id="communities_tab" class="tab-pane">
+
+                                <div id="tab3" class="tab-pane">
+
+                                    @include ('report.layouts.progress_bar', ['progress' => 55])
                                     
                                     <div class="form-group">
                                         <label class="col-md-12">Provincia</label>
                                         <div class="col-md-12">
                                             <select name="province" id="provinces" class="form-control dynamic" data-dependent="cantons">
-                                                <option value="">Provincia</option>
+                                                @foreach($provinces as $province)
+                                                  <option value="{{ $province->id}}" {{ $report->communityGroup->community[0]->district->canton->province_id == $province->id ? 'selected' : '' }}>{{ $province->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -199,7 +205,9 @@
                                         <label class="col-md-12">Cantón</label>
                                         <div class="col-md-12">
                                             <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
-                                                <option value="">Canton</option>
+                                                @foreach($cantons as $canton)
+                                                  <option value="{{ $canton->id}}" {{ $report->communityGroup->community[0]->district->canton_id == $canton->id ? 'selected' : '' }}>{{ $canton->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -208,7 +216,9 @@
                                         <label class="col-md-12">Distrito</label>
                                         <div class="col-md-12">
                                             <select name="district" id="districts" class="form-control dynamic" data-dependent="communities">
-                                                <option value="">Distrito</option>
+                                                @foreach($districts as $district)
+                                                  <option value="{{ $district->id}}" {{ $report->communityGroup->community[0]->district_id == $district->id ? 'selected' : '' }}>{{ $district->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -217,7 +227,9 @@
                                         <label class="col-md-12">Comunidad</label>
                                         <div class="col-md-12">
                                             <select name="community" id="communities" class="form-control" data-dependent="community_groups">
-                                                <option value="">Comunidad</option>
+                                                @foreach($report->communityGroup->community[0]->district->community as $community)
+                                                  <option value="{{$community->id}}" {{ in_array($community->id, $current_communities_id) ? 'selected' : '' }}>{{$community->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -226,19 +238,27 @@
                                         <label class="col-md-12">Grupos de Comunidades</label>
                                         <div class="col-md-12">
                                             <select name="community_group" id="community_groups" class="form-control">
-                                                <option value="{{ $report->community_group_id }}">{{ $report->communityGroup->name }}</option>
+                                                @foreach($communityGroups as $group)
+                                                  <option value="{{ $group->id}}" {{ $report->community_group_id == $group->id ? 'selected' : '' }}>{{ $group->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                         
                                     <div class="clearfix"></div>
+
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-primary" style="width: 100%;" value="4" onclick="nextTab(this)">Siguiente</button>
+                                    </div>
                                 </div>
 
                                 @yield ('tab-content')
 
                                 <!-- Evidence -->
 
-                                <div id="evidence_tab" class="tab-pane">
+                                <div id="tabN" class="tab-pane">
+
+                                    @include ('report.layouts.progress_bar', ['progress' => 100])
 
                                     <div class="col-md-12">
                                         <label style="margin-left: 10px;">Cantidad Máxima de Archivos Permitidos: </label>
@@ -265,12 +285,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <button class="btn btn-primary" style="width: 100%;">Acceptar</button>
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-primary" style="width: 100%;">Finalizar</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>

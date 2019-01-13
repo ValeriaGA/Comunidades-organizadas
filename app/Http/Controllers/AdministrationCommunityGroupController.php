@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\CommunityGroup;
 use App\Community;
+use App\District;
+use App\Canton;
+use App\Province;
 
 class AdministrationCommunityGroupController extends Controller
 {
@@ -103,7 +106,17 @@ class AdministrationCommunityGroupController extends Controller
     public function edit(CommunityGroup $community_group)
     {
         $communities = $community_group->community;
-        return view('administration.community.groups.edit', compact('community_group', 'communities'));
+        $current_communities_id = array();
+        foreach($communities as $community)
+        {
+            array_push($current_communities_id, $community->id);
+        }
+
+        $districts = District::where('canton_id', $community_group->community[0]->district->canton_id)->get();
+        $cantons = Canton::where('province_id', $community_group->community[0]->district->canton->province_id)->get();
+        $provinces = Province::all();
+
+        return view('administration.community.groups.edit', compact('community_group', 'provinces', 'cantons', 'districts', 'current_communities_id'));
     }
 
     /**

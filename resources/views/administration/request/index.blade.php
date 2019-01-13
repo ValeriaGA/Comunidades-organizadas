@@ -47,12 +47,12 @@
 
                     <form method="POST" action="/administracion/solicitudes/comunidad/agregar/{{ $request->id }}">
                       @csrf
-                      <button name="{{$request->id}}_community_add" class="btn btn-success" style="width:100%">Agregar</button>
+                      <button name="{{$request->id}}_community_add" class="btn btn-success" style="width:100%">Aprobar</button>
                     </form>
                     <form method="POST" action="/administracion/solicitudes/comunidad/{{ $request->id }}">
                       @method('DELETE')
                       @csrf
-                      <button name="{{$request->id}}_community_delete" class="btn btn-danger" onClick="this.form.submit()" style="width:100%">Borrar</button>
+                      <button name="{{$request->id}}_community_delete" class="btn btn-danger" style="width:100%" onClick="this.form.submit()">Rechazar</button>
                     </form>
                   </td>
                 </tr>
@@ -91,12 +91,12 @@
                   <td>
                     <form method="POST" action="/administracion/solicitudes/grupo/agregar/{{ $request->id }}">
                       @csrf
-                      <button name="{{$request->id}}_group_add" class="btn btn-success" style="width:100%">Agregar</button>
+                      <button name="{{$request->id}}_group_add" class="btn btn-success" style="width:100%">Aprobar</button>
                     </form>
                     <form method="POST" action="/administracion/solicitudes/grupo/{{ $request->id }}">
                       @method('DELETE')
                       @csrf
-                      <button name="{{$request->id}}_group_delete" class="btn btn-danger" onClick="this.form.submit()" style="width:100%">Borrar</button>
+                      <button name="{{$request->id}}_group_delete" class="btn btn-danger" style="width:100%" onClick="this.form.submit()" style="width:100%">Rechazar</button>
                     </form>
                   </td>
                 </tr>

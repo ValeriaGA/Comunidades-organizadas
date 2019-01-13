@@ -52,7 +52,7 @@
               <div class="control-group">
                 <div class="controls">
                   <label>
-                    <input type="checkbox" name="active" />
+                    <input type="checkbox" name="active" checked/>
                     Activo</label>
                 </div>
               </div>

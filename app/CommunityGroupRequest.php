@@ -9,7 +9,7 @@ class CommunityGroupRequest extends Model
     public $timestamps = false;
     
     protected $fillable = [
-        'name', 'user_id'
+        'name', 'user_id', 'cat_request_state_id'
     ];
 
     public function user()
@@ -30,5 +30,23 @@ class CommunityGroupRequest extends Model
 
             $community->communityGroupRequest()->attach($this->id);
         }
+    }
+
+    public function catRequestState()
+    {
+        return $this->belongsTo(CatRequestState::class, 'cat_request_state_id');
+    }
+
+    public function accept($state = 'Aprobada')
+    {
+        $cat_state = CatRequestState::where('name', $state)->first();
+        $this->update([
+            'cat_request_state_id' => $cat_state->id
+        ]);
+    }
+    
+    public function deny()
+    {
+        $this->accept('Rechazada');
     }
 }

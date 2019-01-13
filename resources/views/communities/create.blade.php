@@ -33,51 +33,45 @@
                 </div>
                  <!-- row -->
                  <div class="row">
-                  <div class="col-sm-12">
-                    <div class="white-box">
-                        <h3 class="box-title m-b-0">Solicitar comunidad</h3>
-                        <div class="row">
-                            <div class="col-sm-12 col-xs-12">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading"> Solicitar comunidad
+                                </div>
                                 <form class="form-horizontal" action="/comunidades/solicitar-comunidad" method="post">
                                     {{ csrf_field() }}
-                                    <div class="form-group">
-                                        <label for="communityName">Nombre de Comunidad </label>
-                                        <input type="text" class="form-control" id="communityName" name="name" placeholder="Nombre de Comunidad" required> 
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="provinces">Provincia</label>
-                                    
-                                        <select id="provinces" class="form-control" name="province" required>
-                                                <option value="1" selected>San José</option>
-                                                <option value="2">Alajuela</option>
-                                                <option value="3">Cartago</option>
-                                                <option value="4">Heredia</option>
-                                                <option value="5">Guanacaste</option>
-                                                <option value="6">Puntarenas</option>
-                                                <option value="7">Limón</option>
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label for="communityName">Nombre de Comunidad </label>
+                                            <input type="text" class="form-control" id="communityName" name="name" placeholder="Nombre de Comunidad" required> 
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="provinces">Provincia</label>
                                         
-                                        </select>
+                                            <select id="provinces" class="form-control" name="province" required>
+                                            
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cantons">Cantón</label>
+                                        
+                                            <select id="cantons" class="form-control" name="canton" required>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="districts">Distrito</label>
+                                        
+                                            <select id="districts"class="form-control" name="district" required>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="cantons">Cantón</label>
-                                    
-                                        <select id="cantons" class="form-control" name="canton" required>
-                                                <option value="1" selected="selected">Cantones</option>
-                                        </select>
+                                    <div class="panel-footer">
+                                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10 pull-right">Solicitar</button>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="districts">Distrito</label>
-                                    
-                                        <select id="districts"class="form-control" name="district" required>
-                                                <option value="1" selected="selected">Distritos</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Solicitar</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                  </div>
               </div>
               <!-- /.row -->
                 

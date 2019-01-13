@@ -8,6 +8,9 @@
     <script src="{{ asset('js/comboBoxControl.js') }}"></script>
 
     <script src="{{ asset('js/createReportTable.js') }}"></script>
+
+    <!-- TABS -->
+     <script src="{{ asset('js/reportTabs.js') }}"></script>
 @endsection
 
 
@@ -60,22 +63,29 @@
         <div class="row">
             <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="white-box">
-                    <div id="map" style="width: 100%; height: 480px"></div>
+                    <div class="row">
+                        <div id="map" style="width: 100%; height: 480px"></div>
+                    </div>
+                    <div class="row">
+                        <p class="text-muted">
+                            Presione dentro del mapa para seleccionar la Latitud y Longitud del formulario.
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6 col-xs-12">
                 <div class="white-box">
                     <div class="vtabs customvtab" style="width: 100%;">
                         <ul class="nav tabs-vertical">
-                            <li class="tab active">
-                                <a data-toggle="tab" href="#details_tab" aria-expanded="true"> <span class="visible-xs"><i class="fa fa-cog fa-fw"></i></span> <span class="hidden-xs">Detalles</span> </a>
+                            <li id="li_tab1" class="tab active">
+                                <a data-toggle="tab" href="#tab1" aria-expanded="true"> <span class="visible-xs"><i class="fa fa-globe fa-fw"></i></span> <span class="hidden-xs">Comunidades</span> </a>
                             </li>
-                            <li class="tab">
-                                <a data-toggle="tab" href="#communities_tab" aria-expanded="false"> <span class="visible-xs"><i class="fa fa-globe fa-fw"></i></span> <span class="hidden-xs">Comunidades</span> </a>
+                            <li id="li_tab2" class="tab">
+                                <a data-toggle="tab" href="#tab2" aria-expanded="false"> <span class="visible-xs"><i class="fa fa-cog fa-fw"></i></span> <span class="hidden-xs">Detalles</span> </a>
                             </li>
                             @yield ('tabs')
-                            <li class="tab">
-                                <a aria-expanded="false" data-toggle="tab" href="#evidence_tab"> <span class="visible-xs"><i class="fa fa-legal fa-fw"></i></span> <span class="hidden-xs">Evidencia</span> </a>
+                            <li id="li_tabN" class="tab">
+                                <a aria-expanded="false" data-toggle="tab" href="#tabN"> <span class="visible-xs"><i class="fa fa-legal fa-fw"></i></span> <span class="hidden-xs">Evidencia</span> </a>
                             </li>
                         </ul>
                         
@@ -83,10 +93,98 @@
                         {{ csrf_field() }}
                             <div class="tab-content" style="width: 800px;">
 
-                            
-                                    <!-- Details -->
 
-                                <div id="details_tab" class="tab-pane active">
+                                <!-- Communities -->
+
+                                <div id="tab1" class="tab-pane active">
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success " role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width:0%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-md-12">Provincia</label>
+                                        <div class="col-md-12">
+                                            <select name="province" id="provinces" class="form-control dynamic" data-dependent="cantons">
+                                                @foreach($provinces as $province)
+                                                  <option value="{{ $province->id}}" {{ $activeCommunity->district->canton->province_id == $province->id ? 'selected' : '' }}>{{ $province->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">Cantón</label>
+                                        <div class="col-md-12">
+                                            <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
+                                                @foreach($cantons as $canton)
+                                                  <option value="{{ $province->id}}" {{ $activeCommunity->district->canton_id == $canton->id ? 'selected' : '' }}>{{ $canton->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">Distrito</label>
+                                        <div class="col-md-12">
+                                            <select name="district" id="districts" class="form-control dynamic" data-dependent="communities">
+                                                @foreach($districts as $district)
+                                                  <option value="{{ $district->id}}" {{ $activeCommunity->district_id == $district->id ? 'selected' : '' }}>{{ $district->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">Comunidad</label>
+                                        <div class="col-md-12">
+                                            <select name="community" id="communities" class="form-control" data-dependent="community_groups">
+                                                @foreach($communities as $community)
+                                                  <option value="{{ $community->id}}" {{ $activeCommunity->id == $community->id ? 'selected' : '' }}>{{ $community->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">Grupos de Comunidades</label>
+                                        <div class="col-md-12">
+                                            <select name="community_group" id="community_groups" class="form-control">
+                                                @foreach($communityGroups as $group)
+                                                  <option value="{{ $group->id}}">{{ $group->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <a href="/comunidades/solicitar-grupo"> ¿No ve su grupo de comunidades? Haga click aquí para solicitarla.</a>
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="clearfix"></div>
+
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-primary" style="width: 100%;" value="2" onclick="nextTab(this)">Siguiente</button>
+                                    </div>
+                                </div>
+                            
+                                <!-- Details -->
+
+                                <div id="tab2" class="tab-pane">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success " role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label class="col-md-12">Título</label>
                                         <div class="col-md-12">
@@ -130,71 +228,23 @@
                                             <textarea rows="5" class="form-control form-control-line" name="description" placeholder="Ingrese el relato de los sucesos, especificación del medio de transporte (placa, modelo/marca de carro), pertenencias perdidas, entre otros detalles pertinentes al incidente." required>{{ old('description') }}</textarea>
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-primary" style="width: 100%;" value="3" onclick="nextTab(this)">Siguiente</button>
+                                    </div>
                                 </div>
-
-                                <!-- Communities -->
-
-                                <div id="communities_tab" class="tab-pane">
-                                    
-                                    <div class="form-group">
-                                        <label class="col-md-12">Provincia</label>
-                                        <div class="col-md-12">
-                                            <select name="province" id="provinces" class="form-control dynamic" data-dependent="cantons">
-                                                <option value="">Provincia</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Cantón</label>
-                                        <div class="col-md-12">
-                                            <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
-                                                <option value="">Cantón</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Distrito</label>
-                                        <div class="col-md-12">
-                                            <select name="district" id="districts" class="form-control dynamic" data-dependent="communities">
-                                                <option value="">Distrito</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Comunidad</label>
-                                        <div class="col-md-12">
-                                            <select name="community" id="communities" class="form-control" data-dependent="community_groups">
-                                                <option value="">Comunidad</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-12">Grupos de Comunidades</label>
-                                        <div class="col-md-12">
-                                            <select name="community_group" id="community_groups" class="form-control">
-                                                <option value="">Grupo</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <a href="/comunidades/solicitar-grupo"> ¿No ve su grupo de comunidades? Haga click aquí para solicitarla.</a>
-                                        </div>
-                                    </div>
-                                        
-                                    <div class="clearfix"></div>
-                                </div>
-
-                                @yield ('tab-content')
 
                                 <!-- Evidence -->
 
-                                <div id="evidence_tab" class="tab-pane">
+                                <div id="tabN" class="tab-pane">
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success " role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-12">
                                         <label style="margin-left: 10px;">Cantidad Máxima de Archivos Permitidos: </label>
@@ -221,13 +271,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <button class="btn btn-primary" style="width: 100%;">Aceptar</button>
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-primary" style="width: 100%;">Finalizar</button>
+                                    </div>
                                 </div>
+
+                                @yield ('tab-content')
+
                             </div>
                         </form>
                     </div>

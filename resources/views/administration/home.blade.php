@@ -22,23 +22,15 @@
           <div class="todo">
             <ul>
               <li class="clearfix">
-                <div class="txt"> Block Users <span class="by label">Funcionalidad y Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
                 <div class="txt"> Admin Logs [Triggers]<span class="by label">Funcionalidad y Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
-                <div class="txt"> Paginate? <span class="by label">Diseño</span></div>
+                <div class="txt"> Paginate <span class="by label">Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
-                <div class="txt"> Arreglar el search <span class="by label">Funcionalidad</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Soft Deleting <span class="by label">Funcionalidad</span></div>
+                <div class="txt"> Mejorar respuesta del search <span class="by label">Funcionalidad</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
             </ul>
@@ -54,23 +46,15 @@
           <div class="todo">
             <ul>
               <li class="clearfix">
-                <div class="txt"> Mostrar otros tipos de evidencia en reportes/noticias (publicaciones)<span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="txt"> Visualizar otros tipos de evidencia en reportes/noticias (publicaciones)<span class="by label">Funcionalidad y Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
-                <div class="txt"> Modulo de Search <span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="txt"> Advertir contenido grafico en publicaciones (NSFW) <span class="by label">Funcionalidad y Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
-                <div class="txt"> Estadisticas <span class="by label">Funcionalidad y Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> Advertir si un contenido en una publicacion es grafico (NSFW) <span class="by label">Funcionalidad y Diseño</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
-              <li class="clearfix">
-                <div class="txt"> subir archivos con tipo incorrecto (validar al crear/editar reportes/noticias) <span class="by label">Funcionalidad y Diseño</span></div>
+                <div class="txt"> Subir archivos con tipo incorrecto (validar al crear/editar reportes/noticias) <span class="by label">Funcionalidad y Diseño</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
               </li>
               <li class="clearfix">
@@ -93,10 +77,6 @@
         <div class="widget-content">
           <div class="todo">
             <ul>
-              <li class="clearfix">
-                <div class="txt"> Usuarios bloqueados <span class="by label">Diseño y Funcionalidad</span></div>
-                <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-              </li>
               <li class="clearfix">
                 <div class="txt"> Cambiar los flash messages a toast js <span class="by label">QoL</span></div>
                 <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>

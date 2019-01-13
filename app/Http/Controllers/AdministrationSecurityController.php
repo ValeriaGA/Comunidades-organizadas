@@ -31,7 +31,9 @@ class AdministrationSecurityController extends Controller
         $categories_weapon = CatWeapon::all();
         $categories_transportation = CatTransportation::all();
 
-        return view('administration.security.index', compact('categories_security', 'categories_weapon', 'categories_transportation'));
+        $tabName = 'security';
+
+        return view('administration.security.index', compact('categories_security', 'categories_weapon', 'categories_transportation', 'tabName'));
     }
 
     /**

@@ -19,6 +19,10 @@ function onclick_likeButton(element)
           success: function(){
             element.setAttribute("class", "btn btn-success waves-effect waves-light like");
             element.setAttribute("active", "1");
+
+            var like_lbl = document.getElementById("likes_lbl_" + report_id);
+            like_lbl.setAttribute("value", (parseInt(like_lbl.getAttribute("value")) + 1));
+            like_lbl.innerHTML = "<b>Agradecimientos</b>: "+like_lbl.getAttribute("value");
           },
           error:function(xhr, ajaxOptions, errorInfo)
           {
@@ -40,6 +44,10 @@ function onclick_likeButton(element)
           success: function(){
             element.setAttribute("class", "btn btn-success waves-effect waves-light btn-outline like");
             element.setAttribute("active", "0");
+
+            var like_lbl = document.getElementById("likes_lbl_" + report_id);
+            like_lbl.setAttribute("value", parseInt(like_lbl.getAttribute("value")) - 1);
+            like_lbl.innerHTML = "<b>Agradecimientos</b>: "+like_lbl.getAttribute("value");
           },
           error:function(xhr, ajaxOptions, errorInfo)
           {
