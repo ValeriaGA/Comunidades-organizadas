@@ -36,7 +36,7 @@
                 </a>
                 <ul class="nav nav-second-level collapse" aria-expanded="false">
                     <li>
-                        <a href="/statistics/cr_map" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Reportes por Provincia</a>
+                        <a href="/statistics/cr_map" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Comunidades Provincias</a>
                     </li>
 
                     <li>
@@ -48,10 +48,10 @@
                     </li>
 
                     <li>
-                        <a href="/statistics/genero" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Sexo</a>
+                        <a href="/statistics/genero" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Sexo</a>
                     </li>
                     <li>
-                        <a href="/statistics/chart" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Por Tiempo</a>
+                        <a href="/statistics/tiempo" class="waves-effect"><i class="fa fa-flask fa-fw" aria-hidden="true"></i>Estadísticas Tiempo</a>
                     </li>
                 </ul>
             </li>

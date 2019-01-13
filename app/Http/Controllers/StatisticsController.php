@@ -6,6 +6,9 @@ use App\Incident;
 use App\SubCatReport;
 use App\Gender;
 use App\CatReport;
+use App\Province;
+use App\Canton;
+use App\District;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
@@ -188,15 +191,17 @@ class StatisticsController extends Controller
         return view('statistics.reports_per_province', compact('example'));
     }
 
-        /**
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function chart()
+    public function chartByTime()
     {
         $month_qty = DB::select( DB::raw("SELECT MONTH(date) as month, count(*) qty FROM reports WHERE YEAR(date) = YEAR(CURDATE()) GROUP BY MONTH(date)"));
-        
+        $genders = Gender::get();
+
         $dic = array();
         foreach($month_qty as $mq)
         {
@@ -205,9 +210,40 @@ class StatisticsController extends Controller
 
             $dic[$monthName] = $mq->qty;
         }
-        $date = '2018';
+        $date = '2019';
+        $selectedDate = '2019';
+        $selectedProcedence = "Ambos";
+        $selectedGender = "";
 
-        return view('statistics.char', compact('dic', 'date'));
+        $provinces = Province::get();
+        $selectedProvince = Province::where('id', '1')->first();
+        $selectedCanton = $selectedProvince -> canton() -> first();
+        $selectedDistrict = $selectedCanton -> district() -> first();
+        $selectedCommunity = $selectedDistrict -> community() -> first();
+
+
+        if ($selectedCommunity != null)
+        {
+            $selectedGroup = $selectedCommunity -> communityGroup() -> first();
+        }
+        else 
+        {
+            $selectedGroup = null;
+        }
+
+        
+
+        $selectedItems = array(
+            "selectedProvince" => $selectedProvince,
+            "selectedCanton" => $selectedCanton,
+            "selectedDistrict" => $selectedDistrict,
+            "selectedCommunity" => $selectedCommunity,
+            "selectedGroup" => $selectedGroup
+        );
+
+        return view('statistics.char', compact('dic', 'date', 'selectedDate', 
+                                'provinces', 'selectedProcedence', 'genders', 'selectedGender',
+                                'selectedItems'));
     }
 
 
@@ -217,15 +253,57 @@ class StatisticsController extends Controller
      * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function chart_show(Request $request)
+    public function chartByTimeFilters(Request $request)
     {
-        $date = '2018';
-        if ($request->has('date') ? true : false)
-        {
-            $date = request('date');
-        }
+        
+        $selectedDate = request('date');
+        $selectedProcedence = request('procedence');
+        $procedence = -1;
 
-        $month_qty = DB::select( DB::raw("SELECT MONTH(date) as month, count(*) qty FROM reports WHERE YEAR(date) = " . $date . " GROUP BY MONTH(date)"));
+        if ($selectedProcedence == "Nacionales")
+            $procedence = 1;
+
+        else if($selectedProcedence == "Extranjeros")
+            $procedence = -1;
+
+        $selectedGender = request('gender');
+        $selectedProvinceID = request('province');
+        $selectedCantonID = request('canton');
+        $selectedDistrictID = request('district');
+        $selectedCommunityID = request('community');
+        $selectedGroupID = request('group');
+
+        $genders = Gender::get();
+
+        if ($selectedCommunityID == null && $selectedGroupID == null)
+        {
+            $month_qty = DB::select( 
+                DB::raw(
+                    "SELECT MONTH(date) as month, count(*) qty
+                    FROM reports 
+                    INNER JOIN users on users.id = reports.user_id 
+                    INNER JOIN people on people.id = users.person_id
+                    INNER JOIN genders on genders.id = people.gender_id
+                    WHERE YEAR(date) = ". $selectedDate 
+                    ." AND people.foreigner != " .$procedence." 
+                    AND genders.name LIKE '%".$selectedGender."%' 
+                    GROUP BY MONTH(date)"));
+        }
+        else
+        {
+            $month_qty = DB::select( 
+                DB::raw(
+                    "SELECT MONTH(date) as month, count(*) qty
+                    FROM reports 
+                    INNER JOIN users on users.id = reports.user_id 
+                    INNER JOIN people on people.id = users.person_id
+                    INNER JOIN genders on genders.id = people.gender_id
+                    WHERE YEAR(date) = ". $selectedDate 
+                    ." AND people.foreigner != " .$procedence." 
+                    AND genders.name LIKE '%".$selectedGender."%' 
+                    AND reports.community_group_id = ".$selectedGroupID." 
+                    GROUP BY MONTH(date)"));
+        }
         
         $dic = array();
         foreach($month_qty as $mq)
@@ -235,8 +313,34 @@ class StatisticsController extends Controller
 
             $dic[$monthName] = $mq->qty;
         }
+        $date = '2019';
 
-        return view('statistics.char', compact('dic', 'date'));
+        $provinces = Province::get();
+        $selectedProvince = Province::where('id', $selectedProvinceID)->first();
+        $selectedCanton = $selectedProvince -> canton() -> where('id', $selectedCantonID)->first();
+ 
+        $selectedDistrict = $selectedCanton -> district() -> where('id', $selectedDistrictID)->first();
+
+        $selectedCommunity = $selectedDistrict -> community()-> where('id', $selectedCommunityID)->first();
+
+        if ($selectedCommunity != null)
+            $selectedGroup = $selectedCommunity -> communityGroup()-> where('communities_by_groups.id', $selectedGroupID)->first();
+        else 
+            $selectedGroup = null;
+
+
+    
+        $selectedItems = array(
+            "selectedProvince" => $selectedProvince,
+            "selectedCanton" => $selectedCanton,
+            "selectedDistrict" => $selectedDistrict,
+            "selectedCommunity" => $selectedCommunity,
+            "selectedGroup" => $selectedGroup
+        );
+
+        return view('statistics.char', compact('dic', 'date', 'selectedDate', 
+                                'selectedProcedence', 'genders', 'selectedGender',
+                                'provinces', 'selectedItems'));
     }
     
 

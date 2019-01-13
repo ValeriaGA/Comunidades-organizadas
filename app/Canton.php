@@ -20,6 +20,6 @@ class Canton extends Model
 
     public function district()
     {
-        return $this->hasMany(Canton::class, 'canton_id', 'id');
+        return $this->hasMany(District::class, 'canton_id', 'id');
     }
 }

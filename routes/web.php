@@ -100,9 +100,8 @@ Route::post('/statistics/genero', 'StatisticsController@statisticsBySexIncident'
 
 Route::get('/statistics/cr_map', 'StatisticsController@reports_per_province');
 
-Route::get('/statistics/chart', 'StatisticsController@chart');
-
-Route::post('/statistics/chart', 'StatisticsController@chart_show');
+Route::get('/statistics/tiempo', 'StatisticsController@chartByTime');
+Route::post('/statistics/tiempo', 'StatisticsController@chartByTimeFilters');
 
 // Search
 Route::get('/busqueda', 'SearchController@index');
