@@ -8,12 +8,16 @@
                         <div class="white-box analytics-info">
                         <h2>Proporción de mujeres y hombres víctimas</h2>
                         <a>Seleccione un delito:</a>
-                        <form class="form-horizontal form-material" action="/statistics/pie"  method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal form-material" action="/statistics/genero"  method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                           <select style="background-color: white;" name="delitos">
                             @foreach ($types as $type)
                            
-                            <option name="{{$type->id}}" value="{{$type->id}}">{{$type->name}}</option> 
+                              @if($selected_incident_name == $type -> name)
+                                <option name="{{$type->id}}" value="{{$type->id}}" selected>{{$type->name}}</option> 
+                              @else
+                                <option name="{{$type->id}}" value="{{$type->id}}">{{$type->name}}</option> 
+                              @endif
                             
                             @endforeach
                           </select>
@@ -37,9 +41,9 @@
                           element: 'graph',
                           data: [
                            
-                            {value: {{ (array_key_exists('femenino', $count_per_gender) ? $count_per_gender['femenino'] : 0) }}, label: 'Mujeres', formatted: 'approx {{ (array_key_exists('femenino', $count_per_gender) ? ($count_per_gender['femenino']/$total)*100 : 0) }}%' },
-                            {value: {{ (array_key_exists('masculino', $count_per_gender) ? $count_per_gender['masculino'] : 0) }}, label: 'Hombres', formatted: 'approx {{ (array_key_exists('masculino', $count_per_gender) ? ($count_per_gender['masculino']/$total)*100 : 0) }}%' },
-                            {value: {{ (array_key_exists('otro', $count_per_gender) ? $count_per_gender['otro'] : 0) }}, label: 'Otro', formatted: 'approx {{ (array_key_exists('otro', $count_per_gender) ? ($count_per_gender['otro']/$total)*100 : 0) }}%' }
+                            {value: {{ (array_key_exists('Femenino', $count_per_gender) ? $count_per_gender['Femenino'] : 0) }}, label: 'Mujeres', formatted: 'approx {{ (array_key_exists('Femenino', $count_per_gender) ? ($count_per_gender['Femenino']/$total)*100 : 0) }}%' },
+                            {value: {{ (array_key_exists('Masculino', $count_per_gender) ? $count_per_gender['Masculino'] : 0) }}, label: 'Hombres', formatted: 'approx {{ (array_key_exists('Masculino', $count_per_gender) ? ($count_per_gender['Masculino']/$total)*100 : 0) }}%' },
+                            {value: {{ (array_key_exists('Otro', $count_per_gender) ? $count_per_gender['Otro'] : 0) }}, label: 'Otro', formatted: 'approx {{ (array_key_exists('Otro', $count_per_gender) ? ($count_per_gender['Otro']/$total)*100 : 0) }}%' }
                           ],
                           formatter: function (x, data) { return data.formatted; }
                         });

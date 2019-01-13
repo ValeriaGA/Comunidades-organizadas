@@ -7,12 +7,12 @@
                     <div class="col-md-10">
                         <div class="white-box analytics-info">
                         <h2>Número de delitos por tipos</h2>
-                        <form class="form-horizontal form-material" action="/statistics/bar" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal form-material" action="/statistics/securityBar" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                           <a>  Fecha de inicio:</a> 
-                          <input id="first_date" type="date" placeholder="" class="form-control form-control-line" name="first_date" value="2013-10-10">
+                          <input id="first_date" type="date" placeholder="" class="form-control form-control-line" name="first_date" value="{{$first_date}}">
                           <a> Fecha de Final:</a>
-                          <input id="final_date" type="date" placeholder="" class="form-control form-control-line" name="final_date" value="{{$date}}"><br>
+                          <input id="final_date" type="date" placeholder="" class="form-control form-control-line" name="final_date" value="{{$final_date}}"><br>
                           <div class="form-group">
                               <div class="col-sm-12">
                                   <button class="btn btn-success">Actualizar</button>
@@ -20,7 +20,9 @@
                           </div>
                         </form>
                         
-                        <div id="graph"></div>
+                        <div style="width:800px; overflow:auto;">
+                          <div id="graph" style="width:1500px;"></div>
+                        </div>
                         <pre id="code" class="prettyprint linenums">
                         // Use Morris.Bar
                         var count_per_type = <?php echo json_encode($count_per_type2); ?>;

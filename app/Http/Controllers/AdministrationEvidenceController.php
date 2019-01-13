@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CatEvidence;
+use App\Evidence;
 
 class AdministrationEvidenceController extends Controller
 {

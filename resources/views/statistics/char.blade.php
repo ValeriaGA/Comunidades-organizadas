@@ -1,180 +1,233 @@
 @extends('statistics.master')
 
+@section('js')
+  <script src="{{asset('js/timeStatisticsControl.js')}}"></script>
+@endsection
+
+
 @section('stats_content')
 
+
 <!--row -->
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="white-box analytics-info">
-                        <h2>Actividad delictiva de los últimos 10 años</h2>
+<div class="row" >
+    <div class="col-sm-12">
+      <div class="white-box" style="height: 400px;">
+          <h3 class="box-title">Filtros</h3>
+        
+        <form method="post" action="/statistics/tiempo" enctype="multipart/form-data">
+          {{ csrf_field() }}
+          <div class="col-sm-2">
+            Filtrar por año:
+            <br/>
+            <br/>
+            <select class="form-control" style="background-color: white; width:100px;" name="date">
 
-                        <div id="graph"></div>
-                        <pre id="code" class="prettyprint linenums">
-                        var day_data = [
-                          {"elapsed": "Enero", "valor": {{ (array_key_exists('January', $dic) ? $dic['January'] : 0) }} },
-                          {"elapsed": "Febrero", "valor": {{ (array_key_exists('February', $dic) ? $dic['February'] : 0) }} },
-                          {"elapsed": "Marzo", "valor": {{ (array_key_exists('March', $dic) ? $dic['March'] : 0) }} },
-                          {"elapsed": "Abril", "valor": {{ (array_key_exists('April', $dic) ? $dic['April'] : 0) }} },
-                          {"elapsed": "Mayo", "valor": {{ (array_key_exists('May', $dic) ? $dic['May'] : 0) }} },
-                          {"elapsed": "Junio", "valor": {{ (array_key_exists('June', $dic) ? $dic['June'] : 0) }} },
-                          {"elapsed": "Julio", "valor": {{ (array_key_exists('July', $dic) ? $dic['July'] : 0) }} },
-                          {"elapsed": "Agosto", "valor": {{ (array_key_exists('August', $dic) ? $dic['August'] : 0) }} },
-                          {"elapsed": "Septiembre", "valor": {{ (array_key_exists('September', $dic) ? $dic['September'] : 0) }} },
-                          {"elapsed": "Octubre", "valor": {{ (array_key_exists('October', $dic) ? $dic['October'] : 0) }} },
-                          {"elapsed": "Noviembre", "valor": {{ (array_key_exists('November', $dic) ? $dic['November'] : 0) }} },
-                          {"elapsed": "Diciembre", "valor": {{ (array_key_exists('December', $dic) ? $dic['December'] : 0) }} }
-                        ];
-                        Morris.Line({
-                          element: 'graph',
-                          data: day_data,
-                          xkey: 'elapsed',
-                          ykeys: ['valor'],
-                          labels: ['valor'],
-                          parseTime: false
-                        });
-                        </pre>
-                      </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="white-box">
-                    <form action="/statistics/chart" method="post" enctype="multipart/form-data">
-                           {{ csrf_field() }}
-                           <div class="row">
-                            <select class="form-control" style="background-color: white;" name="date">
-                              @for($i = 0; $i < 10; ++$i)
-                               @if($date == (2018 - $i))
-                               <option value="{{2018 - $i}}" selected>{{2018 - $i}}</option> 
-                               @else
-                               <option value="{{2018 - $i}}">{{2018 - $i}}</option> 
-                               @endif
-                              @endfor
-                            </select>
-                          </div>
-                          <br/>
-                          <div class="row">
-                            <button class="btn btn-success">Filtrar</button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
+              @for($i = 0; $i < 10; ++$i)
+                @if(($date - $i) == $selectedDate)
+                  <option value="{{$date - $i}}" selected>{{$date - $i}}</option>
+                @else
+                <option value="{{$date - $i}}">{{$date - $i}}</option>
+                @endif 
+              @endfor
+            </select>
+          </div>
 
-                    <div class="col-sm-2">
-                      <div class="white-box">
-                          <p  style="display:inline;">Sexo</p>
-                  <form action="/statistics/chart" method="post" enctype="multipart/form-data">
-                         {{ csrf_field() }}
-                         <div class="row">
-                          <select class="form-control" style="background-color: white;" name="date">
+          <div class="col-sm-2">
+            Personas que reportortaron:
+            <br/>
+            <br/>
+            <label style="display: inline;">Sexo</label>
+            <select class="form-control" style="background-color: white; width:150px; display:inline;" name="gender">
 
-                             <option value="Masculino" selected>Masculino</option> 
-                             <option value="Femenino">Femenino</option> 
+              @if ($selectedGender == "")
+                <option value="" selected>Todos</option>
+              @else 
+                <option value="">Todos</option>
+              @endif
 
-                          </select>
-                        </div>
-                        <br/>
-                        <div class="row">
-                          <button class="btn btn-success">Filtrar</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-           
+              @foreach($genders as $gender) 
+                @if ($gender -> name == $selectedGender)
+                  <option value="{{$gender -> name}}" selected>{{$gender -> name}}</option> 
+                @else
+                  <option value="{{$gender -> name}}">{{$gender -> name}}</option> 
+                @endif
 
-              <div class="row">
-                <div class="col-sm-2">
-                    <div class="white-box">
-                        <p  style="display:inline;">Procedencia</p>
-                <form action="/statistics/chart" method="post" enctype="multipart/form-data">
-                       {{ csrf_field() }}
-                       <div class="row">
-                        <select class="form-control" style="background-color: white;" name="date">
+              @endforeach 
 
-                           <option value="Nacionales" selected>Nacionales</option> 
-                           <option value="Extranjeros">Extranjeros</option> 
-                           <option value="Ambos">Ambos</option> 
+            </select>
 
-                        </select>
-                      </div>
-                      <br/>
-                      <div class="row">
-                        <button class="btn btn-success">Filtrar</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+            <br/>
+            <br/>
+            <label style="display: inline;">Procedencia</label>
+            <select class="form-control" style="background-color: white; width:150px;" name="procedence">
+
+                @if ($selectedProcedence == "Ambos")
+                  <option value="Ambos" selected>Ambos</option> 
+                  <option value="Nacionales">Nacionales</option> 
+                  <option value="Extranjeros">Extranjeros</option>
+
+                @elseif($selectedProcedence == "Nacionales")
+                  <option value="Ambos">Ambos</option> 
+                  <option value="Nacionales" selected>Nacionales</option> 
+                  <option value="Extranjeros">Extranjeros</option>
+
+                @else 
+                  <option value="Ambos">Ambos</option> 
+                  <option value="Nacionales">Nacionales</option> 
+                  <option value="Extranjeros" selected>Extranjeros</option>
+
+                @endif
+            </select>
+          
+          </div>
+
+          <div class="col-sm-8">
+            Grupo de Comunidades:
+            <br/>
+            <br/>
+            <div style="margin-top: 25px; margin-left: 0px; display:inline;">
+                <label >Provincia</label>
+                
+                <select id="provinces" style="width:110px; display:inline;" class="form-control" name="province">
+                  
+                  @foreach ($provinces as $item)
+                    @if($item -> id == $selectedItems['selectedProvince'] -> id)
+                      <option value="{{$item -> id}}" selected>{{$item -> name}}</option>
+                    @else
+                      <option value="{{$item -> id}}">{{$item -> name}}</option>
+                    @endif
+                  @endforeach
+                       
+                
+                </select>
+            </div>
+
+              <div style="margin-top: 25px; margin-left: 10px; display:inline;">
+                  <label >Cantón</label>
+                  <input name="selectedCanton" type="hidden" value="{{$selectedItems['selectedCanton']}}"/>
+                  <select id="cantons" style="width:110px; display:inline;" class="form-control"  name="canton" >
+                    @foreach ($selectedItems['selectedProvince'] -> canton() -> get() as $item)
+                      @if($item -> id == $selectedItems['selectedCanton'] -> id)
+                        <option value="{{$item -> id}}" selected>{{$item -> name}}</option>
+                      @else
+                        <option value="{{$item -> id}}">{{$item -> name}}</option>
+                      @endif
+                    @endforeach
+
+                  </select>
+              </div>
 
 
-                <div class="col-sm-2" style="width: 300px;">
-                    <div class="white-box">
-                        <p  style="display:inline;">Rango de Fechas</p>
-                          <form class="form-horizontal form-material" action="/statistics/bar" method="post" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                              <a>  Fecha de inicio:</a> 
-                              <input id="first_date" type="date" placeholder="" class="form-control form-control-line" name="first_date" value="2013-10-10">
-                              <a> Fecha de Final:</a>
-                              <input id="final_date" type="date" placeholder="" class="form-control form-control-line" name="final_date" value="{{$date}}"><br>
-                              <div class="form-group">
-                                  <div class="col-sm-12">
-                                      <button class="btn btn-success">Filtrar</button>
-                                  </div>
-                              </div>
-                          </form>
-                        </div>
-                    </div>
+              <div style="margin-top: 25px; margin-left: 10px; display:inline;">
+                  <label >Distrito</label>
+                  
+                  <select id="districts" style="width:110px; display:inline;" class="form-control" name="district">
+                    @foreach ($selectedItems['selectedCanton'] -> district() -> get() as $item)
+                      @if($item -> id == $selectedItems['selectedDistrict'] -> id)
+                        <option value="{{$item -> id}}" selected>{{$item -> name}}</option>
+                      @else
+                        <option value="{{$item -> id}}">{{$item -> name}}</option>
+                      @endif
+                    @endforeach
+                  </select>
+              </div>
+                    
 
-                <div class="col-sm-2" style="width: 300px;">
-                    <div class="white-box">
-                        <p >Comunidad</p>
-                          <form class="form-horizontal form-material" action="/statistics/bar" method="post" enctype="multipart/form-data">
-                            <div style="margin-top: 25px; margin-left: 0px; display:inline;">
-                                <label >Provincia</label>
-                                
-                                <select id="provinces" style="width:110px; display:inline;" class="form-control" name="province" required>
-                                        <option value="1" selected>San José</option>
-                                        <option value="2">Alajuela</option>
-                                        <option value="3">Cartago</option>
-                                        <option value="4">Heredia</option>
-                                        <option value="5">Guanacaste</option>
-                                        <option value="6">Puntarenas</option>
-                                        <option value="7">Limón</option>
-                                 
-                                </select>
-                            </div>
+              <br/>
+              <br/>
+              <div style="margin-top: 25px; margin-left: 50px; display:inline; margin-top: 10px;">
+                  <label>Comunidad</label>
+                  
+                  <select id="communities" style="width:180px; display:inline;" class="form-control"  name="community">
+                    @if(!is_null($selectedItems['selectedCommunity']))
+                      @foreach ($selectedItems['selectedDistrict'] -> community() -> get() as $item)
+                        @if($item -> id == $selectedItems['selectedCommunity'] -> id)
+                          <option value="{{$item -> id}}" selected>{{$item -> name}}</option>
+                        @else
+                          <option value="{{$item -> id}}">{{$item -> name}}</option>
+                      @endif
+                  @endforeach
+                    @else
+                        <option value="" selected>Sin Comunidades</option>
+                    @endif
+
+                  </select>
+                  
+              </div>
+
+              <div style="margin-top: 25px; margin-left: 50px; display:inline; margin-top: 10px;">
+                  <label>Grupo</label>
+                  
+                  <select id="communityGroups" style="width:180px; display:inline;" class="form-control"  name="group">
+
+                      @if(!is_null($selectedItems['selectedCommunity']) && !is_null($selectedItems['selectedGroup']))
+
+                        @foreach ($selectedItems['selectedCommunity'] -> communityGroup() -> get() as $item)
+                          @if($item -> id == $selectedItems['selectedGroup'] -> id)
+                            <option value="{{$item -> id}}" selected>{{$item -> name}}</option>
+                          @else
+                            <option value="{{$item -> id}}">{{$item -> name}}</option>
+                        @endif
+                      @endforeach
+                      
+                    @else
+                        <option value="" selected>Sin Grupos</option>
+                    @endif
+
+                  </select>
+                  
+              </div>
+
+          </div>
+          <br/>
+          <br/>
+          <br/>
+          <button class="btn btn-success" style="margin-top: 100px; margin-left:100px;">Actualizar</button>
+        </form>
+        
+        </div>
+
+         
+      </div>
+    </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box analytics-info">
+        <h2>Cantidad de Reportes en el año {{$selectedDate}}</h2>
+
+        <div style="overflow:auto;">
+        <div id="graph" style="width: 1500px;"></div>
+        </div>
+
+        <pre id="code" class="prettyprint linenums">
+        var day_data = [
+          {"elapsed": "Enero", "valor": {{ (array_key_exists('January', $dic) ? $dic['January'] : 0) }} },
+          {"elapsed": "Febrero", "valor": {{ (array_key_exists('February', $dic) ? $dic['February'] : 0) }} },
+          {"elapsed": "Marzo", "valor": {{ (array_key_exists('March', $dic) ? $dic['March'] : 0) }} },
+          {"elapsed": "Abril", "valor": {{ (array_key_exists('April', $dic) ? $dic['April'] : 0) }} },
+          {"elapsed": "Mayo", "valor": {{ (array_key_exists('May', $dic) ? $dic['May'] : 0) }} },
+          {"elapsed": "Junio", "valor": {{ (array_key_exists('June', $dic) ? $dic['June'] : 0) }} },
+          {"elapsed": "Julio", "valor": {{ (array_key_exists('July', $dic) ? $dic['July'] : 0) }} },
+          {"elapsed": "Agosto", "valor": {{ (array_key_exists('August', $dic) ? $dic['August'] : 0) }} },
+          {"elapsed": "Septiembre", "valor": {{ (array_key_exists('September', $dic) ? $dic['September'] : 0) }} },
+          {"elapsed": "Octubre", "valor": {{ (array_key_exists('October', $dic) ? $dic['October'] : 0) }} },
+          {"elapsed": "Noviembre", "valor": {{ (array_key_exists('November', $dic) ? $dic['November'] : 0) }} },
+          {"elapsed": "Diciembre", "valor": {{ (array_key_exists('December', $dic) ? $dic['December'] : 0) }} }
+        ];
+        Morris.Line({
+          element: 'graph',
+          data: day_data,
+          xkey: 'elapsed',
+          ykeys: ['valor'],
+          labels: ['valor'],
+          parseTime: false
+        });
+        </pre>
+      </div>
+    </div>
+</div>
+ 
+
     
-                            <div style="margin-top: 25px; margin-left: 10px; display:inline;">
-                                <label >Cantón</label>
-                                
-                                <select id="cantons" style="width:110px; display:inline;" class="form-control"  name="canton" required>
-                                        <option value="1" selected="selected">Cantones</option>
-                                </select>
-                            </div>
-    
-    
-                            <div style="margin-top: 25px; margin-left: 10px; display:inline;">
-                                <label >Distrito</label>
-                                
-                                <select id="districts" style="width:110px; display:inline;" class="form-control" name="district" required>
-                                        <option value="1" selected="selected">Distritos</option>
-                                </select>
-                            </div>
-                                  
-    
-                            <div style="margin-top: 25px; margin-left: 50px; display:inline;">
-                                <label>Comunidad</label>
-                                
-                                <select id="communities1" style="width:120px; display:inline;" class="form-control"  name="community" required>
-                                        <option value="1" selected="selected">Barrio x</option>
-                                </select>
-                                
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <button class="btn btn-success">Filtrar</button>
-                                </div>
-                            </div>
-                          </form>
-                        </div>
-                    </div>
-                </div>
 @endsection

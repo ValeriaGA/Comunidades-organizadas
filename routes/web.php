@@ -89,21 +89,19 @@ Route::any('/unlike', 'LikeController@destroy');
 
 Route::get('/statistics', 'StatisticsController@index');
 
-Route::get('/statistics/bar', 'StatisticsController@bar');
+Route::get('/statistics/securityBar', 'StatisticsController@securityBar');
+Route::post('/statistics/securityBar', 'StatisticsController@securityByDate');
 
-Route::post('/statistics/bar', 'StatisticsController@crime_per_type');
+Route::get('/statistics/serviceBar', 'StatisticsController@serviceBar');
+Route::post('/statistics/serviceBar', 'StatisticsController@serviceByDate');
 
-Route::get('/statistics/service', 'StatisticsController@service');
-
-Route::get('/statistics/pie', 'StatisticsController@pie');
-
-Route::post('/statistics/pie', 'StatisticsController@crime_per_gender');
+Route::get('/statistics/genero', 'StatisticsController@statisticsBySex');
+Route::post('/statistics/genero', 'StatisticsController@statisticsBySexIncident');
 
 Route::get('/statistics/cr_map', 'StatisticsController@reports_per_province');
 
-Route::get('/statistics/chart', 'StatisticsController@chart');
-
-Route::post('/statistics/chart', 'StatisticsController@chart_show');
+Route::get('/statistics/tiempo', 'StatisticsController@chartByTime');
+Route::post('/statistics/tiempo', 'StatisticsController@chartByTimeFilters');
 
 // Search
 Route::get('/busqueda', 'SearchController@index');
@@ -235,6 +233,7 @@ Route::patch('/administracion/generos/{gender}', 'AdministrationGenderController
 Route::get('/administracion/evidencias', 'AdministrationEvidenceController@index');
 Route::get('/administracion/evidencias/agregar', 'AdministrationEvidenceController@create');
 Route::post('/administracion/evidencias', 'AdministrationEvidenceController@store');
+
 Route::get('/administracion/evidencias/{evidence}', 'AdministrationEvidenceController@edit');
 Route::patch('/administracion/evidencias/{evidence}', 'AdministrationEvidenceController@update');
 Route::patch('/administracion/evidencias/activo/{evidence}', 'AdministrationEvidenceController@toggle');
