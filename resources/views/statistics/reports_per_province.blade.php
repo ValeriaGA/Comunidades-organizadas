@@ -102,6 +102,8 @@
           var chart = am4core.create("chartdiv", am4maps.MapChart);
           
           chart.titles.create().text = title;
+
+         var count_per_province = <?php echo json_encode($count_per_province)?>;
         
           // Set map definition
           chart.geodataSource.url = document.getElementById('mapLocation').value + "/" + currentMap + ".json";
@@ -111,7 +113,7 @@
               
               data.push({
                 id: ev.target.data.features[i].id,
-                value: ev.target.data.features[i].id//<?php echo $example ?>
+                value: count_per_province[ev.target.data.features[i].id - 1][1]
                
               })
         
@@ -177,7 +179,12 @@
     <input type="hidden" id="mapLocation" value="{{ asset('json')}}">
     <div class="row">
         <div class="col-md-10">
+          <div class="white-box  analytics-info">
+              <h2>Número de Comunidades por Provincia</h2>
+              <br/>
+              <br/>
             <div id="chartdiv"></div>
+          </div>
         </div>
     </div>
     
