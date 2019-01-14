@@ -18,7 +18,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function() {
-            var url = "/auth.php";
+            var url = "http://192.168.1.5/Comunidades-organizadas/AppMovil-ComunidadOrganizada/simple-cordova-login-master/simple-cordova-login-master/auth.php";
             
             $("#loginButton").click(function(){
                 var email= $.trim($("#email").val());
@@ -34,7 +34,7 @@
                         if(data == "success") {
                             $("#status").text("Login Success..!");
                             localStorage.loginstatus = "true";
-                            window.location.href = "index.html";
+                            window.location.href = "welcome.html";
                         }
                         else if(data == "error")
                         {

@@ -24,7 +24,7 @@
 
                 <div class="ui-field-contain">
                 <label for="new_password">Contraseña</label>
-                <input type="password" name="new_password" id="new_password" value="" placeholder="Contraseña" autocomplete="off" required />
+                <input type="password" name="new_password" id="password" value="" placeholder="Contraseña" autocomplete="off" required />
                    </div>
 
                 <div class="ui-field-contain">
@@ -69,10 +69,37 @@
                 </div>
 
 
-                <input type="submit" value="Crear cuenta" data-theme="b"/>
+                <input id="registerButton" type="submit" value="Crear cuenta" data-theme="b"/>
             </form>
         </div>    
     </div>
+    <script>
+        $(document).ready(function() {
+            var url = "http://192.168.1.5/Comunidades-organizadas/AppMovil-ComunidadOrganizada/coor/www/php/auth.php";
+            
+            
+            $("#registerButton").click(function(){
+                var email= $.trim($("#email").val());
+                var password= $.trim($("#password").val());
+
+                $("#status").text("Creating New Account...");
+                var dataString="email="+email+"&password="+password+"&register=";
+                $.ajax({
+                    type: "POST",crossDomain: true, cache: false,
+                    url: url,
+                    data: dataString,
+                    success: function(data){
+                        if(data == "success")
+                            $("#status").text("Registered success");
+                        else if( data == "exist")
+                            $("#status").text("Account is already there");
+                        else if(data == "error")
+                            $("#status").text("Register Failed");
+                    }
+                });
+            });
+        });
+    </script>
     
 </body>
 </html>
