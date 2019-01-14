@@ -24,9 +24,14 @@ class Community extends Model
     	return $this->belongsToMany(CommunityGroup::class, 'communities_by_groups', 'community_id', 'community_group_id');
     }
 
-    public function user()
+    public function communityAdmin()
     {
-        return $this->belongsToMany(User::class, 'admins_by_community', 'community_id', 'user_id');
+        return $this->belongsToMany(CommunityAdmin::class, 'admins_by_community', 'community_id', 'community_admin_id');
+    }
+
+    public function activeAdmin()
+    {
+        return $this->hasMany(CommunityAdmin::class, 'active_community_id', 'id');
     }
 
     public function communityGroupRequest()

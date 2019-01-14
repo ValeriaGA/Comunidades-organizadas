@@ -22,7 +22,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/comunidades/grupos">Comunidades</a></a> <a href="#" class="current">Grupos</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/comunidades/grupos">Comunidades</a></a> <a href="/administracion/comunidades/grupos" class="current">Grupos</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -58,7 +58,9 @@
                 <label class="control-label">Provincia</label>
                 <div class="controls">
                   <select name="province" id="provinces" class="form-control dynamic" data-dependent="cantons">
-                      <option value="">Provincia</option>
+                    @foreach($provinces as $province)
+                      <option value="{{ $province->id}}" {{ $community_group->community[0]->district->canton->province_id == $province->id ? 'selected' : '' }}>{{ $province->name}}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
@@ -67,7 +69,9 @@
                 <label class="control-label">Canton</label>
                 <div class="controls">
                   <select name="canton" id="cantons" class="form-control dynamic" data-dependent="districts">
-                      <option value="">Canton</option>
+                    @foreach($cantons as $canton)
+                      <option value="{{ $canton->id}}" {{ $community_group->community[0]->district->canton_id == $canton->id ? 'selected' : '' }}>{{ $canton->name}}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
@@ -76,7 +80,9 @@
                 <label class="control-label">Distrito</label>
                 <div class="controls">
                   <select name="district" id="districts" class="form-control dynamic" data-dependent="communities">
-                      <option value="">Distrito</option>
+                    @foreach($districts as $district)
+                      <option value="{{ $district->id}}" {{ $community_group->community[0]->district_id == $district->id ? 'selected' : '' }}>{{ $district->name}}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
@@ -85,7 +91,9 @@
                 <label class="control-label">Comunidad</label>
                 <div class="controls">
                   <select multiple name="community[]" id="communities" class="form-control">
-                     
+                    @foreach($community_group->community[0]->district->community as $community)
+                      <option value="{{$community->id}}" {{ in_array($community->id, $current_communities_id) ? 'selected' : '' }}>{{$community->name}}</option>
+                    @endforeach
                   </select>
                   <hr />
                   @if ($errors->has('community'))

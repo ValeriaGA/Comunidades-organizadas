@@ -42,7 +42,7 @@ class HomeController extends Controller
             'community_group' => 'required'
         ]);
 
-        $community_group = CommunityGroup::find(request('community_group'));
+        $community_group = CommunityGroup::findOrFail(request('community_group'));
 
         $cat_service = CatReport::where('name', 'LIKE', 'Servicio')->first();
         $sub_cat_service = SubCatReport::where('cat_report_id', $cat_service->id)->get();

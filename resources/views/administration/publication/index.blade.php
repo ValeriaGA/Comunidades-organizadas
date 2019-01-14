@@ -33,6 +33,7 @@
               <thead>
                 <tr>
                   <th>ID de publicacion</th>
+                  <th>Título de publicación</th>
                   <th>Correo del Usuario</th>
                   <th>Activo</th>
                   <th>Estado</th>
@@ -43,6 +44,7 @@
                 @foreach ($reports as $report) 
                 <tr class="">
                   <td>{{$report->id}}</td>
+                  <td>{{$report->title}}</td>
                   <td>{{$report->user->email}}</td>
                   <td>
                     <form method="POST" action="/administracion/publicaciones/activo/{{ $report->id }}">

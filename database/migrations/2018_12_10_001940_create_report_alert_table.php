@@ -18,6 +18,7 @@ class CreateReportAlertTable extends Migration
             $table->unsignedInteger('report_id');
             $table->unsignedInteger('user_id');
             $table->text('reason');
+            $table->softDeletes();
             $table->timestamps();
         });
 

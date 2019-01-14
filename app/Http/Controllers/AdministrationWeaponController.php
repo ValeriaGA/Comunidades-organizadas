@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CatWeapon;
+use App\CatReport;
+use App\SubCatReport;
+use App\CatTransportation;
 
 class AdministrationWeaponController extends Controller
 {
@@ -13,6 +16,19 @@ class AdministrationWeaponController extends Controller
         
         // only administrators are allowed to view this
         $this->middleware('admin');
+    }
+
+    public function index()
+    {
+        $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->get();
+        $categories_security = SubCatReport::where('cat_report_id', $cat_security[0]->id)->get();
+
+        $categories_weapon = CatWeapon::all();
+        $categories_transportation = CatTransportation::all();
+
+        $tabName = 'weapon';
+
+        return view('administration.security.index', compact('categories_security', 'categories_weapon', 'categories_transportation', 'tabName'));
     }
 
     /**
@@ -44,7 +60,7 @@ class AdministrationWeaponController extends Controller
 
         session()->flash('message', 'Tipo de arma creada');
 
-        return redirect('/administracion/seguridad');
+        return $this->index();
     }
 
     /**
@@ -77,7 +93,7 @@ class AdministrationWeaponController extends Controller
         $catWeapon->save();
 
         session()->flash('message', 'Tipo de arma actualizada');
-        return redirect('/administracion/seguridad');
+        return $this->index();
     }
 
     public function toggle(CatWeapon $catWeapon)

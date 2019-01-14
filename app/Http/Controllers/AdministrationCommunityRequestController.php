@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CommunityRequest;
+use App\CommunityAdmin;
+use App\CommunityGroup;
 use App\Community;
 use App\User;
 
@@ -21,22 +23,32 @@ class AdministrationCommunityRequestController extends Controller
             'name' => $communityRequest->name
         ]);
 
+        $group = CommunityGroup::create([
+            'name' => $communityRequest->name
+        ]);
+
+        $group->community()->attach($community->id);
+
         $user = User::findOrFail($communityRequest->user_id);
 
-        $user->makeCommunityAdmin($community);
+        $user->makeCommunityAdmin();
 
-        CommunityRequest::destroy($communityRequest->id);
+        $communityAdmin = CommunityAdmin::where('user_id', $user->id)->first();
 
-        session()->flash('message', 'Comunidad Agregada');
+        $communityAdmin->community()->attach($community->id);
+
+        $communityRequest->accept();
+
+        session()->flash('message', 'Comunidad Aprobada');
 
         return redirect('/administracion/solicitudes');
     }
 
     public function destroy(CommunityRequest $communityRequest)
     {
-        CommunityRequest::destroy($communityRequest->id);
+        $communityRequest->deny();
 
-        session()->flash('message', 'Solicitud Removida');
+        session()->flash('message', 'Solicitud Rechazada');
 
         return redirect('/administracion/solicitudes');
     }

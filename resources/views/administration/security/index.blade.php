@@ -27,13 +27,13 @@
         <div class="widget-box">
           <div class="widget-title">
             <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#tab1">Tipos de reportes de seguridad</a></li>
-              <li><a data-toggle="tab" href="#tab2">Tipos de armas</a></li>
-              <li><a data-toggle="tab" href="#tab3">Medios de transporte</a></li>
+              <li class="{{ !empty($tabName) && $tabName == 'security' ? 'active' : '' }}"><a data-toggle="tab" href="#tab1">Tipos de reportes de seguridad</a></li>
+              <li class="{{ !empty($tabName) && $tabName == 'weapon' ? 'active' : '' }}"><a data-toggle="tab" href="#tab2">Tipos de armas</a></li>
+              <li class="{{ !empty($tabName) && $tabName == 'transportation' ? 'active' : '' }}"><a data-toggle="tab" href="#tab3">Medios de transporte</a></li>
             </ul>
           </div>
           <div class="widget-content tab-content">
-            <div id="tab1" class="tab-pane active">
+            <div id="tab1" class="tab-pane {{ !empty($tabName) && $tabName == 'security' ? 'active' : '' }}">
               <table class="table table-bordered data-table">
                 <thead>
                   <tr>
@@ -71,7 +71,7 @@
               <form action="/administracion/seguridad/categorias/agregar"><button class="btn btn-success">Agregar</button></form>
             </div>
 
-            <div id="tab2" class="tab-pane">
+            <div id="tab2" class="tab-pane {{ !empty($tabName) && $tabName == 'weapon' ? 'active' : '' }}">
               <table class="table table-bordered data-table">
                 <thead>
                   <tr>
@@ -101,7 +101,7 @@
               <form action="/administracion/seguridad/armas/agregar"><button class="btn btn-success">Agregar</button></form>
             </div>
 
-            <div id="tab3" class="tab-pane">
+            <div id="tab3" class="tab-pane {{ !empty($tabName) && $tabName == 'transportation' ? 'active' : '' }}">
               <table class="table table-bordered data-table">
                 <thead>
                   <tr>

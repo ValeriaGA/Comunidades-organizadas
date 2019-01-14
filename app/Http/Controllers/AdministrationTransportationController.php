@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CatWeapon;
+use App\CatReport;
+use App\SubCatReport;
 use App\CatTransportation;
 
 class AdministrationTransportationController extends Controller
@@ -13,6 +16,19 @@ class AdministrationTransportationController extends Controller
         
         // only administrators are allowed to view this
         $this->middleware('admin');
+    }
+
+    public function index()
+    {
+        $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->get();
+        $categories_security = SubCatReport::where('cat_report_id', $cat_security[0]->id)->get();
+
+        $categories_weapon = CatWeapon::all();
+        $categories_transportation = CatTransportation::all();
+
+        $tabName = 'transportation';
+
+        return view('administration.security.index', compact('categories_security', 'categories_weapon', 'categories_transportation', 'tabName'));
     }
 
     /**
@@ -44,7 +60,7 @@ class AdministrationTransportationController extends Controller
 
         session()->flash('message', 'Medio de Transporte creado');
 
-        return redirect('/administracion/seguridad');
+        return $this->index();
     }
 
     /**
@@ -77,7 +93,7 @@ class AdministrationTransportationController extends Controller
         $catTransportation->save();
 
         session()->flash('message', 'Medio de Transporte actualizado');
-        return redirect('/administracion/seguridad');
+        return $this->index();
     }
     
     public function toggle(CatTransportation $catTransportation)

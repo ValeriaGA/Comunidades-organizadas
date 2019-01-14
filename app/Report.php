@@ -3,12 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Report extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
-        'description', 'sub_cat_report_id', 'community_group_id', 'state_id', 'longitud', 'latitud', 'user_id', 'date', 'time', 'active', 'news', 'title'
+        'description', 'sub_cat_report_id', 'community_group_id', 'state_id', 'longitud', 'latitud', 'user_id', 'date', 'time', 'active', 'news', 'title', 'deleted_at'
     ];
+    protected $dates = ['deleted_at'];
 
     public function subCatReport()
     {

@@ -58,13 +58,9 @@
                 <label class="control-label">Provincia</label>
                 <div class="controls">
                   <select name="province" id="provinces" class="form-control">
-                    <option value="1" selected>San José</option>
-                    <option value="2">Alajuela</option>
-                    <option value="3">Cartago</option>
-                    <option value="4">Heredia</option>
-                    <option value="5">Guanacaste</option>
-                    <option value="6">Puntarenas</option>
-                    <option value="7">Limón</option>
+                    @foreach($provinces as $province)
+                      <option value="{{ $province->id}}" {{ $community->district->canton->province_id == $province->id ? 'selected' : '' }}>{{ $province->name}}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
@@ -72,8 +68,10 @@
               <div class="control-group">
                 <label class="control-label">Cantón</label>
                 <div class="controls">
-                  <select name="canton" id="cantons" name="canton" class="form-control">
-                    <option value="1" selected="selected">Cantones</option>
+                  <select name="canton" id="cantons" class="form-control">
+                    @foreach($cantons as $canton)
+                      <option value="{{ $canton->id}}" {{ $community->district->canton_id == $canton->id ? 'selected' : '' }}>{{ $canton->name}}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
@@ -82,13 +80,33 @@
                 <label class="control-label">Distrito</label>
                 <div class="controls">
                   <select name="district" id="districts" class="form-control">
-                    <option value="1" selected="selected">Distritos</option>
+                    @foreach($districts as $district)
+                      <option value="{{ $district->id}}" {{ $community->district_id == $district->id ? 'selected' : '' }}>{{ $district->name}}</option>
+                    @endforeach
                   </select>
                   <hr />
                   @if ($errors->has('district'))
                     <div class="alert alert-error">
                       <button class="close" data-dismiss="alert">×</button>
                       <strong>Error!</strong> {{ $errors->first('district') }}
+                    </div>
+                  @endif
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label">Administradores</label>
+                <div class="controls">
+                  <select multiple name="administrator[]" id="administrators" class="form-control">
+                      @foreach ($community_admins as $community_admin)
+                        <option value="{{$community_admin->id}}" {{ in_array($community_admin->id, $current_admins_id) ? 'selected' : '' }}>{{$community_admin->email}}</option>
+                      @endforeach
+                  </select>
+                  <hr />
+                  @if ($errors->has('administrator'))
+                    <div class="alert alert-error">
+                      <button class="close" data-dismiss="alert">×</button>
+                      <strong>Error!</strong> {{ $errors->first('administrator') }}
                     </div>
                   @endif
                 </div>

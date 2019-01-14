@@ -16,10 +16,17 @@
                 <a href="/busqueda" class="waves-effect"><i class="fa fa-search fa-fw" aria-hidden="true"></i>Búsqueda</a>
             </li>
             @auth
+                @if (Auth::user()->role->name == 'Administrador')
+                    <li>
+                        <a href="/administracion" class="waves-effect"><i class="fa fa-briefcase fa-fw" aria-hidden="true"></i>Plataforma Administrativa</a>
+                    </li>
+                @endif
             <li>
                 <a href="/user" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Perfil</a>
             </li>
-           
+            <li>
+                <a href="/favoritas" class="waves-effect"><i class="fa fa-star fa-fw" aria-hidden="true"></i>Mis Áreas Favoritas</a>
+            </li>
             <li>
                 <a href="/comunidades" class="waves-effect"><i class="fa fa-group fa-fw" aria-hidden="true"></i>Comunidades</a>
             </li>

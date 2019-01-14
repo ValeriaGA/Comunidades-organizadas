@@ -28,6 +28,7 @@ class AdministrationReportController extends Controller
                     ->join('reports', 'report_alert.report_id', '=', 'reports.id')
                     ->join('users', 'reports.user_id', '=', 'users.id')
                     ->select('report_alert.report_id', 'reports.user_id', 'reports.title', 'users.email', DB::raw('count(report_alert.report_id) as count'))
+                    ->whereNull('report_alert.deleted_at')
                     ->groupBy('report_alert.report_id')
                     ->get();
         return view('administration.report.index', compact('reports'));
@@ -45,6 +46,7 @@ class AdministrationReportController extends Controller
                             ->join('users', 'report_alert.user_id', '=', 'users.id')
                             ->select('users.email', 'report_alert.reason', 'report_alert.created_at', 'report_alert.id')
                             ->where('report_alert.report_id', $report->id)
+                            ->whereNull('report_alert.deleted_at')
                             ->get();
         return view('administration.report.show', compact('report', 'report_alerts'));
     }
@@ -57,7 +59,8 @@ class AdministrationReportController extends Controller
      */
     public function destroy(ReportAlert $reportAlert)
     {
-        ReportAlert::destroy($reportAlert->id);
+        // ReportAlert::destroy($reportAlert->id);
+        $reportAlert->delete();
 
         session()->flash('message', 'Reporte de publicacion removida');
 

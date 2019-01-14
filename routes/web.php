@@ -46,13 +46,13 @@ Route::any('/grupos', 'GroupController@show');
 
 
 // Profile
-
 Route::get('/user', 'UserController@index');
 Route::get('/user/{user}', 'UserController@edit');
 Route::patch('/user/{user}', 'UserController@update');
 
+Route::patch('/active-community', 'ActiveCommunityController@update');
+
 // Report
-Route::get('/reporte', 'ReportController@index');
 Route::get('/reporte/{report}', 'ReportController@show');
 Route::get('/reporte/editar/{report}', 'ReportController@edit');
 
@@ -121,6 +121,10 @@ Route::post('/comunidades/solicitar-comunidad', 'CommunitiesController@store');
 Route::get('/comunidades/solicitar-grupo', 'GroupController@create');
 Route::post('/comunidades/solicitar-grupo', 'GroupController@store');
 Route::post('/comunidades/solicitar-grupo/filtrar', 'GroupController@fetchCommunitiesByDistrict');
+
+// Favorites
+Route::get('/favoritas', 'FavoriteController@index');
+Route::post('/favoritas/comunidades', 'FavoriteController@show');
 
 /*
 |--------------------------------------------------------------------------

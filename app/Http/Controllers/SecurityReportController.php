@@ -39,20 +39,28 @@ class SecurityReportController extends Controller
      */
     public function create()
     {
-        $community_groups = CommunityGroup::all();
-
         $cat_security = CatReport::where('name', 'LIKE', 'Seguridad')->get();
-        $categories = SubCatReport::where('cat_report_id', $cat_security[0]->id)->get();
+        $categories = SubCatReport::where('cat_report_id', $cat_security[0]->id)
+                                    ->where('active', true)
+                                    ->get();
 
-        $cat_evidence = CatEvidence::get();
-        $cat_transportation = CatTransportation::get();
-        $cat_weapon = CatWeapon::get();
+        $cat_evidence = CatEvidence::where('active', true)->get();
+        $cat_transportation = CatTransportation::where('active', true)->get();
+        $cat_weapon = CatWeapon::where('active', true)->get();
 
         $dt = new DateTime("now", new DateTimeZone('America/Costa_Rica'));
         $date = $dt->format('Y-m-d');
         $time = $dt->format('H:i:s');
 
-        return view('report.security.create', compact('categories', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'community_groups'));
+        $activeCommunity = null;
+        $communityGroups = [];
+
+        $communities = [];
+        $districts = [];
+        $cantons = [];
+        $provinces = [];
+
+        return view('report.security.create', compact('categories', 'cat_evidence', 'cat_transportation', 'cat_weapon', 'date', 'time', 'communityGroups', 'communities', 'districts', 'cantons', 'provinces', 'activeCommunity'));
     }
 
     /**

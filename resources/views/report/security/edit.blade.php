@@ -7,8 +7,8 @@
 @section('form', '/seguridad')
 
 @section('tabs')
-    <li class="tab">
-        <a data-toggle="tab" href="#involved_tab" aria-expanded="false"> <span class="visible-xs"><i class="fa fa-group fa-fw"></i></span> <span class="hidden-xs">Involucrados</span> </a>
+    <li id="li_tab4" class="tab">
+        <a data-toggle="tab" href="#tab4" aria-expanded="false"> <span class="visible-xs"><i class="fa fa-group fa-fw"></i></span> <span class="hidden-xs">Involucrados</span> </a>
     </li>
     
 @endsection
@@ -16,7 +16,10 @@
 @section('tab-content')
     <!-- Victims & Perpetrators w/ gender-->
 
-    <div id="involved_tab" class="tab-pane">
+    <div id="tab4" class="tab-pane">
+
+        @include ('report.layouts.progress_bar', ['progress' => 75])
+        
         <div class="col-md-12">
             <div class="form-group">
                 <label style="margin-left: 10px;">Víctimas</label>
@@ -78,6 +81,9 @@
 
                 @endforeach
             </div>
+        </div>
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-primary" style="width: 100%;" value="5" onclick="nextTab(this)">Siguiente</button>
         </div>
 
         <div class="clearfix"></div>

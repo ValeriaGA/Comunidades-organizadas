@@ -40,7 +40,7 @@
                 <div class="controls">
                   <select id="role" name="role" value="{{ old('role') }}" required>
                       @foreach ($roles as $role)
-                          <option value="{{$role->name}}">{{$role->name}}</option>
+                          <option value="{{$role->name}}" {{ $user->role_id == $role->id ? 'selected' : '' }}>{{$role->name}}</option>
                       @endforeach
                   </select>
 

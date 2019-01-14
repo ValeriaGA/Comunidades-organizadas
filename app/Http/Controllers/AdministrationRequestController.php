@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\CatRequestState;
 use App\CommunityRequest;
 use App\CommunityGroupRequest;
 
@@ -23,8 +24,9 @@ class AdministrationRequestController extends Controller
      */
     public function index()
     {
-        $community_requests = CommunityRequest::all();
-        $group_requests = CommunityGroupRequest::all();
+        $cat_state = CatRequestState::where('name', 'Pendiente')->first();
+        $community_requests = CommunityRequest::where('cat_request_state_id', $cat_state->id)->get();
+        $group_requests = CommunityGroupRequest::where('cat_request_state_id', $cat_state->id)->get();
         return view('administration.request.index', compact('community_requests', 'group_requests'));
     }
 }

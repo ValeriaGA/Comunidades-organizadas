@@ -17,10 +17,12 @@ class CreateCommunityGroupRequestsTable extends Migration
             $table->increments('id');
             $table->string('name', 255);
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('cat_request_state_id');
         });
 
         Schema::table('community_group_requests', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('cat_request_state_id')->references('id')->on('cat_request_state');
         });
     }
 

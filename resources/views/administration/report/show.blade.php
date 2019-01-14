@@ -156,11 +156,9 @@
                 @method('DELETE')
 
                 @csrf
-                <button name="{{ $report->id }}_delete" class="btn btn-danger" type="submit" form="report_form_{{ $report->id }}" title="Borrar la publicación">Eliminar</button>
+                <button name="{{ $report->id }}_delete" class="btn btn-danger" type="submit" form="report_form_{{ $report->id }}" title="Borrar la publicación">Borrar</button>
 
                 <button type=button name="{{ $report->id }}_edit" class="btn btn-warning" onclick="location.href = '/administracion/publicaciones/editar/{{ $report->id }}';" title="Editar la publicación">Editar</button>
-
-                <button type=button name="{{ $report->id }}_ignore" class="btn btn-success" onclick="location.href = '/administracion/reportes/ignorar/{{ $report->id }}';" title="Borrar todos los reportes sobre la publicación">Ignorar</button>
               </form>
               
             </div>
@@ -172,6 +170,7 @@
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Reportes sobre publicación</h5>
           </div>
+
           <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
               <thead>
@@ -193,13 +192,16 @@
                       @method('DELETE')
 
                       @csrf
-                      <button name="{{$alert->id}}_edit" class="btn btn-danger" type="submit" form="alert_form_{{ $alert->id }}">Eliminar</button>
+                      <button name="{{$alert->id}}_edit" class="btn btn-danger" type="submit" form="alert_form_{{ $alert->id }}">Ignorar</button>
                     </form>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
+            <div class="form-actions">
+              <button type=button name="{{ $report->id }}_ignore" class="btn btn-danger" onclick="location.href = '/administracion/reportes/ignorar/{{ $report->id }}';" title="Borrar todos los reportes sobre la publicación">Ignorar Todos</button>
+            </div>
           </div>
         </div>
       </div>

@@ -22,7 +22,7 @@
   <!--breadcrumbs-->
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/comunidades/grupos">Comunidades</a></a> <a href="#" class="current">Grupos</a>
+      <a href="/administracion" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="/administracion/comunidades/grupos">Comunidades</a></a> <a href="/administracion/comunidades/grupos" class="current">Grupos</a>
     </div>
   </div>
   <!--End-breadcrumbs-->
@@ -56,7 +56,6 @@
                 <label class="control-label">Provincia</label>
                 <div class="controls">
                   <select name="province" id="provinces" class="form-control">
-                      <option value="">Provincia</option>
                   </select>
                 </div>
               </div>
@@ -65,7 +64,6 @@
                 <label class="control-label">Canton</label>
                 <div class="controls">
                   <select name="canton" id="cantons" class="form-control">
-                      <option value="">Canton</option>
                   </select>
                 </div>
               </div>
@@ -74,7 +72,6 @@
                 <label class="control-label">Distrito</label>
                 <div class="controls">
                   <select name="district" id="districts" class="form-control">
-                      <option value="">Distrito</option>
                   </select>
                 </div>
               </div>
@@ -83,7 +80,6 @@
                 <label class="control-label">Comunidad</label>
                 <div class="controls">
                   <select multiple name="community[]" id="communities" class="form-control">
-                      <option value="">Comunidad</option>
                   </select>
                   <hr />
                   @if ($errors->has('community'))

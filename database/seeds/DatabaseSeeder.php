@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
         	CatTransportationTableSeeder::class,
         	CatWeaponTableSeeder::class,
         	CatEvidenceTableSeeder::class,
-            StatesTableSeeder::class
+            StatesTableSeeder::class,
+            CatRequestStateTableSeeder::class
         ]);
     }
 }

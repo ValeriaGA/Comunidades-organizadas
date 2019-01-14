@@ -136,7 +136,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <button type='submit' onclick="window.location.href='/reporte'" class="btn btn-success">Agregar reporte</button>
+                            @include ('layouts.add_report')
                         </div>
                     </div>
                 </div>
@@ -190,17 +190,14 @@
 
                           <label class="col-md-12">Provincia</label>
                           <select name="province" id="provinces" class="form-control">
-                              <option value="">Provincia</option>
                           </select>
 
                           <label class="col-md-12">Canton</label>
                           <select name="canton" id="cantons" class="form-control">
-                              <option value="">Canton</option>
                           </select>
 
                           <label class="col-md-12">Distrito</label>
                           <select name="district" id="districts" class="form-control">
-                              <option value="">Distrito</option>
                           </select>
 
                           <label class="col-md-12">Comunidad</label>

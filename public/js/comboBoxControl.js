@@ -4,8 +4,6 @@ function fillProvinces(){
       url: "/provincias",
       success: function(provinces){
         fillControl('provinces', provinces);
-        
-        fillCantons();
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
@@ -34,7 +32,6 @@ function fillProvinces(){
       dataType: "json",
       success: function(cantons){
         fillControl('cantons', cantons);
-        fillDistricts();
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
@@ -62,7 +59,6 @@ function fillProvinces(){
       dataType: "json",
       success: function(districts){
         fillControl('districts', districts);
-        //fillCommunities();
       },
       error:function(xhr, ajaxOptions, errorInfo)
       {
@@ -145,13 +141,12 @@ function fillProvinces(){
   }
   
   function fillControl(controlID, items){
-    
+    $('#' + controlID).append("<option value=''></option>")
     var json = JSON.parse(items);
     $.each(json, function(key, value){
       $('#' + controlID).append($('<option>', {
               value: value['id'],
               text : value['name']
-              
        }));
      });
 
@@ -206,7 +201,7 @@ function fillProvinces(){
     var community_groups = document.getElementById("community_groups");
     if (community_groups != null)
     {
-      $("#communities").on('click', function(){
+      $("#communities").on('change', function(){
           fillGroups();
 
       });
