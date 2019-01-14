@@ -242,6 +242,11 @@ $(document).ready(function(){
 
         });
     }
+
+    $("#noCommunitiesCheckbox").on('change', function()
+    {
+        
+    });
   
 });
   

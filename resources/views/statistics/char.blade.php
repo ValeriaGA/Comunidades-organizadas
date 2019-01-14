@@ -177,6 +177,15 @@
                   </select>
                   
               </div>
+              <br/>
+              <br/>
+
+              @if($anyGroup == null)
+                <input type="checkbox" name="noCommunitiesCheckbox" value="1" style="margin-left: 150px;"> Utilizar cualquier Grupo
+              @else
+                <input type="checkbox" name="noCommunitiesCheckbox" value="1" style="margin-left: 150px;" checked> Utilizar cualquier Grupo
+              @endif
+
 
           </div>
           <br/>
