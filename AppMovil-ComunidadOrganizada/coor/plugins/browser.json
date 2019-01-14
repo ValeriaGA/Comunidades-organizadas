@@ -1,15 +1,24 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.proyecto.comunidadorganizada"
     },
-    "config_munge": {
-        "files": {}
+    "cordova-sqlite-legacy-build-support": {
+      "PACKAGE_NAME": "com.proyecto.comunidadorganizada"
     },
-    "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.proyecto.comunidadorganizada"
-        }
+    "uk.co.workingedge.cordova.plugin.sqliteporter": {
+      "PACKAGE_NAME": "com.proyecto.comunidadorganizada"
     },
-    "dependent_plugins": {}
+    "cordova-plugin-sqlite-2": {
+      "PACKAGE_NAME": "com.proyecto.comunidadorganizada"
+    }
+  },
+  "dependent_plugins": {}
 }
