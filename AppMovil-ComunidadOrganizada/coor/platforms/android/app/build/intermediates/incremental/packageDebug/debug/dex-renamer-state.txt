@@ -1,0 +1,4 @@
+#Fri Jan 11 21:58:29 CST 2019
+base.0=C\:\\xampp\\htdocs\\Comunidades-organizadas\\AppMovil-ComunidadOrganizada\\coor\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex

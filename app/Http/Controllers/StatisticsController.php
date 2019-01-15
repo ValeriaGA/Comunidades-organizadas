@@ -187,8 +187,40 @@ class StatisticsController extends Controller
      */
     public function reports_per_province()
     {
-        
-        return view('statistics.reports_per_province', compact('example'));
+        $communitiesPerProvince = DB::table('communities')
+                                        -> select('provinces.id as provinceID')
+                                        -> join('districts', 'districts.id', '=', 'communities.district_id')
+                                        -> join('cantons', 'cantons.id', '=', 'districts.canton_id')
+                                        -> join('provinces', 'provinces.id', '=', 'cantons.province_id')
+                                        -> selectRaw('count(communities.id) as communitiesNumber')
+                                        -> groupBy('provinceID')
+                                        -> get();
+
+        $provinces = Province::get();
+
+        $count_per_province = array();
+
+        foreach ($provinces as $province) {
+            $found = false;
+            foreach ($communitiesPerProvince as $count_type) {
+                if (!$found)
+                {
+                    if ($province->id == $count_type->provinceID) {
+                        $sub_list=array($province->id,$count_type->communitiesNumber);
+                        array_push($count_per_province, $sub_list);
+                        $found = true;
+                    }
+                }
+            }
+            if (!$found)
+            {
+                
+                $sub_list=array($province->id, 0);
+                array_push($count_per_province, $sub_list);
+            }
+        }
+
+        return view('statistics.reports_per_province', compact('count_per_province'));
     }
 
 
@@ -241,9 +273,10 @@ class StatisticsController extends Controller
             "selectedGroup" => $selectedGroup
         );
 
+        $anyGroup = null;
         return view('statistics.char', compact('dic', 'date', 'selectedDate', 
                                 'provinces', 'selectedProcedence', 'genders', 'selectedGender',
-                                'selectedItems'));
+                                'selectedItems', 'anyGroup'));
     }
 
 
@@ -273,9 +306,12 @@ class StatisticsController extends Controller
         $selectedCommunityID = request('community');
         $selectedGroupID = request('group');
 
+        $anyGroup = request('noCommunitiesCheckbox');
+
+
         $genders = Gender::get();
 
-        if ($selectedCommunityID == null && $selectedGroupID == null)
+        if (($selectedCommunityID == null && $selectedGroupID == null) || $anyGroup != null)
         {
             $month_qty = DB::select( 
                 DB::raw(
@@ -340,7 +376,7 @@ class StatisticsController extends Controller
 
         return view('statistics.char', compact('dic', 'date', 'selectedDate', 
                                 'selectedProcedence', 'genders', 'selectedGender',
-                                'provinces', 'selectedItems'));
+                                'provinces', 'selectedItems', 'anyGroup'));
     }
     
 

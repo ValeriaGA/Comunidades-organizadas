@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\xampp\htdocs\Comunidades-organizadas\AppMovil-ComunidadOrganizada\coor\platforms\android\app\build\intermediates\transforms\desugar\release\0.jar"
+        jumboMode="false"
+        min-sdk-version="19"
+        optimize="true"
+        revision="28.0.3"
+        sha1="d7e08739877282b6b9d57d6130408709358fc6c1">
+        <dex dex="C:\xampp\htdocs\Comunidades-organizadas\AppMovil-ComunidadOrganizada\coor\platforms\android\app\build\intermediates\transforms\preDex\release\1.jar" />
+    </item>
+
+</items>

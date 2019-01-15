@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+    <title>Comunidad organizada</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--<link rel="stylesheet" href="../www/css/jquery.mobile-1.1.1.min.css" />
+    <script src="../www/js/jquery-1.8.2.min.js"></script>
+    <script src="../www/js/jquery.mobile-1.1.1.min.js"></script>-->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+
+</head> 
+<body> 
+
+<div id="login_page" data-role="page">
+   
+    <div data-role="header">
+        <h1>Comunidad organizada</h1>
+    </div>
+    
+    <div data-role="content">
+        <form id="login_form">
+            <input type="email" name="email" id="email" value="" 
+                   placeholder="Correo electronico" required />
+            <input type="password" name="password" id="password" value="" 
+                   placeholder="Contraseña" required />
+            <a href="" id="loginButton" data-role="button" data-theme="b">Iniciar sesión</a> 
+            <a href="signup.html" data-role="button" data-theme="a" id="registerButton" >Registrarse</a> 
+        </form>
+    </div> 
+       
+</div>
+
+       <script>
+        $(document).ready(function() {
+            var url = "http://192.168.1.5/Comunidades-organizadas/AppMovil-ComunidadOrganizada/coor/www/php/auth.php";
+            
+            $("#loginButton").click(function(){
+                var email= $.trim($("#email").val());
+                var password= $.trim($("#password").val());
+
+                $("#status").text("Authenticating...");
+                var loginString ="email="+email+"&password="+password+"&login=";
+                $.ajax({
+                    type: "POST",crossDomain: true, cache: false,
+                    url: url,
+                    data: loginString,
+                    success: function(data){
+                        if(data == "success") {
+                            $("#status").text("Login Success..!");
+                            localStorage.loginstatus = "true";
+                            window.location.href = "reports.html";
+                        }
+                        else if(data == "error")
+                        {
+                            $("#status").text("Login Failed..!");
+                        }
+                    }
+                });
+            });
+        });
+
+    </script>
+    
+</body>
+</html>
