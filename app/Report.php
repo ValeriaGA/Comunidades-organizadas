@@ -58,15 +58,14 @@ class Report extends Model
         return $this->hasOne(SecurityReport::class, 'report_id', 'id');
     }
 
-    public function scopeLocation($query, $param)
+    public function scopeGroupName($query, $type)
     {
-        // old
-        // return $query->where('location', 'LIKE', '%' . $param . '%');
+        return $query->where('type', $type);
     }
 
-    public function scopeDate($query, $param)
+    public function scopeDate($query, $date)
     {
-        return $query->where('date', '=', $param);
+        return $query->where('date', '=', $date);
     }
 
     public static function incidentsOverTime($year)

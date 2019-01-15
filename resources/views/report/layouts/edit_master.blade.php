@@ -131,7 +131,7 @@
                                     @include ('report.layouts.progress_bar', ['progress' => 5])
 
                                     <div class="form-group">
-                                        <label class="col-md-12">Título</label>
+                                        <label class="col-md-12">Título de publicación</label>
                                         <div class="col-md-12">
                                             <input type="text" placeholder="" class="form-control form-control-line" name="title" value="{{ $report->title }}" required> 
                                         </div>

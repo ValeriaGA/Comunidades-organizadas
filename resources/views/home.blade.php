@@ -86,11 +86,18 @@
                     <div class="col-sm-4">
                         <div class="white-box">
                             <div class="panel panel-primary">
-                                <div class="panel-heading"> Filtrar por Grupo de Comunidades
+                                <div class="panel-heading"> Filtrar publicaciones
                                 </div>
                                 <form class="form-horizontal form-material" action="/home/comunidades" method="post">
                                     {{ csrf_field() }}
                                     <div class="panel-body">
+                                        <div class="form-group">
+                                            <label class="col-md-12">Nombre del grupo de comunidades</label>
+                                            <div class="col-md-12">
+                                                <input class="form-control" name="community_group_name">
+                                            </div>
+                                        </div>
+
                                         <div class="form-group">
                                             <label class="col-md-12">Provincia</label>
                                             <div class="col-md-12">
@@ -126,7 +133,7 @@
                                         <div class="form-group">
                                             <label class="col-md-12">Grupos de Comunidades</label>
                                             <div class="col-md-12">
-                                                <select name="community_group" id="community_groups" class="form-control" required>
+                                                <select name="community_group" id="community_groups" class="form-control">
                                                 </select>
                                             </div>
                                         </div>

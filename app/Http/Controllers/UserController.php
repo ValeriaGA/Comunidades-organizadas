@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Gender;
+use App\CommunityAdmin;
 use Illuminate\Pagination\Paginator as Paginator;
 
 use File;
@@ -30,7 +31,16 @@ class UserController extends Controller
 
         $news = auth()->user()->fetchNews();
 
-        $communities = auth()->user()->communityAdmin->community;
+        $communities = [];
+        if (auth()->user()->role->name == 'Administrador de Comunidad')
+        {
+            $communityAdmin = CommunityAdmin::where('user_id', auth()->user()->id)->first();
+            if ($communityAdmin != null)
+            {
+                dd($communityAdmin);
+                $communities = $communityAdmin->community;
+            }
+        }
 
         $community_requests = auth()->user()->communityRequest;
 
