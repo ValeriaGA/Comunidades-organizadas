@@ -37,7 +37,6 @@ class UserController extends Controller
             $communityAdmin = CommunityAdmin::where('user_id', auth()->user()->id)->first();
             if ($communityAdmin != null)
             {
-                dd($communityAdmin);
                 $communities = $communityAdmin->community;
             }
         }
