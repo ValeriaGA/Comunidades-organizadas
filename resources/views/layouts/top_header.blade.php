@@ -36,7 +36,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     @if (isset(Auth::user()->avatar_path) && !is_null(Auth::user()->avatar_path))
-                                        <img src="{{ asset('users/'.Auth::user()->id.'/'.Auth::user()->avatar_path) }}" alt="user" width="80" class="rounded">
+                                        <img src="{{ asset('users/'.Auth::user()->id.'/'.Auth::user()->avatar_path) }}" style="padding-left:5px;" alt="user" width="80" class="rounded">
                                     @else
                                         <img src="{{ asset('plugins/images/users/profile.png') }}" style="padding-left:5px;" alt="user" width="80" class="rounded">
                                     @endif
