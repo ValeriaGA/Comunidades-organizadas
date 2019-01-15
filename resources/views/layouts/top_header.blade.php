@@ -31,21 +31,21 @@
                         <b class="hidden-xs">{{ Auth::user()->person->name }}</b>
                      </a>
 
-                    <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY" style="width: 280px">
+                    <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY" style="width: 280px;background-color: #2f323e;">
                         <div>
                             <div class="row">
                                 <div class="col-md-4">
                                     @if (isset(Auth::user()->avatar_path) && !is_null(Auth::user()->avatar_path))
                                         <img src="{{ asset('users/'.Auth::user()->id.'/'.Auth::user()->avatar_path) }}" alt="user" width="80" class="rounded">
                                     @else
-                                        <img src="{{ asset('plugins/images/users/profile.png') }}" alt="user" width="80" class="rounded">
+                                        <img src="{{ asset('plugins/images/users/profile.png') }}" style="padding-left:5px;" alt="user" width="80" class="rounded">
                                     @endif
                                 </div>
                                 <div class="col-md-8">
-                                    <div>
-                                        <h4 class="mb-0">{{ Auth::user()->person->name }} {{ Auth::user()->person->last_name }} {{ Auth::user()->person->second_last_name }}</h4>
+                                    <div class="col-md-12">
+                                        <h4 class="mb-0" style="color:white">{{ Auth::user()->person->name }} {{ Auth::user()->person->last_name }} {{ Auth::user()->person->second_last_name }}</h4>
                                     </div>
-                                    <div>
+                                    <div class="col-md-12">
                                         <p class=" mb-0 text-muted">{{ Auth::user()->email }}</p>
                                     </div>
                                     
@@ -53,35 +53,32 @@
                             </div>
                             <hr/>
                             @if (Auth::user()->communityAdmin)
-                            <div>
-                                <small>&nbsp;Comunidad Activa</small>
-                            </div>
-                                <div>
-                                    <div class="col-md-12">
-                                        <form method="POST" action="/active-community">
-                                            @method('PATCH')
-                                            @csrf
-                                            <select name="community" onChange="this.form.submit()" style="width:100%">
-                                                <option value="" disabled selected style="display:none;">Seleccionar Comunidad</option>
-                                                @foreach (Auth::user()->communityAdmin->community as $myCommunities)
-                                                    <option value="{{$myCommunities->id}}" {{ Auth::user()->communityAdmin->active_community_id == $myCommunities->id ? 'selected' : ' '}}>{{$myCommunities->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </form>
-                                    </div>
+                            <div class="row" style="padding-left:5px;padding-right:5px;">
+                                <div class="col-md-12">
+                                    <small style="color:white">&nbsp;Comunidad Activa</small>
                                 </div>
+                                <div class="col-md-12">
+                                    <form method="POST" action="/active-community">
+                                        @method('PATCH')
+                                        @csrf
+                                        <select name="community" class="form-control" onChange="this.form.submit()" style="width:100%">
+                                            <option value="" disabled selected style="display:none;">Seleccionar Comunidad</option>
+                                            @foreach (Auth::user()->communityAdmin->community as $myCommunities)
+                                                <option value="{{$myCommunities->id}}" {{ Auth::user()->communityAdmin->active_community_id == $myCommunities->id ? 'selected' : ' '}}>{{$myCommunities->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </form>
+                                </div>
+                                <br />
+                            </div>
                             @endif
                             <hr/>
-                            <div>
-                                <div class="col-md-6">
-                                    <div>
-                                        <a href="/user" class="btn btn-info waves-effect waves-light btn-outline" style="width:100%"><span class="btn-label"><i class="fa fa-user"></i></span>Perfil</a>
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-6" style="left:5px;">
+                                    <a href="/user" class="btn btn-info waves-effect waves-light btn-outline" style="width:100%"><span class="btn-label"><i class="fa fa-user"></i></span>Perfil</a>
                                 </div>
-                                <div class="col-md-6">
-                                    <div>
-                                        <a href="/logout" class="btn btn-danger waves-effect waves-light btn-outline" style="width:100%"><span class="btn-label"><i class="fa fa-sign-out"></i></span>Salir</a>
-                                    </div>
+                                <div class="col-md-6" style="right:5px;">
+                                    <a href="/logout" class="btn btn-danger waves-effect waves-light btn-outline" style="width:100%"><span class="btn-label"><i class="fa fa-sign-out"></i></span>Salir</a>
                                 </div>
                             </div>
                         </div>
