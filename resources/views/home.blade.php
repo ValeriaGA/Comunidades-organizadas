@@ -88,14 +88,21 @@
                             <div class="panel panel-primary">
                                 <div class="panel-heading"> Filtrar publicaciones
                                 </div>
-                                <form class="form-horizontal form-material" action="/home/comunidades" method="post">
+                                <form class="form-horizontal form-material" action="/home" method="post">
                                     {{ csrf_field() }}
                                     <div class="panel-body">
                                         <div class="form-group">
                                             <label class="col-md-12">Nombre del grupo de comunidades</label>
                                             <div class="col-md-12">
-                                                <input class="form-control" name="community_group_name">
+                                                <input class="form-control" name="community_group_name" value="{{ old('community_group_name') }}">
                                             </div>
+                                            @if ($errors->has('community_group_name'))
+                                                <div class="col-md-12">
+                                                    <div class="alert alert-danger" role="alert" style=" padding:5px;">
+                                                        <small>{{ $errors->first('community_group_name') }}</small>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
 
                                         <div class="form-group">
