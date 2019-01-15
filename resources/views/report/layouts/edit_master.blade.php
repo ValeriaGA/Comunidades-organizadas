@@ -120,7 +120,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
-                                        <button type="button" class="btn btn-primary" style="width: 100%;" value="2" onclick="nextTab(this)">Siguiente</button>
+                                        <button type="button" class="btn btn-success" style="width: 100%;" value="2" onclick="nextTab(this)">Siguiente</button>
                                     </div>
                                 </div>
 
@@ -179,7 +179,7 @@
                                     </div>
 
                                     <div class="col-sm-12">
-                                        <button type="button" class="btn btn-primary" style="width: 100%;" value="3" onclick="nextTab(this)">Siguiente</button>
+                                        <button type="button" class="btn btn-success" style="width: 100%;" value="3" onclick="nextTab(this)">Siguiente</button>
                                     </div>
                                 </div>
 
@@ -248,7 +248,7 @@
                                     <div class="clearfix"></div>
 
                                     <div class="col-sm-12">
-                                        <button type="button" class="btn btn-primary" style="width: 100%;" value="4" onclick="nextTab(this)">Siguiente</button>
+                                        <button type="button" class="btn btn-success" style="width: 100%;" value="4" onclick="nextTab(this)">Siguiente</button>
                                     </div>
                                 </div>
 
