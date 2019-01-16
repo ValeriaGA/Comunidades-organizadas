@@ -77,9 +77,7 @@ class StatisticsController extends Controller
                 array_push($count_per_type2, $sub_list);
             }
         }
-       // foreach ($count_per_type2 as $count_type) {
-       //  echo '<br/>Name: '.$count_type[0].'<br/>Count: '.$count_type[1];
-       // }
+   
         return view('statistics.securityBar', compact('first_date', 'final_date','types','count_per_type2'));
     }
 
