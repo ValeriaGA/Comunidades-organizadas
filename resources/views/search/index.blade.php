@@ -145,7 +145,7 @@
                 <div class="row">
                   <div class="col-sm-2">
                       <div class="white-box">
-                        <p class="box-title"><a class="btn btn-primary" data-toggle="collapse" href="#collapseLegend" role="button" aria-expanded="false" aria-controls="collapseLegend">Leyenda</a></p>
+                        <p class="box-title"><a class="btn btn-info" data-toggle="collapse" href="#collapseLegend" role="button" aria-expanded="false" aria-controls="collapseLegend">Leyenda</a></p>
                         <div class="collapse in" id="collapseLegend">
                           <div class="card card-body" id="legend">
                           </div>
@@ -210,7 +210,7 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="white-box">
-                                <button class="btn btn-success" style="width: 100%;">Filtrar</button>
+                                <button class="btn btn-primary" style="width: 100%;">Filtrar</button>
                         </div>
                     </div>
                   </form>

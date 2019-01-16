@@ -43,7 +43,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading"> Publicaciones 
                                 <div class="btn-group pull-right">
-                                    <button aria-expanded="false" data-toggle="dropdown" class="btn btn-info dropdown-toggle waves-effect waves-light" type="button"><span class="btn-label"><i class="fa fa-sort-amount-desc m-l-5"></i></span> Filtros <span class="caret"></span></button>
+                                    <button aria-expanded="false" data-toggle="dropdown" class="btn btn-primary dropdown-toggle waves-effect waves-light" type="button"><span class="btn-label"><i class="fa fa-sort-amount-desc m-l-5"></i></span> Filtros <span class="caret"></span></button>
                                     <ul role="menu" class="dropdown-menu animated flipInX">
                                         <li><a href="/home/recientes">Más recientes</a></li>
                                         <!-- <li><a href="/home/populares">Más agradecidas</a></li> -->
@@ -86,11 +86,25 @@
                     <div class="col-sm-4">
                         <div class="white-box">
                             <div class="panel panel-primary">
-                                <div class="panel-heading"> Filtrar por Grupo de Comunidades
+                                <div class="panel-heading"> Filtrar publicaciones
                                 </div>
-                                <form class="form-horizontal form-material" action="/home/comunidades" method="post">
+                                <form class="form-horizontal form-material" action="/home" method="post">
                                     {{ csrf_field() }}
                                     <div class="panel-body">
+                                        <div class="form-group">
+                                            <label class="col-md-12">Nombre del grupo de comunidades</label>
+                                            <div class="col-md-12">
+                                                <input class="form-control" name="community_group_name" value="{{ old('community_group_name') }}">
+                                            </div>
+                                            @if ($errors->has('community_group_name'))
+                                                <div class="col-md-12">
+                                                    <div class="alert alert-danger" role="alert" style=" padding:5px;">
+                                                        <small>{{ $errors->first('community_group_name') }}</small>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+
                                         <div class="form-group">
                                             <label class="col-md-12">Provincia</label>
                                             <div class="col-md-12">
@@ -126,7 +140,7 @@
                                         <div class="form-group">
                                             <label class="col-md-12">Grupos de Comunidades</label>
                                             <div class="col-md-12">
-                                                <select name="community_group" id="community_groups" class="form-control" required>
+                                                <select name="community_group" id="community_groups" class="form-control">
                                                 </select>
                                             </div>
                                         </div>
@@ -134,7 +148,7 @@
                                     <div class="panel-footer">
                                         <div class="form-group">
                                             <div class="col-sm-12">
-                                                <button class="btn btn-success pull-right">Filtrar</button>
+                                                <button class="btn btn-primary pull-right">Filtrar</button>
                                             </div>
                                         </div>
 

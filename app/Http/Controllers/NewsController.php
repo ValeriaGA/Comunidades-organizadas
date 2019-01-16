@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreNewsReport;
+use App\CommunityAdmin;
 use App\CommunityGroup;
 use App\Community;
 use App\District;
@@ -61,7 +62,8 @@ class NewsController extends Controller
         $date = $dt->format('Y-m-d');
         $time = $dt->format('H:i:s');
 
-        if (Auth::user()->communityAdmin->active_community_id != NULL)
+        $communityAdmin = CommunityAdmin::where('user_id', auth()->user()->id)->first();
+        if (($communityAdmin != NULL) && ($communityAdmin->active_community_id != NULL))
         {
             $activeCommunity = Auth::user()->communityAdmin->activeCommunity;
             $communityGroups = $activeCommunity->communityGroup;

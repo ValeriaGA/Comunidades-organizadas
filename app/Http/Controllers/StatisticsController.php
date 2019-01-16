@@ -77,9 +77,7 @@ class StatisticsController extends Controller
                 array_push($count_per_type2, $sub_list);
             }
         }
-       // foreach ($count_per_type2 as $count_type) {
-       //  echo '<br/>Name: '.$count_type[0].'<br/>Count: '.$count_type[1];
-       // }
+   
         return view('statistics.securityBar', compact('first_date', 'final_date','types','count_per_type2'));
     }
 
@@ -125,7 +123,12 @@ class StatisticsController extends Controller
         }
 
 
-      return view('statistics.genderPie', compact('types','count_per_gender','total','selected_incident_name'));
+        $date = '2019';
+        $selectedStartDate = '2019';
+        $selectedEndDate = '2019';
+        return view('statistics.genderPie', compact('types','count_per_gender','total',
+                                                'selected_incident_name', 
+                                                'date', 'selectedStartDate', 'selectedEndDate'));
     }
 
      /**
@@ -142,7 +145,9 @@ class StatisticsController extends Controller
         
 
         $id = request('delitos');
-
+        $date = '2019';
+        $selectedStartDate = request('startYear');
+        $selectedEndDate = request('endYear');
 
         $selected_incident_name = SubCatReport::select('name')
                                             -> where('id', $id)
@@ -156,6 +161,8 @@ class StatisticsController extends Controller
                         -> join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
                         -> where('sub_cat_report.id', $id)
                         -> selectRaw('count(victims.id) as victimsNumber')
+                        -> whereYear('reports.date', '>=', $selectedStartDate)
+                        -> whereYear('reports.date', '<=', $selectedEndDate)
                         -> groupBy('genders.name')
                         -> get();
 
@@ -165,6 +172,8 @@ class StatisticsController extends Controller
         -> join('reports', 'security_reports.report_id', '=', 'reports.id')
         -> join('sub_cat_report', 'reports.sub_cat_report_id', '=', 'sub_cat_report.id')
         -> where('sub_cat_report.id', $id)
+        -> whereYear('reports.date', '>=', $selectedStartDate)
+        -> whereYear('reports.date', '<=', $selectedEndDate)
         -> selectRaw('count(victims.id) as victimsNumber')
         -> first() -> victimsNumber;
        
@@ -175,8 +184,9 @@ class StatisticsController extends Controller
             $count_per_gender[$genderCount -> gender] = $genderCount -> victimsNumber;
         }
 
-
-      return view('statistics.genderPie', compact('types','count_per_gender','total','selected_incident_name'));
+        return view('statistics.genderPie', compact('types','count_per_gender','total',
+                                                        'selected_incident_name', 
+                                                        'date', 'selectedStartDate', 'selectedEndDate'));
     }
 
 

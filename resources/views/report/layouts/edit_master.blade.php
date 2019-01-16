@@ -120,7 +120,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
-                                        <button type="button" class="btn btn-primary" style="width: 100%;" value="2" onclick="nextTab(this)">Siguiente</button>
+                                        <button type="button" class="btn btn-success" style="width: 100%;" value="2" onclick="nextTab(this)">Siguiente</button>
                                     </div>
                                 </div>
 
@@ -131,7 +131,7 @@
                                     @include ('report.layouts.progress_bar', ['progress' => 5])
 
                                     <div class="form-group">
-                                        <label class="col-md-12">Título</label>
+                                        <label class="col-md-12">Título de publicación</label>
                                         <div class="col-md-12">
                                             <input type="text" placeholder="" class="form-control form-control-line" name="title" value="{{ $report->title }}" required> 
                                         </div>
@@ -179,7 +179,7 @@
                                     </div>
 
                                     <div class="col-sm-12">
-                                        <button type="button" class="btn btn-primary" style="width: 100%;" value="3" onclick="nextTab(this)">Siguiente</button>
+                                        <button type="button" class="btn btn-success" style="width: 100%;" value="3" onclick="nextTab(this)">Siguiente</button>
                                     </div>
                                 </div>
 
@@ -248,7 +248,7 @@
                                     <div class="clearfix"></div>
 
                                     <div class="col-sm-12">
-                                        <button type="button" class="btn btn-primary" style="width: 100%;" value="4" onclick="nextTab(this)">Siguiente</button>
+                                        <button type="button" class="btn btn-success" style="width: 100%;" value="4" onclick="nextTab(this)">Siguiente</button>
                                     </div>
                                 </div>
 
