@@ -16,3 +16,9 @@ php artisan db:seed
 
 #Pruebas
 php artisan dusk:install
+
+
+#Localizacion al español
+composer require laraveles/spanish
+php artisan laraveles:install-lang
+	# por ultimo en el config/app.php: 'locale' => 'es'

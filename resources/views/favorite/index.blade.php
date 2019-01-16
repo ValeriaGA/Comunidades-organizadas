@@ -43,7 +43,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading"> Publicaciones 
                                 <div class="btn-group pull-right">
-                                    <button aria-expanded="false" data-toggle="dropdown" class="btn btn-info dropdown-toggle waves-effect waves-light" type="button"><span class="btn-label"><i class="fa fa-sort-amount-desc m-l-5"></i></span> Filtros <span class="caret"></span></button>
+                                    <button aria-expanded="false" data-toggle="dropdown" class="btn btn-primary dropdown-toggle waves-effect waves-light" type="button"><span class="btn-label"><i class="fa fa-sort-amount-desc m-l-5"></i></span> Filtros <span class="caret"></span></button>
                                     <ul role="menu" class="dropdown-menu animated flipInX">
                                         <li><a href="/favoritas/recientes">Más recientes</a></li>
                                         <!-- <li><a href="/home/populares">Más agradecidas</a></li> -->
@@ -105,7 +105,7 @@
                                     <div class="panel-footer">
                                         <div class="form-group">
                                             <div class="col-sm-12">
-                                                <button class="btn btn-success pull-right">Filtrar</button>
+                                                <button class="btn btn-primary pull-right">Filtrar</button>
                                             </div>
                                         </div>
 
