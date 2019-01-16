@@ -16,7 +16,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/recientes', 'HomeController@showRecent');
 // Route::get('/home/populares', 'HomeController@showPopular');
-Route::post('/home/comunidades', 'HomeController@show');
+Route::post('/home', 'HomeController@show');
 
 Route::get('/logout', 'SessionsController@destroy');
 
