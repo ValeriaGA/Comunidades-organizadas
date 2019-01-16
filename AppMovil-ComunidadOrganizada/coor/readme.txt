@@ -7,6 +7,9 @@ https://www.000webhost.com/cpanel-login
 Correo: valeriaga1000@gmail.com
 contraseña: 1996valemga
 
+User:comunidadorganizada
+Password:comunidadorganizada
+
 Es alojado aqui porque phonegap no lee php asi que se hace la coneccion a la url del documento php
 
 Base de datos mysql:  id8483376_comunidadesorganizadas

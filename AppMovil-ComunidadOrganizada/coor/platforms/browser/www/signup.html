@@ -4,19 +4,22 @@
     <title>Comunidad organizada</title> 
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="../jquery.mobile-1.1.1.min.css" />
-    <script src="../jquery-1.8.2.min.js"></script>
-    <script src="../jquery.mobile-1.1.1.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
    <div id="signup_page" data-role="page">
     
         <div data-role="header">
             <h1>Registrarse</h1>
-            <a href="" data-rel="back">Atras</a>
+            <a href="index.html" data-rel="back">Atras</a>
         </div>
         <div data-role="content">
             <form id="signup_form">
+             
+              <div id="status"></div>
+              
                <div class="ui-field-contain">
                <label for="email">Correo</label>
                 <input type="email" name="email" id="email" value="" placeholder="ejemplo@gmail.com" required />
@@ -75,22 +78,33 @@
     </div>
     <script>
         $(document).ready(function() {
-            var url = "http://192.168.1.5/Comunidades-organizadas/AppMovil-ComunidadOrganizada/coor/www/php/auth.php";
+            var url = "https://comunidadorganizada.000webhostapp.com/register.php";
+            //var url = "http://localhost/Comunidades-organizadas/AppMovil-ComunidadOrganizada/coor/www/php/register.php";
             
             
             $("#registerButton").click(function(){
                 var email= $.trim($("#email").val());
                 var password= $.trim($("#password").val());
+                var new_username = $.trim($("#new_username").val());
+                var first_lastname = $.trim($("#first_lastname").val());
+                var second_lastname = $.trim($("#second_lastname").val());
+                var official_id = $.trim($("#official_id").val());
+                var gender = $.trim($("#gender").val());
+                var foreigner = $.trim($("#foreigner").val());
+                var photo = $.trim($("#photo").val());
 
                 $("#status").text("Creating New Account...");
-                var dataString="email="+email+"&password="+password+"&register=";
+                var dataString="email="+email+"&password="+password+"&new_username"+new_username+"&first_lastname"+first_lastname+"&second_lastname"+second_lastname+"&official_id"+official_id+"&gender"+gender+"&foreigner"+foreigner+"&photo"+photo+"&register=";
                 $.ajax({
                     type: "POST",crossDomain: true, cache: false,
                     url: url,
                     data: dataString,
                     success: function(data){
+                        $("#status").text(data);
                         if(data == "success")
                             $("#status").text("Registered success");
+                            localStorage.loginstatus = "true";
+                            window.location.href = "index.html";
                         else if( data == "exist")
                             $("#status").text("Account is already there");
                         else if(data == "error")

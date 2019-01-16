@@ -30,19 +30,21 @@
             <a href="" id="loginButton" data-role="button" data-theme="b">Iniciar sesión</a> 
             <a href="signup.html" data-role="button" data-theme="a" id="registerButton" >Registrarse</a> 
         </form>
-    </div> 
+    </div>
+      <div id="status"></div> 
        
 </div>
 
        <script>
         $(document).ready(function() {
             var url = "https://comunidadorganizada.000webhostapp.com/auth.php";
+            //var url = "http://localhost/Comunidades-organizadas/AppMovil-ComunidadOrganizada/coor/www/php/auth.php";
             
             $("#loginButton").click(function(){
                 var email= $.trim($("#email").val());
                 var password= $.trim($("#password").val());
 
-                $("#status").text("Authenticating...");
+                $("#status").text("Autenticando...");
                 var loginString ="email="+email+"&password="+password+"&login=";
                 $.ajax({
                     type: "POST",crossDomain: true, cache: false,
@@ -50,13 +52,13 @@
                     data: loginString,
                     success: function(data){
                         if(data == "success") {
-                            $("#status").text("Login Success..!");
+                            $("#status").text("Inicio de sesion con exito..!");
                             localStorage.loginstatus = "true";
                             window.location.href = "reports.html";
                         }
                         else if(data == "error")
                         {
-                            $("#status").text("Login Failed..!");
+                            $("#status").text("Credenciales incorrectos: Fallo el inicio de sesión..!");
                         }
                     }
                 });
