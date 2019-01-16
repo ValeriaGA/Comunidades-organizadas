@@ -40,6 +40,8 @@
                           xkey: 'x',
                           ykeys: ['num'],
                           labels: ['Num'],
+                          yLabelFormat: function(y){ return y != Math.round(y)?'':y; },
+                          numLines: data_array_x.length,
                           barColors: function (row, series, type) {
                             if (type === 'bar') {
                               var red = Math.ceil(255 * row.y / this.ymax);
