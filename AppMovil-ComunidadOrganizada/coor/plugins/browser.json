@@ -7,6 +7,9 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-plugin-sqlite-2": {
+      "PACKAGE_NAME": "com.proyecto.comunidadorganizada"
+    },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.proyecto.comunidadorganizada"
     },
@@ -14,9 +17,6 @@
       "PACKAGE_NAME": "com.proyecto.comunidadorganizada"
     },
     "uk.co.workingedge.cordova.plugin.sqliteporter": {
-      "PACKAGE_NAME": "com.proyecto.comunidadorganizada"
-    },
-    "cordova-plugin-sqlite-2": {
       "PACKAGE_NAME": "com.proyecto.comunidadorganizada"
     }
   },
