@@ -6,7 +6,12 @@
                 <div class="row">
                     <div class="col-md-10">
                         <div class="white-box analytics-info">
-                        <h2>Proporción de mujeres y hombres víctimas</h2>
+                        @if ($selectedStartDate == $selectedEndDate)
+                          <h2>Proporción de mujeres y hombres víctimas en el año {{$selectedStartDate}}</h2>
+                        @else
+                          <h2>Proporción de mujeres y hombres víctimas entre {{$selectedStartDate}} y {{$selectedEndDate}}</h2>
+                        @endif
+
                         <a>Seleccione un delito:</a>
                         <form class="form-horizontal form-material" action="/statistics/genero"  method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -21,7 +26,34 @@
                             
                             @endforeach
                           </select>
-                          
+
+                          <br/>
+                          <br/>
+                          <a>Seleccione un rango de años:</a>
+                          <br/>
+                          Desde:
+                          <select style="background-color: white; width: 100px;" name="startYear">
+                          @for($i = 0; $i < 10; ++$i)
+                            @if(($date - $i) == $selectedStartDate)
+                              <option value="{{$date - $i}}" selected>{{$date - $i}}</option>
+                            @else
+                            <option value="{{$date - $i}}">{{$date - $i}}</option>
+                            @endif 
+                          @endfor
+                          </select>
+
+                          <br/>
+                          <br/>
+                          Hasta:
+                          <select style="background-color: white; width:105px;" name="endYear">
+                          @for($i = 0; $i < 10; ++$i)
+                            @if(($date - $i) == $selectedEndDate)
+                              <option value="{{$date - $i}}" selected>{{$date - $i}}</option>
+                            @else
+                            <option value="{{$date - $i}}">{{$date - $i}}</option>
+                            @endif 
+                          @endfor
+                          </select>
                           <div class="form-group">
                               <div class="col-sm-12">
                               <br/><button class="btn btn-success">Actualizar</button>
