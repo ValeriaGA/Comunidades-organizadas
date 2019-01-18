@@ -41,10 +41,42 @@
         <div data-role="footer" data-position="fixed">
             <div data-role="navbar" data-iconpos="bottom" >
                 <ul >
-                    <li><a href="" data-icon="check" data-theme="b">Publicar</a></li>  
+                    <li><a id="publicate_bottom" href="" data-icon="" data-theme="b">Publicar</a></li>  
                 </ul>
             </div>
         </div> 
     </div>
+    <script>
+        $(document).ready(function() {
+            //var url = "https://comunidadorganizada.000webhostapp.com/new_news.php";
+            var url = "http://localhost/Comunidades-organizadas/AppMovil-ComunidadOrganizada/coor/www/php/new_news.php";
+            
+            $("#publicate_bottom").click(function(){
+                var title= $.trim($("#email").val());
+                var description= $.trim($("#description").val());
+                var community= $.trim($("#community").val());
+
+                $("#status").text("Publicando...");
+                var newsString ="title="+title+"&description="+description+"&community="+community+"&news=";
+                $.ajax({
+                    type: "POST",crossDomain: true, cache: false,
+                    url: url,
+                    data: newsString,
+                    success: function(data){
+                        if(data == "success") {
+                            $("#status").text("Publicacion de noticia con exito..!");
+                            localStorage.loginstatus = "true";
+                            window.location.href = "reports.html";
+                        }
+                        else if(data == "error")
+                        {
+                            $("#status").text("Fallo la publicacion!");
+                        }
+                    }
+                });
+            });
+        });
+
+    </script>
 </body>
 </html>
