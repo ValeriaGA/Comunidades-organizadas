@@ -30,7 +30,7 @@ class AdministrationCommunityController extends Controller
     public function index()
     {
         $communities = Community::orderBy('name', 'asc')->get();
-        return view('administration.community.community.index', compact('communities', 'provinces'));
+        return view('administration.community.community.index', compact('communities'));
     }
 
     /**
