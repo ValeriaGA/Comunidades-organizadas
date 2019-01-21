@@ -135,7 +135,7 @@
 
               <br/>
               <br/>
-              <div style="margin-top: 25px; margin-left: 50px; display:inline; margin-top: 10px;">
+              <div style="margin-top: 25px; display:inline; margin-top: 10px;">
                   <label>Comunidad</label>
                   
                   <select id="communities" style="width:180px; display:inline;" class="form-control"  name="community">
@@ -155,7 +155,7 @@
                   
               </div>
 
-              <div style="margin-top: 25px; margin-left: 50px; display:inline; margin-top: 10px;">
+              <div style="margin-top: 25px; margin-left: 45px; display:inline; margin-top: 10px;">
                   <label>Grupo</label>
                   
                   <select id="communityGroups" style="width:180px; display:inline;" class="form-control"  name="group">
